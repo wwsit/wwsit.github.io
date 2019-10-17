@@ -2,16 +2,18 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>redis的使用 | Hexo</title>
+  <title>Django的使用 | Hexo</title>
   <meta name="keywords" content="">
-  <meta name="description" content="redis的使用 | Hexo">
+  <meta name="description" content="Django的使用 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="1. 创建虚拟环境1mkvirtualenv django_py3_1.11 -p python3  2. 安装Django1pip install django==1.11.11  3.虚拟环境和pip的命令12345678910# 虚拟环境mkvirtualenv  # 创建虚拟环境rmvirtualenv  # 删除虚拟环境workon  # 进入虚拟环境、查看所有虚拟环境deactiva">
 <meta property="og:type" content="article">
-<meta property="og:title" content="redis的使用">
+<meta property="og:title" content="Django的使用">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;17&#x2F;first-blog&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1. 创建虚拟环境1mkvirtualenv django_py3_1.11 -p python3  2. 安装Django1pip install django==1.11.11  3.虚拟环境和pip的命令12345678910# 虚拟环境mkvirtualenv  # 创建虚拟环境rmvirtualenv  # 删除虚拟环境workon  # 进入虚拟环境、查看所有虚拟环境deactiva">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-17T10:52:36.532Z">
+<meta property="og:updated_time" content="2019-10-17T11:14:17.656Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -259,7 +261,7 @@
            href="/2019/10/17/first-blog/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="redis的使用">redis的使用</span>
+            <span class="post-title" title="Django的使用">Django的使用</span>
             <span class="post-date" title="2019-10-17 18:51:09">2019/10/17</span>
         </a>
         
@@ -285,7 +287,7 @@
     <div class="pjax">
         <article id="post-first-blog" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">redis的使用</h1>
+        <h1 class="article-title">Django的使用</h1>
     
     <div class="article-meta">
         
@@ -295,7 +297,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-10-17 18:52:36'>2019-10-17 18:51</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-17 19:14:17'>2019-10-17 18:51</time>
         
     </div>
     <div class="article-meta">
@@ -317,7 +319,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-创建虚拟环境"><span class="toc-text">1. 创建虚拟环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-安装Django"><span class="toc-text">2. 安装Django</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-虚拟环境和pip的命令"><span class="toc-text">3.虚拟环境和pip的命令</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -333,7 +335,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <a id="more"></a>
+<h3 id="1-创建虚拟环境"><a href="#1-创建虚拟环境" class="headerlink" title="1. 创建虚拟环境"></a>1. 创建虚拟环境</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkvirtualenv django_py3_1<span class="number">.11</span> -p python3</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-安装Django"><a href="#2-安装Django" class="headerlink" title="2. 安装Django"></a>2. 安装Django</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install django==<span class="number">1.11</span><span class="number">.11</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-虚拟环境和pip的命令"><a href="#3-虚拟环境和pip的命令" class="headerlink" title="3.虚拟环境和pip的命令"></a>3.虚拟环境和pip的命令</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 虚拟环境</span></span><br><span class="line">mkvirtualenv  <span class="comment"># 创建虚拟环境</span></span><br><span class="line">rmvirtualenv  <span class="comment"># 删除虚拟环境</span></span><br><span class="line">workon  <span class="comment"># 进入虚拟环境、查看所有虚拟环境</span></span><br><span class="line">deactivate  <span class="comment"># 退出虚拟环境</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># pip</span></span><br><span class="line">pip install  <span class="comment"># 安装依赖包</span></span><br><span class="line">pip uninstall  <span class="comment"># 卸载依赖包</span></span><br><span class="line">pip list  <span class="comment"># 查看已安装的依赖库</span></span><br></pre></td></tr></table></figure>
+
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
     </div>
@@ -346,12 +355,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>redis的使用</p>
+    <p><span class="copy-title">文章标题:</span>Django的使用</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="John Doe">John Doe</a></p>
     <p><span class="copy-title">发布时间:</span>2019-10-17, 18:51:09</p>
-    <p><span class="copy-title">最后更新:</span>2019-10-17, 18:52:36</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/17/first-blog/" title="redis的使用">http://yoursite.com/2019/10/17/first-blog/</a>
+    <p><span class="copy-title">最后更新:</span>2019-10-17, 19:14:17</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/17/first-blog/" title="Django的使用">http://yoursite.com/2019/10/17/first-blog/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
