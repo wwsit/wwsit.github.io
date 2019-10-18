@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>requests模块的使用(上) | Jerry书店</title>
-  <meta name="keywords" content=" 爬虫、requests ">
-  <meta name="description" content="requests模块的使用(上) | Jerry书店">
+  <title>Scrapy 框架介绍 | Jerry书店</title>
+  <meta name="keywords" content=" 爬虫、scrapy ">
+  <meta name="description" content="Scrapy 框架介绍 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="分享Python相关知识，有关Django、Flask、爬虫....">
 <meta name="keywords" content="Python">
@@ -346,9 +346,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-spider_02_request_use" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-spider_scrapy_01" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">requests模块的使用(上)</h1>
+        <h1 class="article-title">Scrapy 框架介绍</h1>
     
     <div class="article-meta">
         
@@ -363,14 +363,14 @@
         
         <span class="tag">
             
-            <a href="javascript:" class="color2">爬虫、requests</a>
+            <a href="javascript:" class="color5">爬虫、scrapy</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-24 20:40:21'>2019-08-24 20:10</time>
+        创建时间:<time class="date" title='更新时间: 2019-09-01 19:21:05'>2019-09-01 19:00</time>
         
     </div>
     <div class="article-meta">
@@ -392,7 +392,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-requests-模块介绍"><span class="toc-text">1. requests 模块介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-requests-模块安装"><span class="toc-text">2. requests 模块安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-requests-模块使用"><span class="toc-text">3.requests 模块使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#二、自定义请求头"><span class="toc-text">二、自定义请求头</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、发送-GET-请求"><span class="toc-text">三、发送 GET 请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四、发送-POST-请求"><span class="toc-text">四、发送 POST 请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五、保存图片"><span class="toc-text">五、保存图片</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、scrapy-框架介绍"><span class="toc-text">一、scrapy 框架介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、scrapy-安装"><span class="toc-text">二、scrapy 安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、scrapy-快速体验"><span class="toc-text">三、scrapy 快速体验</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -408,91 +408,35 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-requests-模块介绍"><a href="#1-requests-模块介绍" class="headerlink" title="1. requests 模块介绍"></a>1. requests 模块介绍</h3><pre><code>requests 模块可以模拟浏览器发送请求获取响应。</code></pre><h3 id="2-requests-模块安装"><a href="#2-requests-模块安装" class="headerlink" title="2. requests 模块安装"></a>2. requests 模块安装</h3><pre><code>pip install requests</code></pre><h3 id="3-requests-模块使用"><a href="#3-requests-模块使用" class="headerlink" title="3.requests 模块使用"></a>3.requests 模块使用</h3><p><strong>一、基本使用</strong></p>
-<pre><code>*使用方式
-# 导入模块
-import requests
-# 定义请求地址
-url = &apos;https://www.baidu.com/&apos;
-# 发送 GET 请求获取响应
-response = requests.get(url)
-# 获取响应的 html 内容
-html = response.text</code></pre><p><strong>代码讲解</strong></p>
-<blockquote>
-<p>response 常用属性</p>
+        <h4 id="一、scrapy-框架介绍"><a href="#一、scrapy-框架介绍" class="headerlink" title="一、scrapy 框架介绍"></a>一、scrapy 框架介绍</h4><blockquote>
+<p>Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架，<br> 我们只需要实现少量的代码，就能够快速的抓取。<br> Scrapy 使用了Twisted异步网络框架，可以加快我们的下载速度。</p>
 </blockquote>
-<pre><code>response.text 返回响应内容，响应内容为 str 类型
-respones.content 返回响应内容,响应内容为 bytes 类型
-response.status_code 返回响应状态码
-response.request.headers 返回请求头
-response.headers 返回响应头
-response.cookies 返回响应的 RequestsCookieJar 对象</code></pre><blockquote>
-<p><code>response.content</code> 转换 <code>str</code> 类型 </p>
+<h4 id="二、scrapy-安装"><a href="#二、scrapy-安装" class="headerlink" title="二、scrapy 安装"></a>二、scrapy 安装</h4><blockquote>
+<p>pip install scrapy<br>安装完成后在命令行，如果信息显示说明安装成功<br>scrapy –help</p>
 </blockquote>
-<pre><code> # 获取字节数据
-content = response.contents
-# 转换成字符串类型
-html = content.decode(&apos;utf-8&apos;)</code></pre><blockquote>
-<p>response.cookies 操作</p>
-</blockquote>
-<pre><code># 返回 RequestsCookieJar 对象
-cookies = response.cookies
-# RequestsCookieJar 转 dict
-requests.utils.dict_from_cookiejar(cookies)
-# dict 转 RequestsCookieJar
-requests.utils.cookiejar_from_dict()
-# 对cookie进行操作,把一个字典添加到cookiejar中
-requests.utils.add_dict_to_cookiejar()</code></pre><h4 id="二、自定义请求头"><a href="#二、自定义请求头" class="headerlink" title="二、自定义请求头"></a>二、自定义请求头</h4><pre><code># 导入模块
-import requests
-# 定义请求地址
-url = &apos;https://www.baidu.com/&apos;
-# 定义自定义请求头
-headers = {
-  &quot;User-Agent&quot;:&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36&quot;
-}
-# 发送自定义请求头
-response = requests.get(url,headers=headers)
-# 获取响应的 html 内容
-html = response.text</code></pre><h4 id="三、发送-GET-请求"><a href="#三、发送-GET-请求" class="headerlink" title="三、发送 GET 请求"></a>三、发送 GET 请求</h4><pre><code># 导入模块
-import requests
-# 定义请求地址
-url = &apos;https://www.baidu.com/&apos;
-# 定义自定义请求头
-headers = {
-  &quot;User-Agent&quot;:&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36&quot;
-}
-# 定义 GET 请求参数
-params = {
-  &quot;wd&quot;:&quot;csdn&quot;
-}
-# 使用 GET 请求参数发送请求
-response = requests.get(url,headers=headers,params=params)
-# 获取响应的 html 内容
-html = response.text</code></pre><h4 id="四、发送-POST-请求"><a href="#四、发送-POST-请求" class="headerlink" title="四、发送 POST 请求"></a>四、发送 POST 请求</h4><pre><code># 导入模块
-import requests
-# 定义请求地址
-url = &apos;https://www.baidu.com/&apos;
-# 定义自定义请求头
-headers = {
-  &quot;User-Agent&quot;:&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36&quot;
-}
-# 定义post请求参数
-data = {
-   &quot;wd&quot;:&quot;csdn&quot;
-}
+<h4 id="三、scrapy-快速体验"><a href="#三、scrapy-快速体验" class="headerlink" title="三、scrapy 快速体验"></a>三、scrapy 快速体验</h4><p>使用流程</p>
+<pre><code># 创建项目
+scrapy startproject 项目名称
 
-# 使用 POST 请求参数发送请求
-response = requests.post(url,headers=headers,data=data)
-# 获取响应的 html 内容
-html = response.text</code></pre><h4 id="五、保存图片"><a href="#五、保存图片" class="headerlink" title="五、保存图片"></a>五、保存图片</h4><pre><code># 导入模块
-import requests
-# 下载图片地址
-url = &quot;https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3433375665,1448816841&amp;fm=26&amp;gp=0.jpg&quot;
-# 发送请求获取响应
-response = requests.get(url)
-# 保存图片
-with open(&apos;image.png&apos;,&apos;wb&apos;) as f:
-  f.write(response.content)</code></pre>
+# 创建爬虫
+cd 项目目录
+scrapy genspider 爬虫名称 允许域名
+eg: scrapy genspider movies douban.com
+
+# 编写爬虫组件（解析数据）和管道组件（保存数据）
+import scrapy
+class ItSpider(scrapy.Spider):
+   name = &apos;movies&apos; # 爬虫名称
+   allowed_domains = [&apos;douban.com&apos;]
+   # 输入首个爬取网址
+   start_urls = [&apos;https://movie.douban.com/j/search_subjects?type=movie&amp;tag=%E7%83%AD%E9%97%A8&amp;sort=recommend&amp;page_limit=20&amp;page_start=0&apos;]
+
+   def parse(self, response):
+       &quot;&quot;&quot;解析函数&quot;&quot;&quot;
+       pass
+# 启动爬虫
+scrapy crawl 爬虫名称
+eg: scrapy crawl movies</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
@@ -505,12 +449,12 @@ with open(&apos;image.png&apos;,&apos;wb&apos;) as f:
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>requests模块的使用(上)</p>
+    <p><span class="copy-title">文章标题:</span>Scrapy 框架介绍</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-08-24, 20:10:45</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-24, 20:40:21</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/24/spider_02_request_use/" title="requests模块的使用(上)">http://yoursite.com/2019/08/24/spider_02_request_use/</a>
+    <p><span class="copy-title">发布时间:</span>2019-09-01, 19:00:11</p>
+    <p><span class="copy-title">最后更新:</span>2019-09-01, 19:21:05</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/01/spider_scrapy_01/" title="Scrapy 框架介绍">http://yoursite.com/2019/09/01/spider_scrapy_01/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
