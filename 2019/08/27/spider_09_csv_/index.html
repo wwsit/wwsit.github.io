@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>requests--豆瓣电影爬虫 | Jerry书店</title>
-  <meta name="keywords" content=" 爬虫 ">
-  <meta name="description" content="requests--豆瓣电影爬虫 | Jerry书店">
+  <title>json 与 csv 文件转换 | Jerry书店</title>
+  <meta name="keywords" content=" 爬虫、csv ">
+  <meta name="description" content="json 与 csv 文件转换 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="分享Python相关知识，有关Django、Flask、爬虫....">
 <meta name="keywords" content="Python">
@@ -314,9 +314,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-spider_04_douban" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-spider_09_csv_" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">requests--豆瓣电影爬虫</h1>
+        <h1 class="article-title">json 与 csv 文件转换</h1>
     
     <div class="article-meta">
         
@@ -331,14 +331,14 @@
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">爬虫</a>
+            <a href="javascript:" class="color2">爬虫、csv</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-25 19:40:23'>2019-08-25 19:22</time>
+        创建时间:<time class="date" title='更新时间: 2019-08-27 19:20:18'>2019-08-27 19:01</time>
         
     </div>
     <div class="article-meta">
@@ -360,7 +360,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#爬取豆瓣热门页-电影的数据"><span class="toc-text">爬取豆瓣热门页 电影的数据</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、csv-文件格式"><span class="toc-text">一、csv 文件格式</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -376,62 +376,47 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="爬取豆瓣热门页-电影的数据"><a href="#爬取豆瓣热门页-电影的数据" class="headerlink" title="爬取豆瓣热门页 电影的数据"></a>爬取豆瓣热门页 电影的数据</h4><p>接口信息</p>
-<p><img src="/2019/08/25/spider_04_douban/spider_douban_01.PNG" alt><br><img src="/2019/08/25/spider_04_douban/spider_douban_02.PNG" alt></p>
-<pre><code>import requests
+        <h4 id="一、csv-文件格式"><a href="#一、csv-文件格式" class="headerlink" title="一、csv 文件格式"></a>一、csv 文件格式</h4><p>定义</p>
+<blockquote>
+<p>逗号分隔值（Comma-Separated Values，CSV，有时也称为字符分隔值，<br>因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）</p>
+</blockquote>
+<p>作用</p>
+<blockquote>
+<p>可以使用 excel 转换打开</p>
+</blockquote>
+<p>使用流程</p>
+<pre><code># 导入 csv 模块
+import csv
+# 创建文件写入对象
+f = open(&apos;demo.csv&apos;,&apos;w&apos;,encoding=&apos;utf-8&apos;)
+# 创建 csv 写入对象
+csv_writer = csv.writer(f)
+# 写入 json 数据的 key 作为标题
+csv_writer.writerow(results[0].keys())
+# 循环写入数据
+for result in results:
+    csv_writer.writerow(result.values())
+# 使用office 导入 csv 数据转换成 excel 数据</code></pre><p>实现代码</p>
+<pre><code>import csv
 import json
-from pprint import pprint
-import jsonpath
+results = None
+with open(&apos;demon_1.json&apos;,&apos;r&apos;,encoding=&apos;utf-8&apos;) as f:
+    results = json.load(f)
+# 创建文件写入对象
+f = open(&apos;demon.csv&apos;,&apos;w&apos;,encoding=&apos;utf-8&apos;)
+# 通过文件对象创建 csv 写入对象
+csv_writer = csv.writer(f)
+# 把数据写入到 csv 文件中
+# 写入标题
 
+# 说明:对象是一个列表嵌套一个字典 results=[{&quot;age&quot;:18},{&quot;age&quot;:19}..]
+# results[0].keys() 获取列表里第一个字典里的所有键的名字
+csv_writer.writerow(results[0].keys())
 
-class DouBanSpider():
-    &quot;&quot;&quot;豆瓣热门页电影 爬虫&quot;&quot;&quot;
-
-    def __init__(self):
-        &quot;&quot;&quot;初始化操作&quot;&quot;&quot;
-
-        self.url = &apos;https://movie.douban.com/j/search_subjects&apos;
-        self.headers = {
-            &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 \
-            (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36&quot;
-        }
-        self.number = 1  # 爬取的数量
-
-
-    def run(self, pages):
-        &quot;&quot;&quot;启动爬虫&quot;&quot;&quot;
-
-        # 参数1：要从第几个数据开始爬
-        # 参数2：到第几个数据结束
-        # 参数3：因为每次增加的数据是20个 所以步长20
-        for page in range(0, pages * 20, 20):
-            resp = requests.get(
-                url=self.url.format(page),
-                headers=self.headers,
-                # 请求参数
-                params={
-                    &quot;type&quot;: &quot;movie&quot;,
-                    &quot;tag&quot;: &quot;热门&quot;,
-                    &quot;sort&quot;: &quot;recommend&quot;,
-                    &quot;page_limit&quot;: &quot;20&quot;,
-                    &quot;page_start&quot;: page
-                }
-            )
-            # 返回的数据是一个json数据, 转成字典格式
-            result = json.loads(resp.text)
-            # pprint(result) # pprint让控制台打印更好看
-
-            result = result[&apos;subjects&apos;]
-            for movie in result:
-                 print(&quot;数量:{}---标题：{}--评分:{}--地址:{}&quot;.    # &lt;---这里有个点  一行太长了
-                      format(self.number,movie[&apos;title&apos;], movie[&apos;rate&apos;], movie[&apos;url&apos;]))
-                self.number += 1
-
-
-if __name__ == &apos;__main__&apos;:
-    client = DouBanSpider()
-    # 要爬几页数据  就写多少页  下面是爬两页数据
-    client.run(2)</code></pre>
+for result in results:
+    # result.values() 获取字典里的值
+    csv_writer.writerow(result.values())
+f.close()</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
@@ -444,12 +429,12 @@ if __name__ == &apos;__main__&apos;:
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>requests--豆瓣电影爬虫</p>
+    <p><span class="copy-title">文章标题:</span>json 与 csv 文件转换</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-08-25, 19:22:24</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-25, 19:40:23</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/25/spider_04_douban/" title="requests--豆瓣电影爬虫">http://yoursite.com/2019/08/25/spider_04_douban/</a>
+    <p><span class="copy-title">发布时间:</span>2019-08-27, 19:01:24</p>
+    <p><span class="copy-title">最后更新:</span>2019-08-27, 19:20:18</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/27/spider_09_csv_/" title="json 与 csv 文件转换">http://yoursite.com/2019/08/27/spider_09_csv_/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>

@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>requests--豆瓣电影爬虫 | Jerry书店</title>
-  <meta name="keywords" content=" 爬虫 ">
-  <meta name="description" content="requests--豆瓣电影爬虫 | Jerry书店">
+  <title>常见的反爬手段和解决思路 | Jerry书店</title>
+  <meta name="keywords" content=" 爬虫、知识 ">
+  <meta name="description" content="常见的反爬手段和解决思路 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="分享Python相关知识，有关Django、Flask、爬虫....">
 <meta name="keywords" content="Python">
@@ -314,9 +314,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-spider_04_douban" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-spider_10_anti_spider_" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">requests--豆瓣电影爬虫</h1>
+        <h1 class="article-title">常见的反爬手段和解决思路</h1>
     
     <div class="article-meta">
         
@@ -331,14 +331,14 @@
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">爬虫</a>
+            <a href="javascript:" class="color1">爬虫、知识</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-25 19:40:23'>2019-08-25 19:22</time>
+        创建时间:<time class="date" title='更新时间: 2019-08-27 20:21:15'>2019-08-27 19:40</time>
         
     </div>
     <div class="article-meta">
@@ -360,7 +360,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#爬取豆瓣热门页-电影的数据"><span class="toc-text">爬取豆瓣热门页 电影的数据</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、-通过headers字段来反爬"><span class="toc-text">一、 通过headers字段来反爬</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、通过js来反爬"><span class="toc-text">二、通过js来反爬</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、通过验证码来反爬"><span class="toc-text">三、通过验证码来反爬</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四、通过ip地址来反爬"><span class="toc-text">四、通过ip地址来反爬</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四、CSS反扒"><span class="toc-text">四、CSS反扒</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五、明确反反爬的主要思路"><span class="toc-text">五、明确反反爬的主要思路</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -376,62 +376,56 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="爬取豆瓣热门页-电影的数据"><a href="#爬取豆瓣热门页-电影的数据" class="headerlink" title="爬取豆瓣热门页 电影的数据"></a>爬取豆瓣热门页 电影的数据</h4><p>接口信息</p>
-<p><img src="/2019/08/25/spider_04_douban/spider_douban_01.PNG" alt><br><img src="/2019/08/25/spider_04_douban/spider_douban_02.PNG" alt></p>
-<pre><code>import requests
-import json
-from pprint import pprint
-import jsonpath
+        <h4 id="一、-通过headers字段来反爬"><a href="#一、-通过headers字段来反爬" class="headerlink" title="一、 通过headers字段来反爬"></a>一、 通过headers字段来反爬</h4><p>1.1 通过headers中的User-Agent字段来反爬</p>
+<blockquote>
+<p>通过User-Agent字段反爬的话，只需要给他在请求之前添加User-Agent即可，<br>    更好的方式是使用User-Agent池来解决,我们可以考虑收集一堆User-Agent的方式，<br>    或者是随机生成User-Agent</p>
+</blockquote>
+<pre><code>import random
+def get_ua():
+    first_num = random.randint(55, 62)
+    third_num = random.randint(0, 3200)
+    fourth_num = random.randint(0, 140)
+    os_type = [
+        &apos;(Windows NT 6.1; WOW64)&apos;, &apos;(Windows NT 10.0; WOW64)&apos;, &apos;(X11; Linux x86_64)&apos;,
+        &apos;(Macintosh; Intel Mac OS X 10_12_6)&apos;
+    ]
+    chrome_version = &apos;Chrome/{}.0.{}.{}&apos;.format(first_num, third_num, fourth_num)
 
+    ua = &apos; &apos;.join([&apos;Mozilla/5.0&apos;, random.choice(os_type), &apos;AppleWebKit/537.36&apos;,
+                   &apos;(KHTML, like Gecko)&apos;, chrome_version, &apos;Safari/537.36&apos;]
+                  )
+    return ua</code></pre><p>1.2 通过referer字段或者是其他字段来反爬<br>1.3 通过cookie来反爬</p>
+<blockquote>
+<p>如果目标网站不需要登录 每次请求带上前一次返回的cookie，比如requests模块的session<br>如果目标网站需要登录 准备多个账号，通过一个程序获取账号对应的cookie，组成cookie池，其他程序使用这些cookie</p>
+</blockquote>
+<h4 id="二、通过js来反爬"><a href="#二、通过js来反爬" class="headerlink" title="二、通过js来反爬"></a>二、通过js来反爬</h4><p>2.1 通过js实现跳转来反爬</p>
+<blockquote>
+<p>在请求目标网站的时候，我们看到的似乎就请求了一个网站，然而实际上在成功请求目标网站之前，<br> 中间可能有通过js实现的跳转，我们肉眼不可见，这个时候可以通过点击perserve log按钮实现观察页面跳转情况<br> 在这些请求中，如果请求数量很多，一般来讲，只有那些response中带cookie字段的请求是有用的，<br> 意味着通过这个请求，对方服务器有设置cookie到本地</p>
+</blockquote>
+<p>2.2 通过js生成了请求参数</p>
+<blockquote>
+<p>对应的需要分析js，观察加密的实现过程，通过js2py获取js的执行结果，或者使用selenium来实现</p>
+</blockquote>
+<p>2.3 通过js实现了数据的加密</p>
+<blockquote>
+<p>对应的需要分析js，观察加密的实现过程，通过js2py获取js的执行结果，或者使用selenium来实现</p>
+</blockquote>
+<h4 id="三、通过验证码来反爬"><a href="#三、通过验证码来反爬" class="headerlink" title="三、通过验证码来反爬"></a>三、通过验证码来反爬</h4><blockquote>
+<p>通过打码平台或者是机器学习的方法识别验证码，其中打码平台廉价易用</p>
+</blockquote>
+<h4 id="四、通过ip地址来反爬"><a href="#四、通过ip地址来反爬" class="headerlink" title="四、通过ip地址来反爬"></a>四、通过ip地址来反爬</h4><blockquote>
+<p>同一个ip大量请求了对方服务器，有更大的可能性会被识别为爬虫，对应的通过购买高质量的ip的方式能够解决问题</p>
+</blockquote>
+<h4 id="四、CSS反扒"><a href="#四、CSS反扒" class="headerlink" title="四、CSS反扒"></a>四、CSS反扒</h4><blockquote>
+<p>切换手机端<br>计算css的偏移</p>
+</blockquote>
+<h4 id="五、明确反反爬的主要思路"><a href="#五、明确反反爬的主要思路" class="headerlink" title="五、明确反反爬的主要思路"></a>五、明确反反爬的主要思路</h4><blockquote>
+<p>反反爬的主要思路就是：尽可能的去模拟浏览器，浏览器如何操作，代码中就如何去实现。</p>
+</blockquote>
+<blockquote>
+<p>很多时候，爬虫中携带的headers字段，cookie字段，url参数，post的参数很多，不清楚哪些有用，<br>  哪些没用的情况下，只能够去尝试，因为每个网站都是不相同的。<br>  当然在盲目尝试之前，可以参考别人的思路，我们自己也应该有一套尝试的流程。</p>
+</blockquote>
 
-class DouBanSpider():
-    &quot;&quot;&quot;豆瓣热门页电影 爬虫&quot;&quot;&quot;
-
-    def __init__(self):
-        &quot;&quot;&quot;初始化操作&quot;&quot;&quot;
-
-        self.url = &apos;https://movie.douban.com/j/search_subjects&apos;
-        self.headers = {
-            &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 \
-            (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36&quot;
-        }
-        self.number = 1  # 爬取的数量
-
-
-    def run(self, pages):
-        &quot;&quot;&quot;启动爬虫&quot;&quot;&quot;
-
-        # 参数1：要从第几个数据开始爬
-        # 参数2：到第几个数据结束
-        # 参数3：因为每次增加的数据是20个 所以步长20
-        for page in range(0, pages * 20, 20):
-            resp = requests.get(
-                url=self.url.format(page),
-                headers=self.headers,
-                # 请求参数
-                params={
-                    &quot;type&quot;: &quot;movie&quot;,
-                    &quot;tag&quot;: &quot;热门&quot;,
-                    &quot;sort&quot;: &quot;recommend&quot;,
-                    &quot;page_limit&quot;: &quot;20&quot;,
-                    &quot;page_start&quot;: page
-                }
-            )
-            # 返回的数据是一个json数据, 转成字典格式
-            result = json.loads(resp.text)
-            # pprint(result) # pprint让控制台打印更好看
-
-            result = result[&apos;subjects&apos;]
-            for movie in result:
-                 print(&quot;数量:{}---标题：{}--评分:{}--地址:{}&quot;.    # &lt;---这里有个点  一行太长了
-                      format(self.number,movie[&apos;title&apos;], movie[&apos;rate&apos;], movie[&apos;url&apos;]))
-                self.number += 1
-
-
-if __name__ == &apos;__main__&apos;:
-    client = DouBanSpider()
-    # 要爬几页数据  就写多少页  下面是爬两页数据
-    client.run(2)</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
@@ -444,12 +438,12 @@ if __name__ == &apos;__main__&apos;:
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>requests--豆瓣电影爬虫</p>
+    <p><span class="copy-title">文章标题:</span>常见的反爬手段和解决思路</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-08-25, 19:22:24</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-25, 19:40:23</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/25/spider_04_douban/" title="requests--豆瓣电影爬虫">http://yoursite.com/2019/08/25/spider_04_douban/</a>
+    <p><span class="copy-title">发布时间:</span>2019-08-27, 19:40:01</p>
+    <p><span class="copy-title">最后更新:</span>2019-08-27, 20:21:15</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/27/spider_10_anti_spider_/" title="常见的反爬手段和解决思路">http://yoursite.com/2019/08/27/spider_10_anti_spider_/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
