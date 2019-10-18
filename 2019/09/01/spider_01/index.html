@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Django创建工程 | Python学习</title>
-  <meta name="keywords" content=" Django ">
-  <meta name="description" content="Django创建工程 | Python学习">
+  <title>爬虫的介绍 | Python学习</title>
+  <meta name="keywords" content=" 爬虫 ">
+  <meta name="description" content="爬虫的介绍 | Python学习">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="分享Python相关知识，有关Django、Flask、爬虫....">
 <meta name="keywords" content="Python">
@@ -57,7 +57,7 @@
     <img class="avatar" src="/img/avatar.jpg" />
 </a>
 <div class="author">
-    <span>小王</span>
+    <span>Jerry</span>
 </div>
 
 <div class="icon">
@@ -195,35 +195,35 @@
     <nav id="title-list-nav">
         
         <a  class="Django "
-           href="/2019/05/01/django_01/"
+           href="/2019/08/20/django_01/"
            data-tag="Django"
            data-author="" >
             <span class="post-title" title="Django的使用">Django的使用</span>
-            <span class="post-date" title="2019-05-01 18:51:09">2019/05/01</span>
+            <span class="post-date" title="2019-08-20 18:51:09">2019/08/20</span>
         </a>
         
         <a  class="Django "
-           href="/2019/10/17/django_02_start_project/"
+           href="/2019/08/20/django_02_start_project/"
            data-tag="Django"
            data-author="" >
             <span class="post-title" title="Django创建工程">Django创建工程</span>
-            <span class="post-date" title="2019-10-17 18:51:09">2019/10/17</span>
+            <span class="post-date" title="2019-08-20 19:20:09">2019/08/20</span>
         </a>
         
         <a  class="爬虫 "
-           href="/2019/10/18/spider_01/"
+           href="/2019/09/01/spider_01/"
            data-tag="爬虫"
            data-author="" >
             <span class="post-title" title="爬虫的介绍">爬虫的介绍</span>
-            <span class="post-date" title="2019-10-18 09:32:44">2019/10/18</span>
+            <span class="post-date" title="2019-09-01 18:30:34">2019/09/01</span>
         </a>
         
         <a  class="爬虫 "
-           href="/2019/06/01/spider_02_request_use/"
+           href="/2019/09/01/spider_02_request_use/"
            data-tag="爬虫"
            data-author="" >
             <span class="post-title" title="requests模块的使用">requests模块的使用</span>
-            <span class="post-date" title="2019-06-01 18:51:09">2019/06/01</span>
+            <span class="post-date" title="2019-09-01 18:50:45">2019/09/01</span>
         </a>
         
     </nav>
@@ -238,9 +238,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-django_02_start_project" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-spider_01" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Django创建工程</h1>
+        <h1 class="article-title">爬虫的介绍</h1>
     
     <div class="article-meta">
         
@@ -248,21 +248,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="Django">Django</a>
+                <a href="javascript:" data-rel="爬虫">爬虫</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color2">Django</a>
+            <a href="javascript:" class="color3">爬虫</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-10-18 10:53:53'>2019-10-17 18:51</time>
+        创建时间:<time class="date" title='更新时间: 2019-09-01 18:45:21'>2019-09-01 18:30</time>
         
     </div>
     <div class="article-meta">
@@ -284,7 +284,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-创建"><span class="toc-text">1. 创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-工程目录说明"><span class="toc-text">2. 工程目录说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-运行开发服务器"><span class="toc-text">3.运行开发服务器</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、-为什么要学习爬虫"><span class="toc-text">一、 为什么要学习爬虫</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-数据的来源"><span class="toc-text">1.1 数据的来源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-爬取到的数据用途"><span class="toc-text">1.2 爬取到的数据用途</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、什么是爬虫"><span class="toc-text">二、什么是爬虫</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -300,56 +300,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-创建"><a href="#1-创建" class="headerlink" title="1. 创建"></a>1. 创建</h3><ul>
-<li>创建工程的命令为： <ul>
-<li>django-admin startproject 工程名称</li>
+        <h4 id="一、-为什么要学习爬虫"><a href="#一、-为什么要学习爬虫" class="headerlink" title="一、 为什么要学习爬虫"></a>一、 为什么要学习爬虫</h4><pre><code>如今，人工智能，大数据离我们越来越近，很多公司在开展相关的业务，但是人工智能和大数据中有一个东西非常重要，那就是数据，但是数据从哪里来呢？</code></pre><h4 id="1-1-数据的来源"><a href="#1-1-数据的来源" class="headerlink" title="1.1 数据的来源"></a>1.1 数据的来源</h4><ul>
+<li>企业产生的数据：百度搜索指数、阿里指数、微指数、看准网、腾讯浏览指数、大众点评网、汽车之家等…</li>
+<li>数据平台购买数据：数据堂、国云数据市场、贵阳大数据交易所 等…</li>
+<li>政府/机构公开的数据：天眼查、中华人民共和国国家统计局数据、中国人民银行调查统计、世界银行公开数据、联合国数据、纳斯达克、新浪财经美股实时行情 等…</li>
+<li>数据管理咨询公司：麦肯锡、埃森哲、尼尔森、中国互联网信息中心、艾瑞咨询 等…</li>
+<li>爬取网络数据：百度、google 等…</li>
 </ul>
-</li>
-<li>例如：想要在桌面的code目录中创建一个名为demo的项目工程，可执行如下命令： <ul>
-<li>cd ~/Desktop/code</li>
-<li>django-admin startproject demo</li>
+<h4 id="1-2-爬取到的数据用途"><a href="#1-2-爬取到的数据用途" class="headerlink" title="1.2 爬取到的数据用途"></a>1.2 爬取到的数据用途</h4><ul>
+<li>进行在网页或者是app上进行展示</li>
+<li>进行数据分析或者是机器学习相关的项目</li>
 </ul>
-</li>
-<li>执行后，会多出一个新目录名为demo，此即为新创建的工程目录。 </li>
-</ul>
-<h3 id="2-工程目录说明"><a href="#2-工程目录说明" class="headerlink" title="2. 工程目录说明"></a>2. 工程目录说明</h3><ul>
-<li><p>查看创建的工程目录，结构如下 </p>
-<p><img src="/2019/10/17/django_02_start_project/django_1.PNG" alt></p>
-</li>
-</ul>
-<ul>
-<li>与项目同名的目录，此处为demo。</li>
-<li><strong>settings.py</strong> 是项目的整体配置文件。</li>
-<li><strong>urls.py</strong> 是项目的URL配置文件。</li>
-<li><strong>wsgi.py</strong> 是项目与WSGI兼容的Web服务器入口。</li>
-<li><strong>manage.py</strong> 是项目管理文件，通过它管理项目。</li>
-</ul>
-<h3 id="3-运行开发服务器"><a href="#3-运行开发服务器" class="headerlink" title="3.运行开发服务器"></a>3.运行开发服务器</h3><blockquote>
-<p>在开发阶段，为了能够快速预览到开发的效果，django提供了一个纯python编写的轻量级web服务器，仅在开发阶段使用。 </p>
-<p>运行服务器命令如下： </p>
-</blockquote>
-<p>​    <strong>python manage.py runserver ip:端口</strong></p>
-<p>​    <strong>或：python manage.py runserver</strong></p>
-<blockquote>
-<p>可以不写IP和端口，默认IP是127.0.0.1，默认端口为8000</p>
-<p>启动后可见如下信息： </p>
-</blockquote>
-<p><img src="/2019/10/17/django_02_start_project/django_2_start.PNG" alt></p>
-<blockquote>
-<p>在浏览器中输入网址“127.0.0.1:8000”便可看到效果。 </p>
-</blockquote>
-<p><img src="/2019/10/17/django_02_start_project/django_3.PNG" alt></p>
-<blockquote>
-<ul>
-<li>django默认工作在调式Debug模式下，如果增加、修改、删除文件，服务器会自动重启。</li>
-<li>按ctrl+c停止服务器。</li>
-</ul>
+<h4 id="二、什么是爬虫"><a href="#二、什么是爬虫" class="headerlink" title="二、什么是爬虫"></a>二、什么是爬虫</h4><blockquote>
+<p>网络爬虫（又被称为网页蜘蛛，网络机器人）就是模拟客户端发送网络请求，接收请求响应，一种按照一定的规则，自动地抓取互联网信息的程序。</p>
 </blockquote>
 <blockquote>
-<p>想运行在0.0.0.0这样设置    python manage.py runserver 0.0.0.0:8000</p>
-<p>启动信息：</p>
+<p>本质： 模拟浏览器（客户端）去获取、处理、保存数据，只要浏览器（客户端）能做的事情，爬虫都能够做。 原则上,只要是浏览器(客户端)能做的事情，爬虫都能够做</p>
 </blockquote>
-<p><img src="/2019/10/17/django_02_start_project/django_4_0000.PNG" alt></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
@@ -363,12 +330,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Django创建工程</p>
+    <p><span class="copy-title">文章标题:</span>爬虫的介绍</p>
     
-    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="小王">小王</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-10-17, 18:51:09</p>
-    <p><span class="copy-title">最后更新:</span>2019-10-18, 10:53:53</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/17/django_02_start_project/" title="Django创建工程">http://yoursite.com/2019/10/17/django_02_start_project/</a>
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-09-01, 18:30:34</p>
+    <p><span class="copy-title">最后更新:</span>2019-09-01, 18:45:21</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/01/spider_01/" title="爬虫的介绍">http://yoursite.com/2019/09/01/spider_01/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>

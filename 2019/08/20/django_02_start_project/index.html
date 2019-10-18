@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Python学习</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Python学习">
+  <title>Django创建工程 | Python学习</title>
+  <meta name="keywords" content=" Django ">
+  <meta name="description" content="Django创建工程 | Python学习">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="分享Python相关知识，有关Django、Flask、爬虫....">
 <meta name="keywords" content="Python">
@@ -51,13 +51,13 @@
 </div>
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/" class="avatar_target">
     <img class="avatar" src="/img/avatar.jpg" />
 </a>
 <div class="author">
-    <span>小王</span>
+    <span>Jerry</span>
 </div>
 
 <div class="icon">
@@ -195,35 +195,35 @@
     <nav id="title-list-nav">
         
         <a  class="Django "
-           href="/2019/05/01/django_01/"
+           href="/2019/08/20/django_01/"
            data-tag="Django"
            data-author="" >
             <span class="post-title" title="Django的使用">Django的使用</span>
-            <span class="post-date" title="2019-05-01 18:51:09">2019/05/01</span>
+            <span class="post-date" title="2019-08-20 18:51:09">2019/08/20</span>
         </a>
         
         <a  class="Django "
-           href="/2019/10/17/django_02_start_project/"
+           href="/2019/08/20/django_02_start_project/"
            data-tag="Django"
            data-author="" >
             <span class="post-title" title="Django创建工程">Django创建工程</span>
-            <span class="post-date" title="2019-10-17 18:51:09">2019/10/17</span>
+            <span class="post-date" title="2019-08-20 19:20:09">2019/08/20</span>
         </a>
         
         <a  class="爬虫 "
-           href="/2019/10/18/spider_01/"
+           href="/2019/09/01/spider_01/"
            data-tag="爬虫"
            data-author="" >
             <span class="post-title" title="爬虫的介绍">爬虫的介绍</span>
-            <span class="post-date" title="2019-10-18 09:32:44">2019/10/18</span>
+            <span class="post-date" title="2019-09-01 18:30:34">2019/09/01</span>
         </a>
         
         <a  class="爬虫 "
-           href="/2019/06/01/spider_02_request_use/"
+           href="/2019/09/01/spider_02_request_use/"
            data-tag="爬虫"
            data-author="" >
             <span class="post-title" title="requests模块的使用">requests模块的使用</span>
-            <span class="post-date" title="2019-06-01 18:51:09">2019/06/01</span>
+            <span class="post-date" title="2019-09-01 18:50:45">2019/09/01</span>
         </a>
         
     </nav>
@@ -236,12 +236,55 @@
         </div>
     </div>
 </aside>
-<div class="post index">
+<div class="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-django_02_start_project" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#对博客的理解"><span class="toc-text">对博客的理解</span></a></li></ol></li></ol>
+        <h1 class="article-title">Django创建工程</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" data-rel="Django">Django</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color2">Django</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-08-20 19:25:01'>2019-08-20 19:20</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-创建"><span class="toc-text">1. 创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-工程目录说明"><span class="toc-text">2. 工程目录说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-运行开发服务器"><span class="toc-text">3.运行开发服务器</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -254,27 +297,92 @@
     }
 </style>
 </div>
-            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>喜欢写Blog的人，会经历三个阶段。</p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-创建"><a href="#1-创建" class="headerlink" title="1. 创建"></a>1. 创建</h3><ul>
+<li>创建工程的命令为： <ul>
+<li>django-admin startproject 工程名称</li>
+</ul>
+</li>
+<li>例如：想要在桌面的code目录中创建一个名为demo的项目工程，可执行如下命令： <ul>
+<li>cd ~/Desktop/code</li>
+<li>django-admin startproject demo</li>
+</ul>
+</li>
+<li>执行后，会多出一个新目录名为demo，此即为新创建的工程目录。 </li>
+</ul>
+<h3 id="2-工程目录说明"><a href="#2-工程目录说明" class="headerlink" title="2. 工程目录说明"></a>2. 工程目录说明</h3><ul>
+<li><p>查看创建的工程目录，结构如下 </p>
+<p><img src="/2019/08/20/django_02_start_project/django_1.PNG" alt></p>
+</li>
+</ul>
+<ul>
+<li>与项目同名的目录，此处为demo。</li>
+<li><strong>settings.py</strong> 是项目的整体配置文件。</li>
+<li><strong>urls.py</strong> 是项目的URL配置文件。</li>
+<li><strong>wsgi.py</strong> 是项目与WSGI兼容的Web服务器入口。</li>
+<li><strong>manage.py</strong> 是项目管理文件，通过它管理项目。</li>
+</ul>
+<h3 id="3-运行开发服务器"><a href="#3-运行开发服务器" class="headerlink" title="3.运行开发服务器"></a>3.运行开发服务器</h3><blockquote>
+<p>在开发阶段，为了能够快速预览到开发的效果，django提供了一个纯python编写的轻量级web服务器，仅在开发阶段使用。 </p>
+<p>运行服务器命令如下： </p>
+</blockquote>
+<p>​    <strong>python manage.py runserver ip:端口</strong></p>
+<p>​    <strong>或：python manage.py runserver</strong></p>
 <blockquote>
-<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
+<p>可以不写IP和端口，默认IP是127.0.0.1，默认端口为8000</p>
+<p>启动后可见如下信息： </p>
+</blockquote>
+<p><img src="/2019/08/20/django_02_start_project/django_2_start.PNG" alt></p>
+<blockquote>
+<p>在浏览器中输入网址“127.0.0.1:8000”便可看到效果。 </p>
+</blockquote>
+<p><img src="/2019/08/20/django_02_start_project/django_3.PNG" alt></p>
+<blockquote>
+<ul>
+<li>django默认工作在调式Debug模式下，如果增加、修改、删除文件，服务器会自动重启。</li>
+<li>按ctrl+c停止服务器。</li>
+</ul>
 </blockquote>
 <blockquote>
-<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
+<p>想运行在0.0.0.0这样设置    python manage.py runserver 0.0.0.0:8000</p>
+<p>启动信息：</p>
 </blockquote>
-<blockquote>
-<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
-</blockquote>
-<p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。<br>但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没<br>有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
-<p>通过博客，我们可以记录自己的生活和成长的轨迹。</p>
-<p>文章数量：<code class="article_number"></code><br><code class="site_word_count"></code> 篇</p>
+<p><img src="/2019/08/20/django_02_start_project/django_4_0000.PNG" alt></p>
 
-        </article>
-        
-        <p>
-            <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>Django创建工程</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-08-20, 19:20:09</p>
+    <p><span class="copy-title">最后更新:</span>2019-08-20, 19:25:01</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/20/django_02_start_project/" title="Django创建工程">http://yoursite.com/2019/08/20/django_02_start_project/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">©2016-2019 Yelog</p>

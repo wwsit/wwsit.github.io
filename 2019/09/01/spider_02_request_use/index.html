@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Python学习</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Python学习">
+  <title>requests模块的使用 | Python学习</title>
+  <meta name="keywords" content=" 爬虫 ">
+  <meta name="description" content="requests模块的使用 | Python学习">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="分享Python相关知识，有关Django、Flask、爬虫....">
 <meta name="keywords" content="Python">
@@ -51,13 +51,13 @@
 </div>
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/" class="avatar_target">
     <img class="avatar" src="/img/avatar.jpg" />
 </a>
 <div class="author">
-    <span>小王</span>
+    <span>Jerry</span>
 </div>
 
 <div class="icon">
@@ -195,35 +195,35 @@
     <nav id="title-list-nav">
         
         <a  class="Django "
-           href="/2019/05/01/django_01/"
+           href="/2019/08/20/django_01/"
            data-tag="Django"
            data-author="" >
             <span class="post-title" title="Django的使用">Django的使用</span>
-            <span class="post-date" title="2019-05-01 18:51:09">2019/05/01</span>
+            <span class="post-date" title="2019-08-20 18:51:09">2019/08/20</span>
         </a>
         
         <a  class="Django "
-           href="/2019/10/17/django_02_start_project/"
+           href="/2019/08/20/django_02_start_project/"
            data-tag="Django"
            data-author="" >
             <span class="post-title" title="Django创建工程">Django创建工程</span>
-            <span class="post-date" title="2019-10-17 18:51:09">2019/10/17</span>
+            <span class="post-date" title="2019-08-20 19:20:09">2019/08/20</span>
         </a>
         
         <a  class="爬虫 "
-           href="/2019/10/18/spider_01/"
+           href="/2019/09/01/spider_01/"
            data-tag="爬虫"
            data-author="" >
             <span class="post-title" title="爬虫的介绍">爬虫的介绍</span>
-            <span class="post-date" title="2019-10-18 09:32:44">2019/10/18</span>
+            <span class="post-date" title="2019-09-01 18:30:34">2019/09/01</span>
         </a>
         
         <a  class="爬虫 "
-           href="/2019/06/01/spider_02_request_use/"
+           href="/2019/09/01/spider_02_request_use/"
            data-tag="爬虫"
            data-author="" >
             <span class="post-title" title="requests模块的使用">requests模块的使用</span>
-            <span class="post-date" title="2019-06-01 18:51:09">2019/06/01</span>
+            <span class="post-date" title="2019-09-01 18:50:45">2019/09/01</span>
         </a>
         
     </nav>
@@ -236,12 +236,55 @@
         </div>
     </div>
 </aside>
-<div class="post index">
+<div class="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-spider_02_request_use" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#对博客的理解"><span class="toc-text">对博客的理解</span></a></li></ol></li></ol>
+        <h1 class="article-title">requests模块的使用</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" data-rel="爬虫">爬虫</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color3">爬虫</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-09-01 19:10:21'>2019-09-01 18:50</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-requests-模块介绍"><span class="toc-text">1. requests 模块介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-requests-模块安装"><span class="toc-text">2. requests 模块安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-requests-模块使用"><span class="toc-text">3.requests 模块使用</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -254,27 +297,76 @@
     }
 </style>
 </div>
-            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>喜欢写Blog的人，会经历三个阶段。</p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-requests-模块介绍"><a href="#1-requests-模块介绍" class="headerlink" title="1. requests 模块介绍"></a>1. requests 模块介绍</h3><pre><code>requests 模块可以模拟浏览器发送请求获取响应。</code></pre><h3 id="2-requests-模块安装"><a href="#2-requests-模块安装" class="headerlink" title="2. requests 模块安装"></a>2. requests 模块安装</h3><pre><code>pip install requests</code></pre><h3 id="3-requests-模块使用"><a href="#3-requests-模块使用" class="headerlink" title="3.requests 模块使用"></a>3.requests 模块使用</h3><p><strong>一、基本使用</strong></p>
+<pre><code>*使用方式
+# 导入模块
+import requests
+# 定义请求地址
+url = &apos;https://www.baidu.com/&apos;
+# 发送 GET 请求获取响应
+response = requests.get(url)
+# 获取响应的 html 内容
+html = response.text</code></pre><p><strong>代码讲解</strong></p>
 <blockquote>
-<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
+<p>response 常用属性</p>
 </blockquote>
-<blockquote>
-<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
+<pre><code>response.text 返回响应内容，响应内容为 str 类型
+respones.content 返回响应内容,响应内容为 bytes 类型
+response.status_code 返回响应状态码
+response.request.headers 返回请求头
+response.headers 返回响应头
+response.cookies 返回响应的 RequestsCookieJar 对象</code></pre><blockquote>
+<p><code>response.content</code> 转换 <code>str</code> 类型 </p>
 </blockquote>
-<blockquote>
-<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
+<pre><code> # 获取字节数据
+content = response.contents
+# 转换成字符串类型
+html = content.decode(&apos;utf-8&apos;)</code></pre><blockquote>
+<p>response.cookies 操作</p>
 </blockquote>
-<p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。<br>但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没<br>有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
-<p>通过博客，我们可以记录自己的生活和成长的轨迹。</p>
-<p>文章数量：<code class="article_number"></code><br><code class="site_word_count"></code> 篇</p>
+<pre><code> # 返回 RequestsCookieJar 对象
+cookies = response.cookies
+# RequestsCookieJar 转 dict
+requests.utils.dict_from_cookiejar(cookies)
+# dict 转 RequestsCookieJar
+requests.utils.cookiejar_from_dict()
+# 对cookie进行操作,把一个字典添加到cookiejar中
+requests.utils.add_dict_to_cookiejar()</code></pre>
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
 
-        </article>
-        
-        <p>
-            <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>requests模块的使用</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-09-01, 18:50:45</p>
+    <p><span class="copy-title">最后更新:</span>2019-09-01, 19:10:21</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/01/spider_02_request_use/" title="requests模块的使用">http://yoursite.com/2019/09/01/spider_02_request_use/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">©2016-2019 Yelog</p>
