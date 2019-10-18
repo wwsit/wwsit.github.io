@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Django的使用 | Hexo</title>
+  <title>爬虫的介绍 | Hexo</title>
   <meta name="keywords" content="">
-  <meta name="description" content="Django的使用 | Hexo">
+  <meta name="description" content="爬虫的介绍 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="1. 创建虚拟环境mkvirtualenv python_django -p python32. 安装Djangopip install django==1.11.113.虚拟环境和pip的命令虚拟环境 mkvirtualenv  # 创建虚拟环境 rmvirtualenv  # 删除虚拟环境 workon  # 进入虚拟环境、查看所有虚拟环境 deactivate  # 退出虚拟环境pip命">
 <meta property="og:type" content="article">
@@ -301,9 +301,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-01_django" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-03-spider-01" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Django的使用</h1>
+        <h1 class="article-title">爬虫的介绍</h1>
     
     <div class="article-meta">
         
@@ -313,7 +313,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-10-18 10:20:48'>2019-10-17 18:51</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-18 10:17:22'>2019-10-18 09:32</time>
         
     </div>
     <div class="article-meta">
@@ -335,7 +335,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-创建虚拟环境"><span class="toc-text">1. 创建虚拟环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-安装Django"><span class="toc-text">2. 安装Django</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-虚拟环境和pip的命令"><span class="toc-text">3.虚拟环境和pip的命令</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、-为什么要学习爬虫"><span class="toc-text">一、 为什么要学习爬虫</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-数据的来源"><span class="toc-text">1.1 数据的来源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-爬取到的数据用途"><span class="toc-text">1.2 爬取到的数据用途</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、什么是爬虫"><span class="toc-text">二、什么是爬虫</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -351,16 +351,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
+        <h4 id="一、-为什么要学习爬虫"><a href="#一、-为什么要学习爬虫" class="headerlink" title="一、 为什么要学习爬虫"></a>一、 为什么要学习爬虫</h4><pre><code>如今，人工智能，大数据离我们越来越近，很多公司在开展相关的业务，但是人工智能和大数据中有一个东西非常重要，那就是数据，但是数据从哪里来呢？</code></pre><h4 id="1-1-数据的来源"><a href="#1-1-数据的来源" class="headerlink" title="1.1 数据的来源"></a>1.1 数据的来源</h4><ul>
+<li>企业产生的数据：百度搜索指数、阿里指数、微指数、看准网、腾讯浏览指数、大众点评网、汽车之家等…</li>
+<li>数据平台购买数据：数据堂、国云数据市场、贵阳大数据交易所 等…</li>
+<li>政府/机构公开的数据：天眼查、中华人民共和国国家统计局数据、中国人民银行调查统计、世界银行公开数据、联合国数据、纳斯达克、新浪财经美股实时行情 等…</li>
+<li>数据管理咨询公司：麦肯锡、埃森哲、尼尔森、中国互联网信息中心、艾瑞咨询 等…</li>
+<li>爬取网络数据：百度、google 等…</li>
+</ul>
+<h4 id="1-2-爬取到的数据用途"><a href="#1-2-爬取到的数据用途" class="headerlink" title="1.2 爬取到的数据用途"></a>1.2 爬取到的数据用途</h4><ul>
+<li>进行在网页或者是app上进行展示</li>
+<li>进行数据分析或者是机器学习相关的项目</li>
+</ul>
+<h4 id="二、什么是爬虫"><a href="#二、什么是爬虫" class="headerlink" title="二、什么是爬虫"></a>二、什么是爬虫</h4><blockquote>
+<p>网络爬虫（又被称为网页蜘蛛，网络机器人）就是模拟客户端发送网络请求，接收请求响应，一种按照一定的规则，自动地抓取互联网信息的程序。</p>
+</blockquote>
+<blockquote>
+<p>本质： 模拟浏览器（客户端）去获取、处理、保存数据，只要浏览器（客户端）能做的事情，爬虫都能够做。 原则上,只要是浏览器(客户端)能做的事情，爬虫都能够做</p>
+</blockquote>
 
-<h3 id="1-创建虚拟环境"><a href="#1-创建虚拟环境" class="headerlink" title="1. 创建虚拟环境"></a>1. 创建虚拟环境</h3><pre><code>mkvirtualenv python_django -p python3</code></pre><h3 id="2-安装Django"><a href="#2-安装Django" class="headerlink" title="2. 安装Django"></a>2. 安装Django</h3><pre><code>pip install django==1.11.11</code></pre><h3 id="3-虚拟环境和pip的命令"><a href="#3-虚拟环境和pip的命令" class="headerlink" title="3.虚拟环境和pip的命令"></a>3.虚拟环境和pip的命令</h3><p><strong>虚拟环境</strong></p>
-<pre><code>mkvirtualenv  # 创建虚拟环境
-rmvirtualenv  # 删除虚拟环境
-workon  # 进入虚拟环境、查看所有虚拟环境
-deactivate  # 退出虚拟环境</code></pre><p><strong>pip命令</strong></p>
-<pre><code>pip install  # 安装依赖包
-pip uninstall  # 卸载依赖包
-pip list  # 查看已安装的依赖库</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
     </div>
@@ -373,12 +381,12 @@ pip list  # 查看已安装的依赖库</code></pre>
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Django的使用</p>
+    <p><span class="copy-title">文章标题:</span>爬虫的介绍</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="John Doe">John Doe</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-10-17, 18:51:09</p>
-    <p><span class="copy-title">最后更新:</span>2019-10-18, 10:20:48</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/17/01_django/" title="Django的使用">http://yoursite.com/2019/10/17/01_django/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-18, 09:32:44</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-18, 10:17:22</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/18/03-spider-01/" title="爬虫的介绍">http://yoursite.com/2019/10/18/03-spider-01/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>

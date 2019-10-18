@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Django的使用 | Hexo</title>
+  <title>Hello World | Hexo</title>
   <meta name="keywords" content="">
-  <meta name="description" content="Django的使用 | Hexo">
+  <meta name="description" content="Hello World | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="1. 创建虚拟环境mkvirtualenv python_django -p python32. 安装Djangopip install django==1.11.113.虚拟环境和pip的命令虚拟环境 mkvirtualenv  # 创建虚拟环境 rmvirtualenv  # 删除虚拟环境 workon  # 进入虚拟环境、查看所有虚拟环境 deactivate  # 退出虚拟环境pip命">
 <meta property="og:type" content="article">
@@ -301,9 +301,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-01_django" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-00_hello-world" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Django的使用</h1>
+        <h1 class="article-title">Hello World</h1>
     
     <div class="article-meta">
         
@@ -313,7 +313,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-10-18 10:20:48'>2019-10-17 18:51</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-17 17:59:06'>2019-10-18 10:15</time>
         
     </div>
     <div class="article-meta">
@@ -335,7 +335,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-创建虚拟环境"><span class="toc-text">1. 创建虚拟环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-安装Django"><span class="toc-text">2. 安装Django</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-虚拟环境和pip的命令"><span class="toc-text">3.虚拟环境和pip的命令</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -351,16 +351,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="1-创建虚拟环境"><a href="#1-创建虚拟环境" class="headerlink" title="1. 创建虚拟环境"></a>1. 创建虚拟环境</h3><pre><code>mkvirtualenv python_django -p python3</code></pre><h3 id="2-安装Django"><a href="#2-安装Django" class="headerlink" title="2. 安装Django"></a>2. 安装Django</h3><pre><code>pip install django==1.11.11</code></pre><h3 id="3-虚拟环境和pip的命令"><a href="#3-虚拟环境和pip的命令" class="headerlink" title="3.虚拟环境和pip的命令"></a>3.虚拟环境和pip的命令</h3><p><strong>虚拟环境</strong></p>
-<pre><code>mkvirtualenv  # 创建虚拟环境
-rmvirtualenv  # 删除虚拟环境
-workon  # 进入虚拟环境、查看所有虚拟环境
-deactivate  # 退出虚拟环境</code></pre><p><strong>pip命令</strong></p>
-<pre><code>pip install  # 安装依赖包
-pip uninstall  # 卸载依赖包
-pip list  # 查看已安装的依赖库</code></pre>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
     </div>
@@ -373,12 +377,12 @@ pip list  # 查看已安装的依赖库</code></pre>
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Django的使用</p>
+    <p><span class="copy-title">文章标题:</span>Hello World</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="John Doe">John Doe</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-10-17, 18:51:09</p>
-    <p><span class="copy-title">最后更新:</span>2019-10-18, 10:20:48</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/17/01_django/" title="Django的使用">http://yoursite.com/2019/10/17/01_django/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-18, 10:15:45</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-17, 17:59:06</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/18/00_hello-world/" title="Hello World">http://yoursite.com/2019/10/18/00_hello-world/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
