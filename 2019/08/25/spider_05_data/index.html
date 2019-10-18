@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Jerry书店</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Jerry书店">
+  <title>数据提取概念和数据的分类 | Jerry书店</title>
+  <meta name="keywords" content=" 爬虫 ">
+  <meta name="description" content="数据提取概念和数据的分类 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="分享Python相关知识，有关Django、Flask、爬虫....">
 <meta name="keywords" content="Python">
@@ -51,7 +51,7 @@
 </div>
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/" class="avatar_target">
     <img class="avatar" src="/img/avatar.jpg" />
@@ -288,12 +288,55 @@
         </div>
     </div>
 </aside>
-<div class="post index">
+<div class="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-spider_05_data" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#对博客的理解"><span class="toc-text">对博客的理解</span></a></li></ol></li></ol>
+        <h1 class="article-title">数据提取概念和数据的分类</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" data-rel="爬虫">爬虫</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color3">爬虫</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-08-25 21:30:14'>2019-08-25 20:50</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、什么是数据提取"><span class="toc-text">一、什么是数据提取</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、数据的种类"><span class="toc-text">二、数据的种类</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -306,27 +349,67 @@
     }
 </style>
 </div>
-            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>喜欢写Blog的人，会经历三个阶段。</p>
-<blockquote>
-<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="一、什么是数据提取"><a href="#一、什么是数据提取" class="headerlink" title="一、什么是数据提取"></a>一、什么是数据提取</h4><blockquote>
+<p>简单的来说，数据提取就是从响应中获取我们想要的数据的过程</p>
 </blockquote>
+<h4 id="二、数据的种类"><a href="#二、数据的种类" class="headerlink" title="二、数据的种类"></a>二、数据的种类</h4><p>结构化数据</p>
 <blockquote>
-<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
+<p>结构化数据，可以用二维表结构来逻辑表达实现的数据<br>是指由二维表结构来逻辑表达和实现的数据，严格地遵循数据格式与长度规范，<br>主要通过关系型数据库进行存储和管理</p>
 </blockquote>
+<p>数据类型</p>
+<pre><code>json 格式数据
+xml 格式数据
+...</code></pre><p>处理方式</p>
 <blockquote>
-<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
+<p>通过 json 模块等直接转成 Python 数据类型</p>
 </blockquote>
-<p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。<br>但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没<br>有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
-<p>通过博客，我们可以记录自己的生活和成长的轨迹。</p>
-<p>文章数量：<code class="article_number"></code><br><code class="site_word_count"></code> 篇</p>
+<p>非结构化数据</p>
+<blockquote>
+<p>非结构化数据,数据结构不规则或不完整，没有预定义的数据模型，不方便用数据库二维逻辑表来表现的数据。<br>包括所有格式的办公文档、文本、图片、HTML、各类报表、图像和音频/视频信息等等。</p>
+</blockquote>
+<p>数据类型</p>
+<pre><code>html 格式数据
+word 格式数据
+...</code></pre><p>处理方式</p>
+<blockquote>
+<p>通过 正则表达式 、xpath 等模块提取数据</p>
+</blockquote>
 
-        </article>
-        
-        <p>
-            <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>数据提取概念和数据的分类</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-08-25, 20:50:24</p>
+    <p><span class="copy-title">最后更新:</span>2019-08-25, 21:30:14</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/25/spider_05_data/" title="数据提取概念和数据的分类">http://yoursite.com/2019/08/25/spider_05_data/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">©2016-2019 Yelog</p>
