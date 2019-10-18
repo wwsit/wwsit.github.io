@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Python学习</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Python学习">
+  <title>requests模块的使用(下) | Python学习</title>
+  <meta name="keywords" content=" 爬虫requests ">
+  <meta name="description" content="requests模块的使用(下) | Python学习">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="分享Python相关知识，有关Django、Flask、爬虫....">
 <meta name="keywords" content="Python">
@@ -51,7 +51,7 @@
 </div>
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/" class="avatar_target">
     <img class="avatar" src="/img/avatar.jpg" />
@@ -260,12 +260,55 @@
         </div>
     </div>
 </aside>
-<div class="post index">
+<div class="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-spider_03_request_use" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#对博客的理解"><span class="toc-text">对博客的理解</span></a></li></ol></li></ol>
+        <h1 class="article-title">requests模块的使用(下)</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" data-rel="爬虫">爬虫</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color1">爬虫requests</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-09-01 19:55:24'>2019-09-01 19:30</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、使用代理服务器"><span class="toc-text">一、使用代理服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、发送请求携带-Cookies"><span class="toc-text">二、发送请求携带 Cookies</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、错误证书处理"><span class="toc-text">三、错误证书处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四、超时处理"><span class="toc-text">四、超时处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五、重试处理"><span class="toc-text">五、重试处理</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -278,27 +321,148 @@
     }
 </style>
 </div>
-            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>喜欢写Blog的人，会经历三个阶段。</p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="一、使用代理服务器"><a href="#一、使用代理服务器" class="headerlink" title="一、使用代理服务器"></a>一、使用代理服务器</h4><p>作用</p>
 <blockquote>
-<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
+<p>让服务器以为不是同一个客户端在请求<br>防止我们的真实地址被泄露，防止被追究</p>
+</blockquote>
+<p>代理分类</p>
+<pre><code>透明代理(Transparent Proxy)：透明代理虽然可以直接“隐藏”你的IP地址，但是还是可以查到你是谁。
+匿名代理(Anonymous Proxy)：匿名代理比透明代理进步了一点：别人只能知道你用了代理，无法知道你是谁。
+混淆代理(Distorting Proxies)：与匿名代理相同，如果使用了混淆代理，别人还是能知道你在用代理，但是会得到一个假的IP地址，伪装的更逼真
+高匿代理(Elite proxy或High Anonymity Proxy)：可以看出来，高匿代理让别人根本无法发现你是在用代理，所以是最好的选择。</code></pre><blockquote>
+<p>在使用的使用，毫无疑问使用高匿代理效果最好</p>
 </blockquote>
 <blockquote>
-<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
+<p>从使用的协议：代理ip可以分为http代理，https代理，socket代理等，使用的时候需要根据抓取网站的协议来选择</p>
 </blockquote>
-<blockquote>
-<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
+<pre><code># 导入模块
+import requests
+# 定义请求地址
+url = &apos;https://www.baidu.com/&apos;
+# 定义自定义请求头
+headers = {
+  &quot;User-Agent&quot;:&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36&quot;
+}
+# 定义 代理服务器
+proxies = {
+  &quot;http&quot;:&quot;http://IP地址:端口号&quot;,  # 二选一  什么协议就用什么协议
+  &quot;https&quot;:&quot;https://IP地址:端口号&quot;
+}
+# 使用 POST 请求参数发送请求
+response = requests.get(url,headers=headers,proxies=proxies)
+# 获取响应的 html 内容
+html = response.text</code></pre><h4 id="二、发送请求携带-Cookies"><a href="#二、发送请求携带-Cookies" class="headerlink" title="二、发送请求携带 Cookies"></a>二、发送请求携带 Cookies</h4><blockquote>
+<p>直接在自定义请求头中携带 Cookie<br>通过请求参数携带 Cookie 对象</p>
 </blockquote>
-<p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。<br>但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没<br>有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
-<p>通过博客，我们可以记录自己的生活和成长的轨迹。</p>
-<p>文章数量：<code class="article_number"></code><br><code class="site_word_count"></code> 篇</p>
+<pre><code># 导入模块
+import requests
+# 定义请求地址
+url = &apos;https://www.baidu.com/&apos;
+# 定义自定义请求头
+headers = {
+  &quot;User-Agent&quot;:&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36&quot;
+  # 方式一：直接在请求头中携带Cookie内容
+  &quot;Cookie&quot;: &quot;Cookie值&quot;
+}
+# 方式二：定义 cookies 值
+cookies = {
+  &quot;xx&quot;:&quot;yy&quot;
+}
+# 使用 POST 请求参数发送请求
+response = requests.get(url,headers=headers,cookies=cookies)
+# 获取响应的 html 内容
+html = response.text</code></pre><h4 id="三、错误证书处理"><a href="#三、错误证书处理" class="headerlink" title="三、错误证书处理"></a>三、错误证书处理</h4><p><img src="/2019/09/01/spider_03_request_use/spider_01.PNG" alt></p>
+<pre><code># 导入模块
+import requests
 
-        </article>
-        
-        <p>
-            <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
+url = &quot;https://www.12306.cn/mormhweb/&quot;
+# 设置忽略证书
+response = requests.get(url,verify=False)
+
+# 发送请求时 verify 参数设置为 False 表示不验证CA证书</code></pre><h4 id="四、超时处理"><a href="#四、超时处理" class="headerlink" title="四、超时处理"></a>四、超时处理</h4><pre><code># 导入模块
+import requests
+
+url = &quot;https://www.baidu.com/&quot;
+# 设置忽略证书
+response = requests.get(url,timeout=5)
+
+# 发送请求时 timeout 参数设置为超时秒数</code></pre><h4 id="五、重试处理"><a href="#五、重试处理" class="headerlink" title="五、重试处理"></a>五、重试处理</h4><pre><code>可以使用第三方模块 retrying 模块
+1. pip install retrying
+
+
+import requests
+# 1. 导入模块
+from retrying import retry
+
+# 2. 使用装饰器进行重试设置
+# stop_max_attempt_number 表示重试次数
+@retry(stop_max_attempt_number=3)
+def parse_url(url):
+    print(&quot;访问url:&quot;,url)
+    headers = {
+        &quot;User-Agent&quot;:&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36&quot;
+    }
+    # 设置代理
+    proxies = {
+        &quot;http&quot;:&quot;http://124.235.135.210:80&quot;
+    }
+    # 设置超时参数
+    response = requests.get(url,headers=headers,proxies=proxies,timeout=5)
+    return response.text
+
+if __name__ == &apos;__main__&apos;:
+    url = &quot;https://www.baidu.com/&quot;
+    try:
+        html = parse_url(url)
+        print(html)
+    except Exception as e:
+        # 把 url 记录到日志文件中，未来进行手动分析，然后对url进行重新请求
+        print(e)</code></pre><blockquote>
+<p>安装 retrying 模块<br>retrying 模块可以通过装饰器模式对某个函数进行监控，如果该函数引发异常就会触发重试操作<br>pip install retrying</p>
+</blockquote>
+<pre><code>对需要重试的函数进行装饰器设置
+通过 @retry(stop_max_attempt_number=重试次数) 参数设置重试次数
+# 1. 导入模块
+from retrying import retry
+# 2. 装饰器设置重试函数
+@retry(stop_max_attempt_number=3)
+def exec_func():
+    pass</code></pre>
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>requests模块的使用(下)</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-09-01, 19:30:46</p>
+    <p><span class="copy-title">最后更新:</span>2019-09-01, 19:55:24</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/01/spider_03_request_use/" title="requests模块的使用(下)">http://yoursite.com/2019/09/01/spider_03_request_use/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">©2016-2019 Yelog</p>

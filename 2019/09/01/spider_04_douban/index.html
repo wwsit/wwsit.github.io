@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Python学习</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Python学习">
+  <title>豆瓣电影爬虫 | Python学习</title>
+  <meta name="keywords" content=" 爬虫 ">
+  <meta name="description" content="豆瓣电影爬虫 | Python学习">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="分享Python相关知识，有关Django、Flask、爬虫....">
 <meta name="keywords" content="Python">
@@ -51,7 +51,7 @@
 </div>
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/" class="avatar_target">
     <img class="avatar" src="/img/avatar.jpg" />
@@ -260,12 +260,55 @@
         </div>
     </div>
 </aside>
-<div class="post index">
+<div class="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-spider_04_douban" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#对博客的理解"><span class="toc-text">对博客的理解</span></a></li></ol></li></ol>
+        <h1 class="article-title">豆瓣电影爬虫</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" data-rel="爬虫">爬虫</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color3">爬虫</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-09-01 20:40:23'>2019-09-01 20:20</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#爬取豆瓣热门页-电影的数据"><span class="toc-text">爬取豆瓣热门页 电影的数据</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -278,27 +321,102 @@
     }
 </style>
 </div>
-            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>喜欢写Blog的人，会经历三个阶段。</p>
-<blockquote>
-<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
-</blockquote>
-<blockquote>
-<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
-</blockquote>
-<blockquote>
-<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
-</blockquote>
-<p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。<br>但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没<br>有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
-<p>通过博客，我们可以记录自己的生活和成长的轨迹。</p>
-<p>文章数量：<code class="article_number"></code><br><code class="site_word_count"></code> 篇</p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="爬取豆瓣热门页-电影的数据"><a href="#爬取豆瓣热门页-电影的数据" class="headerlink" title="爬取豆瓣热门页 电影的数据"></a>爬取豆瓣热门页 电影的数据</h4><p>接口信息</p>
+<p><img src="/2019/09/01/spider_04_douban/spider_douban_01.PNG" alt><br><img src="/2019/09/01/spider_04_douban/spider_douban_02.PNG" alt></p>
+<pre><code>import requests
+import json
+from pprint import pprint
+import jsonpath
 
-        </article>
-        
-        <p>
-            <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
+
+class DouBanSpider():
+    &quot;&quot;&quot;豆瓣热门页电影 爬虫&quot;&quot;&quot;
+
+    def __init__(self):
+        &quot;&quot;&quot;初始化操作&quot;&quot;&quot;
+
+        self.url = &apos;https://movie.douban.com/j/search_subjects&apos;
+        self.headers = {
+            &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 \
+            (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36&quot;
+        }
+        self.number = 1  # 爬取的数量
+
+    def get_url(self, pages):
+        &quot;&quot;&quot;获取url&quot;&quot;&quot;
+        for page in range(0, pages, 20):
+            self.url.format(page)
+            return self.url
+
+    def run(self, pages):
+        &quot;&quot;&quot;启动爬虫&quot;&quot;&quot;
+
+        # 参数1：要从第几个数据开始爬
+        # 参数2：到第几个数据结束
+        # 参数3：因为每次增加的数据是20个 所以步长20
+        for page in range(0, pages * 20, 20):
+            resp = requests.get(
+                url=self.url.format(page),
+                headers=self.headers,
+                # 请求参数
+                params={
+                    &quot;type&quot;: &quot;movie&quot;,
+                    &quot;tag&quot;: &quot;热门&quot;,
+                    &quot;sort&quot;: &quot;recommend&quot;,
+                    &quot;page_limit&quot;: &quot;20&quot;,
+                    &quot;page_start&quot;: page
+                }
+            )
+            # 返回的数据是一个json数据, 转成字典格式
+            result = json.loads(resp.text)
+            # pprint(result) # pprint让控制台打印更好看
+
+            result = result[&apos;subjects&apos;]
+            for movie in result:
+                 print(&quot;数量:{}---标题：{}--评分:{}--地址:{}&quot;.    # &lt;---这里有个点  一行太长了
+                      format(self.number,movie[&apos;title&apos;], movie[&apos;rate&apos;], movie[&apos;url&apos;]))
+                self.number += 1
+
+
+if __name__ == &apos;__main__&apos;:
+    client = DouBanSpider()
+    # 要爬几页数据  就写多少页  下面是爬两页数据
+    client.run(2)</code></pre>
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>豆瓣电影爬虫</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-09-01, 20:20:25</p>
+    <p><span class="copy-title">最后更新:</span>2019-09-01, 20:40:23</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/01/spider_04_douban/" title="豆瓣电影爬虫">http://yoursite.com/2019/09/01/spider_04_douban/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">©2016-2019 Yelog</p>

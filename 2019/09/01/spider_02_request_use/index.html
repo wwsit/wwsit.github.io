@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>requests模块的使用 | Python学习</title>
-  <meta name="keywords" content=" 爬虫 ">
-  <meta name="description" content="requests模块的使用 | Python学习">
+  <title>requests模块的使用(上) | Python学习</title>
+  <meta name="keywords" content=" 爬虫、requests ">
+  <meta name="description" content="requests模块的使用(上) | Python学习">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="分享Python相关知识，有关Django、Flask、爬虫....">
 <meta name="keywords" content="Python">
@@ -118,7 +118,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(4)</small></div></li>
+    <li><div class="all active">全部文章<small>(6)</small></div></li>
     
         
             
@@ -130,7 +130,7 @@
     
         
             
-            <li><div data-rel="爬虫">爬虫<small>(2)</small></div>
+            <li><div data-rel="爬虫">爬虫<small>(4)</small></div>
                 
             </li>
             
@@ -146,7 +146,7 @@
     </div>
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="4">
+<input type="hidden" id="yelog_site_posts_number" value="6">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -188,6 +188,14 @@
         <a href="javascript:" class="color3">爬虫</a>
     </li>
     
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">爬虫、requests</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">爬虫requests</a>
+    </li>
+    
     <div class="clearfix"></div>
 </div>
 
@@ -220,10 +228,26 @@
         
         <a  class="爬虫 "
            href="/2019/09/01/spider_02_request_use/"
+           data-tag="爬虫、requests"
+           data-author="" >
+            <span class="post-title" title="requests模块的使用(上)">requests模块的使用(上)</span>
+            <span class="post-date" title="2019-09-01 18:50:45">2019/09/01</span>
+        </a>
+        
+        <a  class="爬虫 "
+           href="/2019/09/01/spider_03_request_use/"
+           data-tag="爬虫requests"
+           data-author="" >
+            <span class="post-title" title="requests模块的使用(下)">requests模块的使用(下)</span>
+            <span class="post-date" title="2019-09-01 19:30:46">2019/09/01</span>
+        </a>
+        
+        <a  class="爬虫 "
+           href="/2019/09/01/spider_04_douban/"
            data-tag="爬虫"
            data-author="" >
-            <span class="post-title" title="requests模块的使用">requests模块的使用</span>
-            <span class="post-date" title="2019-09-01 18:50:45">2019/09/01</span>
+            <span class="post-title" title="豆瓣电影爬虫">豆瓣电影爬虫</span>
+            <span class="post-date" title="2019-09-01 20:20:25">2019/09/01</span>
         </a>
         
     </nav>
@@ -240,7 +264,7 @@
     <div class="pjax">
         <article id="post-spider_02_request_use" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">requests模块的使用</h1>
+        <h1 class="article-title">requests模块的使用(上)</h1>
     
     <div class="article-meta">
         
@@ -255,7 +279,7 @@
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">爬虫</a>
+            <a href="javascript:" class="color2">爬虫、requests</a>
             
         </span>
         
@@ -284,7 +308,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-requests-模块介绍"><span class="toc-text">1. requests 模块介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-requests-模块安装"><span class="toc-text">2. requests 模块安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-requests-模块使用"><span class="toc-text">3.requests 模块使用</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-requests-模块介绍"><span class="toc-text">1. requests 模块介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-requests-模块安装"><span class="toc-text">2. requests 模块安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-requests-模块使用"><span class="toc-text">3.requests 模块使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#二、自定义请求头"><span class="toc-text">二、自定义请求头</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、发送-GET-请求"><span class="toc-text">三、发送 GET 请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四、发送-POST-请求"><span class="toc-text">四、发送 POST 请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五、保存图片"><span class="toc-text">五、保存图片</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -327,14 +351,64 @@ content = response.contents
 html = content.decode(&apos;utf-8&apos;)</code></pre><blockquote>
 <p>response.cookies 操作</p>
 </blockquote>
-<pre><code> # 返回 RequestsCookieJar 对象
+<pre><code># 返回 RequestsCookieJar 对象
 cookies = response.cookies
 # RequestsCookieJar 转 dict
 requests.utils.dict_from_cookiejar(cookies)
 # dict 转 RequestsCookieJar
 requests.utils.cookiejar_from_dict()
 # 对cookie进行操作,把一个字典添加到cookiejar中
-requests.utils.add_dict_to_cookiejar()</code></pre>
+requests.utils.add_dict_to_cookiejar()</code></pre><h4 id="二、自定义请求头"><a href="#二、自定义请求头" class="headerlink" title="二、自定义请求头"></a>二、自定义请求头</h4><pre><code># 导入模块
+import requests
+# 定义请求地址
+url = &apos;https://www.baidu.com/&apos;
+# 定义自定义请求头
+headers = {
+  &quot;User-Agent&quot;:&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36&quot;
+}
+# 发送自定义请求头
+response = requests.get(url,headers=headers)
+# 获取响应的 html 内容
+html = response.text</code></pre><h4 id="三、发送-GET-请求"><a href="#三、发送-GET-请求" class="headerlink" title="三、发送 GET 请求"></a>三、发送 GET 请求</h4><pre><code># 导入模块
+import requests
+# 定义请求地址
+url = &apos;https://www.baidu.com/&apos;
+# 定义自定义请求头
+headers = {
+  &quot;User-Agent&quot;:&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36&quot;
+}
+# 定义 GET 请求参数
+params = {
+  &quot;wd&quot;:&quot;csdn&quot;
+}
+# 使用 GET 请求参数发送请求
+response = requests.get(url,headers=headers,params=params)
+# 获取响应的 html 内容
+html = response.text</code></pre><h4 id="四、发送-POST-请求"><a href="#四、发送-POST-请求" class="headerlink" title="四、发送 POST 请求"></a>四、发送 POST 请求</h4><pre><code># 导入模块
+import requests
+# 定义请求地址
+url = &apos;https://www.baidu.com/&apos;
+# 定义自定义请求头
+headers = {
+  &quot;User-Agent&quot;:&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36&quot;
+}
+# 定义post请求参数
+data = {
+   &quot;wd&quot;:&quot;csdn&quot;
+}
+
+# 使用 POST 请求参数发送请求
+response = requests.post(url,headers=headers,data=data)
+# 获取响应的 html 内容
+html = response.text</code></pre><h4 id="五、保存图片"><a href="#五、保存图片" class="headerlink" title="五、保存图片"></a>五、保存图片</h4><pre><code># 导入模块
+import requests
+# 下载图片地址
+url = &quot;https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3433375665,1448816841&amp;fm=26&amp;gp=0.jpg&quot;
+# 发送请求获取响应
+response = requests.get(url)
+# 保存图片
+with open(&apos;image.png&apos;,&apos;wb&apos;) as f:
+  f.write(response.content)</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
     </div>
@@ -347,12 +421,12 @@ requests.utils.add_dict_to_cookiejar()</code></pre>
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>requests模块的使用</p>
+    <p><span class="copy-title">文章标题:</span>requests模块的使用(上)</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
     <p><span class="copy-title">发布时间:</span>2019-09-01, 18:50:45</p>
     <p><span class="copy-title">最后更新:</span>2019-09-01, 19:10:21</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/01/spider_02_request_use/" title="requests模块的使用">http://yoursite.com/2019/09/01/spider_02_request_use/</a>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/01/spider_02_request_use/" title="requests模块的使用(上)">http://yoursite.com/2019/09/01/spider_02_request_use/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
@@ -413,7 +487,7 @@ requests.utils.add_dict_to_cookiejar()</code></pre>
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#Django','#爬虫',],
+            'data': ['#Django','#爬虫','#爬虫、requests','#爬虫requests',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
