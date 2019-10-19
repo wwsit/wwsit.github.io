@@ -1461,7 +1461,6 @@ div.ac > ul > li:before,
 }
 .post .pjax article .div_img,
 .post .pjax article figure {
-  margin: 0;
   padding: 10px 0;
   text-align: center;
 }
