@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>XPath 数据提取(上) | Jerry书店</title>
-  <meta name="keywords" content=" 爬虫、xpath ">
-  <meta name="description" content="XPath 数据提取(上) | Jerry书店">
+  <title>新手学习的网站 | Jerry书店</title>
+  <meta name="keywords" content=" 分享 ">
+  <meta name="description" content="新手学习的网站 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta name="keywords" content="Python">
@@ -394,9 +394,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-spider_06_xpath_1" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-share_02_url_1" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">XPath 数据提取(上)</h1>
+        <h1 class="article-title">新手学习的网站</h1>
     
     <div class="article-meta">
         
@@ -404,21 +404,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="爬虫">爬虫</a>
+                <a href="javascript:" data-rel="分享">分享</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color4">爬虫、xpath</a>
+            <a href="javascript:" class="color3">分享</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-26 19:50:18'>2019-08-26 19:20</time>
+        创建时间:<time class="date" title='更新时间: 2019-09-18 19:50:15'>2019-09-15 20:10</time>
         
     </div>
     <div class="article-meta">
@@ -440,7 +440,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、XPath-介绍与语法"><span class="toc-text">一、XPath 介绍与语法</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Python学习的教程"><span class="toc-text">Python学习的教程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#出现BUG怎么解决"><span class="toc-text">出现BUG怎么解决</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -456,77 +456,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="一、XPath-介绍与语法"><a href="#一、XPath-介绍与语法" class="headerlink" title="一、XPath 介绍与语法"></a>一、XPath 介绍与语法</h4><p>定义</p>
-<blockquote>
-<p>XPath (XML Path Language) 是一门在 HTML\XML 文档中查找信息的语言，<br>  可用来在 HTML\XML 文档中对元素和属性进行遍历。</p>
+        <h4 id="Python学习的教程"><a href="#Python学习的教程" class="headerlink" title="Python学习的教程"></a>Python学习的教程</h4><blockquote>
+<p><a href="https://www.runoob.com/python3/python3-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/python3/python3-tutorial.html</a>  (菜鸟教程)<br><a href="https://study.163.com/curricula/cs.htm" target="_blank" rel="noopener">https://study.163.com/curricula/cs.htm</a>  (网易云课堂)<br><a href="https://www.liaoxuefeng.com/wiki/1016959663602400" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/1016959663602400</a>  (廖雪峰网站)<br><a href="https://www.cnblogs.com/" target="_blank" rel="noopener">https://www.cnblogs.com/</a>  (博客园)<br><a href="https://www.csdn.net/" target="_blank" rel="noopener">https://www.csdn.net/</a>   (csdn)<br>github<br>…</p>
 </blockquote>
-<p>作用</p>
-<blockquote>
-<p>通过一定的语法规则从 HTML/XML 文件中提取数据。</p>
+<h4 id="出现BUG怎么解决"><a href="#出现BUG怎么解决" class="headerlink" title="出现BUG怎么解决"></a>出现BUG怎么解决</h4><blockquote>
+<p>先看看</p>
 </blockquote>
-<p>下载插件</p>
-<blockquote>
-<p>使用 Chrome 插件 XPath Helper<br>  下载地址:<a href="https://pan.baidu.com/s/1UM94dcwgus4SgECuoJ-Jcg" target="_blank" rel="noopener">https://pan.baidu.com/s/1UM94dcwgus4SgECuoJ-Jcg</a> 密码：337b</p>
-</blockquote>
-<blockquote>
-<p>环境搭建</p>
-</blockquote>
-<blockquote>
-<p>创建 HTML 测试文件</p>
-</blockquote>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;title&gt;语法学习&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;bookstore&gt;
-        &lt;book category=&quot;COOKING&quot;&gt;
-          &lt;title lang=&quot;en&quot;&gt;Everyday Italian&lt;/title&gt;
-          &lt;author&gt;Giada De Laurentiis&lt;/author&gt;
-          &lt;year&gt;2005&lt;/year&gt;
-          &lt;price&gt;30.00&lt;/price&gt;
-        &lt;/book&gt;
-        &lt;book category=&quot;CHILDREN&quot;&gt;
-          &lt;title lang=&quot;en&quot;&gt;Harry Potter&lt;/title&gt;
-          &lt;author&gt;J K. Rowling&lt;/author&gt;
-          &lt;year&gt;2005&lt;/year&gt;
-          &lt;price&gt;29.99&lt;/price&gt;
-        &lt;/book&gt;
-        &lt;book category=&quot;WEB&quot;&gt;
-          &lt;title lang=&quot;en&quot;&gt;Learning XML&lt;/title&gt;
-          &lt;author&gt;Erik T. Ray&lt;/author&gt;
-          &lt;year&gt;2003&lt;/year&gt;
-          &lt;price&gt;39.95&lt;/price&gt;
-        &lt;/book&gt;
-    &lt;/bookstore&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre><blockquote>
-<p>使用 Pycharm 运行文件<br>调试环境介绍</p>
-</blockquote>
-<p><img src="/2019/08/26/spider_06_xpath_1/spider_06_01.PNG" alt></p>
-<p>XPath 语法<br><img src="/2019/08/26/spider_06_xpath_1/spider_06_02.PNG" alt></p>
-<p>案例<br><img src="/2019/08/26/spider_06_xpath_1/spider_06_03.PNG" alt></p>
-<ul>
-<li>选择所有的h1下的文本<ul>
-<li>//h1/text()</li>
-</ul>
-</li>
-<li>获取所有的a标签的href<ul>
-<li>//a/@href</li>
-</ul>
-</li>
-<li>获取html下的head下的title的文本<ul>
-<li>/html/head/title/text()</li>
-</ul>
-</li>
-<li>获取html下的head下的link标签的href<ul>
-<li>/html/head/link/@href</li>
-</ul>
-</li>
-</ul>
-<p>查找特定的节点<br><img src="/2019/08/26/spider_06_xpath_1/spider_06_04.PNG" alt></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
@@ -540,12 +475,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>XPath 数据提取(上)</p>
+    <p><span class="copy-title">文章标题:</span>新手学习的网站</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-08-26, 19:20:34</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-26, 19:50:18</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/26/spider_06_xpath_1/" title="XPath 数据提取(上)">http://yoursite.com/2019/08/26/spider_06_xpath_1/</a>
+    <p><span class="copy-title">发布时间:</span>2019-09-15, 20:10:23</p>
+    <p><span class="copy-title">最后更新:</span>2019-09-18, 19:50:15</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/15/share_02_url_1/" title="新手学习的网站">http://yoursite.com/2019/09/15/share_02_url_1/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
