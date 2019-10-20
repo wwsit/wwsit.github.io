@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>requests--豆瓣电影爬虫 | Jerry书店</title>
-  <meta name="keywords" content=" 爬虫 ">
-  <meta name="description" content="requests--豆瓣电影爬虫 | Jerry书店">
+  <title>redis 主从配置 | Jerry书店</title>
+  <meta name="keywords" content=" 数据库 ">
+  <meta name="description" content="redis 主从配置 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta name="keywords" content="Python">
@@ -434,9 +434,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-spider_04_douban" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-db_01_redis_02" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">requests--豆瓣电影爬虫</h1>
+        <h1 class="article-title">redis 主从配置</h1>
     
     <div class="article-meta">
         
@@ -444,21 +444,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="爬虫">爬虫</a>
+                <a href="javascript:" data-rel="数据库">数据库</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">爬虫</a>
+            <a href="javascript:" class="color4">数据库</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-25 19:40:23'>2019-08-25 19:22</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-03 20:55:05'>2019-10-03 20:20</time>
         
     </div>
     <div class="article-meta">
@@ -480,7 +480,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#爬取豆瓣热门页-电影的数据"><span class="toc-text">爬取豆瓣热门页 电影的数据</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#主从概念"><span class="toc-text">主从概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#主从配置"><span class="toc-text">主从配置</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -496,62 +496,40 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="爬取豆瓣热门页-电影的数据"><a href="#爬取豆瓣热门页-电影的数据" class="headerlink" title="爬取豆瓣热门页 电影的数据"></a>爬取豆瓣热门页 电影的数据</h4><p>接口信息</p>
-<p><img src="/2019/08/25/spider_04_douban/spider_douban_01.PNG" alt><br><img src="/2019/08/25/spider_04_douban/spider_douban_02.PNG" alt></p>
-<pre><code>import requests
-import json
-from pprint import pprint
-import jsonpath
-
-
-class DouBanSpider():
-    &quot;&quot;&quot;豆瓣热门页电影 爬虫&quot;&quot;&quot;
-
-    def __init__(self):
-        &quot;&quot;&quot;初始化操作&quot;&quot;&quot;
-
-        self.url = &apos;https://movie.douban.com/j/search_subjects&apos;
-        self.headers = {
-            &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 \
-            (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36&quot;
-        }
-        self.number = 1  # 爬取的数量
-
-
-    def run(self, pages):
-        &quot;&quot;&quot;启动爬虫&quot;&quot;&quot;
-
-        # 参数1：要从第几个数据开始爬
-        # 参数2：到第几个数据结束
-        # 参数3：因为每次增加的数据是20个 所以步长20
-        for page in range(0, pages * 20, 20):
-            resp = requests.get(
-                url=self.url.format(page),
-                headers=self.headers,
-                # 请求参数
-                params={
-                    &quot;type&quot;: &quot;movie&quot;,
-                    &quot;tag&quot;: &quot;热门&quot;,
-                    &quot;sort&quot;: &quot;recommend&quot;,
-                    &quot;page_limit&quot;: &quot;20&quot;,
-                    &quot;page_start&quot;: page
-                }
-            )
-            # 返回的数据是一个json数据, 转成字典格式
-            result = json.loads(resp.text)
-            # pprint(result) # pprint让控制台打印更好看
-
-            result = result[&apos;subjects&apos;]
-            for movie in result:
-                 print(&quot;数量:{}---标题：{}--评分:{}--地址:{}&quot;.    # &lt;---这里有个点  一行太长了
-                      format(self.number,movie[&apos;title&apos;], movie[&apos;rate&apos;], movie[&apos;url&apos;]))
-                self.number += 1
-
-
-if __name__ == &apos;__main__&apos;:
-    client = DouBanSpider()
-    # 要爬几页数据  就写多少页  下面是爬两页数据
-    client.run(2)</code></pre><p>效果图<br><img src="/2019/08/25/spider_04_douban/spider_douban_03.PNG" alt></p>
+        <h4 id="主从概念"><a href="#主从概念" class="headerlink" title="主从概念"></a>主从概念</h4><ul>
+<li>⼀个master可以拥有多个slave，⼀个slave⼜可以拥有多个slave</li>
+<li>master用来写数据，slave用来读数据，经统计：网站的读写比率是10:1</li>
+<li>通过主从配置可以实现读写分离</li>
+</ul>
+<h4 id="主从配置"><a href="#主从配置" class="headerlink" title="主从配置"></a>主从配置</h4><ol>
+<li>说明：我的redis.conf 里的ip地址是 127.0.0.1 </li>
+</ol>
+<p><img src="/2019/10/03/db_01_redis_02/db_redis_1.PNG" alt><br>2. 复制 /usr/local/redis/redis.conf文件  (我的redis.conf文件是放在这里<br>   如果你不知道在哪 可以 sudo find / -name redis.conf 进行搜索)</p>
+<blockquote>
+<p>sudo cp redis.conf  ./slave.conf</p>
+</blockquote>
+<p>3.修改redis/slave.conf文件</p>
+<blockquote>
+<p>将端口 port 6379 改成 6378(也可以其它端口)<br>添加从属关系 slaveof 主数据库ip地址 主数据库端口号<br>slaveof 127.0.0.1 6379<br>保存关闭 wq</p>
+</blockquote>
+<p><img src="/2019/10/03/db_01_redis_02/db_redis_2.PNG" alt></p>
+<p>4.运行 slave.conf文件</p>
+<blockquote>
+<p>./src/redis-server   ./slave.conf  (说明: 当前我位于redis目录下)</p>
+</blockquote>
+<p>5.查看从客户端是否运行</p>
+<blockquote>
+<p>ps -aux | grep redis</p>
+</blockquote>
+<p><img src="/2019/10/03/db_01_redis_02/db_redis_5_port.PNG" alt></p>
+<blockquote>
+<p>进入从客户端<br>redis-cli -p 6378</p>
+</blockquote>
+<p><img src="/2019/10/03/db_01_redis_02/db_redis_4.PNG" alt></p>
+<blockquote>
+<p>查看主从关系</p>
+</blockquote>
+<p><img src="/2019/10/03/db_01_redis_02/db_redis_3_slave.PNG" alt></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
@@ -565,12 +543,12 @@ if __name__ == &apos;__main__&apos;:
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>requests--豆瓣电影爬虫</p>
+    <p><span class="copy-title">文章标题:</span>redis 主从配置</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-08-25, 19:22:24</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-25, 19:40:23</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/25/spider_04_douban/" title="requests--豆瓣电影爬虫">http://yoursite.com/2019/08/25/spider_04_douban/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-03, 20:20:11</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-03, 20:55:05</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/03/db_01_redis_02/" title="redis 主从配置">http://yoursite.com/2019/10/03/db_01_redis_02/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
