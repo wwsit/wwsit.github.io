@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>XPath 数据提取(上) | Jerry书店</title>
-  <meta name="keywords" content=" 爬虫、xpath ">
-  <meta name="description" content="XPath 数据提取(上) | Jerry书店">
+  <title>用OpenCV识别出缺省图片 | Jerry书店</title>
+  <meta name="keywords" content=" 爬虫 ">
+  <meta name="description" content="用OpenCV识别出缺省图片 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta name="keywords" content="Python">
@@ -442,9 +442,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-spider_06_xpath_1" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-spider_11_opencv" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">XPath 数据提取(上)</h1>
+        <h1 class="article-title">用OpenCV识别出缺省图片</h1>
     
     <div class="article-meta">
         
@@ -459,14 +459,14 @@
         
         <span class="tag">
             
-            <a href="javascript:" class="color4">爬虫、xpath</a>
+            <a href="javascript:" class="color3">爬虫</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-26 19:50:18'>2019-08-26 19:20</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-20 16:40:25'>2019-10-20 15:20</time>
         
     </div>
     <div class="article-meta">
@@ -488,7 +488,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、XPath-介绍与语法"><span class="toc-text">一、XPath 介绍与语法</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#模块安装"><span class="toc-text">模块安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#图片"><span class="toc-text">图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码实例"><span class="toc-text">代码实例</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -504,78 +504,79 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="一、XPath-介绍与语法"><a href="#一、XPath-介绍与语法" class="headerlink" title="一、XPath 介绍与语法"></a>一、XPath 介绍与语法</h4><p>定义</p>
-<blockquote>
-<p>XPath (XML Path Language) 是一门在 HTML\XML 文档中查找信息的语言，<br>  可用来在 HTML\XML 文档中对元素和属性进行遍历。</p>
+        <h4 id="模块安装"><a href="#模块安装" class="headerlink" title="模块安装"></a>模块安装</h4><blockquote>
+<p>OpenCV  —— pip install opencv-python<br>Numpy   —— pip install numpy </p>
 </blockquote>
-<p>作用</p>
-<blockquote>
-<p>通过一定的语法规则从 HTML/XML 文件中提取数据。</p>
-</blockquote>
-<p>下载插件</p>
-<blockquote>
-<p>使用 Chrome 插件 XPath Helper<br>  下载地址:<a href="https://pan.baidu.com/s/1UM94dcwgus4SgECuoJ-Jcg" target="_blank" rel="noopener">https://pan.baidu.com/s/1UM94dcwgus4SgECuoJ-Jcg</a> 密码：337b</p>
-</blockquote>
-<blockquote>
-<p>环境搭建</p>
-</blockquote>
-<blockquote>
-<p>创建 HTML 测试文件</p>
-</blockquote>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;title&gt;语法学习&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;bookstore&gt;
-        &lt;book category=&quot;COOKING&quot;&gt;
-          &lt;title lang=&quot;en&quot;&gt;Everyday Italian&lt;/title&gt;
-          &lt;author&gt;Giada De Laurentiis&lt;/author&gt;
-          &lt;year&gt;2005&lt;/year&gt;
-          &lt;price&gt;30.00&lt;/price&gt;
-        &lt;/book&gt;
-        &lt;book category=&quot;CHILDREN&quot;&gt;
-          &lt;title lang=&quot;en&quot;&gt;Harry Potter&lt;/title&gt;
-          &lt;author&gt;J K. Rowling&lt;/author&gt;
-          &lt;year&gt;2005&lt;/year&gt;
-          &lt;price&gt;29.99&lt;/price&gt;
-        &lt;/book&gt;
-        &lt;book category=&quot;WEB&quot;&gt;
-          &lt;title lang=&quot;en&quot;&gt;Learning XML&lt;/title&gt;
-          &lt;author&gt;Erik T. Ray&lt;/author&gt;
-          &lt;year&gt;2003&lt;/year&gt;
-          &lt;price&gt;39.95&lt;/price&gt;
-        &lt;/book&gt;
-    &lt;/bookstore&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre><blockquote>
-<p>使用 Pycharm 运行文件<br>调试环境介绍</p>
-</blockquote>
-<p><img src="/2019/08/26/spider_06_xpath_1/spider_06_01.PNG" alt></p>
-<p>XPath 语法<br><img src="/2019/08/26/spider_06_xpath_1/spider_06_02.PNG" alt></p>
-<p>案例<br><img src="/2019/08/26/spider_06_xpath_1/spider_06_03.PNG" alt></p>
-<ul>
-<li>选择所有的h1下的文本<ul>
-<li>//h1/text()</li>
-</ul>
-</li>
-<li>获取所有的a标签的href<ul>
-<li>//a/@href</li>
-</ul>
-</li>
-<li>获取html下的head下的title的文本<ul>
-<li>/html/head/title/text()</li>
-</ul>
-</li>
-<li>获取html下的head下的link标签的href<ul>
-<li>/html/head/link/@href</li>
-</ul>
-</li>
-</ul>
-<p>查找特定的节点<br><img src="/2019/08/26/spider_06_xpath_1/spider_06_04.PNG" alt></p>
+<h4 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h4><p><img src="/2019/10/20/spider_11_opencv/full_picture.png" alt><br><img src="/2019/10/20/spider_11_opencv/portion_picture.png" alt><br><img src="/2019/10/20/spider_11_opencv/show.PNG" alt></p>
+<h4 id="代码实例"><a href="#代码实例" class="headerlink" title="代码实例"></a>代码实例</h4><pre><code>import cv2
+import numpy as np
 
+
+def main():
+    # 定义打开图片路径
+    otemp = &apos;./picture/full_picture.png&apos;  # 完整的图片
+    otarget = &apos;./picture/portion_picture.jpg&apos;  # 滑块
+
+    # 读取图片  进行灰度处理
+    target = cv2.imread(otarget, 0)
+    template = cv2.imread(otemp, 0)
+    # 图片尺寸
+    w, h = target.shape[::-1]
+
+    # 定义保存图片的路径
+    temp = &apos;./picture/full_picture1.png&apos;
+    targ = &apos;./picture/portion_picture1.png&apos;
+
+    # 图片保存
+    # 参数1  要保存的名字
+    # 参数2  要保存那张图片
+    cv2.imwrite(temp, template)
+    cv2.imwrite(targ, target)
+
+    # 显示图片
+    # cv2.imshow(&apos;temp&apos;, template)  # 显示图片
+    # cv2.imshow(&apos;tar&apos;, target)
+    # cv2.waitKey(0)
+
+    # 读图像
+    target = cv2.imread(targ)
+    # 颜色空间转换函数
+    # 参数1是需要转换的图片，
+    # 参数2是转换成何种格式。
+    target = cv2.cvtColor(target, cv2.COLOR_BGR2GRAY)
+    target = abs(255 - target)
+    cv2.imwrite(targ, target)  # 保存
+
+    target = cv2.imread(targ)
+    template = cv2.imread(temp)
+    # 模板匹配
+    # 该函数第一个参数是源图像，第二个参数是模板图像，第三个参数是匹配的结果图像，第四个参数是用于指定比较的方法。
+    result = cv2.matchTemplate(target, template, cv2.TM_CCOEFF_NORMED)
+    # print(result.shape)
+    # 获取一个/组int类型的索引值在一个多维数组中的位置
+    x, y = np.unravel_index(result.argmax(), result.shape)
+    print(x, y)  # 圈出来的区域  左上角的坐标
+    # 展示圈出来的区域
+    cv2.rectangle(template, (y, x), (y + w, x + h), (7, 249, 151), 2)
+    # 显示图片
+    cv2.imshow(&apos;Show&apos;, template)
+    cv2.waitKey(0)  # 等待键盘输入 必须加  不然会出现图片一闪的情况
+    cv2.destroyAllWindows()  # 删除建立的窗口。
+
+
+if __name__ == &apos;__main__&apos;:
+    main()
+
+
+&quot;&quot;&quot;
+然后利用cv2.rectangle(img, (x,y), (x+w,y+h), (0,255,0), 2)画出矩行
+参数解释
+第一个参数：img是原图
+第二个参数：（x，y）是矩阵的左上点坐标
+第三个参数：（x+w，y+h）是矩阵的右下点坐标
+第四个参数：（0,255,0）是画线对应的rgb颜色
+第五个参数：2是所画的线的宽度
+&quot;&quot;&quot;</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
@@ -588,12 +589,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>XPath 数据提取(上)</p>
+    <p><span class="copy-title">文章标题:</span>用OpenCV识别出缺省图片</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-08-26, 19:20:34</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-26, 19:50:18</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/26/spider_06_xpath_1/" title="XPath 数据提取(上)">http://yoursite.com/2019/08/26/spider_06_xpath_1/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-20, 15:20:01</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-20, 16:40:25</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/20/spider_11_opencv/" title="用OpenCV识别出缺省图片">http://yoursite.com/2019/10/20/spider_11_opencv/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
