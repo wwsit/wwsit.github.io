@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>爬虫的介绍 | Jerry书店</title>
-  <meta name="keywords" content=" 爬虫 ">
-  <meta name="description" content="爬虫的介绍 | Jerry书店">
+  <title>测试介绍 | Jerry书店</title>
+  <meta name="keywords" content=" 测试 ">
+  <meta name="description" content="测试介绍 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta name="keywords" content="Python">
@@ -450,9 +450,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-spider_01" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-ceshi_01_introduce" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">爬虫的介绍</h1>
+        <h1 class="article-title">测试介绍</h1>
     
     <div class="article-meta">
         
@@ -460,21 +460,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="爬虫">爬虫</a>
+                <a href="javascript:" data-rel="测试">测试</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">爬虫</a>
+            <a href="javascript:" class="color3">测试</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-24 19:45:21'>2019-08-24 19:30</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-21 15:51:25'>2019-10-21 15:10</time>
         
     </div>
     <div class="article-meta">
@@ -496,7 +496,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、-为什么要学习爬虫"><span class="toc-text">一、 为什么要学习爬虫</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-数据的来源"><span class="toc-text">1.1 数据的来源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-爬取到的数据用途"><span class="toc-text">1.2 爬取到的数据用途</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、什么是爬虫"><span class="toc-text">二、什么是爬虫</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是软件测试-以下简写为-软测"><span class="toc-text">什么是软件测试(以下简写为 软测)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#软测定义"><span class="toc-text">软测定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#软测目的"><span class="toc-text">软测目的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常见的软件开发过程模型"><span class="toc-text">常见的软件开发过程模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#测试模型"><span class="toc-text">测试模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#软测的分类"><span class="toc-text">软测的分类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试用例"><span class="toc-text">测试用例</span></a>
     
 <style>
     .left-col .switch-btn,
@@ -512,23 +512,71 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="一、-为什么要学习爬虫"><a href="#一、-为什么要学习爬虫" class="headerlink" title="一、 为什么要学习爬虫"></a>一、 为什么要学习爬虫</h4><pre><code>如今，人工智能，大数据离我们越来越近，很多公司在开展相关的业务，
-但是人工智能和大数据中有一个东西非常重要，那就是数据，但是数据从哪里来呢？</code></pre><h4 id="1-1-数据的来源"><a href="#1-1-数据的来源" class="headerlink" title="1.1 数据的来源"></a>1.1 数据的来源</h4><ul>
-<li>企业产生的数据：百度搜索指数、阿里指数、微指数、看准网、腾讯浏览指数、大众点评网、汽车之家等…</li>
-<li>数据平台购买数据：数据堂、国云数据市场、贵阳大数据交易所 等…</li>
-<li>政府/机构公开的数据：天眼查、中华人民共和国国家统计局数据、中国人民银行调查统计、世界银行公开数据、联合国数据、纳斯达克、新浪财经美股实时行情 等…</li>
-<li>数据管理咨询公司：麦肯锡、埃森哲、尼尔森、中国互联网信息中心、艾瑞咨询 等…</li>
-<li>爬取网络数据：百度、google 等…</li>
-</ul>
-<h4 id="1-2-爬取到的数据用途"><a href="#1-2-爬取到的数据用途" class="headerlink" title="1.2 爬取到的数据用途"></a>1.2 爬取到的数据用途</h4><ul>
-<li>进行在网页或者是app上进行展示</li>
-<li>进行数据分析或者是机器学习相关的项目</li>
-</ul>
-<h4 id="二、什么是爬虫"><a href="#二、什么是爬虫" class="headerlink" title="二、什么是爬虫"></a>二、什么是爬虫</h4><blockquote>
-<p>网络爬虫（又被称为网页蜘蛛，网络机器人）就是模拟客户端发送网络请求，接收请求响应，一种按照一定的规则，自动地抓取互联网信息的程序。</p>
+        <h4 id="什么是软件测试-以下简写为-软测"><a href="#什么是软件测试-以下简写为-软测" class="headerlink" title="什么是软件测试(以下简写为 软测)"></a>什么是软件测试(以下简写为 软测)</h4><blockquote>
+<p>在规定条件下对程序进行操作，从而发现错误，对软件质量进行评估的一个过程</p>
 </blockquote>
+<h4 id="软测定义"><a href="#软测定义" class="headerlink" title="软测定义"></a>软测定义</h4><blockquote>
+<p>使用手工或自动手段对被测对象进行检测操作，其目的在于检验是否满足规定的需求或是<br>弄清预期结果和实际结果之间的差别<br>软测是一种 <code>实际输出</code>与<code>预期输出</code>之间的审核或比较过程</p>
+</blockquote>
+<h4 id="软测目的"><a href="#软测目的" class="headerlink" title="软测目的"></a>软测目的</h4><blockquote>
+<p>是想以最少的人力、物力和时间找出软件中潜在各种错误与缺陷，通过修正各种错误和缺陷提高软件质量，<br>回避软件发布后由于潜在的软件缺陷和错误造成的隐患以及带来的商业风险</p>
+</blockquote>
+<h4 id="常见的软件开发过程模型"><a href="#常见的软件开发过程模型" class="headerlink" title="常见的软件开发过程模型"></a>常见的软件开发过程模型</h4><ul>
+<li>瀑布模型</li>
+<li>快速原型模型</li>
+<li>增量模型</li>
+<li>螺旋模型</li>
+</ul>
+<h4 id="测试模型"><a href="#测试模型" class="headerlink" title="测试模型"></a>测试模型</h4><ul>
+<li><p>V模型</p>
 <blockquote>
-<p>本质： 模拟浏览器（客户端）去获取、处理、保存数据，只要浏览器（客户端）能做的事情，爬虫都能够做。 原则上,只要是浏览器(客户端)能做的事情，爬虫都能够做</p>
+<p> V模型和瀑布模型有一些共同的特性，V模型中的过程从左到右，描述了基本的开发 过程和测试行为</p>
+</blockquote>
+</li>
+<li><p>W(双V)模型</p>
+<blockquote>
+<p>W模型是V模型的发展，强调的是测试伴随着整个软件开发周期，而且测试的对象不仅仅是程序，需求、功能和设计同样要测试。<br><code>测试与开发是同步进行的</code>，从而有利于尽早地发现问题。</p>
+</blockquote>
+</li>
+<li><p>H模型</p>
+<blockquote>
+<p>H模型中, 软件测试过程活动完全独立,贯穿于整个产品的周期,与其他流程并发地进行,某个测试点准备就绪时,<br>就可以从测试准备阶段进行到测试执行阶段。软件测试可以尽早的进行,并且可以根据被测物的不同而分层次进行。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="软测的分类"><a href="#软测的分类" class="headerlink" title="软测的分类"></a>软测的分类</h4><p><img src="/2019/10/21/ceshi_01_introduce/classify.png" alt></p>
+<ul>
+<li><p>黑盒测试</p>
+<blockquote>
+<p>黑盒测试也称功能测试，测试中把被测的软件当成一个黑盒子，不关心盒子的内部结构是什么，只关心软件的输入数据与输出数据。<br>黑盒测试又分为功能测试和性能测试</p>
+</blockquote>
+</li>
+<li><p>白盒测试</p>
+<blockquote>
+<p>白盒测试又称结构测试、透明盒测试、逻辑驱动测试或基于代码的测试。白盒指的打开盒子，去研究里面的源代码和程序结果。<br>白盒测试也是接口测试的一种</p>
+</blockquote>
+</li>
+<li><p>灰盒测试</p>
+<blockquote>
+<p>灰盒测试，是介于白盒测试与黑盒测试之间的一种测试，灰盒测试多用于集成测试阶段，<br>不仅关注输出、输入的正确性，同时也关注程序内部的情况。<br>灰盒测试:功能 + 接口</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="测试用例"><a href="#测试用例" class="headerlink" title="测试用例"></a>测试用例</h3><p>测试用例八大要素</p>
+<ul>
+<li>用例编号</li>
+<li>用例标题</li>
+<li>测试模块</li>
+<li>预置条件</li>
+<li>测试输入</li>
+<li>测试步骤</li>
+<li>预期结果</li>
+<li>实际结果（可以没有）</li>
+<li>级别</li>
+</ul>
+<p>常用的测试用例设计方法有:</p>
+<blockquote>
+<p>等价类划分话、边界值分析法、判定表法、正交验证法、错误推测法、场景法、因果图法. </p>
 </blockquote>
 
       
@@ -543,12 +591,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>爬虫的介绍</p>
+    <p><span class="copy-title">文章标题:</span>测试介绍</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-08-24, 19:30:34</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-24, 19:45:21</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/24/spider_01/" title="爬虫的介绍">http://yoursite.com/2019/08/24/spider_01/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-21, 15:10:22</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-21, 15:51:25</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/21/ceshi_01_introduce/" title="测试介绍">http://yoursite.com/2019/10/21/ceshi_01_introduce/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
