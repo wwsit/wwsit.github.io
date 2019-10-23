@@ -488,7 +488,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#模块安装"><span class="toc-text">模块安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#图片"><span class="toc-text">图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码实例"><span class="toc-text">代码实例</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#模块安装"><span class="toc-text">模块安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#图片"><span class="toc-text">图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码实例"><span class="toc-text">代码实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OpenCV学习教程"><span class="toc-text">OpenCV学习教程</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -507,7 +507,7 @@
         <h4 id="模块安装"><a href="#模块安装" class="headerlink" title="模块安装"></a>模块安装</h4><blockquote>
 <p>OpenCV  —— pip install opencv-python<br>Numpy   —— pip install numpy </p>
 </blockquote>
-<h4 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h4><p><img src="/2019/10/20/spider_11_opencv/full_picture.png" alt><br><img src="/2019/10/20/spider_11_opencv/portion_picture.png" alt><br><img src="/2019/10/20/spider_11_opencv/show.PNG" alt></p>
+<h4 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h4><p><img src="/2019/10/20/spider_11_opencv/full_picture.png" alt="full_picture.png"><br><img src="/2019/10/20/spider_11_opencv/portion_picture.png" alt="portion_picture.png"><br><img src="/2019/10/20/spider_11_opencv/show.PNG" alt="show.PNG"></p>
 <h4 id="代码实例"><a href="#代码实例" class="headerlink" title="代码实例"></a>代码实例</h4><pre><code>import cv2
 import numpy as np
 
@@ -533,7 +533,7 @@ def main():
     cv2.imwrite(temp, template)
     cv2.imwrite(targ, target)
 
-    # 显示图片
+    # 显示图片  这步可以跳过
     # cv2.imshow(&apos;temp&apos;, template)  # 显示图片
     # cv2.imshow(&apos;tar&apos;, target)
     # cv2.waitKey(0)
@@ -552,7 +552,7 @@ def main():
     # 模板匹配
     # 该函数第一个参数是源图像，第二个参数是模板图像，第三个参数是匹配的结果图像，第四个参数是用于指定比较的方法。
     result = cv2.matchTemplate(target, template, cv2.TM_CCOEFF_NORMED)
-    # print(result.shape)
+
     # 获取一个/组int类型的索引值在一个多维数组中的位置
     x, y = np.unravel_index(result.argmax(), result.shape)
     print(x, y)  # 圈出来的区域  左上角的坐标
@@ -576,7 +576,10 @@ if __name__ == &apos;__main__&apos;:
 第三个参数：（x+w，y+h）是矩阵的右下点坐标
 第四个参数：（0,255,0）是画线对应的rgb颜色
 第五个参数：2是所画的线的宽度
-&quot;&quot;&quot;</code></pre>
+&quot;&quot;&quot;</code></pre><h4 id="OpenCV学习教程"><a href="#OpenCV学习教程" class="headerlink" title="OpenCV学习教程"></a>OpenCV学习教程</h4><blockquote>
+<p><a href="https://blog.csdn.net/zichen_ziqi/article/details/80531124" target="_blank" rel="noopener">https://blog.csdn.net/zichen_ziqi/article/details/80531124</a></p>
+</blockquote>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
