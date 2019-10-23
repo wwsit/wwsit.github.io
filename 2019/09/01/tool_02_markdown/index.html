@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>编辑器 vim | Jerry书店</title>
+  <title>MarkDown常用语法 | Jerry书店</title>
   <meta name="keywords" content=" 分享 ">
-  <meta name="description" content="编辑器 vim | Jerry书店">
+  <meta name="description" content="MarkDown常用语法 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta name="keywords" content="Python">
@@ -326,20 +326,20 @@
             <span class="post-date" title="2019-09-02 20:10:11">2019/09/02</span>
         </a>
         
+        <a  class="分享 "
+           href="/2019/09/01/tool_02_markdown/"
+           data-tag="分享"
+           data-author="" >
+            <span class="post-title" title="MarkDown常用语法">MarkDown常用语法</span>
+            <span class="post-date" title="2019-09-01 22:00:11">2019/09/01</span>
+        </a>
+        
         <a  class="爬虫 "
            href="/2019/09/01/spider_scrapy_02/"
            data-tag="爬虫、scrapy"
            data-author="" >
             <span class="post-title" title="Scrapy 核心组件">Scrapy 核心组件</span>
             <span class="post-date" title="2019-09-01 21:10:31">2019/09/01</span>
-        </a>
-        
-        <a  class="分享 "
-           href="/2019/09/01/tool_02_markdown/"
-           data-tag="分享"
-           data-author="" >
-            <span class="post-title" title="编辑器 vim">编辑器 vim</span>
-            <span class="post-date" title="2019-09-01 19:40:21">2019/09/01</span>
         </a>
         
         <a  class="分享 "
@@ -460,7 +460,7 @@
     <div class="pjax">
         <article id="post-tool_02_markdown" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">编辑器 vim</h1>
+        <h1 class="article-title">MarkDown常用语法</h1>
     
     <div class="article-meta">
         
@@ -482,7 +482,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-09-01 20:21:05'>2019-09-01 19:40</time>
+        创建时间:<time class="date" title='更新时间: 2019-09-01 22:25:55'>2019-09-01 22:00</time>
         
     </div>
     <div class="article-meta">
@@ -504,7 +504,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、vim-的介绍"><span class="toc-text">一、vim 的介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、vim-的工作模式"><span class="toc-text">二、vim 的工作模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、-vim-的末行模式命令"><span class="toc-text">三、 vim 的末行模式命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四、vim-的常用命令"><span class="toc-text">四、vim 的常用命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五、永久显示行数"><span class="toc-text">五、永久显示行数</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#标题"><span class="toc-text">标题</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#这是一级标题"><span class="toc-text">这是一级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#这是二级标题"><span class="toc-text">这是二级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#这是三级标题"><span class="toc-text">这是三级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#这是四级标题"><span class="toc-text">这是四级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#这是五级标题"><span class="toc-text">这是五级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#这是六级标题"><span class="toc-text">这是六级标题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字体"><span class="toc-text">字体</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分割线"><span class="toc-text">分割线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#超链接"><span class="toc-text">超链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#图片"><span class="toc-text">图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#列表"><span class="toc-text">列表</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#表格"><span class="toc-text">表格</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码块"><span class="toc-text">代码块</span></a>
     
 <style>
     .left-col .switch-btn,
@@ -520,35 +520,54 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="一、vim-的介绍"><a href="#一、vim-的介绍" class="headerlink" title="一、vim 的介绍"></a>一、vim 的介绍</h4><pre><code>vim 是一款功能强大的文本编辑器，也是早年 Vi 编辑器的加强版，
-它的最大特色就是使用命令进行编辑，完全脱离了鼠标的操作。
-可以对远程服务器的代码直接进行修改，这样操作起来更加快速和方便。</code></pre><h4 id="二、vim-的工作模式"><a href="#二、vim-的工作模式" class="headerlink" title="二、vim 的工作模式"></a>二、vim 的工作模式</h4><ul>
-<li>命令模式</li>
-<li>编辑模式</li>
-<li>末行模式</li>
-<li>vim 打开文件进入的是命令模式</li>
-</ul>
-<p><img src="/2019/09/01/tool_02_markdown/vim_01.PNG" alt></p>
+        <h4 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h4><pre><code># 这是一级标题
+## 这是二级标题
+### 这是三级标题
+#### 这是四级标题
+##### 这是五级标题
+###### 这是六级标题</code></pre><h1 id="这是一级标题"><a href="#这是一级标题" class="headerlink" title="这是一级标题"></a>这是一级标题</h1><h2 id="这是二级标题"><a href="#这是二级标题" class="headerlink" title="这是二级标题"></a>这是二级标题</h2><h3 id="这是三级标题"><a href="#这是三级标题" class="headerlink" title="这是三级标题"></a>这是三级标题</h3><h4 id="这是四级标题"><a href="#这是四级标题" class="headerlink" title="这是四级标题"></a>这是四级标题</h4><h5 id="这是五级标题"><a href="#这是五级标题" class="headerlink" title="这是五级标题"></a>这是五级标题</h5><h6 id="这是六级标题"><a href="#这是六级标题" class="headerlink" title="这是六级标题"></a>这是六级标题</h6><h4 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h4><pre><code>**这是加粗的文字**
+*这是倾斜的文字*`
+***这是斜体加粗的文字***
+~~这是加删除线的文字~~</code></pre><p><strong>这是加粗的文字</strong><br><em>这是倾斜的文字</em>`<br><strong><em>这是斜体加粗的文字</em></strong><br><del>这是加删除线的文字</del></p>
+<h4 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h4><pre><code>---
+***</code></pre><hr>
+<hr>
+<p>####引用<br>    语法：’&gt;’引用符号<br>    &gt;这是引用的内容   </p>
 <blockquote>
-<p>编辑模式和末行模式之间不能直接进行切换，都需要通过命令模式来完成。</p>
+<p>这是引用的内容</p>
 </blockquote>
-<h4 id="三、-vim-的末行模式命令"><a href="#三、-vim-的末行模式命令" class="headerlink" title="三、 vim 的末行模式命令"></a>三、 vim 的末行模式命令</h4><ul>
-<li>w 保存</li>
-<li>wq 保存退出</li>
-<li>x 保存退出</li>
-<li>q! 强制退出</li>
+<h4 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h4><pre><code>[链接名字](链接地址 )
+[百度](https://www.baidu.com/)</code></pre><p><a href="https://www.baidu.com/" target="_blank" rel="noopener">百度</a></p>
+<h4 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h4><pre><code>！[可以写内容](图片的路径)
+！[可爱的小姐姐](/meizi.PNG)</code></pre><p><img src="/2019/09/01/tool_02_markdown/meizi.PNG" alt="可爱的小姐姐"></p>
+<h4 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h4><pre><code>语法： 内容前面用 *
+无序列表
+*  列表内容  
+*  列表内容  </code></pre><ul>
+<li>列表内容</li>
+<li>列表内容</li>
 </ul>
-<h4 id="四、vim-的常用命令"><a href="#四、vim-的常用命令" class="headerlink" title="四、vim 的常用命令"></a>四、vim 的常用命令</h4><p><img src="/2019/09/01/tool_02_markdown/vim_02.PNG" alt></p>
-<p>常用命令扩展<br><img src="/2019/09/01/tool_02_markdown/vim_03.PNG" alt></p>
-<h4 id="五、永久显示行数"><a href="#五、永久显示行数" class="headerlink" title="五、永久显示行数"></a>五、永久显示行数</h4><ul>
-<li>/etc/vimrc   是系统范围的初始化配置  (在末尾添加)</li>
-<li>～/.vimrc    个人的vim初始化配置    (在第一行添加)</li>
-<li>用vim打开</li>
-<li>我们在配置文件输入set number 或者 set nu 就可以了</li>
-<li>输入完成之后，按退出，然后敲命令 :wq   ，保存并退出</li>
-</ul>
-<p><img src="/2019/09/01/tool_02_markdown/vim_05.PNG" alt><br><img src="/2019/09/01/tool_02_markdown/vim_04.PNG" alt><br><img src="/2019/09/01/tool_02_markdown/vim_03_row.PNG" alt></p>
-
+<pre><code>有序列表
+语法： 数字加点
+1.列表内容  
+2.列表内容
+3.列表内容</code></pre><p>1.列表内容<br>2.列表内容<br>3.列表内容</p>
+<h1 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h1><pre><code>语法：三个 | 里面加内容  然后空格  会出现一个表格
+|内容|内容|内容|  </code></pre><table>
+<thead>
+<tr>
+<th>内容</th>
+<th>内容</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>内容</td>
+<td>内容</td>
+<td>内容</td>
+</tr>
+</tbody></table>
+<h1 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h1><pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    python语法的代码块  部分python关键字会高亮</span><br><span class="line"></span><br><span class="line">```python</span><br></pre></td></tr></table></figure></code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
@@ -561,12 +580,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>编辑器 vim</p>
+    <p><span class="copy-title">文章标题:</span>MarkDown常用语法</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-09-01, 19:40:21</p>
-    <p><span class="copy-title">最后更新:</span>2019-09-01, 20:21:05</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/01/tool_02_markdown/" title="编辑器 vim">http://yoursite.com/2019/09/01/tool_02_markdown/</a>
+    <p><span class="copy-title">发布时间:</span>2019-09-01, 22:00:11</p>
+    <p><span class="copy-title">最后更新:</span>2019-09-01, 22:25:55</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/01/tool_02_markdown/" title="MarkDown常用语法">http://yoursite.com/2019/09/01/tool_02_markdown/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
