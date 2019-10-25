@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>常见的反爬手段和解决思路 | Jerry书店</title>
-  <meta name="keywords" content=" 爬虫、知识 ">
-  <meta name="description" content="常见的反爬手段和解决思路 | Jerry书店">
+  <title>Selenium | Jerry书店</title>
+  <meta name="keywords" content=" 测试 ">
+  <meta name="description" content="Selenium | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta name="keywords" content="Python">
@@ -482,9 +482,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-spider_10_anti_spider_" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-ceshi_02_selenium" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">常见的反爬手段和解决思路</h1>
+        <h1 class="article-title">Selenium</h1>
     
     <div class="article-meta">
         
@@ -492,21 +492,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="爬虫">爬虫</a>
+                <a href="javascript:" data-rel="测试">测试</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color1">爬虫、知识</a>
+            <a href="javascript:" class="color3">测试</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-27 20:21:15'>2019-08-27 19:40</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-25 11:51:25'>2019-10-25 10:20</time>
         
     </div>
     <div class="article-meta">
@@ -528,7 +528,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、-通过headers字段来反爬"><span class="toc-text">一、 通过headers字段来反爬</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、通过js来反爬"><span class="toc-text">二、通过js来反爬</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、通过验证码来反爬"><span class="toc-text">三、通过验证码来反爬</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四、通过ip地址来反爬"><span class="toc-text">四、通过ip地址来反爬</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四、CSS反扒"><span class="toc-text">四、CSS反扒</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五、明确反反爬的主要思路"><span class="toc-text">五、明确反反爬的主要思路</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#介绍"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命令"><span class="toc-text">命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件"><span class="toc-text">文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#练习"><span class="toc-text">练习</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -544,56 +544,116 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="一、-通过headers字段来反爬"><a href="#一、-通过headers字段来反爬" class="headerlink" title="一、 通过headers字段来反爬"></a>一、 通过headers字段来反爬</h4><p>1.1 通过headers中的User-Agent字段来反爬</p>
-<blockquote>
-<p>通过User-Agent字段反爬的话，只需要给他在请求之前添加User-Agent即可，<br>    更好的方式是使用User-Agent池来解决,我们可以考虑收集一堆User-Agent的方式，<br>    或者是随机生成User-Agent</p>
-</blockquote>
-<pre><code>import random
-def get_ua():
-    first_num = random.randint(55, 62)
-    third_num = random.randint(0, 3200)
-    fourth_num = random.randint(0, 140)
-    os_type = [
-        &apos;(Windows NT 6.1; WOW64)&apos;, &apos;(Windows NT 10.0; WOW64)&apos;, &apos;(X11; Linux x86_64)&apos;,
-        &apos;(Macintosh; Intel Mac OS X 10_12_6)&apos;
-    ]
-    chrome_version = &apos;Chrome/{}.0.{}.{}&apos;.format(first_num, third_num, fourth_num)
+        <h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><pre><code>Selenium是一个Web的自动化测试工具，最初是为网站自动化测试而开发的，
+Selenium 可以直接运行在浏览器上，它支持所有主流的浏览器
+（包括PhantomJS这些无界面的浏览器），可以接收指令，
+让浏览器自动加载页面，获取需要的数据，甚至页面截屏。</code></pre><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre><code>https://npm.taobao.org/mirrors/chromedriver
+必须下载chrome 版本对应的驱动
+pip install selenium
+在系统变量 添加selenium驱动的位置</code></pre><h4 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h4><pre><code>find_element_by_xxx 返回第一个符合条件 WebElement
+find_elements_by_xxx 返回符合条件所有元素的WebEelemnt列表
 
-    ua = &apos; &apos;.join([&apos;Mozilla/5.0&apos;, random.choice(os_type), &apos;AppleWebKit/537.36&apos;,
-                   &apos;(KHTML, like Gecko)&apos;, chrome_version, &apos;Safari/537.36&apos;]
-                  )
-    return ua</code></pre><p>1.2 通过referer字段或者是其他字段来反爬<br>1.3 通过cookie来反爬</p>
-<blockquote>
-<p>如果目标网站不需要登录 每次请求带上前一次返回的cookie，比如requests模块的session<br>如果目标网站需要登录 准备多个账号，通过一个程序获取账号对应的cookie，组成cookie池，其他程序使用这些cookie</p>
+find函数系列说明
+find_element_by_class_name 通过class 查询元素
+find_element_by_id 通过 ID 查询元素
+find_element_by_name 通过name 
+find_element_by_tag_name 通过标签名称
+find_element_by_css_selector css样式选择
+find_element_by_link_text 通过链接（ &lt;a&gt;标签 ）内容查找
+find_element_by_partial_link_text 通过链接内容包含的内容查找，模糊查询
+find_element_by_xpath 通过xpath查找数据
+获取元素属性和文本内容</code></pre><p>  ####通过CSS定位<br>    定位方法<br>    driver.find_element_by_css_selector()<br>    常用的策略(方法)<br>    1. id选择器<br>    2. class选择器<br>    3. 元素选择器<br>    4. 属性选择器<br>    5. 层级选择器</p>
+<h4 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h4><pre><code>链接：https://pan.baidu.com/s/17e834dVFO3PpmyV1XLbCqA 
+提取码：0nv0 </code></pre><h4 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h4><blockquote>
+<p>用面向对象的过程编程</p>
 </blockquote>
-<h4 id="二、通过js来反爬"><a href="#二、通过js来反爬" class="headerlink" title="二、通过js来反爬"></a>二、通过js来反爬</h4><p>2.1 通过js实现跳转来反爬</p>
-<blockquote>
-<p>在请求目标网站的时候，我们看到的似乎就请求了一个网站，然而实际上在成功请求目标网站之前，<br> 中间可能有通过js实现的跳转，我们肉眼不可见，这个时候可以通过点击perserve log按钮实现观察页面跳转情况<br> 在这些请求中，如果请求数量很多，一般来讲，只有那些response中带cookie字段的请求是有用的，<br> 意味着通过这个请求，对方服务器有设置cookie到本地</p>
-</blockquote>
-<p>2.2 通过js生成了请求参数</p>
-<blockquote>
-<p>对应的需要分析js，观察加密的实现过程，通过js2py获取js的执行结果，或者使用selenium来实现</p>
-</blockquote>
-<p>2.3 通过js实现了数据的加密</p>
-<blockquote>
-<p>对应的需要分析js，观察加密的实现过程，通过js2py获取js的执行结果，或者使用selenium来实现</p>
-</blockquote>
-<h4 id="三、通过验证码来反爬"><a href="#三、通过验证码来反爬" class="headerlink" title="三、通过验证码来反爬"></a>三、通过验证码来反爬</h4><blockquote>
-<p>通过打码平台或者是机器学习的方法识别验证码，其中打码平台廉价易用</p>
-</blockquote>
-<h4 id="四、通过ip地址来反爬"><a href="#四、通过ip地址来反爬" class="headerlink" title="四、通过ip地址来反爬"></a>四、通过ip地址来反爬</h4><blockquote>
-<p>同一个ip大量请求了对方服务器，有更大的可能性会被识别为爬虫，对应的通过购买高质量的ip的方式能够解决问题</p>
-</blockquote>
-<h4 id="四、CSS反扒"><a href="#四、CSS反扒" class="headerlink" title="四、CSS反扒"></a>四、CSS反扒</h4><blockquote>
-<p>切换手机端<br>计算css的偏移</p>
-</blockquote>
-<h4 id="五、明确反反爬的主要思路"><a href="#五、明确反反爬的主要思路" class="headerlink" title="五、明确反反爬的主要思路"></a>五、明确反反爬的主要思路</h4><blockquote>
-<p>反反爬的主要思路就是：尽可能的去模拟浏览器，浏览器如何操作，代码中就如何去实现。</p>
-</blockquote>
-<blockquote>
-<p>很多时候，爬虫中携带的headers字段，cookie字段，url参数，post的参数很多，不清楚哪些有用，<br>  哪些没用的情况下，只能够去尝试，因为每个网站都是不相同的。<br>  当然在盲目尝试之前，可以参考别人的思路，我们自己也应该有一套尝试的流程。</p>
-</blockquote>
+<pre><code>import time
+from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
 
+
+class ZhuCeA():
+    def __init__(self):
+        self.url = &apos;file:///D:/py_files/ruance/day_01/素材/注册A.html&apos;
+        self.url2 = &apos;file:///D:/py_files/ruance/day_01/%E7%B4%A0%E6%9D%90/drag.html&apos;
+        self.browser = webdriver.Chrome()
+        pass
+
+    def tag_name(self):
+        &quot;&quot;&quot;1.通过tag标签定位&quot;&quot;&quot;
+        input_content = [&apos;wws&apos;, &apos;xiaowws&apos;, 13566666666, &apos;103@qq.com&apos;]
+        inputs = self.browser.find_elements_by_tag_name(&apos;input&apos;)
+        for i in range(4):
+            inputs[i].send_keys(input_content[i])
+        pass
+
+    def css_selector(self):
+        &quot;&quot;&quot;2.通过CSS定位&quot;&quot;&quot;
+        # 通过CSS里面得ID定位
+        self.browser.find_element_by_css_selector(&apos;#userA&apos;).send_keys(&apos;wws&apos;)
+
+        # 通过CSS里面得class属性定位  class属性里面有两个值 telA haha  只需填一个
+        self.browser.find_element_by_css_selector(&apos;.telA&apos;).send_keys(13592855317)
+        pass
+
+    def operation(self):
+        &quot;&quot;&quot;3.操作命令&quot;&quot;&quot;
+        # 前进 后退  刷新
+        self.browser.find_element_by_partial_link_text(&quot;AA 百度 网站&quot;).click()
+        time.sleep(2)
+        self.browser.back()
+        time.sleep(2)
+        self.browser.refresh()
+        time.sleep(2)
+        self.browser.forward()
+
+    def click_operation(self):
+        &quot;&quot;&quot;4.常用操作方法&quot;&quot;&quot;
+        username = self.browser.find_element_by_id(&apos;userA&apos;)
+        username.send_keys(&apos;wws&apos;)
+        time.sleep(2)
+        username.clear()  # 内容清除
+        print(username.size)  # 获取文本框的大小
+        print(self.browser.title)  # 获取页面title(标题)
+        print(self.browser.current_url)  # 获取当前页面URL
+
+    def mouse_oper(self):
+        &quot;&quot;&quot;鼠标操作&quot;&quot;&quot;
+        # context_click()
+        # 此方法模拟鼠标右键点击效果
+        username = self.browser.find_element_by_id(&apos;userA&apos;)
+        action = ActionChains(self.browser)
+        action.context_click(username).perform()  # 在账号附近右键
+
+        # 进行拖动
+        self.browser.get(self.url2)
+        div1 = self.browser.find_element_by_id(&apos;div1&apos;)
+        div2 = self.browser.find_element_by_id(&apos;div2&apos;)
+        time.sleep(2)
+        action = ActionChains(self.browser)
+        action.drag_and_drop(div1, div2).perform()  # 将div1滑块 拖到div2中
+
+    def run(self):
+        &quot;&quot;&quot;运行程序&quot;&quot;&quot;
+        self.browser.get(self.url)
+        try:
+            # self.tag_name()
+            # self.css_selector()
+            # self.operation()
+            # self.click_operation()
+            self.mouse_oper()
+            pass
+        except Exception as e:
+            print(e)
+        finally:
+            time.sleep(8)
+            self.browser.quit()
+        pass
+
+
+if __name__ == &apos;__main__&apos;:
+    client = ZhuCeA()
+    client.run()</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
@@ -606,12 +666,12 @@ def get_ua():
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>常见的反爬手段和解决思路</p>
+    <p><span class="copy-title">文章标题:</span>Selenium</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-08-27, 19:40:01</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-27, 20:21:15</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/27/spider_10_anti_spider_/" title="常见的反爬手段和解决思路">http://yoursite.com/2019/08/27/spider_10_anti_spider_/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-25, 10:20:22</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-25, 11:51:25</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/25/ceshi_02_selenium/" title="Selenium">http://yoursite.com/2019/10/25/ceshi_02_selenium/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
