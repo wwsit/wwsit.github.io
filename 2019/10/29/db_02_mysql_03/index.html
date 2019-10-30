@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>requests--豆瓣电影爬虫 | Jerry书店</title>
-  <meta name="keywords" content=" 爬虫 ">
-  <meta name="description" content="requests--豆瓣电影爬虫 | Jerry书店">
+  <title>Mysql事务 | Jerry书店</title>
+  <meta name="keywords" content=" 数据库 ">
+  <meta name="description" content="Mysql事务 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta name="keywords" content="Python">
@@ -538,9 +538,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-spider_04_douban" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-db_02_mysql_03" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">requests--豆瓣电影爬虫</h1>
+        <h1 class="article-title">Mysql事务</h1>
     
     <div class="article-meta">
         
@@ -548,21 +548,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="爬虫">爬虫</a>
+                <a href="javascript:" data-rel="数据库">数据库</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">爬虫</a>
+            <a href="javascript:" class="color4">数据库</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-25 19:40:23'>2019-08-25 19:22</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-29 19:56:22'>2019-10-29 19:23</time>
         
     </div>
     <div class="article-meta">
@@ -584,7 +584,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#爬取豆瓣热门页-电影的数据"><span class="toc-text">爬取豆瓣热门页 电影的数据</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#事务的四大特性"><span class="toc-text">事务的四大特性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mysql隔离级别"><span class="toc-text">Mysql隔离级别</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -600,63 +600,57 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="爬取豆瓣热门页-电影的数据"><a href="#爬取豆瓣热门页-电影的数据" class="headerlink" title="爬取豆瓣热门页 电影的数据"></a>爬取豆瓣热门页 电影的数据</h4><p>接口信息</p>
-<p><img src="/2019/08/25/spider_04_douban/spider_douban_01.PNG" alt><br><img src="/2019/08/25/spider_04_douban/spider_douban_02.PNG" alt></p>
-<pre><code>import requests
-import json
-from pprint import pprint
-import jsonpath
+        <h4 id="事务的四大特性"><a href="#事务的四大特性" class="headerlink" title="事务的四大特性"></a>事务的四大特性</h4><ul>
+<li>原子性(Atomicity)</li>
+<li>一致性(Consistency)</li>
+<li>隔离性(Isolation)</li>
+<li>持久性(Durability)</li>
+</ul>
+<pre><code>原子性:
+一个事务必须被视为一个不可分割的最小工作单元，
+整个事务中的所有操作要么全部提交成功，要么全部失败回滚，
+对于一个事务来说，不可能只执行其中的一部分操作，这就是事务的原子性
 
+一致性:
+数据库总是从一个一致性的状态转换到另一个一致性的状态。
+（在前面的例子中，一致性确保了，即使在转账过程中系统崩溃，
+支票账户中也不会损失200美元，因为事务最终没有提交，
+所以事务中所做的修改也不会保存到数据库中。）
 
-class DouBanSpider():
-    &quot;&quot;&quot;豆瓣热门页电影 爬虫&quot;&quot;&quot;
+隔离性:
+通常来说，一个事务所做的修改操作在提交事务之前，对于其他事务来说是不可见的。
+（在前面的例子中，当执行完第三条语句、第四条语句还未开始时，
+此时有另外的一个账户汇总程序开始运行，则其看到支票帐户的余额并没有被减去200美元。）
 
-    def __init__(self):
-        &quot;&quot;&quot;初始化操作&quot;&quot;&quot;
+持久性:
+一旦事务提交，则其所做的修改会永久保存到数据库。</code></pre><h4 id="Mysql隔离级别"><a href="#Mysql隔离级别" class="headerlink" title="Mysql隔离级别"></a>Mysql隔离级别</h4><blockquote>
+<p>一个事务数据进行修改，对于其他事务是否是可见的。<br>在一个事务中，能不能看到别人修改的数据</p>
+</blockquote>
+<ul>
+<li>Serializable(串行化)</li>
+<li>Repeatable read(可重复读)</li>
+<li>Read committed (读已经提交)</li>
+<li>Read uncommitted(读未提交)</li>
+</ul>
+<pre><code>Serializable(串行化):
+  事务串行化顺序执行 ,可避免脏读，不可重复读,       
+  这是最高的隔离级别，但是效率低，它通过强制事务排序，使之不可能相互冲突，
+  从而解决幻读问题 
 
-        self.url = &apos;https://movie.douban.com/j/search_subjects&apos;
-        self.headers = {
-            &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 \
-            (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36&quot;
-        }
-        self.number = 1  # 爬取的数量
+Repeatable read(可重复读):
+别人改数据的事务已经提交，我的事务中也不去读到, 
+除非我提交事务才会读到
 
+Read committed (读已经提交)：
+别人改数据的事务已经提交，我在我的事务中才能读到 ,可避免脏读的发生
 
-    def run(self, pages):
-        &quot;&quot;&quot;启动爬虫&quot;&quot;&quot;
+Read uncommitted(读未提交)：
+最低级别，任何情况都无法保证,就是一个事务读取到其他事务未提交的数据，是级别最低的隔离机制 ,别人改数据的事务尚未提交，我在我的事务中也能读到。 
 
-        # 参数1：要从第几个数据开始爬
-        # 参数2：到第几个数据结束
-        # 参数3：因为每次增加的数据是20个 所以步长20
-        for page in range(0, pages * 20, 20):
-            resp = requests.get(
-                url=self.url.format(page),
-                headers=self.headers,
-                # 请求参数
-                params={
-                    &quot;type&quot;: &quot;movie&quot;,
-                    &quot;tag&quot;: &quot;热门&quot;,
-                    &quot;sort&quot;: &quot;recommend&quot;,
-                    &quot;page_limit&quot;: &quot;20&quot;,
-                    &quot;page_start&quot;: page
-                }
-            )
-            # 返回的数据是一个json数据, 转成字典格式
-            result = json.loads(resp.text)
-            # pprint(result) # pprint让控制台打印更好看
-
-            result = result[&apos;subjects&apos;]
-            for movie in result:
-                 print(&quot;数量:{}---标题：{}--评分:{}--地址:{}&quot;.    # &lt;---这里有个点  一行太长了
-                      format(self.number,movie[&apos;title&apos;], movie[&apos;rate&apos;], movie[&apos;url&apos;]))
-                self.number += 1
-
-
-if __name__ == &apos;__main__&apos;:
-    client = DouBanSpider()
-    # 要爬几页数据  就写多少页  下面是爬两页数据
-    client.run(2)</code></pre><p>效果图<br><img src="/2019/08/25/spider_04_douban/spider_douban_03.PNG" alt></p>
-
+脏读：
+是指在一个事务处理过程里读取了另外一个未提交的事务数据
+幻读：
+多次查询显示的结果不一样 </code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
@@ -669,12 +663,12 @@ if __name__ == &apos;__main__&apos;:
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>requests--豆瓣电影爬虫</p>
+    <p><span class="copy-title">文章标题:</span>Mysql事务</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-08-25, 19:22:24</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-25, 19:40:23</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/25/spider_04_douban/" title="requests--豆瓣电影爬虫">http://yoursite.com/2019/08/25/spider_04_douban/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-29, 19:23:10</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-29, 19:56:22</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/29/db_02_mysql_03/" title="Mysql事务">http://yoursite.com/2019/10/29/db_02_mysql_03/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
