@@ -118,11 +118,11 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(31)</small></div></li>
+    <li><div class="all active">全部文章<small>(32)</small></div></li>
     
         
             
-            <li><div data-rel="测试">测试<small>(5)</small></div>
+            <li><div data-rel="测试">测试<small>(6)</small></div>
                 
             </li>
             
@@ -170,7 +170,7 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="31">
+<input type="hidden" id="yelog_site_posts_number" value="32">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -275,6 +275,14 @@
            data-tag="测试"
            data-author="" >
             <span class="post-title" title="Appiun的安装(windows环境)">Appiun的安装(windows环境)</span>
+            <span class="post-date" title="2019-10-27 15:12:20">2019/10/27</span>
+        </a>
+        
+        <a  class="测试 "
+           href="/2019/10/27/ceshi_06_adb_order/"
+           data-tag="测试"
+           data-author="" >
+            <span class="post-title" title="ADB常用命令">ADB常用命令</span>
             <span class="post-date" title="2019-10-27 15:12:20">2019/10/27</span>
         </a>
         
@@ -590,21 +598,43 @@ andorid模拟器(这里用夜神模拟器)
 
 所需安装包：
 链接：https://pan.baidu.com/s/1Mg9ciUFmmLMcDTxnZ4Z2WQ 
-提取码：vair </code></pre><h4 id="安装java-jdk"><a href="#安装java-jdk" class="headerlink" title="安装java  jdk"></a>安装java  jdk</h4><p>1.运行jdk-8u151-windows-x64.exe⽂件,默认安装即可<br><img src="/2019/10/27/ceshi_05_move_ceshi/1.png" alt></p>
-<p>2.配置java环境变量<br>进入我的电脑–&gt;属性–&gt;高级系统设置—&gt;环境变量<br>在系统变量下点击新建 -&gt; 变量名: JAVA_HOME -&gt; 变量值: C:\Program Files (x86)\Java\jdk1.8.0_161<br>添加 CLASSPATH 变量名—&gt;变量值:  .;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;   (开头的.;符号和结尾;符号必须加)<br>在 Path变量里添加   %JAVA_HOME%\bin   和  %JAVA_HOME%\jre\bin<br><img src="/2019/10/27/ceshi_05_move_ceshi/2.png" alt><br><img src="/2019/10/27/ceshi_05_move_ceshi/3.png" alt><br><img src="/2019/10/27/ceshi_05_move_ceshi/4.png" alt></p>
-<ol start="3">
-<li>验证环境变量</li>
-<li>打开dos 快捷键win+r</li>
-<li>输入java -version<br>出现下图,说明安装成功<br><img src="/2019/10/27/ceshi_05_move_ceshi/5.png" alt></li>
-</ol>
-<h4 id="安装Android-sdk"><a href="#安装Android-sdk" class="headerlink" title="安装Android sdk"></a>安装Android sdk</h4><p>注意:路径中不要有中文, 确保文件夹下有一下两个文件<br><img src="/2019/10/27/ceshi_05_move_ceshi/6.png" alt><br>配置到系统环境变量下.<br>在系统变量下点击新建 -&gt; 变量名: ANDROID_HOME -&gt; 变量值: E:\android-sdk -&gt; 点击确定按钮<br>在系统变量下找到系统的path变量，最后添加 E:\android-sdk\platform-tools  和  E:\android-sdk\tools<br><img src="/2019/10/27/ceshi_05_move_ceshi/4.png" alt><br>验证环境变量是否配置成功<br>在dos中输入adb指令,如下图配置成功<br><img src="/2019/10/27/ceshi_05_move_ceshi/7.png" alt></p>
-<h4 id="安装andorid模拟器"><a href="#安装andorid模拟器" class="headerlink" title="安装andorid模拟器"></a>安装andorid模拟器</h4><p>允许  nox_setup_v6.3.0.6_full.exe (夜神模拟器)<br>将 android-sdk\platform-tools里的adb.exe文件 复制两份<br>分别起名 nox_adb.exe 和 adb.exe<br>然后将这两个文件复制到 yeshen\Nox\bin 下  (夜神模拟器bin目录下  进行替换)<br><img src="/2019/10/27/ceshi_05_move_ceshi/8.png" alt></p>
-<h4 id="Appium环境搭建"><a href="#Appium环境搭建" class="headerlink" title="Appium环境搭建"></a>Appium环境搭建</h4><p>运行appium-desktop-Setup-1.2.7.exe，默认安装即可<br>启动客户端，按图⽚步骤 1 -&gt; 2 -&gt; 3 -&gt; 4 设置<br><img src="/2019/10/27/ceshi_05_move_ceshi/9.png" alt></p>
-<h4 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h4><p>nodejs:官网下载地址: <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">https://nodejs.org/en/download/</a><br>安装完成后 命令行运行npm或node -v 来查看是否安装成功,如下图:<br><img src="/2019/10/27/ceshi_05_move_ceshi/10.png" alt><br>安装cnpm<br>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a></p>
-<p>npm国内一般被墙，所以选择淘宝镜像安装,官网:<a href="http://npm.taobao.org" target="_blank" rel="noopener">http://npm.taobao.org</a><br>cnpm安装appium<br> cnpm install -g appium<br>启动appium服务<br>  appium<br><img src="/2019/10/27/ceshi_05_move_ceshi/11.png" alt><br> Appium-python库安装<br> 安装命令: pip install Appium-Python-Client</p>
+提取码：vair </code></pre><h4 id="安装java-jdk"><a href="#安装java-jdk" class="headerlink" title="安装java  jdk"></a>安装java  jdk</h4><pre><code>1.运行jdk-8u151-windows-x64.exe⽂件,默认安装即可</code></pre><p><img src="/2019/10/27/ceshi_05_move_ceshi/1.png" alt></p>
+<pre><code>2.配置java环境变量
+进入我的电脑--&gt;属性--&gt;高级系统设置---&gt;环境变量
+在系统变量下点击新建 -&gt; 变量名: JAVA_HOME -&gt; 变量值: C:\Program Files (x86)\Java\jdk1.8.0_161
+添加 CLASSPATH 变量名---&gt;变量值:  .;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;   (开头的.;符号和结尾;符号必须加)
+在 Path变量里添加   %JAVA_HOME%\bin   和  %JAVA_HOME%\jre\bin</code></pre><p><img src="/2019/10/27/ceshi_05_move_ceshi/2.png" alt><br><img src="/2019/10/27/ceshi_05_move_ceshi/3.png" alt><br><img src="/2019/10/27/ceshi_05_move_ceshi/4.png" alt></p>
+<pre><code>3. 验证环境变量
+1.打开dos 快捷键win+r
+2.输入java -version
+出现下图,说明安装成功</code></pre><p><img src="/2019/10/27/ceshi_05_move_ceshi/5.png" alt></p>
+<h4 id="安装Android-sdk"><a href="#安装Android-sdk" class="headerlink" title="安装Android sdk"></a>安装Android sdk</h4><pre><code>注意:路径中不要有中文, 确保文件夹下有一下两个文件</code></pre><p><img src="/2019/10/27/ceshi_05_move_ceshi/6.png" alt></p>
+<pre><code>配置到系统环境变量下.
+在系统变量下点击新建 -&gt; 变量名: ANDROID_HOME -&gt; 变量值: E:\android-sdk -&gt; 点击确定按钮
+在系统变量下找到系统的path变量，最后添加 E:\android-sdk\platform-tools  和  E:\android-sdk\tools</code></pre><p><img src="/2019/10/27/ceshi_05_move_ceshi/4.png" alt></p>
+<pre><code>验证环境变量是否配置成功
+在dos中输入adb指令,如下图配置成功 </code></pre><p><img src="/2019/10/27/ceshi_05_move_ceshi/7.png" alt></p>
+<h4 id="安装andorid模拟器"><a href="#安装andorid模拟器" class="headerlink" title="安装andorid模拟器"></a>安装andorid模拟器</h4><pre><code>运行  nox_setup_v6.3.0.6_full.exe (夜神模拟器)
+将 android-sdk\platform-tools里的adb.exe文件 复制两份
+分别起名 nox_adb.exe 和 adb.exe
+然后将这两个文件复制到 yeshen\Nox\bin 下  (夜神模拟器bin目录下  进行替换)</code></pre><p><img src="/2019/10/27/ceshi_05_move_ceshi/8.png" alt></p>
+<h4 id="Appium环境搭建"><a href="#Appium环境搭建" class="headerlink" title="Appium环境搭建"></a>Appium环境搭建</h4><pre><code>运行appium-desktop-Setup-1.2.7.exe，默认安装即可
+启动客户端，按图⽚步骤 1 -&gt; 2 -&gt; 3 -&gt; 4 设置</code></pre><p><img src="/2019/10/27/ceshi_05_move_ceshi/9.png" alt></p>
+<h4 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h4><pre><code>nodejs:官网下载地址: https://nodejs.org/en/download/
+安装完成后 命令行运行npm或node -v 来查看是否安装成功,如下图:</code></pre><p><img src="/2019/10/27/ceshi_05_move_ceshi/10.png" alt></p>
+<pre><code>安装cnpm
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+npm国内一般被墙，所以选择淘宝镜像安装,官网:http://npm.taobao.org
+cnpm安装appium
+cnpm install -g appium
+启动appium服务
+在dos中输入  appium</code></pre><p><img src="/2019/10/27/ceshi_05_move_ceshi/11.png" alt><br>    Appium-python库安装<br>    安装命令: pip install Appium-Python-Client</p>
 <h4 id="启动流程"><a href="#启动流程" class="headerlink" title="启动流程"></a>启动流程</h4><p>先运行appium<br>在运行夜神模拟器</p>
-<h4 id="会遇到的一些问题"><a href="#会遇到的一些问题" class="headerlink" title="会遇到的一些问题"></a>会遇到的一些问题</h4><p><img src="/2019/10/27/ceshi_05_move_ceshi/12.png" alt><br><img src="/2019/10/27/ceshi_05_move_ceshi/13.png" alt><br>大致解决方案：<br>查看开发者模式是否打开<br>模拟器是否有启动<br>或则重启打开</p>
-
+<h4 id="会遇到的一些问题"><a href="#会遇到的一些问题" class="headerlink" title="会遇到的一些问题"></a>会遇到的一些问题</h4><p><img src="/2019/10/27/ceshi_05_move_ceshi/12.png" alt><br><img src="/2019/10/27/ceshi_05_move_ceshi/13.png" alt></p>
+<pre><code>大致解决方案：
+查看开发者模式是否打开
+模拟器是否有启动
+或则重启打开</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>

@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Scrapy 核心组件 | Jerry书店</title>
-  <meta name="keywords" content=" 爬虫、scrapy ">
-  <meta name="description" content="Scrapy 核心组件 | Jerry书店">
+  <title>ADB常用命令 | Jerry书店</title>
+  <meta name="keywords" content=" 测试 ">
+  <meta name="description" content="ADB常用命令 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta name="keywords" content="Python">
@@ -530,9 +530,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-spider_scrapy_02" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-ceshi_06_adb_order" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Scrapy 核心组件</h1>
+        <h1 class="article-title">ADB常用命令</h1>
     
     <div class="article-meta">
         
@@ -540,21 +540,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="爬虫">爬虫</a>
+                <a href="javascript:" data-rel="测试">测试</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color5">爬虫、scrapy</a>
+            <a href="javascript:" class="color3">测试</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-09-01 21:41:15'>2019-09-01 21:10</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-27 15:58:26'>2019-10-27 15:12</time>
         
     </div>
     <div class="article-meta">
@@ -576,7 +576,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、scrapy的流程"><span class="toc-text">一、scrapy的流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、运行流程图"><span class="toc-text">二、运行流程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、scrapy中每个模块的具体作用"><span class="toc-text">三、scrapy中每个模块的具体作用</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#ADB常用命令"><span class="toc-text">ADB常用命令</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -592,10 +592,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="一、scrapy的流程"><a href="#一、scrapy的流程" class="headerlink" title="一、scrapy的流程"></a>一、scrapy的流程</h3><p><img src="/2019/09/01/spider_scrapy_02/spider_scrapy_1.PNG" alt></p>
-<h3 id="二、运行流程图"><a href="#二、运行流程图" class="headerlink" title="二、运行流程图"></a>二、运行流程图</h3><p><img src="/2019/09/01/spider_scrapy_02/spider_scrapy_2.PNG" alt></p>
-<h3 id="三、scrapy中每个模块的具体作用"><a href="#三、scrapy中每个模块的具体作用" class="headerlink" title="三、scrapy中每个模块的具体作用"></a>三、scrapy中每个模块的具体作用</h3><p><img src="/2019/09/01/spider_scrapy_02/spider_scrapy_3.PNG" alt></p>
+        <h4 id="ADB常用命令"><a href="#ADB常用命令" class="headerlink" title="ADB常用命令"></a>ADB常用命令</h4><pre><code># 获取设备号
+adb devices
 
+# 获取app启动包名和启动名(⚠手机需要先打开对应app)
+adb shell dumpsys window windows | findstr mFocusedApp
+
+# 获取系统版本
+adb shell getprop ro.build.version.release
+
+# 查看手机运行日志
+adb logcat
+
+# 安装app到手机
+adb install 路径/xxx.apk
+
+# 卸载手机app
+adb uninstall app
+
+# 获取app启动时间
+adb shell am start -W 包名/.启动名</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
@@ -608,12 +624,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Scrapy 核心组件</p>
+    <p><span class="copy-title">文章标题:</span>ADB常用命令</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-09-01, 21:10:31</p>
-    <p><span class="copy-title">最后更新:</span>2019-09-01, 21:41:15</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/01/spider_scrapy_02/" title="Scrapy 核心组件">http://yoursite.com/2019/09/01/spider_scrapy_02/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-27, 15:12:20</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-27, 15:58:26</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/27/ceshi_06_adb_order/" title="ADB常用命令">http://yoursite.com/2019/10/27/ceshi_06_adb_order/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
