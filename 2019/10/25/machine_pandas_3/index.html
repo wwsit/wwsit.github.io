@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>爬虫的介绍 | Jerry书店</title>
-  <meta name="keywords" content=" 爬虫 ">
-  <meta name="description" content="爬虫的介绍 | Jerry书店">
+  <title>Pandas--Mysql操作 | Jerry书店</title>
+  <meta name="keywords" content=" 机器学习 ">
+  <meta name="description" content="Pandas--Mysql操作 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta name="keywords" content="Python">
@@ -574,9 +574,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-spider_01" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-machine_pandas_3" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">爬虫的介绍</h1>
+        <h1 class="article-title">Pandas--Mysql操作</h1>
     
     <div class="article-meta">
         
@@ -584,21 +584,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="爬虫">爬虫</a>
+                <a href="javascript:" data-rel="机器学习">机器学习</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">爬虫</a>
+            <a href="javascript:" class="color5">机器学习</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-24 19:45:21'>2019-08-24 19:30</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-25 21:28:41'>2019-10-25 20:55</time>
         
     </div>
     <div class="article-meta">
@@ -620,7 +620,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、-为什么要学习爬虫"><span class="toc-text">一、 为什么要学习爬虫</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-数据的来源"><span class="toc-text">1.1 数据的来源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-爬取到的数据用途"><span class="toc-text">1.2 爬取到的数据用途</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、什么是爬虫"><span class="toc-text">二、什么是爬虫</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#将CSV文件导入到Mysql中"><span class="toc-text">将CSV文件导入到Mysql中</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#从Mysql中读文件"><span class="toc-text">从Mysql中读文件</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -636,25 +636,34 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="一、-为什么要学习爬虫"><a href="#一、-为什么要学习爬虫" class="headerlink" title="一、 为什么要学习爬虫"></a>一、 为什么要学习爬虫</h4><pre><code>如今，人工智能，大数据离我们越来越近，很多公司在开展相关的业务，
-但是人工智能和大数据中有一个东西非常重要，那就是数据，但是数据从哪里来呢？</code></pre><h4 id="1-1-数据的来源"><a href="#1-1-数据的来源" class="headerlink" title="1.1 数据的来源"></a>1.1 数据的来源</h4><ul>
-<li>企业产生的数据：百度搜索指数、阿里指数、微指数、看准网、腾讯浏览指数、大众点评网、汽车之家等…</li>
-<li>数据平台购买数据：数据堂、国云数据市场、贵阳大数据交易所 等…</li>
-<li>政府/机构公开的数据：天眼查、中华人民共和国国家统计局数据、中国人民银行调查统计、世界银行公开数据、联合国数据、纳斯达克、新浪财经美股实时行情 等…</li>
-<li>数据管理咨询公司：麦肯锡、埃森哲、尼尔森、中国互联网信息中心、艾瑞咨询 等…</li>
-<li>爬取网络数据：百度、google 等…</li>
-</ul>
-<h4 id="1-2-爬取到的数据用途"><a href="#1-2-爬取到的数据用途" class="headerlink" title="1.2 爬取到的数据用途"></a>1.2 爬取到的数据用途</h4><ul>
-<li>进行在网页或者是app上进行展示</li>
-<li>进行数据分析或者是机器学习相关的项目</li>
-</ul>
-<h4 id="二、什么是爬虫"><a href="#二、什么是爬虫" class="headerlink" title="二、什么是爬虫"></a>二、什么是爬虫</h4><blockquote>
-<p>网络爬虫（又被称为网页蜘蛛，网络机器人）就是模拟客户端发送网络请求，接收请求响应，一种按照一定的规则，自动地抓取互联网信息的程序。</p>
-</blockquote>
-<blockquote>
-<p>本质： 模拟浏览器（客户端）去获取、处理、保存数据，只要浏览器（客户端）能做的事情，爬虫都能够做。 原则上,只要是浏览器(客户端)能做的事情，爬虫都能够做</p>
-</blockquote>
+        <h4 id="将CSV文件导入到Mysql中"><a href="#将CSV文件导入到Mysql中" class="headerlink" title="将CSV文件导入到Mysql中"></a>将CSV文件导入到Mysql中</h4><pre><code>import pandas as pd
+from sqlalchemy import create_engine
 
+# 创建连接
+engine = create_engine(&apos;mysql+pymysql://wws:wws@192.168.36.151:3306/db_wws&apos;)
+                                  # 数据库账号:密码@数据库IP地址:端口号/数据库名
+# 读取文件                                        
+df = pd.read_csv(&apos;./new_data.csv&apos;, encoding=&apos;utf-8&apos;)
+
+# 可用进行打印                     
+# print(df)
+con = engine.connect()
+df.to_sql(name=&apos;tb_ebay&apos;, con=con, if_exists=&apos;append&apos;, index=False)
+
+参数说明：
+name=&apos;tb_ebay&apos;    表名   
+if_exists=&apos;append&apos;
+        源码如下：
+        if_exists : {&apos;fail&apos;, &apos;replace&apos;, &apos;append&apos;}, default &apos;fail&apos;
+                How to behave if the table already exists.(如果存在这张表 我们怎么处理)
+        * fail: Raise a ValueError.（报错）
+        * replace: Drop the table before inserting new values.(在插入新值之前，删掉那张表)
+        * append: Insert new values to the existing table.(如果存在这张表,直接插入新值)</code></pre><h4 id="从Mysql中读文件"><a href="#从Mysql中读文件" class="headerlink" title="从Mysql中读文件"></a>从Mysql中读文件</h4><pre><code># 写入文件
+engine = create_engine(&apos;mysql+pymysql://wws:wws@192.168.36.151:3306/wws&apos;)
+sql =&apos;select * from tb_ebay ;&apos;
+con = engine.connect()
+content = pd.read_sql(sql,con)
+print(content)</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
@@ -667,12 +676,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>爬虫的介绍</p>
+    <p><span class="copy-title">文章标题:</span>Pandas--Mysql操作</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-08-24, 19:30:34</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-24, 19:45:21</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/24/spider_01/" title="爬虫的介绍">http://yoursite.com/2019/08/24/spider_01/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-25, 20:55:46</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-25, 21:28:41</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/25/machine_pandas_3/" title="Pandas--Mysql操作">http://yoursite.com/2019/10/25/machine_pandas_3/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>

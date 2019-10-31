@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>爬虫的介绍 | Jerry书店</title>
-  <meta name="keywords" content=" 爬虫 ">
-  <meta name="description" content="爬虫的介绍 | Jerry书店">
+  <title>Pandas介绍 | Jerry书店</title>
+  <meta name="keywords" content=" 机器学习 ">
+  <meta name="description" content="Pandas介绍 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta name="keywords" content="Python">
@@ -574,9 +574,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-spider_01" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-machine_pandas_1" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">爬虫的介绍</h1>
+        <h1 class="article-title">Pandas介绍</h1>
     
     <div class="article-meta">
         
@@ -584,21 +584,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="爬虫">爬虫</a>
+                <a href="javascript:" data-rel="机器学习">机器学习</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">爬虫</a>
+            <a href="javascript:" class="color5">机器学习</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-24 19:45:21'>2019-08-24 19:30</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-25 18:58:19'>2019-10-25 18:21</time>
         
     </div>
     <div class="article-meta">
@@ -620,7 +620,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、-为什么要学习爬虫"><span class="toc-text">一、 为什么要学习爬虫</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-数据的来源"><span class="toc-text">1.1 数据的来源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-爬取到的数据用途"><span class="toc-text">1.2 爬取到的数据用途</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、什么是爬虫"><span class="toc-text">二、什么是爬虫</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Pandas介绍"><span class="toc-text">Pandas介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Pandas数据结构"><span class="toc-text">Pandas数据结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Series"><span class="toc-text">Series</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DataFrame"><span class="toc-text">DataFrame</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MultiIndex"><span class="toc-text">MultiIndex</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -636,23 +636,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="一、-为什么要学习爬虫"><a href="#一、-为什么要学习爬虫" class="headerlink" title="一、 为什么要学习爬虫"></a>一、 为什么要学习爬虫</h4><pre><code>如今，人工智能，大数据离我们越来越近，很多公司在开展相关的业务，
-但是人工智能和大数据中有一个东西非常重要，那就是数据，但是数据从哪里来呢？</code></pre><h4 id="1-1-数据的来源"><a href="#1-1-数据的来源" class="headerlink" title="1.1 数据的来源"></a>1.1 数据的来源</h4><ul>
-<li>企业产生的数据：百度搜索指数、阿里指数、微指数、看准网、腾讯浏览指数、大众点评网、汽车之家等…</li>
-<li>数据平台购买数据：数据堂、国云数据市场、贵阳大数据交易所 等…</li>
-<li>政府/机构公开的数据：天眼查、中华人民共和国国家统计局数据、中国人民银行调查统计、世界银行公开数据、联合国数据、纳斯达克、新浪财经美股实时行情 等…</li>
-<li>数据管理咨询公司：麦肯锡、埃森哲、尼尔森、中国互联网信息中心、艾瑞咨询 等…</li>
-<li>爬取网络数据：百度、google 等…</li>
-</ul>
-<h4 id="1-2-爬取到的数据用途"><a href="#1-2-爬取到的数据用途" class="headerlink" title="1.2 爬取到的数据用途"></a>1.2 爬取到的数据用途</h4><ul>
-<li>进行在网页或者是app上进行展示</li>
-<li>进行数据分析或者是机器学习相关的项目</li>
-</ul>
-<h4 id="二、什么是爬虫"><a href="#二、什么是爬虫" class="headerlink" title="二、什么是爬虫"></a>二、什么是爬虫</h4><blockquote>
-<p>网络爬虫（又被称为网页蜘蛛，网络机器人）就是模拟客户端发送网络请求，接收请求响应，一种按照一定的规则，自动地抓取互联网信息的程序。</p>
+        <h4 id="Pandas介绍"><a href="#Pandas介绍" class="headerlink" title="Pandas介绍"></a>Pandas介绍</h4><pre><code>* 以Numpy为基础，提供了高性能矩阵的运算
+* 提供了大量能够快速便捷地处理数据的函数和方法
+* 基于matplotlib，能够简便的画图
+* 提供数据清洗功能
+* 专门用于数据挖掘的开源python库</code></pre><h4 id="Pandas数据结构"><a href="#Pandas数据结构" class="headerlink" title="Pandas数据结构"></a>Pandas数据结构</h4><pre><code>Pandas中一共有三种数据结构，分别为：Series、DataFrame和MultiIndex
+
+Series是一维数据结构
+DataFrame是二维的表格型数据结构
+MultiIndex是三维的数据结构</code></pre><h4 id="Series"><a href="#Series" class="headerlink" title="Series"></a>Series</h4><blockquote>
+<p>Series是一个类似于一维数组的数据结构，它能够保存任何类型的数据，<br>  比如整数、字符串、浮点数等，主要由一组数据和与之相关的索引两部分构成<br>为了更方便地操作Series对象中的索引和数据，Series中提供了两个属性index和values</p>
 </blockquote>
-<blockquote>
-<p>本质： 模拟浏览器（客户端）去获取、处理、保存数据，只要浏览器（客户端）能做的事情，爬虫都能够做。 原则上,只要是浏览器(客户端)能做的事情，爬虫都能够做</p>
+<h4 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h4><blockquote>
+<p>DataFrame是一个类似于二维数组或表格(如excel)的对象，既有行索引，又有列索引<br>行索引，表明不同行，横向索引，叫index，0轴，axis=0<br>列索引，表名不同列，纵向索引，叫columns，1轴，axis=1</p>
+</blockquote>
+<h4 id="MultiIndex"><a href="#MultiIndex" class="headerlink" title="MultiIndex"></a>MultiIndex</h4><blockquote>
+<p>多级索引（也称层次化索引）是pandas的重要功能，可以在Series、DataFrame对象上拥有2个以及2个以上的索引。</p>
 </blockquote>
 
       
@@ -667,12 +666,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>爬虫的介绍</p>
+    <p><span class="copy-title">文章标题:</span>Pandas介绍</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-08-24, 19:30:34</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-24, 19:45:21</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/24/spider_01/" title="爬虫的介绍">http://yoursite.com/2019/08/24/spider_01/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-25, 18:21:15</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-25, 18:58:19</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/25/machine_pandas_1/" title="Pandas介绍">http://yoursite.com/2019/10/25/machine_pandas_1/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
