@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>XPath 数据提取(下) | Jerry书店</title>
-  <meta name="keywords" content=" 爬虫、xpath ">
-  <meta name="description" content="XPath 数据提取(下) | Jerry书店">
+  <title>进程、线程、协程代码 | Jerry书店</title>
+  <meta name="keywords" content=" 基础 ">
+  <meta name="description" content="进程、线程、协程代码 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta name="keywords" content="Python">
@@ -602,9 +602,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-spider_07_xpath_2" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-basic_02_relation" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">XPath 数据提取(下)</h1>
+        <h1 class="article-title">进程、线程、协程代码</h1>
     
     <div class="article-meta">
         
@@ -612,21 +612,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="爬虫">爬虫</a>
+                <a href="javascript:" data-rel="基础">基础</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color4">爬虫、xpath</a>
+            <a href="javascript:" class="color3">基础</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-26 20:30:08'>2019-08-26 19:55</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-31 20:43:56'>2019-10-31 20:12</time>
         
     </div>
     <div class="article-meta">
@@ -648,7 +648,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、lxml模块介绍与使用"><span class="toc-text">一、lxml模块介绍与使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、lxml-基本使用"><span class="toc-text">二、lxml 基本使用</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#多进程代码"><span class="toc-text">多进程代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#多线程代码"><span class="toc-text">多线程代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#协程代码"><span class="toc-text">协程代码</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -664,60 +664,82 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="一、lxml模块介绍与使用"><a href="#一、lxml模块介绍与使用" class="headerlink" title="一、lxml模块介绍与使用"></a>一、lxml模块介绍与使用</h4><p>lxml 模块介绍</p>
-<blockquote>
-<p>lxml 模块中实现了 XPath 的功能</p>
-</blockquote>
-<p>安装</p>
-<blockquote>
-<p>pip install lxml</p>
-</blockquote>
-<h4 id="二、lxml-基本使用"><a href="#二、lxml-基本使用" class="headerlink" title="二、lxml 基本使用"></a>二、lxml 基本使用</h4><p>调试内容</p>
-<pre><code>&lt;div&gt;
-    &lt;ul&gt;
-         &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link1.html&quot;&gt;first item&lt;/a&gt;&lt;/li&gt;
-         &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link2.html&quot;&gt;second item&lt;/a&gt;&lt;/li&gt;
-         &lt;li class=&quot;item-inactive&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;third item&lt;/a&gt;&lt;/li&gt;
-         &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;span&gt;abc&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-         &lt;li class=&quot; item-0&quot;&gt;&lt;a href=&quot;link5.html&quot; class=&quot;cls&quot;&gt;fifth item&lt;/a&gt;
-     &lt;/ul&gt;
-&lt;/div&gt;</code></pre><p>代码流程</p>
-<pre><code># 导入lxml 的 etree 库 (导入没有提示不代表不能用)
-from lxml import etree
+        <h3 id="多进程代码"><a href="#多进程代码" class="headerlink" title="多进程代码"></a>多进程代码</h3><pre><code>import multiprocessing
+import time
+import os
 
-# 使用 etree.HTML 将字符串转化为Element对象,Element对象具有xpath的方法,
-# 返回结果的列表，能够接受bytes类型的数据和str类型的数据
-eroot = etree.HTML(text)
-result = eroot.xpath(&quot;xpath字符串&quot;)
 
-# 把转化后的element对象转化为字符串，返回bytes类型结果
-etree.tostring(element)</code></pre><p>代码练习</p>
-<pre><code># 1. 获取所有的 &lt;li&gt; 标签
-result = eroot.xpath(&apos;//li&apos;)
+def run():
+    for i in range(5):
+        print(&quot;当前进程:{}&quot;.format(os.getpid()), end=&apos;---&apos;)
+        print(&apos;跑步&apos;)
+        time.sleep(1)
 
-# 2.获取所有 &lt;a&gt; 标签的内容
-result = eroot.xpath(&apos;//a/text()&apos;)
 
-# 3.继续获取 &lt;li&gt; 标签的所有 class 属性
-result = eroot.xpath(&apos;//li/@class&apos;)
+def swim():
+    for i in range(5):
+        print(&quot;当前进程:{}&quot;.format(os.getpid()), end=&apos;---&apos;)
+        print(&apos;游泳&apos;)
+        time.sleep(1)
 
-# 4.继续获取 &lt;li&gt; 标签下 href 为 link1.html 的 &lt;a&gt; 标签
-result = eroot.xpath(&apos;//li/a[@href=&quot;link1.html&quot;]&apos;)
 
-# 5.获取 &lt;li&gt; 标签下的所有 &lt;span&gt; 标签
-result = eroot.xpath(&apos;//li//span&apos;)
+if __name__ == &apos;__main__&apos;:
+    data_1 = multiprocessing.Process(target=run)
+    data_2 = multiprocessing.Process(target=swim)
 
-# 6.获取 &lt;li&gt; 标签下的 &lt;a&gt; 标签里的所有 class
-result = eroot.xpath(&apos;//li/a/@class&apos;)
+    data_1.start()
+    data_2.start()</code></pre><p><img src="/2019/10/31/basic_02_relation/1.PNG" alt>       </p>
+<h4 id="多线程代码"><a href="#多线程代码" class="headerlink" title="多线程代码"></a>多线程代码</h4><pre><code>import threading
+import time
+import os
 
-# 7.获取最后一个 &lt;li&gt; 的 &lt;a&gt; 的 href
-result = eroot.xpath(&apos;//li[last()]/a/@href&apos;)
+def run():
+    for i in range(5):
+        print(&quot;当前进程:{}&quot;.format(os.getpid()), end=&apos;---&apos;)
+        print(&apos;跑步&apos;)
+        time.sleep(1)
 
-# 8.获取倒数第二个li元素的内容
-result = eroot.xpath(&apos;//li[last()-1]//text()&apos;)
 
-# 9.去除内容里得空格(最后一个li元素)  加个 normalize-space
-eroot.xpath(&apos;normalize-space(//li[last()-1]//text()&apos;)</code></pre>
+def swim():
+    for i in range(5):
+        print(&quot;当前进程:{}&quot;.format(os.getpid()), end=&apos;---&apos;)
+        print(&apos;游泳&apos;)
+        time.sleep(1)
+
+if __name__ == &apos;__main__&apos;:
+    thread_1 = threading.Thread(target=run)
+    thread_2 = threading.Thread(target=swim)
+
+    thread_1.start()
+    thread_2.start()</code></pre><p><img src="/2019/10/31/basic_02_relation/2.PNG" alt>   </p>
+<h4 id="协程代码"><a href="#协程代码" class="headerlink" title="协程代码"></a>协程代码</h4><pre><code>from gevent import monkey
+# 猴子补丁
+monkey.patch_all()
+import time
+import gevent
+import os
+
+
+def run():
+    for i in range(5):
+        print(&quot;当前进程:{}&quot;.format(os.getpid()), end=&apos;---&apos;)
+        print(&apos;跑步&apos;)
+        gevent.sleep(1)
+
+
+def swim():
+    for i in range(5):
+        print(&quot;当前进程:{}&quot;.format(os.getpid()), end=&apos;---&apos;)
+        print(&apos;游泳&apos;)
+        gevent.sleep(1)
+
+# 创建携程并指派任务
+sp1 = gevent.spawn(run)
+sp2 = gevent.spawn(swim)
+
+# 等待协程执行完成再关闭主线程
+sp1.join()
+sp2.join()</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
@@ -730,12 +752,12 @@ eroot.xpath(&apos;normalize-space(//li[last()-1]//text()&apos;)</code></pre>
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>XPath 数据提取(下)</p>
+    <p><span class="copy-title">文章标题:</span>进程、线程、协程代码</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-08-26, 19:55:54</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-26, 20:30:08</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/26/spider_07_xpath_2/" title="XPath 数据提取(下)">http://yoursite.com/2019/08/26/spider_07_xpath_2/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-31, 20:12:35</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-31, 20:43:56</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/31/basic_02_relation/" title="进程、线程、协程代码">http://yoursite.com/2019/10/31/basic_02_relation/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>

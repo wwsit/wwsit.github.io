@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>XPath 数据提取(下) | Jerry书店</title>
-  <meta name="keywords" content=" 爬虫、xpath ">
-  <meta name="description" content="XPath 数据提取(下) | Jerry书店">
+  <title>进程、线程、协程 | Jerry书店</title>
+  <meta name="keywords" content=" 基础 ">
+  <meta name="description" content="进程、线程、协程 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta name="keywords" content="Python">
@@ -602,9 +602,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-spider_07_xpath_2" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-basic_01_relation" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">XPath 数据提取(下)</h1>
+        <h1 class="article-title">进程、线程、协程</h1>
     
     <div class="article-meta">
         
@@ -612,21 +612,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="爬虫">爬虫</a>
+                <a href="javascript:" data-rel="基础">基础</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color4">爬虫、xpath</a>
+            <a href="javascript:" class="color3">基础</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-26 20:30:08'>2019-08-26 19:55</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-31 19:59:35'>2019-10-31 19:28</time>
         
     </div>
     <div class="article-meta">
@@ -648,7 +648,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、lxml模块介绍与使用"><span class="toc-text">一、lxml模块介绍与使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、lxml-基本使用"><span class="toc-text">二、lxml 基本使用</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#进程的介绍"><span class="toc-text">进程的介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#进程的注意点介绍"><span class="toc-text">进程的注意点介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#线程的介绍"><span class="toc-text">线程的介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#线程的注意点"><span class="toc-text">线程的注意点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#协程的介绍"><span class="toc-text">协程的介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#进程和线程的对比"><span class="toc-text">进程和线程的对比</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#适用场景："><span class="toc-text">适用场景：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -664,60 +664,32 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="一、lxml模块介绍与使用"><a href="#一、lxml模块介绍与使用" class="headerlink" title="一、lxml模块介绍与使用"></a>一、lxml模块介绍与使用</h4><p>lxml 模块介绍</p>
-<blockquote>
-<p>lxml 模块中实现了 XPath 的功能</p>
-</blockquote>
-<p>安装</p>
-<blockquote>
-<p>pip install lxml</p>
-</blockquote>
-<h4 id="二、lxml-基本使用"><a href="#二、lxml-基本使用" class="headerlink" title="二、lxml 基本使用"></a>二、lxml 基本使用</h4><p>调试内容</p>
-<pre><code>&lt;div&gt;
-    &lt;ul&gt;
-         &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link1.html&quot;&gt;first item&lt;/a&gt;&lt;/li&gt;
-         &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link2.html&quot;&gt;second item&lt;/a&gt;&lt;/li&gt;
-         &lt;li class=&quot;item-inactive&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;third item&lt;/a&gt;&lt;/li&gt;
-         &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;span&gt;abc&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-         &lt;li class=&quot; item-0&quot;&gt;&lt;a href=&quot;link5.html&quot; class=&quot;cls&quot;&gt;fifth item&lt;/a&gt;
-     &lt;/ul&gt;
-&lt;/div&gt;</code></pre><p>代码流程</p>
-<pre><code># 导入lxml 的 etree 库 (导入没有提示不代表不能用)
-from lxml import etree
+        <h4 id="进程的介绍"><a href="#进程的介绍" class="headerlink" title="进程的介绍"></a>进程的介绍</h4><pre><code>一个正在运行的程序或者软件就是一个进程，它是操作系统进行资源分配的基本单位，
+也就是说每启动一个进程，操作系统都会给其分配一定的运行资源(内存资源)保证进程的运行。
 
-# 使用 etree.HTML 将字符串转化为Element对象,Element对象具有xpath的方法,
-# 返回结果的列表，能够接受bytes类型的数据和str类型的数据
-eroot = etree.HTML(text)
-result = eroot.xpath(&quot;xpath字符串&quot;)
+比如:现实生活中的公司可以理解成是一个进程，公司提供办公资源(电脑、办公桌椅等)，
+真正干活的是员工，员工可以理解成线程。
 
-# 把转化后的element对象转化为字符串，返回bytes类型结果
-etree.tostring(element)</code></pre><p>代码练习</p>
-<pre><code># 1. 获取所有的 &lt;li&gt; 标签
-result = eroot.xpath(&apos;//li&apos;)
+一个程序运行后至少有一个进程，一个进程默认有一个线程，
+进程里面可以创建多个线程，线程是依附在进程里面的，没有进程就没有线程。
 
-# 2.获取所有 &lt;a&gt; 标签的内容
-result = eroot.xpath(&apos;//a/text()&apos;)
-
-# 3.继续获取 &lt;li&gt; 标签的所有 class 属性
-result = eroot.xpath(&apos;//li/@class&apos;)
-
-# 4.继续获取 &lt;li&gt; 标签下 href 为 link1.html 的 &lt;a&gt; 标签
-result = eroot.xpath(&apos;//li/a[@href=&quot;link1.html&quot;]&apos;)
-
-# 5.获取 &lt;li&gt; 标签下的所有 &lt;span&gt; 标签
-result = eroot.xpath(&apos;//li//span&apos;)
-
-# 6.获取 &lt;li&gt; 标签下的 &lt;a&gt; 标签里的所有 class
-result = eroot.xpath(&apos;//li/a/@class&apos;)
-
-# 7.获取最后一个 &lt;li&gt; 的 &lt;a&gt; 的 href
-result = eroot.xpath(&apos;//li[last()]/a/@href&apos;)
-
-# 8.获取倒数第二个li元素的内容
-result = eroot.xpath(&apos;//li[last()-1]//text()&apos;)
-
-# 9.去除内容里得空格(最后一个li元素)  加个 normalize-space
-eroot.xpath(&apos;normalize-space(//li[last()-1]//text()&apos;)</code></pre>
+多进程可以完成多任务，每个进程就好比一家独立的公司，每个公司都各自在运营，
+每个进程也各自在运行，执行各自的任务。</code></pre><h4 id="进程的注意点介绍"><a href="#进程的注意点介绍" class="headerlink" title="进程的注意点介绍"></a>进程的注意点介绍</h4><pre><code>进程之间不共享全局变量
+主进程会等待所有的子进程执行结束再结束</code></pre><h4 id="线程的介绍"><a href="#线程的介绍" class="headerlink" title="线程的介绍"></a>线程的介绍</h4><pre><code>线程是进程中执行代码的一个分支，每个执行分支（线程）要想工作执行代码需要cpu进行调度 ，
+也就是说线程是cpu调度的基本单位，每个进程至少都有一个线程，而这个线程就是我们通常说的主线程。</code></pre><h4 id="线程的注意点"><a href="#线程的注意点" class="headerlink" title="线程的注意点"></a>线程的注意点</h4><pre><code>线程之间执行是无序的
+主线程会等待所有的子线程执行结束再结束
+线程之间共享全局变量
+线程之间共享全局变量数据出现错误问题</code></pre><h4 id="协程的介绍"><a href="#协程的介绍" class="headerlink" title="协程的介绍"></a>协程的介绍</h4><pre><code>　协程，又称微线程，纤程。英文名Coroutine。从技术的角度来说，“协程就是你可以暂停执行的函数”。
+在一个线程中的某个函数，可以在任何地方保存当前函数的一些临时变量等信息，
+然后切换到另外一个函数中执行，注意不是通过调用函数的方式做到的，
+并且切换的次数以及什么时候再切换到原来的函数都由开发者自己确定</code></pre><h4 id="进程和线程的对比"><a href="#进程和线程的对比" class="headerlink" title="进程和线程的对比"></a>进程和线程的对比</h4><pre><code>进程之间不共享全局变量
+线程之间共享全局变量，但是要注意资源竞争的问题，解决办法: 互斥锁或者线程同步
+创建进程的资源开销要比创建线程的资源开销要大
+进程是操作系统资源分配的基本单位，线程是CPU调度的基本单位
+线程不能够独立执行，必须依存在进程中
+多进程开发比单进程多线程开发稳定性要强</code></pre><h4 id="适用场景："><a href="#适用场景：" class="headerlink" title="适用场景："></a>适用场景：</h4><pre><code> 当程序中存在大量的逻辑运算,CPU密集型, 适合多进程
+当程序中存在大量的IO读写操作(爬虫)，适合用多线程;
+当程序中存在大量不需要CPU的操作时（IO）、阻塞操作，适用于协程；</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
@@ -730,12 +702,12 @@ eroot.xpath(&apos;normalize-space(//li[last()-1]//text()&apos;)</code></pre>
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>XPath 数据提取(下)</p>
+    <p><span class="copy-title">文章标题:</span>进程、线程、协程</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-08-26, 19:55:54</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-26, 20:30:08</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/26/spider_07_xpath_2/" title="XPath 数据提取(下)">http://yoursite.com/2019/08/26/spider_07_xpath_2/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-31, 19:28:45</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-31, 19:59:35</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/31/basic_01_relation/" title="进程、线程、协程">http://yoursite.com/2019/10/31/basic_01_relation/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
