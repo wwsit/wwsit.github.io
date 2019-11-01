@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Scrapy 核心组件 | Jerry书店</title>
-  <meta name="keywords" content=" 爬虫、scrapy ">
-  <meta name="description" content="Scrapy 核心组件 | Jerry书店">
+  <title>Scrapy中间件 | Jerry书店</title>
+  <meta name="keywords" content=" 爬虫 ">
+  <meta name="description" content="Scrapy中间件 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta name="keywords" content="Python">
@@ -610,9 +610,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-spider_scrapy_02" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-spider_12_UA" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Scrapy 核心组件</h1>
+        <h1 class="article-title">Scrapy中间件</h1>
     
     <div class="article-meta">
         
@@ -627,14 +627,14 @@
         
         <span class="tag">
             
-            <a href="javascript:" class="color5">爬虫、scrapy</a>
+            <a href="javascript:" class="color3">爬虫</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-09-01 21:41:15'>2019-09-01 21:10</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-01 15:04:19'>2019-11-01 14:33</time>
         
     </div>
     <div class="article-meta">
@@ -656,7 +656,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、scrapy的流程"><span class="toc-text">一、scrapy的流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、运行流程图"><span class="toc-text">二、运行流程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、scrapy中每个模块的具体作用"><span class="toc-text">三、scrapy中每个模块的具体作用</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Scrapy中间件分类"><span class="toc-text">Scrapy中间件分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实现中间件的流程"><span class="toc-text">实现中间件的流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#下载中间件模版"><span class="toc-text">下载中间件模版</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#爬虫中间件"><span class="toc-text">爬虫中间件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#随机UA下载中间件"><span class="toc-text">随机UA下载中间件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代理中间件"><span class="toc-text">代理中间件</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -672,10 +672,93 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="一、scrapy的流程"><a href="#一、scrapy的流程" class="headerlink" title="一、scrapy的流程"></a>一、scrapy的流程</h3><p><img src="/2019/09/01/spider_scrapy_02/spider_scrapy_1.PNG" alt></p>
-<h3 id="二、运行流程图"><a href="#二、运行流程图" class="headerlink" title="二、运行流程图"></a>二、运行流程图</h3><p><img src="/2019/09/01/spider_scrapy_02/spider_scrapy_2.PNG" alt></p>
-<h3 id="三、scrapy中每个模块的具体作用"><a href="#三、scrapy中每个模块的具体作用" class="headerlink" title="三、scrapy中每个模块的具体作用"></a>三、scrapy中每个模块的具体作用</h3><p><img src="/2019/09/01/spider_scrapy_02/spider_scrapy_3.PNG" alt></p>
+        <h4 id="Scrapy中间件分类"><a href="#Scrapy中间件分类" class="headerlink" title="Scrapy中间件分类"></a>Scrapy中间件分类</h4><pre><code>* 爬虫中间件 引擎和爬虫组件交互时触发中间件
+* 下载中间件 引擎和下载器交互时出发中间件</code></pre><h4 id="实现中间件的流程"><a href="#实现中间件的流程" class="headerlink" title="实现中间件的流程"></a>实现中间件的流程</h4><pre><code>在 middlewares.py 创建中间件类
+实现所需要拦截的函数
+在 settings.py 中配置开启中间件
+在配置中数字越小越优先执行</code></pre><h4 id="下载中间件模版"><a href="#下载中间件模版" class="headerlink" title="下载中间件模版"></a>下载中间件模版</h4><pre><code>class DownloadMiddleware(object):      
+    &quot;&quot;&quot;下载中间件&quot;&quot;&quot;
+    @classmethod
+    def from_crawler(cls, crawler):
+        &quot;&quot;&quot;当爬虫被创建时执行  首先执行的方法&quot;&quot;&quot;
+        pass
 
+    def spider_opened(self, spider):
+        &quot;&quot;&quot;当爬虫被打开时回调，初始化一些内容时可以放在这里 &quot;&quot;&quot;
+       pass
+
+    def process_request(self, request, spider):
+        &quot;&quot;&quot;当 引擎 把 请求提交给下载器时回调 &quot;&quot;&quot;
+       pass
+
+    def process_response(self, request, response, spider):
+       &quot;&quot;&quot; 当下载组件把响应交给引擎时回调 &quot;&quot;&quot;
+       pass
+
+    def process_exception(self, request, exception, spider):
+        &quot;&quot;&quot; 当下载中间件引发异常时回调  &quot;&quot;&quot;
+       pass</code></pre><h4 id="爬虫中间件"><a href="#爬虫中间件" class="headerlink" title="爬虫中间件"></a>爬虫中间件</h4><pre><code>class SpiderMiddleware(object):
+    &quot;&quot;爬虫中间件&quot;&quot;&quot;
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        &quot;&quot;&quot;当爬虫创建时回调&quot;&quot;&quot;
+       pass
+
+    def spider_opened(self, spider):
+        &quot;&quot;&quot; 当爬虫初始化时回调&quot;&quot;&quot;
+        pass
+
+    def process_spider_input(self, response, spider):
+        &quot;&quot;&quot;当引擎把响应交给爬虫组件时回调&quot;&quot;&quot;
+        pass
+
+    def process_spider_output(self, response, result, spider):
+        &quot;&quot;&quot;当爬虫组件把数据或者请求提交给引擎时回调&quot;&quot;&quot;
+        pass
+
+    def process_spider_exception(self, response, exception, spider):
+       &quot;&quot;&quot;当 process_spider_input 引发异常时回调&quot;&quot;&quot;
+        pass
+
+    def process_start_requests(self, start_requests, spider):
+        &quot;&quot;&quot;当引擎 从爬虫获取 启动 请求时回调&quot;&quot;&quot;
+        pass</code></pre><h4 id="随机UA下载中间件"><a href="#随机UA下载中间件" class="headerlink" title="随机UA下载中间件"></a>随机UA下载中间件</h4><pre><code>import random
+
+def get_ua():
+    &quot;&quot;&quot;生成UA&quot;&quot;&quot;
+    first_num = random.randint(55, 62)
+    third_num = random.randint(0, 3200)
+    fourth_num = random.randint(0, 140)
+    os_type = [
+        &apos;(Windows NT 6.1; WOW64)&apos;, &apos;(Windows NT 10.0; WOW64)&apos;, &apos;(X11; Linux x86_64)&apos;,
+        &apos;(Macintosh; Intel Mac OS X 10_12_6)&apos;
+    ]
+    chrome_version = &apos;Chrome/{}.0.{}.{}&apos;.format(first_num, third_num, fourth_num)
+
+    ua = &apos; &apos;.join([&apos;Mozilla/5.0&apos;, random.choice(os_type), &apos;AppleWebKit/537.36&apos;,
+                   &apos;(KHTML, like Gecko)&apos;, chrome_version, &apos;Safari/537.36&apos;]
+                  )
+
+    # 将生成UA 返回出去
+    return ua
+
+class RandomUserAgentDownloadMiddleware(object):
+
+    def process_request(self, request, spider):
+        &quot;&quot;&quot;当 引擎 把 请求提交给下载器时回调&quot;&quot;&quot;
+
+        request.headers[&quot;User-Agent&quot;] = get_ua()
+
+        return None</code></pre><h4 id="代理中间件"><a href="#代理中间件" class="headerlink" title="代理中间件"></a>代理中间件</h4><pre><code>class RandomProxyDownloadMiddleware(object):
+    def process_request(self, request, spider):
+
+        # request.meta[&quot;proxy&quot;] = random.choice(PROXIES)
+
+        # http://127.0.0.1:6868/proxies/random  你自己代理池的地址
+        proxy = requests.get(&apos;http://127.0.0.1:6868/proxies/random&apos;).text
+        request.meta[&quot;proxy&quot;] = proxy
+        return None</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
@@ -688,12 +771,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Scrapy 核心组件</p>
+    <p><span class="copy-title">文章标题:</span>Scrapy中间件</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-09-01, 21:10:31</p>
-    <p><span class="copy-title">最后更新:</span>2019-09-01, 21:41:15</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/01/spider_scrapy_02/" title="Scrapy 核心组件">http://yoursite.com/2019/09/01/spider_scrapy_02/</a>
+    <p><span class="copy-title">发布时间:</span>2019-11-01, 14:33:27</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-01, 15:04:19</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/01/spider_12_UA/" title="Scrapy中间件">http://yoursite.com/2019/11/01/spider_12_UA/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
