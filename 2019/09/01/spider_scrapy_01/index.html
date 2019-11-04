@@ -680,7 +680,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、scrapy-框架介绍"><span class="toc-text">一、scrapy 框架介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、scrapy-安装"><span class="toc-text">二、scrapy 安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、scrapy-快速体验"><span class="toc-text">三、scrapy 快速体验</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、scrapy-框架介绍"><span class="toc-text">一、scrapy 框架介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、scrapy-安装"><span class="toc-text">二、scrapy 安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、scrapy-快速体验"><span class="toc-text">三、scrapy 快速体验</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实现多个请求"><span class="toc-text">实现多个请求</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -726,7 +726,17 @@ class MoviesSpider(scrapy.Spider):
 
 # 启动爬虫(在终端操作)
 scrapy crawl 爬虫名称
-eg: scrapy crawl movies</code></pre>
+eg: scrapy crawl movies</code></pre><h4 id="实现多个请求"><a href="#实现多个请求" class="headerlink" title="实现多个请求"></a>实现多个请求</h4><pre><code>删除 start_urls参数
+
+url = &apos;https://www.baidu.com/s?wd={}&apos;
+
+def start_requests(self):
+    &quot;&quot;&quot;实现多个请求&quot;&quot;&quot;
+    for page in range(1, 10):
+        # 通过scrapy.Request将请求交给引擎
+        yield scrapy.Request(
+            self.url.format(page)
+        )</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
