@@ -666,7 +666,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-05 21:28:41'>2019-11-05 21:00</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-05 21:40:41'>2019-11-05 21:00</time>
         
     </div>
     <div class="article-meta">
@@ -738,7 +738,8 @@ DataFrame.dropna(axis=0, how=&apos;any&apos;, thresh=None, subset=None, inplace=
 
 df.dropna(axis=1) # 删除列
 df.dropna(axis=0) # 删除行</code></pre><p><img src="/2019/11/05/machine_pandas_4/7.png" alt></p>
-<pre><code>df.dropna(axis=0,subset=[&apos;D&apos;]) 删除D存在缺省数据 的那行数据</code></pre><p><img src="/2019/11/05/machine_pandas_4/8.png" alt></p>
+<pre><code>df.dropna(axis=0,subset=[&apos;D&apos;]) 删除D存在缺省数据 的那行数据
+df.dropna(axis=0,subset=[&apos;C&apos;,D&apos;]) 删除C,D存在缺省数据 的那行数据</code></pre><p><img src="/2019/11/05/machine_pandas_4/8.png" alt></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
@@ -756,7 +757,7 @@ df.dropna(axis=0) # 删除行</code></pre><p><img src="/2019/11/05/machine_panda
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
     <p><span class="copy-title">发布时间:</span>2019-11-05, 21:00:12</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-05, 21:28:41</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-05, 21:40:41</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/05/machine_pandas_4/" title="Pandas命令(二)">http://yoursite.com/2019/11/05/machine_pandas_4/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
