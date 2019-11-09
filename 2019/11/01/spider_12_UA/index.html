@@ -785,12 +785,16 @@ class RandomUserAgentDownloadMiddleware(object):
         return None</code></pre><h4 id="代理中间件"><a href="#代理中间件" class="headerlink" title="代理中间件"></a>代理中间件</h4><pre><code>class RandomProxyDownloadMiddleware(object):
     def process_request(self, request, spider):
 
-        # request.meta[&quot;proxy&quot;] = random.choice(PROXIES)
+        # request.meta[&quot;http_proxy&quot;] = random.choice(PROXIES)
 
         # http://127.0.0.1:6868/proxies/random  你自己代理池的地址
         proxy = requests.get(&apos;http://127.0.0.1:6868/proxies/random&apos;).text
         request.meta[&quot;proxy&quot;] = proxy
-        return None</code></pre>
+        return None
+
+# 注意
+不要用 request.meta[&apos;proxy&apos;] = proxy
+会一直有问题，什么主机失去响应啊什么的</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
