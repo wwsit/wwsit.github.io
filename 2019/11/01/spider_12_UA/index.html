@@ -789,7 +789,7 @@ class RandomUserAgentDownloadMiddleware(object):
 
         # http://127.0.0.1:6868/proxies/random  你自己代理池的地址
         proxy = requests.get(&apos;http://127.0.0.1:6868/proxies/random&apos;).text
-        request.meta[&quot;proxy&quot;] = proxy
+        request.meta[&quot;http_proxy&quot;] = proxy
         return None
 
 # 注意
