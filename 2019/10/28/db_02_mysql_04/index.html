@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Mysql数据库介绍 | Jerry书店</title>
+  <title>Mysql常用命令(下) | Jerry书店</title>
   <meta name="keywords" content=" 数据库 ">
-  <meta name="description" content="Mysql数据库介绍 | Jerry书店">
+  <meta name="description" content="Mysql常用命令(下) | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta name="keywords" content="Python">
@@ -658,9 +658,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-db_02_mysql_01" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-db_02_mysql_04" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Mysql数据库介绍</h1>
+        <h1 class="article-title">Mysql常用命令(下)</h1>
     
     <div class="article-meta">
         
@@ -682,7 +682,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-10-24 18:50:05'>2019-10-24 18:22</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-28 22:43:15'>2019-10-28 21:50</time>
         
     </div>
     <div class="article-meta">
@@ -704,7 +704,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#MySQL数据库的介绍"><span class="toc-text">MySQL数据库的介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MySQL的特点"><span class="toc-text">MySQL的特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#操作命令"><span class="toc-text">操作命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据类型"><span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据约束"><span class="toc-text">数据约束</span></a></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -720,66 +720,61 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="MySQL数据库的介绍"><a href="#MySQL数据库的介绍" class="headerlink" title="MySQL数据库的介绍"></a>MySQL数据库的介绍</h4><pre><code>MySQL是一个关系型数据库管理系统，在 WEB 应用方面，MySQL是最好的
-RDBMS (Relational Database Management System，关系数据库管理系统) 应用软件，
-它是由瑞典MySQL AB 公司开发，目前属于 Oracle 旗下产品，
-MySQL 是最流行的关系型数据库管理系统中的一个。</code></pre><h4 id="MySQL的特点"><a href="#MySQL的特点" class="headerlink" title="MySQL的特点"></a>MySQL的特点</h4><ul>
-<li>MySQL是开源的，所以你不需要支付额外的费用。</li>
-<li>MySQL支持大型的数据库。可以处理拥有上千万条记录的大型数据库。</li>
-<li>MySQL使用标准的SQL数据语言形式。</li>
-<li>MySQL可以安装在不同的操作系统，并且提供多种编程语言的操作接口。这些编程语言包括C、C++、Python、Java、Ruby等等。</li>
-</ul>
-<h4 id="操作命令"><a href="#操作命令" class="headerlink" title="操作命令"></a>操作命令</h4><pre><code># 查看MySQL服务状态
-sudo service mysql status
+        <pre><code># 聚合函数
 
-# 启动MySQL服务
-sudo service mysql start
+常用的聚合函数:
+count(col): 表示求指定列的总行数
+max(col): 表示求指定列的最大值
+min(col): 表示求指定列的最小值
+sum(col): 表示求指定列的和
+avg(col): 表示求指定列的平均值
 
-# 停止MySQL服务
-sudo service mysql stop
+# 1.求总行数
+返回总行数;
+select count(*) from students;
 
-# 重启MySQL服务
-sudo service mysql restart
+# 2.求最大值
+查询女生的编号最大值
+select max(id) from students where gender = 2;
 
-# 新建MySQL数据库：demon
-create database demon charset=utf8;
+# 3.求最小值
+查询未删除的学生最小编号
+select min(id) from students where is_delete = 0;
 
-# 新建MySQL用户
-create user 账号 identified by &apos;密码&apos;;
-create user root identified by &apos;mysql&apos;;
-create user wws identified by &apos;wws&apos;;
+# 4.求和
+查询男生的总身高
+select sum(height) from students where gender = 1;
 
-# 授权itcast用户访问meiduo_mall数据库
-grant all on 数据库名称.表名称 to 用户名@用户地址 ;
-grant all on demon.* to &apos;root&apos;@&apos;%&apos;;
-grant all on demon.* to &apos;wws&apos;@&apos;192.168.36.1&apos;;
+# 5.求平均值
+求男生的平均身高, 聚合函数不统计null值，平均身高有误
+select avg(height) from students where gender = 1;
+求男生的平均身高, 包含身高是null的
+select avg(ifnull(height,0)) from students where gender = 1;
 
-授权 root 用户在任何IP地址都能访问demon数据库里面所有表
-授权 wws 用户在192.168.36.1 IP地址才能访问demon数据库里面所有表
-.* 能访问demon所有表                
-% 任意IP都能登录
+聚合函数默认忽略字段为null的记录 要想列值为null的记录也参与计算，必须使用ifnull函数对null值做替换。
 
-# 授权结束后刷新特权
-flush privileges;</code></pre><h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><ul>
-<li>整数：int，bit</li>
-<li>小数：decimal</li>
-<li>字符串：varchar,char</li>
-<li>日期时间: date, time, datetime</li>
-<li>枚举类型(enum)</li>
-</ul>
-<p>数据类型说明:</p>
-<pre><code>decimal表示浮点数，如 decimal(5, 2) 表示共存5位数，小数占 2 位.
-char表示固定长度的字符串，如char(3)，如果填充&apos;ab&apos;时会补一个空格为&apos;ab &apos;，3表示字符数
-varchar表示可变长度的字符串，如varchar(3)，填充&apos;ab&apos;时就会存储&apos;ab&apos;，3表示字符数
-对于图片、音频、视频等文件，不存储在数据库中，而是上传到某个服务器上，然后在表中存储这个文件的保存路径.
-字符串 text 表示存储大文本，当字符大于 4000 时推荐使用, 比如技术博客.</code></pre><h4 id="数据约束"><a href="#数据约束" class="headerlink" title="数据约束"></a>数据约束</h4><ul>
-<li>主键 primary key: 物理上存储的顺序. MySQL 建议所有表的主键字段都叫 id, 类型为 int unsigned.</li>
-<li>非空 not null: 此字段不允许填写空值.</li>
-<li>惟一 unique: 此字段的值不允许重复.</li>
-<li>默认 default: 当不填写字段对应的值会使用默认值，如果填写时以填写为准.</li>
-<li>外键 foreign key: 对关系字段进行约束, 当为关系字段填写值时, 会到关联的表中查询此值是否存在, 如果存在则填写成功, 如果不存在则填写失败并抛出异常.</li>
-</ul>
+# 6.分组查询
+根据gender字段来分组 group by
+select gender from students group by gender
 
+# group by + having的使用 
+having作用和where类似都是过滤数据的，但having是过滤分组数据的，只能用于group by 
+根据gender字段进行分组，统计分组条数大于2的
+select gender,count(*) from students group by gender having count(*)&gt;2;
+
+# 7.内连接 查询共有的数据
+elect 字段 from 表1 inner join 表2 on 表1.字段1 = 表2.字段2
+使用内连接查询学生表与班级表:
+select * from students as s inner join classes as c on s.cls_id = c.id;</code></pre><p><img src="/2019/10/28/db_02_mysql_04/1.PNG" alt></p>
+<pre><code># 8.左连接查询
+以左表为主根据条件查询右表数据，如果根据条件查询右表数据不存在使用null值填充
+select 字段 from 表1 left join 表2 on 表1.字段1 = 表2.字段2</code></pre><p><img src="/2019/10/28/db_02_mysql_04/2.PNG" alt></p>
+<pre><code># 9.右连接
+以右表为主根据条件查询左表数据，如果根据条件查询左表数据不存在使用null值填充
+select 字段 from 表1 right join 表2 on 表1.字段1 = 表2.字段2</code></pre><p><img src="/2019/10/28/db_02_mysql_04/3.PNG" alt>   </p>
+<pre><code># 10.自连接查询
+左表和右表是同一个表，根据连接查询条件查询两个表中的数据。
+自连接查询必须对表起别名</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
@@ -792,12 +787,12 @@ varchar表示可变长度的字符串，如varchar(3)，填充&apos;ab&apos;时�
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Mysql数据库介绍</p>
+    <p><span class="copy-title">文章标题:</span>Mysql常用命令(下)</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-10-24, 18:22:31</p>
-    <p><span class="copy-title">最后更新:</span>2019-10-24, 18:50:05</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/24/db_02_mysql_01/" title="Mysql数据库介绍">http://yoursite.com/2019/10/24/db_02_mysql_01/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-28, 21:50:06</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-28, 22:43:15</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/28/db_02_mysql_04/" title="Mysql常用命令(下)">http://yoursite.com/2019/10/28/db_02_mysql_04/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>

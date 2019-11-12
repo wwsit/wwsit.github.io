@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Mysql数据库介绍 | Jerry书店</title>
+  <title>Mysql事务 | Jerry书店</title>
   <meta name="keywords" content=" 数据库 ">
-  <meta name="description" content="Mysql数据库介绍 | Jerry书店">
+  <meta name="description" content="Mysql事务 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta name="keywords" content="Python">
@@ -658,9 +658,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-db_02_mysql_01" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-db_02_mysql_05" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Mysql数据库介绍</h1>
+        <h1 class="article-title">Mysql事务</h1>
     
     <div class="article-meta">
         
@@ -682,7 +682,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-10-24 18:50:05'>2019-10-24 18:22</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-29 19:56:22'>2019-10-29 19:23</time>
         
     </div>
     <div class="article-meta">
@@ -704,7 +704,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#MySQL数据库的介绍"><span class="toc-text">MySQL数据库的介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MySQL的特点"><span class="toc-text">MySQL的特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#操作命令"><span class="toc-text">操作命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据类型"><span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据约束"><span class="toc-text">数据约束</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#事务的四大特性"><span class="toc-text">事务的四大特性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mysql隔离级别"><span class="toc-text">Mysql隔离级别</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -720,66 +720,58 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="MySQL数据库的介绍"><a href="#MySQL数据库的介绍" class="headerlink" title="MySQL数据库的介绍"></a>MySQL数据库的介绍</h4><pre><code>MySQL是一个关系型数据库管理系统，在 WEB 应用方面，MySQL是最好的
-RDBMS (Relational Database Management System，关系数据库管理系统) 应用软件，
-它是由瑞典MySQL AB 公司开发，目前属于 Oracle 旗下产品，
-MySQL 是最流行的关系型数据库管理系统中的一个。</code></pre><h4 id="MySQL的特点"><a href="#MySQL的特点" class="headerlink" title="MySQL的特点"></a>MySQL的特点</h4><ul>
-<li>MySQL是开源的，所以你不需要支付额外的费用。</li>
-<li>MySQL支持大型的数据库。可以处理拥有上千万条记录的大型数据库。</li>
-<li>MySQL使用标准的SQL数据语言形式。</li>
-<li>MySQL可以安装在不同的操作系统，并且提供多种编程语言的操作接口。这些编程语言包括C、C++、Python、Java、Ruby等等。</li>
+        <h4 id="事务的四大特性"><a href="#事务的四大特性" class="headerlink" title="事务的四大特性"></a>事务的四大特性</h4><ul>
+<li>原子性(Atomicity)</li>
+<li>一致性(Consistency)</li>
+<li>隔离性(Isolation)</li>
+<li>持久性(Durability)</li>
 </ul>
-<h4 id="操作命令"><a href="#操作命令" class="headerlink" title="操作命令"></a>操作命令</h4><pre><code># 查看MySQL服务状态
-sudo service mysql status
+<pre><code>原子性:
+一个事务必须被视为一个不可分割的最小工作单元，
+整个事务中的所有操作要么全部提交成功，要么全部失败回滚，
+对于一个事务来说，不可能只执行其中的一部分操作，这就是事务的原子性
 
-# 启动MySQL服务
-sudo service mysql start
+一致性:
+数据库总是从一个一致性的状态转换到另一个一致性的状态。
+（在前面的例子中，一致性确保了，即使在转账过程中系统崩溃，
+支票账户中也不会损失200美元，因为事务最终没有提交，
+所以事务中所做的修改也不会保存到数据库中。）
 
-# 停止MySQL服务
-sudo service mysql stop
+隔离性:
+通常来说，一个事务所做的修改操作在提交事务之前，对于其他事务来说是不可见的。
+（在前面的例子中，当执行完第三条语句、第四条语句还未开始时，
+此时有另外的一个账户汇总程序开始运行，则其看到支票帐户的余额并没有被减去200美元。）
 
-# 重启MySQL服务
-sudo service mysql restart
-
-# 新建MySQL数据库：demon
-create database demon charset=utf8;
-
-# 新建MySQL用户
-create user 账号 identified by &apos;密码&apos;;
-create user root identified by &apos;mysql&apos;;
-create user wws identified by &apos;wws&apos;;
-
-# 授权itcast用户访问meiduo_mall数据库
-grant all on 数据库名称.表名称 to 用户名@用户地址 ;
-grant all on demon.* to &apos;root&apos;@&apos;%&apos;;
-grant all on demon.* to &apos;wws&apos;@&apos;192.168.36.1&apos;;
-
-授权 root 用户在任何IP地址都能访问demon数据库里面所有表
-授权 wws 用户在192.168.36.1 IP地址才能访问demon数据库里面所有表
-.* 能访问demon所有表                
-% 任意IP都能登录
-
-# 授权结束后刷新特权
-flush privileges;</code></pre><h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><ul>
-<li>整数：int，bit</li>
-<li>小数：decimal</li>
-<li>字符串：varchar,char</li>
-<li>日期时间: date, time, datetime</li>
-<li>枚举类型(enum)</li>
+持久性:
+一旦事务提交，则其所做的修改会永久保存到数据库。</code></pre><h4 id="Mysql隔离级别"><a href="#Mysql隔离级别" class="headerlink" title="Mysql隔离级别"></a>Mysql隔离级别</h4><blockquote>
+<p>一个事务数据进行修改，对于其他事务是否是可见的。在一个事务中，能不能看到别人修改的数据</p>
+</blockquote>
+<ul>
+<li>Serializable(串行化)</li>
+<li>Repeatable read(可重复读)</li>
+<li>Read committed (读已经提交)</li>
+<li>Read uncommitted(读未提交)</li>
 </ul>
-<p>数据类型说明:</p>
-<pre><code>decimal表示浮点数，如 decimal(5, 2) 表示共存5位数，小数占 2 位.
-char表示固定长度的字符串，如char(3)，如果填充&apos;ab&apos;时会补一个空格为&apos;ab &apos;，3表示字符数
-varchar表示可变长度的字符串，如varchar(3)，填充&apos;ab&apos;时就会存储&apos;ab&apos;，3表示字符数
-对于图片、音频、视频等文件，不存储在数据库中，而是上传到某个服务器上，然后在表中存储这个文件的保存路径.
-字符串 text 表示存储大文本，当字符大于 4000 时推荐使用, 比如技术博客.</code></pre><h4 id="数据约束"><a href="#数据约束" class="headerlink" title="数据约束"></a>数据约束</h4><ul>
-<li>主键 primary key: 物理上存储的顺序. MySQL 建议所有表的主键字段都叫 id, 类型为 int unsigned.</li>
-<li>非空 not null: 此字段不允许填写空值.</li>
-<li>惟一 unique: 此字段的值不允许重复.</li>
-<li>默认 default: 当不填写字段对应的值会使用默认值，如果填写时以填写为准.</li>
-<li>外键 foreign key: 对关系字段进行约束, 当为关系字段填写值时, 会到关联的表中查询此值是否存在, 如果存在则填写成功, 如果不存在则填写失败并抛出异常.</li>
-</ul>
+<pre><code>Serializable(串行化):
+  事务串行化顺序执行 ,可避免脏读，不可重复读,       
+  这是最高的隔离级别，但是效率低，它通过强制事务排序，使之不可能相互冲突，
+  从而解决幻读问题 
 
+Repeatable read(可重复读):
+别人改数据的事务已经提交，我的事务中也不去读到,除非我提交事务才会读到
+
+Read committed (读已经提交)：
+别人改数据的事务已经提交，我在我的事务中才能读到 ,可避免脏读的发生
+
+Read uncommitted(读未提交)：
+最低级别，任何情况都无法保证,就是一个事务读取到其他事务未提交的数据，是级别最低的隔离机制 ,别人改数据的事务尚未提交，我在我的事务中也能读到。 
+
+脏读：
+是指在一个事务处理过程里读取了另外一个未提交的事务数据
+幻读：
+多次查询显示的结果不一样 
+
+Mysql默认的隔离级别是 Repeatable read(可重复读)</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
@@ -792,12 +784,12 @@ varchar表示可变长度的字符串，如varchar(3)，填充&apos;ab&apos;时�
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Mysql数据库介绍</p>
+    <p><span class="copy-title">文章标题:</span>Mysql事务</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-10-24, 18:22:31</p>
-    <p><span class="copy-title">最后更新:</span>2019-10-24, 18:50:05</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/24/db_02_mysql_01/" title="Mysql数据库介绍">http://yoursite.com/2019/10/24/db_02_mysql_01/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-29, 19:23:10</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-29, 19:56:22</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/29/db_02_mysql_05/" title="Mysql事务">http://yoursite.com/2019/10/29/db_02_mysql_05/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
