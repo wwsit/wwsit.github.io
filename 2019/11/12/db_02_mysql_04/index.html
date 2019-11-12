@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Jerry书店</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Jerry书店">
+  <title>Mysql常用命令(下) | Jerry书店</title>
+  <meta name="keywords" content=" 数据库 ">
+  <meta name="description" content="Mysql常用命令(下) | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta name="keywords" content="Python">
@@ -51,7 +51,7 @@
 </div>
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/" class="avatar_target">
     <img class="avatar" src="/img/avatar.jpg" />
@@ -302,6 +302,22 @@
             <span class="post-date" title="2019-08-30 21:10:11">2019/08/30</span>
         </a>
         
+        <a  class="数据库 "
+           href="/2019/11/12/db_02_mysql_04/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="Mysql常用命令(下)">Mysql常用命令(下)</span>
+            <span class="post-date" title="2019-11-12 21:50:06">2019/11/12</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2019/11/12/db_02_mysql_03/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="Mysql常用命令(中)">Mysql常用命令(中)</span>
+            <span class="post-date" title="2019-11-12 20:23:18">2019/11/12</span>
+        </a>
+        
         <a  class="机器学习 "
            href="/2019/11/05/machine_pandas_4/"
            data-tag="机器学习"
@@ -356,22 +372,6 @@
            data-author="" >
             <span class="post-title" title="Mysql事务">Mysql事务</span>
             <span class="post-date" title="2019-10-29 19:23:10">2019/10/29</span>
-        </a>
-        
-        <a  class="数据库 "
-           href="/2019/10/28/db_02_mysql_04/"
-           data-tag="数据库"
-           data-author="" >
-            <span class="post-title" title="Mysql常用命令(下)">Mysql常用命令(下)</span>
-            <span class="post-date" title="2019-10-28 21:50:06">2019/10/28</span>
-        </a>
-        
-        <a  class="数据库 "
-           href="/2019/10/28/db_02_mysql_03/"
-           data-tag="数据库"
-           data-author="" >
-            <span class="post-title" title="Mysql常用命令(中)">Mysql常用命令(中)</span>
-            <span class="post-date" title="2019-10-28 20:23:18">2019/10/28</span>
         </a>
         
         <a  class="测试 "
@@ -656,12 +656,55 @@
         </div>
     </div>
 </aside>
-<div class="post index">
+<div class="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-db_02_mysql_04" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么要写博客？"><span class="toc-text">为什么要写博客？</span></a></li></ol>
+        <h1 class="article-title">Mysql常用命令(下)</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" data-rel="数据库">数据库</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color4">数据库</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-11-12 22:43:15'>2019-11-12 21:50</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        
     
 <style>
     .left-col .switch-btn,
@@ -674,20 +717,96 @@
     }
 </style>
 </div>
-            <h2 id="为什么要写博客？"><a href="#为什么要写博客？" class="headerlink" title="为什么要写博客？"></a>为什么要写博客？</h2><pre><code>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。
-但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，
-而且各个网站的信息排布方式也没有办法自由控制，
-所以我们需要一个可以由自己主宰的空间——博客。
-通过博客，我们可以记录自己的生活和成长的轨迹。</code></pre><p>name: <strong>王伟生</strong></p>
-<p>文章数量：<code class="article_number"></code><br><code class="site_word_count"></code> 篇</p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code># 聚合函数
 
-        </article>
-        
-        <p>
-            <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
+常用的聚合函数:
+count(col): 表示求指定列的总行数
+max(col): 表示求指定列的最大值
+min(col): 表示求指定列的最小值
+sum(col): 表示求指定列的和
+avg(col): 表示求指定列的平均值
+
+# 1.求总行数
+返回总行数;
+select count(*) from students;
+
+# 2.求最大值
+查询女生的编号最大值
+select max(id) from students where gender = 2;
+
+# 3.求最小值
+查询未删除的学生最小编号
+select min(id) from students where is_delete = 0;
+
+# 4.求和
+查询男生的总身高
+select sum(height) from students where gender = 1;
+
+# 5.求平均值
+求男生的平均身高, 聚合函数不统计null值，平均身高有误
+select avg(height) from students where gender = 1;
+求男生的平均身高, 包含身高是null的
+select avg(ifnull(height,0)) from students where gender = 1;
+
+聚合函数默认忽略字段为null的记录 要想列值为null的记录也参与计算，必须使用ifnull函数对null值做替换。
+
+# 6.分组查询
+根据gender字段来分组 group by
+select gender from students group by gender
+
+# group by + having的使用 
+having作用和where类似都是过滤数据的，但having是过滤分组数据的，只能用于group by 
+根据gender字段进行分组，统计分组条数大于2的
+select gender,count(*) from students group by gender having count(*)&gt;2;
+
+# 7.内连接 查询共有的数据
+elect 字段 from 表1 inner join 表2 on 表1.字段1 = 表2.字段2
+使用内连接查询学生表与班级表:
+select * from students as s inner join classes as c on s.cls_id = c.id;</code></pre><p><img src="/2019/11/12/db_02_mysql_04/1.PNG" alt></p>
+<pre><code># 8.左连接查询
+以左表为主根据条件查询右表数据，如果根据条件查询右表数据不存在使用null值填充
+select 字段 from 表1 left join 表2 on 表1.字段1 = 表2.字段2</code></pre><p><img src="/2019/11/12/db_02_mysql_04/2.PNG" alt></p>
+<pre><code># 9.右连接
+以右表为主根据条件查询左表数据，如果根据条件查询左表数据不存在使用null值填充
+select 字段 from 表1 right join 表2 on 表1.字段1 = 表2.字段2</code></pre><p><img src="/2019/11/12/db_02_mysql_04/3.PNG" alt>   </p>
+<pre><code># 10.自连接查询
+左表和右表是同一个表，根据连接查询条件查询两个表中的数据。
+自连接查询必须对表起别名</code></pre>
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>Mysql常用命令(下)</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-11-12, 21:50:06</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-12, 22:43:15</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/12/db_02_mysql_04/" title="Mysql常用命令(下)">http://yoursite.com/2019/11/12/db_02_mysql_04/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">©2016-2019 Yelog</p>
