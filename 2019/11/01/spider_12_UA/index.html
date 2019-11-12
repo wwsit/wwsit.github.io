@@ -780,7 +780,7 @@ class RandomUserAgentDownloadMiddleware(object):
     def process_request(self, request, spider):
         &quot;&quot;&quot;当 引擎 把 请求提交给下载器时回调&quot;&quot;&quot;
 
-        request.headers[&quot;User-Agent&quot;] = get_ua()
+        requests.headers[&quot;User-Agent&quot;] = get_ua()
 
         return None</code></pre><h4 id="代理中间件"><a href="#代理中间件" class="headerlink" title="代理中间件"></a>代理中间件</h4><pre><code>class RandomProxyDownloadMiddleware(object):
     def process_request(self, request, spider):
@@ -789,11 +789,11 @@ class RandomUserAgentDownloadMiddleware(object):
 
         # http://127.0.0.1:6868/proxies/random  你自己代理池的地址
         proxy = requests.get(&apos;http://127.0.0.1:6868/proxies/random&apos;).text
-        request.meta[&quot;http_proxy&quot;] = proxy
+        requests.meta[&quot;http_proxy&quot;] = proxy
         return None
 
 # 注意
-scrapy框架中不要用 request.meta[&apos;proxy&apos;] = proxy
+scrapy框架中不要用 requests.meta[&apos;proxy&apos;] = proxy
 会一直有问题，什么主机失去响应啊什么的</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
