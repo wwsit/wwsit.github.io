@@ -302,22 +302,6 @@
             <span class="post-date" title="2019-08-30 21:10:11">2019/08/30</span>
         </a>
         
-        <a  class="数据库 "
-           href="/2019/11/12/db_02_mysql_04/"
-           data-tag="数据库"
-           data-author="" >
-            <span class="post-title" title="Mysql常用命令(下)">Mysql常用命令(下)</span>
-            <span class="post-date" title="2019-11-12 21:50:06">2019/11/12</span>
-        </a>
-        
-        <a  class="数据库 "
-           href="/2019/11/12/db_02_mysql_03/"
-           data-tag="数据库"
-           data-author="" >
-            <span class="post-title" title="Mysql常用命令(中)">Mysql常用命令(中)</span>
-            <span class="post-date" title="2019-11-12 20:23:18">2019/11/12</span>
-        </a>
-        
         <a  class="机器学习 "
            href="/2019/11/05/machine_pandas_4/"
            data-tag="机器学习"
@@ -436,6 +420,22 @@
            data-author="" >
             <span class="post-title" title="Selenium(上)">Selenium(上)</span>
             <span class="post-date" title="2019-10-25 10:20:22">2019/10/25</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2019/10/24/db_02_mysql_04/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="Mysql常用命令(下)">Mysql常用命令(下)</span>
+            <span class="post-date" title="2019-10-24 21:20:36">2019/10/24</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2019/10/24/db_02_mysql_03/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="Mysql常用命令(中)">Mysql常用命令(中)</span>
+            <span class="post-date" title="2019-10-24 20:25:16">2019/10/24</span>
         </a>
         
         <a  class="数据库 "
@@ -682,7 +682,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-12 22:43:15'>2019-11-12 21:50</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-24 22:13:42'>2019-10-24 21:20</time>
         
     </div>
     <div class="article-meta">
@@ -765,13 +765,13 @@ select gender,count(*) from students group by gender having count(*)&gt;2;
 # 7.内连接 查询共有的数据
 elect 字段 from 表1 inner join 表2 on 表1.字段1 = 表2.字段2
 使用内连接查询学生表与班级表:
-select * from students as s inner join classes as c on s.cls_id = c.id;</code></pre><p><img src="/2019/11/12/db_02_mysql_04/1.PNG" alt></p>
+select * from students as s inner join classes as c on s.cls_id = c.id;</code></pre><p><img src="/2019/10/24/db_02_mysql_04/1.PNG" alt></p>
 <pre><code># 8.左连接查询
 以左表为主根据条件查询右表数据，如果根据条件查询右表数据不存在使用null值填充
-select 字段 from 表1 left join 表2 on 表1.字段1 = 表2.字段2</code></pre><p><img src="/2019/11/12/db_02_mysql_04/2.PNG" alt></p>
+select 字段 from 表1 left join 表2 on 表1.字段1 = 表2.字段2</code></pre><p><img src="/2019/10/24/db_02_mysql_04/2.PNG" alt></p>
 <pre><code># 9.右连接
 以右表为主根据条件查询左表数据，如果根据条件查询左表数据不存在使用null值填充
-select 字段 from 表1 right join 表2 on 表1.字段1 = 表2.字段2</code></pre><p><img src="/2019/11/12/db_02_mysql_04/3.PNG" alt>   </p>
+select 字段 from 表1 right join 表2 on 表1.字段1 = 表2.字段2</code></pre><p><img src="/2019/10/24/db_02_mysql_04/3.PNG" alt>   </p>
 <pre><code># 10.自连接查询
 左表和右表是同一个表，根据连接查询条件查询两个表中的数据。
 自连接查询必须对表起别名</code></pre>
@@ -790,9 +790,9 @@ select 字段 from 表1 right join 表2 on 表1.字段1 = 表2.字段2</code></p
     <p><span class="copy-title">文章标题:</span>Mysql常用命令(下)</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-11-12, 21:50:06</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-12, 22:43:15</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/12/db_02_mysql_04/" title="Mysql常用命令(下)">http://yoursite.com/2019/11/12/db_02_mysql_04/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-24, 21:20:36</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-24, 22:13:42</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/24/db_02_mysql_04/" title="Mysql常用命令(下)">http://yoursite.com/2019/10/24/db_02_mysql_04/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
