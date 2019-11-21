@@ -745,6 +745,20 @@ adb shell dumpsys window windows | findstr mFocusedApp
 # 获取系统版本
 adb shell getprop ro.build.version.release
 
+# 启动adb 服务
+adb start-server
+
+# 关闭adb 服务
+adb kill-server
+
+# 发送文件到手机
+adb push 电脑端⽂件路径/需要发送的文件,手机端存储的路径
+adb push C:\Users\win\Desktop\xx.png /sdcard
+
+# 从手机拉取文件
+adb pull 手机端的路径/拉取文件名 电脑端存储文件路径
+adb pull /sdcard/xx.png C:\Users\win\Desktop
+
 # 查看手机运行日志
 adb logcat
 
@@ -753,6 +767,9 @@ adb install 路径/xxx.apk
 
 # 卸载手机app
 adb uninstall app
+
+# 进入到手机终端
+adb shell
 
 # 获取app启动时间
 adb shell am start -W 包名/.启动名</code></pre>
