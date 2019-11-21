@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>git命令 | Jerry书店</title>
-  <meta name="keywords" content=" 分享 ">
-  <meta name="description" content="git命令 | Jerry书店">
+  <title>appium 常用命令 | Jerry书店</title>
+  <meta name="keywords" content=" 测试 ">
+  <meta name="description" content="appium 常用命令 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta name="keywords" content="Python">
@@ -682,9 +682,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-tool_03_git" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-ceshi_07_appium_order" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">git命令</h1>
+        <h1 class="article-title">appium 常用命令</h1>
     
     <div class="article-meta">
         
@@ -692,21 +692,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="分享">分享</a>
+                <a href="javascript:" data-rel="测试">测试</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">分享</a>
+            <a href="javascript:" class="color3">测试</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-02 14:20:23'>2019-11-02 14:02</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-21 16:56:15'>2019-11-21 12:49</time>
         
     </div>
     <div class="article-meta">
@@ -728,7 +728,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Git介绍"><span class="toc-text">Git介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git-常用命令"><span class="toc-text">git 常用命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#用的比较少的命令"><span class="toc-text">用的比较少的命令</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#常用定位方式"><span class="toc-text">常用定位方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#定位一组元素"><span class="toc-text">定位一组元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#发送数据到输入框"><span class="toc-text">发送数据到输入框</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取元素的文本内容"><span class="toc-text">获取元素的文本内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取元素的属性值"><span class="toc-text">获取元素的属性值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#清空输入框内容"><span class="toc-text">清空输入框内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#将应用置于后台事件"><span class="toc-text">将应用置于后台事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#手机截图"><span class="toc-text">手机截图</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -744,62 +744,163 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="Git介绍"><a href="#Git介绍" class="headerlink" title="Git介绍"></a>Git介绍</h4><pre><code>Git 是目前世界上最先进的分布式版本控制系统
-方便多人协同开发
-方便版本控制</code></pre><h4 id="git-常用命令"><a href="#git-常用命令" class="headerlink" title="git 常用命令"></a>git 常用命令</h4><pre><code># 克隆项目
-git clone 项目地址
+        <h4 id="常用定位方式"><a href="#常用定位方式" class="headerlink" title="常用定位方式"></a>常用定位方式</h4><ul>
+<li>前置代码</li>
+</ul>
+<pre><code>from appium import webdriver
+# server 启动参数
+desired_caps = {}
+# 设备信息
+desired_caps[&apos;platforName&apos;] = &apos;Android&apos;   #平台名称
+desired_caps[&apos;paltformVersion&apos;] = &apos;5.1&apos;    #平台版本
+desired_caps[&apos;deviceName&apos;] = &apos;192.168.56.101:5555&apos;  #设备号
+# app信息
+desired_caps[&apos;appPackage&apos;] = &apos;com.android.settings&apos;  #应用的包名
+desired_caps[&apos;appActivity&apos;] = &apos;.Settings&apos;  #代表启动的activity
+# 生命driver对象
+driver = webdriver.Remote(&apos;http://127.0.0.1:4723/wd/hub&apos;, desired_caps)</code></pre><ul>
+<li>id</li>
+</ul>
+<pre><code>方法：find_element_by_id(id_value) # id_value:为元素的id属性值
+需求:
+    通过id定位方式点击搜索按钮
+举例：
+driver.find_element_by_id(&quot;com.android.settings:id/search&quot;).click()
+driver.quit()</code></pre><ul>
+<li>class</li>
+</ul>
+<pre><code>方法：find_element_by_class_name(class_value) # class_value:为元素的class属性值
+需求:
+    1.进入设置页面
+  2.点击搜索按钮
+  3.通过class定位方式点击输入框的返回按钮
 
-# 工作区添加到暂存区
-git add 项目名
+举例:
+driver.find_element_by_id(&quot;com.android.settings:id/search&quot;).click()
+driver.find_element_by_class_name(&quot;android.widget.ImageButton&quot;).click()
+driver.quit()</code></pre><ul>
+<li>xpath</li>
+</ul>
+<pre><code>方法:find_element_by_xpath(xpath_value) # xpath_value:为可以定位到元素的xpath语句
 
-# 暂存区提交到仓库区
-git commit -m &apos;给本次提交 起名字&apos;
+Android端常用属性定位:
+1. id ://*[contains(@resource-id,&apos;com.android.settings:id/search&apos;)]
+2. class ://*[contains(@class,&apos;android.widget.ImageButton&apos;)]
+3. text ://*[contains(@text,&apos;WLA&apos;)]
 
-# 推送到远程仓库
-git push
+模糊定位
+4. contains(@key,value): value可以是部分值
 
-# 在本地创建一个dev分支
-git checkout -b  dev
+需求:
+    1. 进入设置页面
+    2. 点击wlan菜单栏
 
-# 将本地的dev分支推送到远程
-git push -u origin dev
+示例:
+driver.find_element_by_xpath(&quot;//*[contains(@text,&apos;WLA&apos;)]&quot;).click()
+driver.quit()</code></pre><h4 id="定位一组元素"><a href="#定位一组元素" class="headerlink" title="定位一组元素"></a>定位一组元素</h4><blockquote>
+<p>应用场景为元素值重复，无法通过元素属性直接定位到某个元素，只能通过elements方式来选择，返回一个定位对象的列表.</p>
+</blockquote>
+<blockquote>
+<p>通过Xpath定位一组元素</p>
+</blockquote>
+<pre><code>方法: find_elements_by_xpath(xpath_value)
+需求:
+    1. 进入设置页面
+    2. 点击wlan菜单栏,xpath中class属性定位列表中第3个对象
 
-# 查看当前处于分支情况
-git branch
+data = driver.find_elements_by_xpath(&quot;//*[contains(@class,&apos;android.widget.TextView&apos;)]&quot;)
+data[3].click()</code></pre><blockquote>
+<p>通过id定位一组元素</p>
+</blockquote>
+<pre><code>方法: find_elements_by_id(id_value) 
+需求:
+    1. 进入设置页面
+    2. 点击wlan菜单栏,id定位对象列表中第2个
 
-# 每次开发前拉取最新代码 
-git pull
+title = driver.find_elements_by_id(&quot;com.android.settings:id/title&quot;)
+# 打印title类型，预期为list
+print(type(title))
+# 取title返回列表中的第一个定位对象，执行点击操作
+title[1].click()</code></pre><blockquote>
+<p>通过class定位一组元素</p>
+</blockquote>
+<pre><code>方法: find_elements_by_class_name(class_value)
+需求:
+    1. 进入设置页面
+    2. 点击wlan菜单栏,选择定位对象是第3个
 
-# 合并 dev 分支内容
-git merge dev </code></pre><h4 id="用的比较少的命令"><a href="#用的比较少的命令" class="headerlink" title="用的比较少的命令"></a>用的比较少的命令</h4><pre><code># 如果在每次 push 都需要设置账号与密码，那么可以设置记住密码
-设置记住密码（默认15分钟）：
-git config --global credential.helper cache
-如果想自己设置时间，可以这样做(1小时后失效)：
-git config credential.helper &apos;cache --timeout=3600&apos;
-长期存储密码：
-git config --global credential.helper store
+title = driver.find_elements_by_class_name(&quot;android.widget.TextView&quot;)
+# 打印title类型，预期为list
+print(type(title))
+# 取title返回列表中的第3个定位对象,执行点击操作
+title[3].click()</code></pre><h4 id="发送数据到输入框"><a href="#发送数据到输入框" class="headerlink" title="发送数据到输入框"></a>发送数据到输入框</h4><pre><code>方法:send_keys(vaue) # value：需要发送到输入框内的文本
 
-# 版本回退
-git reset --hard 版本号
+需求:
+    打开设置 点击搜索按钮 输入内容abc
 
-# 查看当前仓库地址
-git remote -v
-git remote show origin
+# 点击搜索按钮
+driver.find_element_by_id(&quot;com.android.settings:id/search&quot;).click()
+# 定位到输入框并输入abc
+driver.find_element_by_id(&quot;android:id/search_src_text&quot;).send_keys(&quot;abc&quot;)
 
-# 将本地文件提交到远程仓库
-1.本地初始化 git init
-2.---git remote add origin  &lt;仓库的url&gt;
-eg:git remote add origin   https://github.com/xiaobaiwws/-.git
 
-3.--git push origin &lt;branch 分支名 &gt;
-eg:git push origin master  （已经存在的分支）
-or git push -u origin wws （新建一个分支）
+注: 如果插入中文,需要在desired_caps里面增加2个参数:
+desired_caps[&apos;unicodeKeyboard&apos;] = True
+desired_caps[&apos;resetKeyboard&apos;] = True</code></pre><h4 id="获取元素的文本内容"><a href="#获取元素的文本内容" class="headerlink" title="获取元素的文本内容"></a>获取元素的文本内容</h4><pre><code>方法: text
 
-# 删除本地dev分支
-git branch -d dev 
+需求: 
+    进入设置,获取所有元素class属性为&quot;android.widget.TextView&quot;的文本内容
 
-# 删除远程dev缓存分支
-git branch -dr dev </code></pre>
+代码:
+text_vlaue = driver.find_elements_by_class_name(&quot;android.widget.TextView&quot;)
+for i in text_vlaue:
+        print(i.text)</code></pre><h4 id="获取元素的属性值"><a href="#获取元素的属性值" class="headerlink" title="获取元素的属性值"></a>获取元素的属性值</h4><pre><code>方法: get_attribute(value) # value:元素的属性
+1. value=&apos;name&apos; 返回content-desc / text属性值
+2. value=&apos;text&apos; 返回text的属性值
+3. value=&apos;className&apos; 返回 class属性值，只有 API=&gt;18 才能支持
+4. value=&apos;resourceId&apos; 返回 resource-id属性值，只有 API=&gt;18 才能支持
+
+需求:
+    进入设置 获取wlan属性
+
+data = driver.find_element_by_id(&quot;com.android.settings:id/title&quot;)
+print(data.get_attribute(‘resourceId’))</code></pre><h4 id="清空输入框内容"><a href="#清空输入框内容" class="headerlink" title="清空输入框内容"></a>清空输入框内容</h4><pre><code>方法:clear()
+
+需求:
+    打开设置 点击搜索按钮  输入内容abc 删除已输入abc
+
+driver.find_element_by_id(&quot;com.android.settings:id/search&quot;).click()
+# 定位到输入框并输⼊abc
+input_text = driver.find_element_by_id(&quot;android:id/search_src_text&quot;)
+# 输入abc
+input_text.send_keys(&quot;abc&quot;)
+time.sleep(1)
+# 删除abc
+input_text.clear()</code></pre><h4 id="将应用置于后台事件"><a href="#将应用置于后台事件" class="headerlink" title="将应用置于后台事件"></a>将应用置于后台事件</h4><pre><code>方法: background_app(seconds)
+参数:
+ seconds: 停留在后台时间,单位,秒
+
+需求:
+    进入设置,将app至于后台5s
+
+driver.background_app(5)</code></pre><h4 id="手机截图"><a href="#手机截图" class="headerlink" title="手机截图"></a>手机截图</h4><pre><code>截取 手机当前屏幕,保存指定格式图片到指定位置
+
+方法:get_screenshot_as_file(filename)
+参数：
+filename：指定路径下，指定格式的图⽚.
+
+需求:
+    打开设置页面,截图当前页面,命名为screen.png
+
+代码实现:
+import os
+driver.get_screenshot_as_file(os.getcwd() + os.sep + &apos;./screen.png&apos;)
+
+# os.getcwd()函数 获得当前的路径。
+
+# python是跨平台的。在Windows上，文件的路径分隔符是&apos;\&apos;，在Linux上是&apos;/&apos;。
+为了让代码在不同的平台上都能运行，那么路径应该写&apos;\&apos;还是&apos;/&apos;呢？
+使用os.sep的话，就不用考虑这个了，os.sep根据你所处的平台，自动采用相应的分隔符号。</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
@@ -812,12 +913,12 @@ git branch -dr dev </code></pre>
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>git命令</p>
+    <p><span class="copy-title">文章标题:</span>appium 常用命令</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-11-02, 14:02:10</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-02, 14:20:23</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/02/tool_03_git/" title="git命令">http://yoursite.com/2019/11/02/tool_03_git/</a>
+    <p><span class="copy-title">发布时间:</span>2019-11-21, 12:49:22</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-21, 16:56:15</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/21/ceshi_07_appium_order/" title="appium 常用命令">http://yoursite.com/2019/11/21/ceshi_07_appium_order/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
