@@ -792,7 +792,11 @@ adb shell pm list packages -s
 adb shell pm list packages -3 
 
 # 查看屏幕分辨率 
-adb shell wm size </code></pre>
+adb shell wm size 
+
+# 出现remote Read-only file system
+先进行手机终端 adb shell
+然后在命令行输入 mount -o remount -w /</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
