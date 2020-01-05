@@ -269,6 +269,10 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">爬虫requests</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color4">爬虫、xpath</a>
     </li>
     
@@ -282,10 +286,6 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color5">爬虫、scrapy</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">爬虫requests</a>
     </li>
     
     <div class="clearfix"></div>
@@ -789,14 +789,19 @@
 2. 第一个参数：TRUE，每个用户有自己的计数器；FALSE，使用全局计数器 我们选FALSE
 3. 点击生成
 4. 选择复制生成的函数</code></pre><p><img src="/2019/10/26/ceshi_04_Jmeter/4.PNG" alt></p>
-<h4 id="二、数据库"><a href="#二、数据库" class="headerlink" title="二、数据库"></a>二、数据库</h4><h4 id="从数据库中获取数据"><a href="#从数据库中获取数据" class="headerlink" title="从数据库中获取数据"></a>从数据库中获取数据</h4><p>1.操作步骤<br>添加数据库jar包, 添加数据库驱动<br><img src="/2019/10/26/ceshi_04_Jmeter/5.PNG" alt></p>
-<p>2.配置连接信息<br><img src="/2019/10/26/ceshi_04_Jmeter/6.PNG" alt><br><img src="/2019/10/26/ceshi_04_Jmeter/7.PNG" alt></p>
+<h4 id="二、数据库"><a href="#二、数据库" class="headerlink" title="二、数据库"></a>二、数据库</h4><h4 id="从数据库中获取数据"><a href="#从数据库中获取数据" class="headerlink" title="从数据库中获取数据"></a>从数据库中获取数据</h4><p>1.操作步骤<br>添加数据库jar包, 添加数据库驱动(mysql-connector-java-5.1.35-bin.jar)<br><img src="/2019/10/26/ceshi_04_Jmeter/5.PNG" alt></p>
+<p>2.配置连接信息</p>
+<blockquote>
+<p>database url—&gt;jdbc:mysql://IP地址:数据库端口号(mysql:3306)/连接的数据库名字<br>jdbc driver class—&gt;com.mysql.jdbc.Driver</p>
+</blockquote>
+<p><img src="/2019/10/26/ceshi_04_Jmeter/6.PNG" alt><br><img src="/2019/10/26/ceshi_04_Jmeter/7.PNG" alt></p>
 <p>3.发送sql语句请求<br><img src="/2019/10/26/ceshi_04_Jmeter/8.PNG" alt><br><img src="/2019/10/26/ceshi_04_Jmeter/9.PNG" alt></p>
 <pre><code>1. Variable Name：数据库连接池的名字，需要与JDBC Connection Configuration的Variable Name【保持一致】
 2. Query Type:Select Statement、Update Statement
     1) Select Statement:查询语句时使用
     2) Update Statement:(新增、更新、删除)语句时使用
-3. Variable names：count 保存sql语句返回结果的变量名;</code></pre>
+3. Variable names：count 保存sql语句返回结果的变量名;</code></pre><p>4.驱动<br><img src="/2019/10/26/ceshi_04_Jmeter/10.PNG" alt></p>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
@@ -875,7 +880,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#基础','#测试','#后端','#数据库','#Django','#知识','#机器学习','#分享','#爬虫','#爬虫、requests','#爬虫、xpath','#爬虫、csv','#爬虫、知识','#爬虫、scrapy','#爬虫requests',],
+            'data': ['#基础','#测试','#后端','#数据库','#Django','#知识','#机器学习','#分享','#爬虫','#爬虫、requests','#爬虫requests','#爬虫、xpath','#爬虫、csv','#爬虫、知识','#爬虫、scrapy',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
