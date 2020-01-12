@@ -845,6 +845,9 @@ workbook = xlrd.open_workbook(&apos;./festival.xls&apos;)
 new_excel = copy(workbook)
 # 获取想要操作的sheet
 data_sheet = new_excel.get_sheet(0)
+# 获取原来有多少行
+rows = data_sheet.get_rows()
+print(len(rows))
 
 data_sheet.write(3, 0, &apos;儿童节&apos;)
 data_sheet.write(3, 1, &apos;6-1&apos;)
