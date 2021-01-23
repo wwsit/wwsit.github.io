@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Pytest(一) | Jerry书店</title>
+  <title>Pytest(一、基本使用) | Jerry书店</title>
   <meta name="keywords" content=" 测试 ">
-  <meta name="description" content="Pytest(一) | Jerry书店">
+  <meta name="description" content="Pytest(一、基本使用) | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta name="keywords" content="Python">
@@ -134,7 +134,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(71)</small></div></li>
+    <li><div class="all active">全部文章<small>(72)</small></div></li>
     
         
             
@@ -146,7 +146,7 @@
     
         
             
-            <li><div data-rel="测试">测试<small>(13)</small></div>
+            <li><div data-rel="测试">测试<small>(14)</small></div>
                 
             </li>
             
@@ -218,7 +218,7 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="71">
+<input type="hidden" id="yelog_site_posts_number" value="72">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -343,18 +343,26 @@
         </a>
         
         <a  class="测试 "
+           href="/2021/01/16/ceshi_14_Pytest(3)/"
+           data-tag="测试"
+           data-author="" >
+            <span class="post-title" title="Pytest(三、Allure使用)">Pytest(三、Allure使用)</span>
+            <span class="post-date" title="2021-01-16 17:01:25">2021/01/16</span>
+        </a>
+        
+        <a  class="测试 "
            href="/2021/01/16/ceshi_13_Pytest(2)/"
            data-tag="测试"
            data-author="" >
-            <span class="post-title" title="Pytest(二)">Pytest(二)</span>
+            <span class="post-title" title="Pytest(二、fixture使用)">Pytest(二、fixture使用)</span>
             <span class="post-date" title="2021-01-16 16:31:18">2021/01/16</span>
         </a>
         
         <a  class="测试 "
-           href="/2021/01/16/ceshi_12_Pytest/"
+           href="/2021/01/16/ceshi_12_Pytest(1)/"
            data-tag="测试"
            data-author="" >
-            <span class="post-title" title="Pytest(一)">Pytest(一)</span>
+            <span class="post-title" title="Pytest(一、基本使用)">Pytest(一、基本使用)</span>
             <span class="post-date" title="2021-01-16 15:19:03">2021/01/16</span>
         </a>
         
@@ -914,9 +922,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-ceshi_12_Pytest" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-ceshi_12_Pytest(1)" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Pytest(一)</h1>
+        <h1 class="article-title">Pytest(一、基本使用)</h1>
     
     <div class="article-meta">
         
@@ -938,7 +946,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2021-01-19 15:14:09'>2021-01-16 15:19</time>
+        创建时间:<time class="date" title='更新时间: 2021-01-23 19:14:57'>2021-01-16 15:19</time>
         
     </div>
     <div class="article-meta">
@@ -976,7 +984,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="#1">1.Pytest介绍</a><br><a href="#2">2.Pytest–简单使用</a><br><a href="#3">3.始末方法(每次)</a><br><a href="#4">4.始末方法(一次)</a><br><a href="#5">5.执行顺序</a></p>
+        <p><a href="#1">1.Pytest介绍</a><br><a href="#2">2.Pytest–简单使用</a><br><a href="#3">3.始末方法(每次)</a><br><a href="#4">4.始末方法(一次)</a><br><a href="#5">5.执行顺序</a><br><a href="#6">6.pytest–跳过测试函数</a><br><a href="#7">7.pytest–函数数据参数化</a></p>
 <div id="1">1、Pytest介绍</div>
 
 <pre><code>1.pytest是python的一种单元测试框架，同自带的Unittest测试框架类似，相比于Unittest框架使用起来更简洁,效率更高.
@@ -1105,7 +1113,69 @@ class Test_demo():
 
 
 if __name__ == &apos;__main__&apos;:
-    pytest.main([&quot;-s&quot;, &quot;test_04_执行顺序.py&quot;])</code></pre>
+    pytest.main([&quot;-s&quot;, &quot;test_04_执行顺序.py&quot;])</code></pre><div id="6">6.pytest--跳过测试函数</div>
+
+<pre><code># 根据特定条件、不执行标识的测试函数
+# @pytest.mark.skipif(condition, reason=&apos;xxx&apos;) 当condition为真时，不执行此函数
+
+
+
+# -*-coding:utf-8-*-
+import pytest
+
+@pytest.mark.skipif(condition=1 &gt; 1, reason=&quot;跳过&quot;)
+def test_demo():
+    print(&quot;\n 条件为False时,此函数还是会被执行&quot;)
+
+@pytest.mark.skipif(condition=2 &gt; 1, reason=&quot;跳过&quot;)
+def test_demo2():
+    print(&quot;\n 条件为True时,此函数不会被执行&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    pytest.main([&quot;-s&quot;, &quot;test_01_pytest.py&quot;])
+
+
+# 运行结果:
+
+    test_01_pytest.py 
+     条件为False时,此函数还是会被执行
+    .s</code></pre><div id="7">7.pytest--函数数据参数化</div>
+
+<pre><code># 作用: 方便测试函数对测试属性的获取
+
+&quot;&quot;&quot;
+使用方法:
+@pytest.mark.parametrize(argnames,argvalues)
+
+parametrize(argnames, argvalues, indirect=False, ids=None, scope=None)
+常用参数：
+argnames：参数名
+argvalues：
+- 参数对应值，类型必须为list
+- 当参数为一个时,参数格式：[value]
+- 当参数个数大于一个时，格式为:[(param_value1,param_value2.....),(param_value1,param_value2.....)]
+
+&quot;&quot;&quot;
+
+
+import pytest
+
+@pytest.mark.parametrize(&quot;num&quot;, [1, 2, 3, 4])
+def test_demo(num):
+    print(&quot;当前值是:%s&quot; % num)
+
+
+if __name__ == &quot;__main__&quot;:
+    pytest.main([&quot;-s&quot;, &quot;test_01_pytest.py&quot;])
+
+# 运行结果:
+
+    test_01_pytest.py 当前值是:1
+    .当前值是:2
+    .当前值是:3
+    .当前值是:4
+    .</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
@@ -1118,12 +1188,12 @@ if __name__ == &apos;__main__&apos;:
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Pytest(一)</p>
+    <p><span class="copy-title">文章标题:</span>Pytest(一、基本使用)</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
     <p><span class="copy-title">发布时间:</span>2021-01-16, 15:19:03</p>
-    <p><span class="copy-title">最后更新:</span>2021-01-19, 15:14:09</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/01/16/ceshi_12_Pytest/" title="Pytest(一)">http://yoursite.com/2021/01/16/ceshi_12_Pytest/</a>
+    <p><span class="copy-title">最后更新:</span>2021-01-23, 19:14:57</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/01/16/ceshi_12_Pytest(1)/" title="Pytest(一、基本使用)">http://yoursite.com/2021/01/16/ceshi_12_Pytest(1)/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>

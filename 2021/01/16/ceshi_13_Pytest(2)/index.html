@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Pytest(二) | Jerry书店</title>
+  <title>Pytest(二、fixture使用) | Jerry书店</title>
   <meta name="keywords" content=" 测试 ">
-  <meta name="description" content="Pytest(二) | Jerry书店">
+  <meta name="description" content="Pytest(二、fixture使用) | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta name="keywords" content="Python">
@@ -134,7 +134,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(71)</small></div></li>
+    <li><div class="all active">全部文章<small>(72)</small></div></li>
     
         
             
@@ -146,7 +146,7 @@
     
         
             
-            <li><div data-rel="测试">测试<small>(13)</small></div>
+            <li><div data-rel="测试">测试<small>(14)</small></div>
                 
             </li>
             
@@ -218,7 +218,7 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="71">
+<input type="hidden" id="yelog_site_posts_number" value="72">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -343,18 +343,26 @@
         </a>
         
         <a  class="测试 "
+           href="/2021/01/16/ceshi_14_Pytest(3)/"
+           data-tag="测试"
+           data-author="" >
+            <span class="post-title" title="Pytest(三、Allure使用)">Pytest(三、Allure使用)</span>
+            <span class="post-date" title="2021-01-16 17:01:25">2021/01/16</span>
+        </a>
+        
+        <a  class="测试 "
            href="/2021/01/16/ceshi_13_Pytest(2)/"
            data-tag="测试"
            data-author="" >
-            <span class="post-title" title="Pytest(二)">Pytest(二)</span>
+            <span class="post-title" title="Pytest(二、fixture使用)">Pytest(二、fixture使用)</span>
             <span class="post-date" title="2021-01-16 16:31:18">2021/01/16</span>
         </a>
         
         <a  class="测试 "
-           href="/2021/01/16/ceshi_12_Pytest/"
+           href="/2021/01/16/ceshi_12_Pytest(1)/"
            data-tag="测试"
            data-author="" >
-            <span class="post-title" title="Pytest(一)">Pytest(一)</span>
+            <span class="post-title" title="Pytest(一、基本使用)">Pytest(一、基本使用)</span>
             <span class="post-date" title="2021-01-16 15:19:03">2021/01/16</span>
         </a>
         
@@ -916,7 +924,7 @@
     <div class="pjax">
         <article id="post-ceshi_13_Pytest(2)" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Pytest(二)</h1>
+        <h1 class="article-title">Pytest(二、fixture使用)</h1>
     
     <div class="article-meta">
         
@@ -938,7 +946,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2021-01-19 15:15:24'>2021-01-16 16:31</time>
+        创建时间:<time class="date" title='更新时间: 2021-01-23 19:14:40'>2021-01-16 16:31</time>
         
     </div>
     <div class="article-meta">
@@ -976,55 +984,136 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="#1">1.Pytest配置文件</a><br><a href="#2">2.Pytest测试报告</a><br><a href="#3">3.Allure生成报告</a></p>
-<div id="1">1.Pytest配置文件</div>
+        <p><a href="#1">1.fixture 介绍</a><br><a href="#2">2.fixture使用–作为参数应用</a><br><a href="#3">3.fixture使用–作为函数应用</a><br><a href="#4">4.fixutre使用–params参数使用</a></p>
+<br>
 
-<pre><code>配置文件的名称必须为: pytest.ini   (是ini后缀,不是init后缀)
-配置文件跟脚本同处一个目录下
+<div id="1">1.fixture 介绍</div>
+
+<pre><code>fixture是pytest特有的功能，它用pytest.fixture标识，以装饰器形式定义在函数上面,在编写测试函数的时候，可以将此函数名称做为传入参数，pytest将会以依赖注入方式，将该函数的返回值作为测试函数的传入参数.
+
+fixture修饰器来标记固定的工厂函数,在其他函数，模块，类或整个工程调用它时会被激活并优先执行,`通常会被用于完成预置处理和重复操作。`
 
 
-# 配置pytest命令行运行参数
+pytest.fixture(scope=&apos;function&apos;, params=None, autouse=False, ids=None, name=None)
+常用参数解释:
+-    scope: 被标记方法的作用域;
+        &quot;function&quot;: 默认值,表示每个测试方法都要执行一次
+        &quot;class&quot;: 作用于整个类, 表示每个类的所有测试方法只运行一次
+        &quot;module&quot;: 作用于整个模块, 每个module的所有测试方法只运行一次.
+        &quot;session&quot;: 作用于整个session, 每次session只运行一次. 
 
-[pytest]   # 这个需要填写
-addopts = -s ... # 空格分隔，可添加多个命令行参数 -所有参数均为插件包的参数
+- params: list类型,默认None, 接收参数值,对于param里面的每个值，fixture都会去遍历执行一次.
+- autouse: 是否自动运行,默认为false, 为true时此session中的所有测试函数都会调用fixture
 
-# 配置测试搜索的路径
-testpaths = ./scripts # 当前目录下的scrip文件夹  可自定义
+-以上的所有参数也可以不传</code></pre><div id="2">2.fixture基本使用--作为参数</div>
 
-# 配置测试搜索的文件名
-python_files = test_*.py
-# 当前目录下的scripts文件夹下，以test_开头，以.py结尾的所有文件 -可自定义
 
-# 配置测试搜索的测试类名
-python_classes = Test_*
-# 当前目录下的scripts文件夹下，以test_开头，以.py结尾的所有文件中，以Test_开头的类
+<pre><code># -*-coding:utf-8-*-
+import pytest
 
-# 配置测试搜索的测试函数名
-python_functions = test_*
-# 当前目录下的scripts文件夹下，以test_开头，以.py结尾的所有文件中，以Test_开头的类内，以test_开头的⽅法 -可自定义</code></pre><div id="2">2.Pytest测试报告.</div>
 
-<pre><code># 安装命令
-pip install pytest-html
+@pytest.fixture()
+def before():
+    print(&quot;-----&gt; 在每个函数前执行&quot;)
 
-# 修改pytest.ini 配置文件，添加报告参数，即：addopts = -s --html=./report.html  # 可自定义生成的路径
-# 执行方法: 来到 pytest.ini 目录下, 输入：pytest</code></pre><div id="3">3.Allure生成报告</div>
 
-<pre><code>1.Allure是一款非常轻量级并且非常灵活的开源测试报告生成框架, 能够生成美观易读的报告，目前支持语言：Java, PHP, Ruby, Python, Scala,                    C#。它支持绝大多数测试框架， 例如TestNG、Pytest、JUint等。它简单易用，易于集成.
+def test_1():
+    print(&apos;-----&gt; test_1&apos;)
 
-2. 安装Allure Pytest Adaptor
- Allure Pytest Adaptor是Pytest的一个插件，通过它我们可以生成Allure所需要的用于生成测试报告的数据。安装pytest-allure-adaptor插件方法:
- pip install pytest-allure-adaptor
 
-3.使用方式：
-在pytest.ini文件中添加:  addopts = -s --alluredir ./report   # 会在当前目录下的report文件夹下生成 一个 xxx.json的文件
+def test_2(before):  # 作为参数使用,会打印before()函数里面的内容
+    print(&quot;----&gt; test_2&quot;)
 
-4.需要使用工具 将json文件转成html文件
-    需要下载一个allure工具，可以参考这个教程 https://www.cnblogs.com/huny/p/13752406.html
 
-5. 进入report上级目录执行命令：allure generate report/ -o report/html   # 会将报告生成在 report/html下,名称为index.html
+if __name__ == &quot;__main__&quot;:
+    pytest.main([&quot;-s&quot;, &quot;test_01_fixture.py&quot;])
 
-    ps: 用谷歌浏览器打开报告 需要开启allure服务器,否则无法显示数据:  allure serve report/allure_raw
-    ps: 如果报告中文乱码,可参考这个教程：https://blog.csdn.net/qq_36917144/article/details/108740806</code></pre>
+
+# 运行结果:
+
+test_01_fixture.py -----&gt; test_1
+.-----&gt; 在每个函数前执行
+----&gt; test_2
+.</code></pre><div id="3">3.fixture基本使用--作为函数</div>
+
+<pre><code>import pytest
+
+
+@pytest.fixture()
+def before():
+    print(&apos;\nbefore each test&apos;)
+
+
+@pytest.mark.usefixtures(&quot;before&quot;)
+def test_1():
+    print(&apos;---&gt;test_1&apos;)
+
+
+# @pytest.mark.usefixtures(&quot;before&quot;)  # 只会调用一次
+def test_2(before):
+    print(&quot;----&gt; test_2&quot;)
+
+
+@pytest.mark.usefixtures(&quot;before&quot;) # 类里面的所有方法，都会调用befor()函数
+class Test2:
+    def test_5(self):
+        print(&apos;test_5&apos;)
+
+    def test_6(self):
+        print(&apos;test_6&apos;)
+
+
+if __name__ == &quot;__main__&quot;:
+    pytest.main([&quot;-s&quot;, &quot;test_01_fixture.py&quot;])
+
+
+# 运行结果:
+
+    test_01_fixture.py 
+    before each test
+    ---&gt;test_1
+    .
+    before each test
+    ----&gt; test_2
+    .
+    before each test
+    test_5
+    .
+    before each test
+    test_6
+    .</code></pre><div id="4">4.fixutre使用--params参数使用</div>
+
+<pre><code># -*-coding:utf-8-*-
+import pytest
+
+
+@pytest.fixture(params=[1, 2, 3])
+def need_data(request):  # 默认传入参数request
+    return request.param  # 取列表中单个值，默认的取值方式
+
+
+class Test_ABC:
+    def test_a(self, need_data):  # 函数名
+        print(&quot;\ntest_a 的值是 %s&quot; % need_data)
+        if need_data &lt; 3:
+            print(&quot;test_a 的值是 %s,小于3&quot; % need_data)
+
+
+if __name__ == &quot;__main__&quot;:
+    pytest.main([&quot;-s&quot;, &quot;test_01_fixture.py&quot;])
+
+
+ # 运行结果:
+
+    test_01_fixture.py 
+    test_a 的值是 1
+    test_a 的值是 1,小于3
+    .
+    test_a 的值是 2
+    test_a 的值是 2,小于3
+    .
+    test_a 的值是 3
+    .</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
@@ -1037,12 +1126,12 @@ pip install pytest-html
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Pytest(二)</p>
+    <p><span class="copy-title">文章标题:</span>Pytest(二、fixture使用)</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
     <p><span class="copy-title">发布时间:</span>2021-01-16, 16:31:18</p>
-    <p><span class="copy-title">最后更新:</span>2021-01-19, 15:15:24</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/01/16/ceshi_13_Pytest(2)/" title="Pytest(二)">http://yoursite.com/2021/01/16/ceshi_13_Pytest(2)/</a>
+    <p><span class="copy-title">最后更新:</span>2021-01-23, 19:14:40</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/01/16/ceshi_13_Pytest(2)/" title="Pytest(二、fixture使用)">http://yoursite.com/2021/01/16/ceshi_13_Pytest(2)/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
