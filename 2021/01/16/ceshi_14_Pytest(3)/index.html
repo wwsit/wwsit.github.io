@@ -946,7 +946,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2021-01-23 19:15:47'>2021-01-16 17:01</time>
+        创建时间:<time class="date" title='更新时间: 2021-01-24 19:57:35'>2021-01-16 17:01</time>
         
     </div>
     <div class="article-meta">
@@ -984,7 +984,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="#1">1.Pytest配置文件</a><br><a href="#2">2.Pytest测试报告</a><br><a href="#3">3.Allure生成报告</a></p>
+        <p><a href="#1">1.Pytest配置文件</a><br><a href="#2">2.Pytest测试报告</a><br><a href="#3">3.Allure生成报告</a><br><a href="#4">4.pytest-allure代码</a></p>
 <div id="1">1.Pytest配置文件</div>
 
 <pre><code>配置文件的名称必须为: pytest.ini   (是ini后缀,不是init后缀)
@@ -1032,7 +1032,31 @@ pip install pytest-html
 5. 进入report上级目录执行命令：allure generate report/ -o report/html   # 会将报告生成在 report/html下,名称为index.html
 
     ps: 用谷歌浏览器打开报告 需要开启allure服务器,否则无法显示数据:  allure serve report/allure_raw
-    ps: 如果报告中文乱码,可参考这个教程：https://blog.csdn.net/qq_36917144/article/details/108740806</code></pre>
+    ps: 如果报告中文乱码,可参考这个教程：https://blog.csdn.net/qq_36917144/article/details/108740806</code></pre><div id="4">4.pytest-allure代码</div>
+
+<pre><code>import os
+import allure
+import pytest
+
+class TestAllure:
+
+    def setup(self):
+        print(&apos;---&gt; setup&apos;)
+
+    def teardown(self):
+        print(&apos;teardown&apos;)
+
+    @allure.step(&quot;我是测试步骤001&quot;)
+    def test_a(self):
+        print(&apos;test_a&apos;)
+        # 添加描述信息
+        allure.attach(&quot;描述&quot;, &quot;我是测试步骤001的描述~~&quot;)
+        assert 2 != 2  # 当条件不成立时，会报错
+
+
+if __name__ == &apos;__main__&apos;:
+    pytest.main([&quot;-s&quot;, &quot;test_01_fixture.py&quot;])
+    os.system(&quot;allure generate report/ -o report/html  --clean&quot;) # 自动生成报告</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
@@ -1049,7 +1073,7 @@ pip install pytest-html
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
     <p><span class="copy-title">发布时间:</span>2021-01-16, 17:01:25</p>
-    <p><span class="copy-title">最后更新:</span>2021-01-23, 19:15:47</p>
+    <p><span class="copy-title">最后更新:</span>2021-01-24, 19:57:35</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/01/16/ceshi_14_Pytest(3)/" title="Pytest(三、Allure使用)">http://yoursite.com/2021/01/16/ceshi_14_Pytest(3)/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
