@@ -329,15 +329,15 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">爬虫、csv</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color1">爬虫、知识</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color5">爬虫、scrapy</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">爬虫、csv</a>
     </li>
     
     <div class="clearfix"></div>
@@ -998,7 +998,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2021-03-06 20:22:59'>2021-03-06 19:01</time>
+        创建时间:<time class="date" title='更新时间: 2021-03-06 20:27:53'>2021-03-06 19:01</time>
         
     </div>
     <div class="article-meta">
@@ -1150,29 +1150,29 @@ print(&quot;切换后:&quot;,browser.title)
 <br>
 <div id="5" style="font-size:20px">5.鼠标&键盘操作</div>
 
-<pre><code>1. context_click()            右击 --&gt; 此方法模拟鼠标右键点击效果
-2. double_click()            双击 --&gt; 此方法模拟双标双击效果
-3. drag_and_drop()            拖动 --&gt; 此方法模拟双标拖动效果
-4. move_to_element()        悬停 --&gt; 此方法模拟鼠标悬停效果
-5. perform()                执行 --&gt; 此方法用来执行以上所有鼠标方法
+<pre><code>context_click()            右击 --&gt; 此方法模拟鼠标右键点击效果
+double_click()             双击 --&gt; 此方法模拟双标双击效果
+drag_and_drop()            拖动 --&gt; 此方法模拟双标拖动效果
+move_to_element()          悬停 --&gt; 此方法模拟鼠标悬停效果
+perform()                  执行 --&gt; 此方法用来执行以上所有鼠标方法
 
 1. 使用方法
 from selenium.webdriver.common.action_chains import ActionChains
 2. 实例化ActionChains对象：
 Action=ActionChains(driver)
 3. 调用右键方法：
-element=Action.context_click(element) 
+element1=Action.context_click(element) 
 4. 执行：
-element.perform()</code></pre><br>
+element1.perform()</code></pre><br>
 <div id="6" style="font-size:20px">6.键盘操作</div>
 
-<pre><code>1. send_keys(Keys.BACK_SPACE)删除键（BackSpace） 
-2. send_keys(Keys.SPACE)空格键(Space) 
-3. send_keys(Keys.TAB)制表键(Tab) 
-4. send_keys(Keys.ESCAPE)回退键（Esc） 
-5. send_keys(Keys.ENTER)回车键（Enter） 
-6. send_keys(Keys.CONTROL,&apos;a&apos;) 全选（Ctrl+A） 
-7. send_keys(Keys.CONTROL,&apos;c&apos;)复制（Ctrl+C）
+<pre><code>send_keys(Keys.BACK_SPACE)删除键（BackSpace） 
+send_keys(Keys.SPACE)空格键(Space) 
+send_keys(Keys.TAB)制表键(Tab) 
+send_keys(Keys.ESCAPE)回退键（Esc） 
+send_keys(Keys.ENTER)回车键（Enter） 
+send_keys(Keys.CONTROL,&apos;a&apos;) 全选（Ctrl+A） 
+send_keys(Keys.CONTROL,&apos;c&apos;)复制（Ctrl+C）
 
 
 # 定位用户名
@@ -1202,16 +1202,16 @@ driver.find_element_by_id(&apos;passwordA&apos;).send_keys(Keys.CONTROL,&apos;v&
     element.send_keys(&apos;xxxx&apos;)         输入
     element.click()                   单击元素
 
-    driver.maximize_window()                最大化 --&gt; 模拟浏览器最大化按钮
+    driver.maximize_window()                   最大化 --&gt; 模拟浏览器最大化按钮
     driver.set_window_size(100,100)            浏览器大小 --&gt; 设置浏览器宽、高(像素点)
-    driver.set_window_position(300,200)     浏览器位置 --&gt; 设置浏览器位置
-    driver.back()                             后退 --&gt; 模拟浏览器后退按钮
-    driver.forward()                         前进 --&gt; 模拟浏览器前进按钮
-    driver.refresh()                         刷新 --&gt; 模拟浏览器F5刷新
-    driver.close()                            关闭 --&gt; 模拟浏览器关闭按钮(关闭单个窗口)
-    driver.quit()                            关闭 --&gt; 关闭所有WebDriver启动的窗口
-    driver.title                             获取title
-    current_url                                    获取当前页面URL
+    driver.set_window_position(300,200)        浏览器位置 --&gt; 设置浏览器位置
+    driver.back()                              后退 --&gt; 模拟浏览器后退按钮
+    driver.forward()                           前进 --&gt; 模拟浏览器前进按钮
+    driver.refresh()                           刷新 --&gt; 模拟浏览器F5刷新
+    driver.close()                             关闭 --&gt; 模拟浏览器关闭按钮(关闭单个窗口)
+    driver.quit()                              关闭 --&gt; 关闭所有WebDriver启动的窗口
+    driver.title                               获取title
+    current_url                                获取当前页面URL
 
 
 4.执行 javascript 代码
@@ -1241,7 +1241,7 @@ driver.find_element_by_id(&apos;passwordA&apos;).send_keys(Keys.CONTROL,&apos;v&
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
     <p><span class="copy-title">发布时间:</span>2021-03-06, 19:01:21</p>
-    <p><span class="copy-title">最后更新:</span>2021-03-06, 20:22:59</p>
+    <p><span class="copy-title">最后更新:</span>2021-03-06, 20:27:53</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/03/06/spider_13_selenium/" title="selenium命令">http://yoursite.com/2021/03/06/spider_13_selenium/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -1303,7 +1303,7 @@ driver.find_element_by_id(&apos;passwordA&apos;).send_keys(Keys.CONTROL,&apos;v&
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#基础','#图形化界面、exe','#测试','#后端','#数据库','#数据库、Mysql','#Django','#机器学习、折线图','#机器学习','#前端','#分享','#学习资料、串口','#shell脚本、Python、Mysql、Nginx','#bat命令、shell命令','#shell命令','#爬虫','#爬虫、requests','#爬虫requests','#爬虫、xpath','#爬虫、知识','#爬虫、scrapy','#爬虫、csv',],
+            'data': ['#基础','#图形化界面、exe','#测试','#后端','#数据库','#数据库、Mysql','#Django','#机器学习、折线图','#机器学习','#前端','#分享','#学习资料、串口','#shell脚本、Python、Mysql、Nginx','#bat命令、shell命令','#shell命令','#爬虫','#爬虫、requests','#爬虫requests','#爬虫、xpath','#爬虫、csv','#爬虫、知识','#爬虫、scrapy',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
