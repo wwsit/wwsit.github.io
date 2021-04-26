@@ -1010,7 +1010,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2021-03-06 20:57:21'>2021-03-06 17:26</time>
+        创建时间:<time class="date" title='更新时间: 2021-04-26 18:58:17'>2021-03-06 17:26</time>
         
     </div>
     <div class="article-meta">
@@ -1061,7 +1061,7 @@
     * 来到要打包的 .py文件下
     * 输入 pyinstaller.exe 的路径，然后 -F 指定打包的文件，等待程序跑完
     eg:
-    D:\Python3.6\Scripts\pyinstaller.exe -F demo.py</code></pre><div id="3">3.main程序(此程序无法运行,只供参考)</div>
+    D:\Python3.6\Scripts\pyinstaller.exe -F demo.py</code></pre><div id="3">3.main程序(此程序无法运行,只供参考,代码还需优化)</div>
 
 <pre><code>本程序主要用到部件:
 
@@ -1069,18 +1069,31 @@ Label：显示不可编辑的内容
 Text： 显示多行文本，用来收集或显示用户的输入
 Entry:  只显示单行文本，用来收集  用户的输入
 Button：一个简单的按钮，用来执行一个命令或别的操作。
+Combobox： 下拉框
 
-# -*-coding:utf-8-*-
-
+ # -*-coding:utf-8-*-
+&quot;&quot;&quot;
+@author： weisheng.wang
+&quot;&quot;&quot;
 
 import re
 import threading
 import tkinter as tk
-
+from tkinter import ttk
 from methods import *
 
+# 默认是: 不展开
+is_open_flag = False
+# 默认不打印info信息
+display_info = False
+# 默认不打印text信息
+display_text = False
+
+get_page_content_method = &quot;方式:resourceId&quot;
+compare_method = &quot;1.判断标准值是否都在实际值列表中&quot;
+
 window = tk.Tk()
-window.title(&quot;百宝箱&quot;)
+window.title(&quot;百宝箱V3.6.2.480&quot;)
 window.geometry(&quot;500x550&quot;)
 
 
@@ -1099,10 +1112,11 @@ def get_box_ip_address():
             result_display.insert(&quot;end&quot;, line + &apos;\n&apos;)
 
     except AttributeError:
-        result_display.insert(&quot;end&quot;, &quot;您输入格式有误\n刚才输入的IP是:%s&quot; % get_ip_address)
-        result_display.insert(&quot;end&quot;, &quot;\n请按照 xxx.xxx.xxx.xxx:xxxx 或 xxx.xxx.xxx.xxx 格式输入&quot;)
+        result_display.insert(&quot;end&quot;, &quot;您输入格式有误\n刚才输入的IP是:%s\n&quot; % get_ip_address)
+        result_display.insert(&quot;end&quot;, &quot;请按照 xxx.xxx.xxx.xxx:xxxx 或 xxx.xxx.xxx.xxx 格式输入\n&quot;)
     except Exception as e:
-        result_display.insert(&quot;end&quot;, &quot;报错原因:%s&quot; % e)
+        result_display.insert(&apos;end&apos;, &quot;输入的IP有误\n&quot;)
+        result_display.insert(&quot;end&quot;, &quot;报错原因:%s\n&quot; % e)
     finally:
         result_display.insert(&apos;end&apos;, &apos;\n\n&apos;)
 
@@ -1110,16 +1124,22 @@ def get_box_ip_address():
 def set_chroma():
     &quot;&quot;&quot;设置chroma&quot;&quot;&quot;
     try:
+        result_display.insert(&quot;end&quot;, &quot;请稍等,正在播放...\n&quot;)
+        TPeripheral.release_chroma()
 
+        # 获取输入的值
         timing = timing_input.get()
         pattern = pattern_input.get()
         if len(timing) == 0 or len(pattern) == 0:
             result_display.insert(&quot;end&quot;, str(&quot;timing或pattern值为空,请填入内容&quot;) + &apos;\n&apos;)
             return
-        print(timing, pattern)
-        play_chroma(timing, pattern)
-        result_display.insert(&quot;end&quot;, &quot;播放成功\n&quot;)
-        write_data_chroma(timing, pattern)
+
+        # 播放Chroma
+        if play_chroma(timing, pattern):
+            result_display.insert(&quot;end&quot;, &quot;播放成功\n&quot;)
+            write_data_chroma(timing, pattern)
+        else:
+            result_display.insert(&quot;end&quot;, &quot;播放失败\n&quot;)
     except Exception as e:
         result_display.insert(&quot;end&quot;, str(e) + &apos;\n&apos;)
     finally:
@@ -1130,19 +1150,34 @@ def set_stream():
     &quot;&quot;&quot;设置码流&quot;&quot;&quot;
 
     try:
+        result_display.insert(&quot;end&quot;, &quot;请稍等,正在播放...\n&quot;)
+        TPeripheral.release_stream()
+
+        # 获取输入的值
         stream_file = stream_path_input.get()
         play_time = stream_time_input.get()
         stream_type = stream_type_input.get()
         channel_point = stream_freq_input.get()
+
+        # 判断输入的值是否为空
         list1 = [stream_file, play_time, stream_type, channel_point]
         for list2 in list1:
             if len(list2) == 0 or list2 is None:
                 result_display.insert(&quot;end&quot;, &quot;请输入所有内容&quot; + &apos;\n&apos;)
                 return
-        play_stream(stream_file, play_time, stream_type, channel_point)
-        result_display.insert(&quot;end&quot;, &quot;播放成功\n&quot;)
+
         result_display.insert(&quot;end&quot;, &apos;当前码流地址为:\n%s\n&apos; % stream_file)
-        write_data_stream(stream_file, play_time, stream_type, channel_point)
+        if not os.path.exists(stream_file):
+            result_display.insert(&quot;end&quot;, &quot;码流文件不存在\n&quot;)
+            return
+
+        # 播放码流
+        if play_stream(stream_file, play_time, stream_type, channel_point):
+            result_display.insert(&quot;end&quot;, &quot;播放成功\n&quot;)
+            write_data_stream(stream_file, play_time, stream_type, channel_point)
+        else:
+            result_display.insert(&quot;end&quot;, &quot;播放失败\n&quot;)
+            result_display.insert(&quot;end&quot;, &apos;当前码流地址为:\n%s\n&apos; % stream_file)
     except Exception as e:
         result_display.insert(&quot;end&quot;, str(e) + &apos;\n&apos;)
     finally:
@@ -1152,7 +1187,9 @@ def set_stream():
 def write_content():
     &quot;&quot;&quot;读取配置 写进表格&quot;&quot;&quot;
     data = get_config()
-    ip_address_input.insert(&apos;insert&apos;, data[&quot;ip_address&quot;])  # 往方框中填入内容
+
+    # 往方框中填入内容
+    ip_address_input.insert(&apos;insert&apos;, data[&quot;ip_address&quot;])
 
     timing_input.insert(&quot;insert&quot;, data[&quot;timing&quot;])
     pattern_input.insert(&quot;insert&quot;, data[&quot;pattern&quot;])
@@ -1166,15 +1203,19 @@ def write_content():
     remote_time_input.insert(&quot;insert&quot;, data[&quot;remote_cnt_time&quot;])
     adb_input.insert(&quot;insert&quot;, data[&quot;adb_keyword&quot;])
     adb_time_input.insert(&quot;insert&quot;, data[&quot;adb_cnt_time&quot;])
+    continue_send_key_input.insert(&quot;insert&quot;, data[&quot;continue_send_key_list&quot;])
+    get_page_content_input.insert(&quot;insert&quot;, data[&quot;element_id&quot;])
 
 
 def send_remote():
     &quot;&quot;&quot;发送 红外码值&quot;&quot;&quot;
     from Package import TPeripheral
     try:
+        # 获取输入的值
         remote = TPeripheral.get_remote()
         keyword = remote_input.get()
         cnt_time = remote_time_input.get()
+
         cnt, timeouts = str(cnt_time).split(&apos;,&apos;)
         write_data_remote(keyword, cnt_time)
         remote.send_key(keyword, int(cnt), int(timeouts))
@@ -1182,7 +1223,7 @@ def send_remote():
     except Exception as e:
         result_display.insert(&quot;end&quot;, str(e) + &apos;\n&apos;)
     finally:
-        TPeripheral.release()
+        TPeripheral.release_remote()
 
 
 def send_adb():
@@ -1208,7 +1249,129 @@ def screen_picture1():
     from Package import TMenu
     result_display.insert(&quot;end&quot;, &apos;截图中,请稍等...\n&apos;)
     img = TMenu.screen_shoots()
-    result_display.insert(&apos;end&apos;, &apos;截图路径:\n%s&apos; % img)
+    result_display.insert(&apos;end&apos;, &apos;截图路径:\n%s\n&apos; % img)
+    TPeripheral.release()
+
+
+def is_open():
+    &quot;&quot;&quot;展开/折叠&quot;&quot;&quot;
+    global is_open_flag, open_button
+
+    # 展开后的内容
+    if not is_open_flag:
+        is_open_flag = True
+        window.geometry(&quot;1100x600&quot;)
+
+        result_display.place(x=20, y=400, anchor=&apos;nw&apos;, height=190, width=1060)
+        open_button = tk.Button(window, text=&quot;折叠&quot;, bg=&quot;white&quot;, command=lambda: fun_thread(is_open))
+        open_button.place(x=380, y=40, anchor=&apos;nw&apos;, height=40, width=70)
+
+    # 折叠后的内容
+    else:
+        is_open_flag = False
+        window.geometry(&quot;500x550&quot;)
+        result_display.place(x=10, y=400, anchor=&apos;nw&apos;, height=140, width=480)
+        open_button = tk.Button(window, text=&quot;展开&quot;, bg=&quot;white&quot;, command=lambda: fun_thread(is_open))
+        open_button.place(x=380, y=40, anchor=&apos;nw&apos;, height=40, width=70)
+
+
+def get_page_content(*args):
+    &quot;&quot;&quot;获取下拉框 选择的元素&quot;&quot;&quot;
+
+    global get_page_content_method
+    get_page_content_method = get_page_content_box_list.get()
+
+
+def get_list_content(*args):
+    &quot;&quot;&quot;获取列表比较下拉框 选择的元素&quot;&quot;&quot;
+
+    global compare_method
+    compare_method = list_compare_method_box_list.get()
+
+
+def get_page_value1():
+    &quot;&quot;&quot; 获取页面元素 &quot;&quot;&quot;
+
+    global get_page_content_method, display_info, display_text
+    value = get_page_content_input.get()
+    get_page_content_method = str(get_page_content_method).replace(&quot;方式:&quot;, &quot;&quot;)
+    get_page_value(get_page_content_method, value, result_display, display_text, display_info)
+
+
+def set_print_info_value():
+    &quot;&quot;&quot;设置 是否显示info内容&quot;&quot;&quot;
+
+    global display_info, print_info_button, display_text
+
+    if not display_info:
+        display_info = True
+        print_info_button = tk.Button(window, text=&quot;True&quot;, bg=&quot;white&quot;, command=lambda: fun_thread(set_print_info_value))
+        print_info_button.place(x=660, y=340, anchor=&apos;nw&apos;, height=40, width=90)
+
+    elif display_info:
+        display_info = False
+        print_info_button = tk.Button(window, text=&quot;False&quot;, bg=&quot;white&quot;,
+                                      command=lambda: fun_thread(set_print_info_value))
+        print_info_button.place(x=660, y=340, anchor=&apos;nw&apos;, height=40, width=90)
+
+
+def set_print_text_value():
+    &quot;&quot;&quot;设置 是否显示text内容&quot;&quot;&quot;
+
+    global print_text_button, display_text
+
+    if not display_text:
+        display_text = True
+        print_text_button = tk.Button(window, text=&quot;True&quot;, bg=&quot;white&quot;, command=lambda: fun_thread(set_print_text_value))
+        print_text_button.place(x=900, y=340, anchor=&apos;nw&apos;, height=40, width=90)
+
+    elif display_text:
+        display_text = False
+        print_text_button = tk.Button(window, text=&quot;False&quot;, bg=&quot;white&quot;,
+                                      command=lambda: fun_thread(set_print_text_value))
+        print_text_button.place(x=900, y=340, anchor=&apos;nw&apos;, height=40, width=90)
+
+
+def continue_send_key_fun():
+    &quot;&quot;&quot;持续发键&quot;&quot;&quot;
+
+    continue_key_list1 = continue_send_key_input.get()
+    comma_num = int(continue_key_list1.count(&apos;,&apos;))
+    if comma_num != 3 and comma_num != 1:
+        result_display.insert(&quot;end&quot;, &quot;输入有误,请输入两个(或四个) 内容\n&quot;)
+        return
+
+    try:
+        continue_send_key_adb(continue_key_list1, result_display)
+    except Exception as e:
+        result_display.insert(&quot;end&quot;, str(e) + &quot;\n&quot;)
+
+
+def compare_list_fun():
+    &quot;&quot;&quot;列表比较&quot;&quot;&quot;
+
+    global compare_method, result_display
+    method = str(compare_method[0])
+    standard_value = str(standard_value_input.get())
+    actual_value = str(actual_value_input.get())
+
+    # 去除掉原有的左右括号
+    if standard_value.startswith(&quot;[&quot;) and standard_value.endswith(&quot;]&quot;):
+        standard_value = standard_value.replace(&quot;[&quot;, &quot;&quot;).replace(&quot;]&quot;, &quot;&quot;)
+    if actual_value.startswith(&quot;[&quot;) and actual_value.endswith(&quot;]&quot;):
+        actual_value = actual_value.replace(&quot;[&quot;, &quot;&quot;).replace(&quot;]&quot;, &quot;&quot;)
+
+    # 去除掉原有的单双引号
+    standard_value = standard_value.replace(&apos;&quot;&apos;, &apos;&apos;).replace(&quot;&apos;&quot;, &quot;&quot;)
+    actual_value = actual_value.replace(&apos;&quot;&apos;, &apos;&apos;).replace(&quot;&apos;&quot;, &quot;&quot;)
+
+    # 转成列表
+    standard_value = standard_value.split(&apos;,&apos;)
+    actual_value = actual_value.split(&apos;,&apos;)
+
+    result_display.insert(&quot;end&quot;, str(standard_value) + &quot;\n&quot;)
+    result_display.insert(&quot;end&quot;, str(actual_value) + &quot;\n&quot;)
+    two_list_compare_method(standard_value, actual_value, method, result_display)
 
 
 def fun_thread(func, *args):
@@ -1229,6 +1392,12 @@ ip_address_input.place(x=120, y=40, anchor=&apos;nw&apos;, height=40, width=150)
 # 放置&quot;连接&quot;按钮框
 ip_connect = tk.Button(window, text=&quot;连接&quot;, bg=&quot;white&quot;, command=lambda: fun_thread(get_box_ip_address))
 ip_connect.place(x=300, y=40, anchor=&apos;nw&apos;, height=40, width=70)
+
+# 放置&quot;展开&quot;按钮框
+if not is_open_flag:
+    # open_button = tk.Button(window, text=&quot;展开&quot;, bg=&quot;white&quot;, command=lambda: fun_thread(is_open))
+    open_button = tk.Button(window, text=&quot;展开&quot;, bg=&quot;white&quot;, command=is_open)
+    open_button.place(x=380, y=40, anchor=&apos;nw&apos;, height=40, width=70)
 
 # 放置&quot;Timing&quot;显示框
 timing_tip_text = tk.Label(window, text=&quot;Timing值:&quot;, bg=&quot;white&quot;)
@@ -1350,22 +1519,121 @@ button_ac_on.place(x=420, y=245, anchor=&apos;nw&apos;, height=80, width=70)
 button_ac_on = tk.Button(window, text=&quot;清空终端内容&quot;, bg=&quot;white&quot;, command=lambda: fun_thread(clear_terminal, result_display))
 button_ac_on.place(x=400, y=340, anchor=&apos;nw&apos;, height=40, width=80)
 
+# 放置 &quot;分界线&quot;
+tk.Label(window, text=&apos;&apos;, bg=&apos;black&apos;).place(x=525, y=0, anchor=&apos;nw&apos;, height=400, width=20)
+
+# 放置&quot;持续发键&quot; 显示框
+tk.Label(window, text=&quot;持续发键&quot;, bg=&quot;white&quot;).place(x=560, y=50, anchor=&apos;nw&apos;, height=40, width=80)
+
+# 放置&quot;发键方式:adb&quot;显示框
+tk.Label(window, text=&quot;发键方式:adb&quot;, bg=&quot;white&quot;).place(x=650, y=50, anchor=&apos;nw&apos;, height=40, width=120)
+
+# # 放置&quot;持续发键&quot;输入框
+continue_send_key_input = tk.Entry(window, bg=&quot;white&quot;)
+continue_send_key_input.place(x=780, y=50, anchor=&apos;nw&apos;, height=40, width=140)
+
+# 放置&quot;持续发键  发送&quot;按钮框
+continue_send_key_button = tk.Button(window, text=&quot;发送&quot;, bg=&quot;white&quot;, command=lambda: fun_thread(continue_send_key_fun))
+continue_send_key_button.place(x=930, y=50, anchor=&apos;nw&apos;, height=40, width=70)
+
+# 放置&quot;持续发键  停止&quot;按钮框
+continue_send_key_button = tk.Button(window, text=&quot;停止&quot;, bg=&quot;white&quot;,
+                                     command=lambda: fun_thread(stop_continue_send_key, result_display))
+continue_send_key_button.place(x=1010, y=50, anchor=&apos;nw&apos;, height=40, width=70)
+
+# 放置&quot;页面内容&quot; 显示框
+tk.Label(window, text=&quot;打印页面内容&quot;, bg=&quot;white&quot;).place(x=560, y=110, anchor=&apos;nw&apos;, height=40, width=80)
+
+# 放置&quot;打印内容&quot;下拉框
+get_page_content_box_list = ttk.Combobox(window, width=9)
+get_page_content_box_list[&quot;values&quot;] = (&quot;方式:text&quot;, &quot;方式:className&quot;, &quot;方式:resourceId&quot;, &quot;方式:packageName&quot;, &quot;方式:textContains&quot;)
+get_page_content_box_list.current([2])
+get_page_content_box_list.grid(row=0, column=0, padx=660, pady=110, ipadx=20, ipady=9, sticky=&apos;W&apos;)
+get_page_content_box_list.bind(&quot;&lt;&lt;ComboboxSelected&gt;&gt;&quot;, get_page_content)
+
+# 放置&quot;打印内容&quot;输入框
+get_page_content_input = tk.Entry(window, bg=&quot;white&quot;)
+get_page_content_input.place(x=790, y=110, anchor=&apos;nw&apos;, height=40, width=190)
+
+# 放置&quot;打印内容&quot;按钮框
+get_page_content_button = tk.Button(window, text=&quot;发送&quot;, command=lambda: fun_thread(get_page_value1))
+get_page_content_button.place(x=990, y=110, anchor=&apos;nw&apos;, height=40, width=90)
+
+# 放置&quot;标准值列表&quot;显示框
+standard_value_list = tk.Label(window, text=&quot;标准值列表&quot;, bg=&quot;white&quot;)
+standard_value_list.place(x=560, y=170, anchor=&apos;nw&apos;, height=40, width=80)
+
+# 放置&quot;标准值列表&quot;输入框
+standard_value_input = tk.Entry(window, bg=&quot;white&quot;)
+standard_value_input.place(x=660, y=170, anchor=&apos;nw&apos;, height=40, width=400)
+
+# 放置&quot;实际值列表&quot;显示框
+actual_value_list = tk.Label(window, text=&quot;实际值列表&quot;, bg=&quot;white&quot;)
+actual_value_list.place(x=560, y=230, anchor=&apos;nw&apos;, height=40, width=80)
+
+# 放置&quot;实际值列表&quot;输入框
+actual_value_input = tk.Entry(window, bg=&quot;white&quot;)
+actual_value_input.place(x=660, y=230, anchor=&apos;nw&apos;, height=40, width=400)
+
+# 放置&quot;列表对比方式&quot;显示框
+actual_value_list = tk.Label(window, text=&quot;实际值列表&quot;, bg=&quot;white&quot;)
+actual_value_list.place(x=560, y=230, anchor=&apos;nw&apos;, height=40, width=80)
+
+# 放置&quot;列表比较&quot;提示语
+list_compare_method_tip = tk.Label(window, text=&quot;比较方式&quot;, bg=&apos;white&apos;)
+list_compare_method_tip.place(x=560, y=290, anchor=&apos;nw&apos;, height=40, width=80)
+
+# 放置&quot;列表比较&quot;下拉框
+list_compare_method_box_list = ttk.Combobox(window, width=25)
+list_compare_method_box_list[&quot;values&quot;] = (&quot;1.判断标准值是否都在实际值列表中&quot;, &quot;2.通过相同下标比较&quot;, &quot;3.判断实际列表值是否都在标准值中&quot;)
+list_compare_method_box_list.current([0])  # padx pady 放置的位置
+list_compare_method_box_list.grid(row=1, column=0, padx=660, pady=27, ipadx=20, ipady=9, sticky=&apos;W&apos;)
+list_compare_method_box_list.bind(&quot;&lt;&lt;ComboboxSelected&gt;&gt;&quot;, get_list_content)
+
+# 放置&quot;列表比较&quot;按钮框
+list_compare_method_button = tk.Button(window, text=&quot;发送&quot;, command=lambda: fun_thread(compare_list_fun))
+list_compare_method_button.place(x=920, y=288, anchor=&apos;nw&apos;, height=40, width=90)
+
+# 放置&quot;打印info信息&quot;提示框
+print_info_tip = tk.Label(window, text=&quot;打印info信息&quot;, bg=&quot;white&quot;)
+print_info_tip.place(x=560, y=340, anchor=&apos;nw&apos;, height=40, width=80)
+
+# 放置&quot;打印info信息&quot;按钮框
+print_info_button = tk.Button(window, text=&quot;False&quot;, bg=&quot;white&quot;, command=lambda: fun_thread(set_print_info_value))
+print_info_button.place(x=660, y=340, anchor=&apos;nw&apos;, height=40, width=90)
+
+# 放置&quot;打印text信息&quot;提示框
+print_text_tip = tk.Label(window, text=&quot;打印text信息&quot;, bg=&quot;white&quot;)
+print_text_tip.place(x=800, y=340, anchor=&apos;nw&apos;, height=40, width=80)
+
+# 放置&quot;打印text信息&quot;按钮框
+print_text_button = tk.Button(window, text=&quot;False&quot;, bg=&quot;white&quot;, command=lambda: fun_thread(set_print_text_value))
+print_text_button.place(x=900, y=340, anchor=&apos;nw&apos;, height=40, width=90)
+
 # 放置 &quot;显示结果&quot; 输入框
 result_display = tk.Text(window)
 result_display.place(x=10, y=400, anchor=&apos;nw&apos;, height=140, width=480)
 
 # 读取配置
 write_content()
+
+# 解决花屏问题
+for _ in range(4):
+    is_open()
+
 # 运行窗口
 window.mainloop()</code></pre><div id="4"> 4.methods代码</div>
 
 <pre><code># -*-coding:utf-8-*-
 
 import json
-
+import os
+import time
+import uiautomator2
 from Package import TPeripheral
 
 content = &apos;&apos;
+continue_send_key_flag = False
 
 
 def get_config():
@@ -1374,6 +1642,13 @@ def get_config():
     with open(&quot;config.json&quot;, &apos;r&apos;, encoding=&apos;utf-8&apos;) as f:
         content = json.load(f)
     return content
+
+
+def write_data():
+    &quot;&quot;&quot;写入数据&quot;&quot;&quot;
+    global content
+    with open(&apos;config.json&apos;, &apos;w&apos;, encoding=&apos;utf-8&apos;) as f:
+        json.dump(content, f)
 
 
 def write_ip_in_config(ip_address):
@@ -1398,6 +1673,7 @@ def ac_on(result_display):
 
 def ac_off(result_display):
     &quot;&quot;&quot;断电&quot;&quot;&quot;
+
     try:
         remote = TPeripheral.get_remote()
         remote.ac_off()
@@ -1421,12 +1697,23 @@ def send_power(result_display):
 def play_chroma(timing, pattern):
     &quot;&quot;&quot;播放 22293&quot;&quot;&quot;
     chroma = TPeripheral.get_chroma()
-    chroma.set_timing_pattern(timing, pattern)
+    if chroma.set_timing_pattern(timing, pattern):
+        return True
+    else:
+        TPeripheral.release_chroma()
+        return False
 
 
 def play_stream(stream_file, play_time, stream_type, channel_point):
+    &quot;&quot;&quot;播放码流&quot;&quot;&quot;
+
     stream = TPeripheral.get_stream()
     stream.play_stream_at_thread(stream_file, play_time, stream_type, channel_point)
+    time.sleep(2)
+    if stream.is_playing():
+        return True
+    else:
+        return False
 
 
 def write_data_stream(stream_file, play_time, stream_type, channel_point):
@@ -1480,6 +1767,145 @@ def tp_release(result_display):
         result_display.insert(&quot;end&quot;, str(e) + &apos;\n&apos;)
 
 
+def stop_continue_send_key(result_display):
+    &quot;&quot;&quot;停止 持续发键&quot;&quot;&quot;
+    global continue_send_key_flag
+    continue_send_key_flag = False
+    result_display.insert(&quot;end&quot;, &quot;停止发键\n&quot;)
+
+
+def continue_send_key_adb(list1, result_display):
+    &quot;&quot;&quot;通过adb持续发键&quot;&quot;&quot;
+
+    global continue_send_key_flag, content
+    continue_send_key_flag = True
+    n = 0
+    result_display.insert(&quot;end&quot;, &quot;程序启动...\n&quot;)
+    content[&quot;continue_send_key_list&quot;] = list1
+    write_data()
+
+    list1 = list1.split(&apos;,&apos;)
+    print(list1)
+    while continue_send_key_flag:
+
+        for i in range(len(list1)):
+            if int(i) % 2 == 0:  # 交替执行
+
+                os.system(&quot;adb shell input keyevent %s&quot; % list1[i])
+            else:
+                time.sleep(int(list1[i]))
+        n += 1
+        if n % 5 == 0:
+            result_display.insert(&quot;end&quot;, &quot;已经执行%s轮\n&quot; % n)
+
+
+def get_page_value(element, value, result_display, display_text=False, display_info=False):
+    &quot;&quot;&quot;获取页面元素&quot;&quot;&quot;
+
+    element_list = []
+    driver = uiautomator2.connect()
+    if element == &quot;resourceId&quot;:
+        if not driver(resourceId=value).exists:
+            result_display.insert(&quot;end&quot;, &quot;该元素不存在:%s\n&quot; % value)
+            return
+        else:
+            element_list = driver(resourceId=value)
+
+    elif element == &quot;text&quot;:
+        if not driver(text=value).exists:
+            result_display.insert(&quot;end&quot;, &quot;该元素不存在:%s\n&quot; % value)
+            return
+        else:
+            element_list = driver(text=value)
+
+    elif element == &quot;textContains&quot;:
+        if not driver(textContains=value).exists:
+            result_display.insert(&quot;end&quot;, &quot;该元素不存在:%s\n&quot; % value)
+            return
+        else:
+            element_list = driver(textContains=value)
+
+    elif element == &quot;packageName&quot;:
+        if not driver(packageName=value).exists:
+            result_display.insert(&quot;end&quot;, &quot;该元素不存在:%s\n&quot; % value)
+            return
+        else:
+            element_list = driver(packageName=value)
+
+    elif element == &quot;className&quot;:
+        if not driver(className=value).exists:
+            result_display.insert(&quot;end&quot;, &quot;该元素不存在:%s\n&quot; % value)
+            return
+        else:
+            element_list = driver(className=value)
+
+    list1 = []
+    print(element_list)
+    for i in element_list:
+
+        if display_info:  # 打印info信息
+            result_display.insert(&quot;end&quot;, str(i.info) + &apos;\n&apos;)
+        if display_text:  # 只打印text信息
+            result_display.insert(&quot;end&quot;, str(i.info[&quot;text&quot;]) + &apos;\n&apos;)
+        if display_info or display_text:
+            result_display.insert(&quot;end&quot;, &quot;\n&quot;)
+
+        list1.append(i.info[&apos;text&apos;])
+
+    result_display.insert(&quot;end&quot;, str(list1) + &apos;\n\n&apos;)
+
+    content[&quot;element_id&quot;] = value
+    write_data()
+
+
+def two_list_compare_method(stand_list, actual_list, method, result_display):
+    &quot;&quot;&quot;两个列表比较方式&quot;&quot;&quot;
+
+    global content
+    error_list1 = []
+    if method == &quot;1&quot;:
+        result_display.insert(&quot;end&quot;, &quot;****判断标准值是否都在实际值列表中****\n&quot;)
+        for value in stand_list:
+            if value not in actual_list:
+                error_list1.append(value)
+        if error_list1:
+            result_display.insert(&quot;end&quot;, &quot;标准列表中以下值没有在实际列表中找到:\n&quot;)
+            for value in error_list1:
+                result_display.insert(&quot;end&quot;, &quot;%s\n&quot; % value)
+        else:
+            result_display.insert(&quot;end&quot;, &quot;匹配成功\n&quot;)
+
+    elif method == &quot;2&quot;:
+        result_display.insert(&quot;end&quot;, &quot;****通过相同下标比较****\n&quot;)
+        if len(stand_list) != len(actual_list):
+            result_display.insert(&quot;end&quot;, &quot;两个列表的长度不一致\n&quot;)
+            return
+
+        flag = True
+        for i in range(len(stand_list)):
+            if stand_list[i] != actual_list[i]:
+                flag = False
+                result_display.insert(&quot;end&quot;, stand_list[i] + &quot;\n&quot;)
+                result_display.insert(&quot;end&quot;, actual_list[i] + &quot;\n&quot;)
+                result_display.insert(&quot;end&quot;, &quot;\n&quot;)
+
+        if flag:
+            result_display.insert(&quot;end&quot;, &quot;匹配成功\n&quot;)
+
+    elif method == &quot;3&quot;:
+        result_display.insert(&quot;end&quot;, &quot;****判断实际列表值是否都在标准值中****\n&quot;)
+        for value in actual_list:
+            if value not in stand_list:
+                error_list1.append(value)
+        if error_list1:
+            result_display.insert(&quot;end&quot;, &quot;实际列表中以下值没有在标准值中找到:\n&quot;)
+            for value in error_list1:
+                result_display.insert(&quot;end&quot;, &quot;%s\n&quot; % value)
+        else:
+            result_display.insert(&quot;end&quot;, &quot;匹配成功\n&quot;)
+    result_display.insert(&quot;end&quot;, &quot;\n&quot;)
+
+
 def clear_terminal(result_display):
     &quot;&quot;&quot;清空终端屏幕&quot;&quot;&quot;
 
@@ -1501,7 +1927,7 @@ def clear_terminal(result_display):
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
     <p><span class="copy-title">发布时间:</span>2021-03-06, 17:26:10</p>
-    <p><span class="copy-title">最后更新:</span>2021-03-06, 20:57:21</p>
+    <p><span class="copy-title">最后更新:</span>2021-04-26, 18:58:17</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/03/06/basic_08_tinker/" title="Tkinter &amp; pyinstaller">http://yoursite.com/2021/03/06/basic_08_tinker/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
