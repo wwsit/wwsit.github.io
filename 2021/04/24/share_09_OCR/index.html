@@ -1010,7 +1010,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2021-04-26 13:42:17'>2021-04-24 15:23</time>
+        创建时间:<time class="date" title='更新时间: 2021-04-26 13:46:54'>2021-04-24 15:23</time>
         
     </div>
     <div class="article-meta">
@@ -1053,14 +1053,15 @@
 
 2.(这步可以跳过)先查看识别的结果,来到图片位置，
    输入命令:tesseract.exe number.png result -l eng 
-   参数解释: number.png:要识别的图片   result:识别结果会存放在result.txt里面,所以写的时候不需要加.txt   -l eng:使用的语言  
+   参数解释: number.png:要识别的图片   result:识别结果会存放在result.txt里面,所以写的时候不需要加.txt   
+            -l eng:使用的语言  
 
 3.合并样本图像,运行jTessBoxEditor工具，在点击菜单栏中Tools---&gt;Merge TIFF,
   将图片另存为:num.font.exp0.tif
   参数解释:  语言.字体.序号.tif
 
 4.生成的box文件
-    tesseract.exe num.font.exp0.tif num.font.exp0 batch.nochop makebox
+    tesseract.exe  num.font.exp0.tif   num.font.exp0   batch.nochop makebox
 
 5.文字校正，运行jTessBoxEditor工具，打开num.font.exp0.tif文件，进行文字校正，并保存结果
 
@@ -1075,7 +1076,7 @@
 9.再次执行,此时将语言改为 num
    tesseract.exe number.png result -l num
 
-10.如果要合并之前训练的结果,需要将 .box .tif(num.font.exp0.tif) 放过来</code></pre><h4 id="生成单个训练集"><a href="#生成单个训练集" class="headerlink" title="生成单个训练集"></a>生成单个训练集</h4><pre><code>rem 执行改批处理前先要目录下创建font_properties文件 
+10.如果要合并之前训练的结果,需要将之前的 .box .tif(num.font.exp0.tif) 和新的文件放在一起 </code></pre><h4 id="生成单个训练集"><a href="#生成单个训练集" class="headerlink" title="生成单个训练集"></a>生成单个训练集</h4><pre><code>rem 执行改批处理前先要目录下创建font_properties文件 
 echo 生成tr文件 
 tesseract.exe num.font.exp0.tif num.font.exp0 nobatch box.train 
 
@@ -1167,7 +1168,7 @@ print(code)</code></pre>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
     <p><span class="copy-title">发布时间:</span>2021-04-24, 15:23:18</p>
-    <p><span class="copy-title">最后更新:</span>2021-04-26, 13:42:17</p>
+    <p><span class="copy-title">最后更新:</span>2021-04-26, 13:46:54</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/04/24/share_09_OCR/" title="OCR使用">http://yoursite.com/2021/04/24/share_09_OCR/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
