@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Django与Flask的比较 | Jerry书店</title>
-  <meta name="keywords" content=" 后端 ">
-  <meta name="description" content="Django与Flask的比较 | Jerry书店">
+  <title>OCR使用 | Jerry书店</title>
+  <meta name="keywords" content=" OCR ">
+  <meta name="description" content="OCR使用 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta name="keywords" content="Python">
@@ -986,9 +986,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-compare_01_backend" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-share_09_OCR" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Django与Flask的比较</h1>
+        <h1 class="article-title">OCR使用</h1>
     
     <div class="article-meta">
         
@@ -996,21 +996,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="后端">后端</a>
+                <a href="javascript:" data-rel="分享">分享</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">后端</a>
+            <a href="javascript:" class="color4">OCR</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-09-02 20:41:35'>2019-09-02 20:10</time>
+        创建时间:<time class="date" title='更新时间: 2021-04-26 11:33:14'>2021-04-24 15:23</time>
         
     </div>
     <div class="article-meta">
@@ -1032,7 +1032,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Django与Flask的比较"><span class="toc-text">Django与Flask的比较</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、Django"><span class="toc-text">一、Django</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、Flask"><span class="toc-text">二、Flask</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text"></span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#生成单个训练集"><span class="toc-text">生成单个训练集</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#合并多个训练集"><span class="toc-text">合并多个训练集</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1048,29 +1048,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Django与Flask的比较"><a href="#Django与Flask的比较" class="headerlink" title="Django与Flask的比较"></a>Django与Flask的比较</h3><h4 id="一、Django"><a href="#一、Django" class="headerlink" title="一、Django"></a>一、Django</h4><blockquote>
-<p>重量级框架: 为方便业务程序的开发，提供了丰富的工具、组件</p>
-</blockquote>
-<blockquote>
-<p>对比Flask框架，Django原生提供了众多的功能组件，让开发更简便快速。</p>
-</blockquote>
-<ul>
-<li>数据库ORM支持</li>
-<li>模板</li>
-<li>表单</li>
-<li>Admin管理站点</li>
-<li>认证权限</li>
-</ul>
-<p>MVT模式</p>
-<blockquote>
-<p>其核心思想是分工、解耦，让不同的代码块之间降低耦合，<br> 增强代码的可扩展性和可移植性，实现向后兼容。</p>
-</blockquote>
-<h3 id="二、Flask"><a href="#二、Flask" class="headerlink" title="二、Flask"></a>二、Flask</h3><blockquote>
-<p>轻量级的框架：只提供Web框架的核心功能，自由、灵活、高度定制</p>
-</blockquote>
-<blockquote>
-<p>Flask 本身相当于一个内核，其他几乎所有的功能都要用到扩展，都需要用第三方的扩展来实现。<br>比如可以用 Flask 扩展加入ORM、窗体验证工具，文件上传、身份验证等。<br>Flask 没有默认使用的数据库，你可以选择 MySQL，也可以用 NoSQL。<br>其 WSGI 工具箱采用 Werkzeug（路由模块），模板引擎则使用 Jinja2。这两个也是 Flask 框架的核心。</p>
-</blockquote>
+        <h4 id><a href="#" class="headerlink" title></a></h4><p>粗略总结(文字版,下面有图片文件教程版)</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.生成训练的图片(从网上找,或者自己画图),将图片另存为.tiff格式,方便后面搜索,也可以直接保存为.png格式</span><br><span class="line"><span class="number">2</span>.(这步可以跳过)先查看识别的结果,来到图片位置，输入命令:tesseract.exe number.png result -l eng </span><br><span class="line">  参数解释: number.png:要识别的图片   result:识别结果会存放在result.txt里面,所以写的时候不需要加.txt   -l eng:使用的语言  </span><br><span class="line"><span class="number">3</span>.合并样本图像,运行jTessBoxEditor工具，在点击菜单栏中Tools---&gt;Merge TIFF,将图片另存为:num.font.exp0.tif</span><br><span class="line">  参数解释:  语言.字体.序号.tif</span><br><span class="line"><span class="number">4</span>.生成的box文件</span><br><span class="line">    tesseract.exe num.font.exp0.tif num.font.exp0 batch.nochop makebox</span><br><span class="line"><span class="number">5</span>.文字校正，运行jTessBoxEditor工具，打开num.font.exp0.tif文件，进行文字校正，并保存结果</span><br><span class="line"><span class="number">6</span>.定义字体特征文件，文件名为:font_properties</span><br><span class="line">  内容为: font <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"><span class="number">7</span>.生成语言文件</span><br><span class="line">     根据需要,参考下面两个内容,将文件保存为.bat格式   </span><br><span class="line"><span class="number">8</span>.将生成的语言文件(num.traineddata)放到 Tesseract-OCR\tessdata文件夹下面</span><br><span class="line"><span class="number">9</span>.再次执行,此时将语言改为 num</span><br><span class="line">   tesseract.exe number.png result -l num</span><br><span class="line"><span class="number">10</span>.如果要合并之前训练的结果,需要将 .box .tif(num.font.exp0.tif) 放过来</span><br></pre></td></tr></table></figure>
+
+<h4 id="生成单个训练集"><a href="#生成单个训练集" class="headerlink" title="生成单个训练集"></a>生成单个训练集</h4><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">rem 执行改批处理前先要目录下创建font_properties文件 </span></span><br><span class="line"><span class="built_in">echo</span> 生成tr文件 </span><br><span class="line">tesseract.exe num.font.exp0.tif num.font.exp0 nobatch box.train </span><br><span class="line"> </span><br><span class="line"><span class="built_in">echo</span> 生成字符集</span><br><span class="line">unicharset_extractor.exe num.font.exp0.box </span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span>  合并训练数据(.tr)</span><br><span class="line">mftraining -F font_properties -U unicharset -O num.unicharset num.font.exp0.tr </span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> 聚合所有的tr文件</span><br><span class="line">cntraining.exe num.font.exp0.tr </span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> 文件重命名</span><br><span class="line"><span class="built_in">rename</span> normproto num.normproto </span><br><span class="line"><span class="built_in">rename</span> inttemp num.inttemp </span><br><span class="line"><span class="built_in">rename</span> pffmtable num.pffmtable </span><br><span class="line"><span class="built_in">rename</span> shapetable num.shapetable  </span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> 生成结果</span><br><span class="line">combine_tessdata.exe num. </span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> 更多详细操作可参考:https://blog.csdn.<span class="built_in">net</span>/ruyulin/article/details/<span class="number">89046148</span></span><br><span class="line"><span class="built_in">echo</span>. &amp; <span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="合并多个训练集"><a href="#合并多个训练集" class="headerlink" title="合并多个训练集"></a>合并多个训练集</h4><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">rem 执行改批处理前先要目录下创建font_properties文件 </span></span><br><span class="line"><span class="built_in">echo</span>  生成tr文件 (要合并多少个文件,就写几行)</span><br><span class="line"><span class="built_in">echo</span> tesseract.exe num.font.exp0.tif num.font.exp0 nobatch box.train </span><br><span class="line"><span class="built_in">echo</span> tesseract.exe num.font.exp1.tif num.font.exp1 nobatch box.train</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> 生成字符集</span><br><span class="line">unicharset_extractor.exe num.font.exp0.box num.font.exp1.box</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span>  合并训练数据(.tr)</span><br><span class="line">mftraining -F font_properties -U unicharset -O num.unicharset num.font.exp0.tr  num.font.exp1.tr </span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> 聚合所有的tr文件</span><br><span class="line">cntraining.exe num.font.exp0.tr num.font.exp1.tr </span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> 重命名</span><br><span class="line"><span class="built_in">rename</span> normproto num.normproto </span><br><span class="line"><span class="built_in">rename</span> inttemp num.inttemp </span><br><span class="line"><span class="built_in">rename</span> pffmtable num.pffmtable </span><br><span class="line"><span class="built_in">rename</span> shapetable num.shapetable  </span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> 生成结果</span><br><span class="line">combine_tessdata.exe num. </span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> 更多详细操作可参考:https://blog.csdn.<span class="built_in">net</span>/ruyulin/article/details/<span class="number">89046148</span></span><br><span class="line"><span class="built_in">echo</span>. &amp; <span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+
+
+<p>​<br><a href="https://blog.csdn.net/firehood_/article/details/8433077?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&dist_request_id=&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control" target="_blank" rel="noopener">点我,参考教程1</a><br><a href="https://blog.csdn.net/ruyulin/article/details/89046148" target="_blank" rel="noopener">点我,参考教程2</a><br><a href="https://blog.csdn.net/sylsjane/article/details/83751297" target="_blank" rel="noopener">点我,参考教程2</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
@@ -1084,12 +1072,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Django与Flask的比较</p>
+    <p><span class="copy-title">文章标题:</span>OCR使用</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-09-02, 20:10:11</p>
-    <p><span class="copy-title">最后更新:</span>2019-09-02, 20:41:35</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/02/compare_01_backend/" title="Django与Flask的比较">http://yoursite.com/2019/09/02/compare_01_backend/</a>
+    <p><span class="copy-title">发布时间:</span>2021-04-24, 15:23:18</p>
+    <p><span class="copy-title">最后更新:</span>2021-04-26, 11:33:14</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/04/24/share_09_OCR/" title="OCR使用">http://yoursite.com/2021/04/24/share_09_OCR/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
