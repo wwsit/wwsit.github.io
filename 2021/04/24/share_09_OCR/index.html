@@ -1010,7 +1010,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2021-04-26 11:35:17'>2021-04-24 15:23</time>
+        创建时间:<time class="date" title='更新时间: 2021-04-26 11:43:13'>2021-04-24 15:23</time>
         
     </div>
     <div class="article-meta">
@@ -1032,7 +1032,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text"></span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#生成单个训练集"><span class="toc-text">生成单个训练集</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#合并多个训练集"><span class="toc-text">合并多个训练集</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text"></span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#生成单个训练集"><span class="toc-text">生成单个训练集</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#合并多个训练集"><span class="toc-text">合并多个训练集</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#显示当前训练语言列表-tesseract-–list-langs"><span class="toc-text">显示当前训练语言列表:  tesseract –list-langs</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装库-pip-install-pytesseract"><span class="toc-text">安装库 pip install pytesseract</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Python中使用OCR"><span class="toc-text">Python中使用OCR</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1112,7 +1112,34 @@ combine_tessdata.exe num.
 
 echo 更多详细操作可参考:https://blog.csdn.net/ruyulin/article/details/89046148
 echo. &amp; pause</code></pre><p>​<br><a href="https://blog.csdn.net/firehood_/article/details/8433077?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&dist_request_id=&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control" target="_blank" rel="noopener">点我,参考教程1</a><br><a href="https://blog.csdn.net/ruyulin/article/details/89046148" target="_blank" rel="noopener">点我,参考教程2</a><br><a href="https://blog.csdn.net/sylsjane/article/details/83751297" target="_blank" rel="noopener">点我,参考教程2</a></p>
+<h4 id="显示当前训练语言列表-tesseract-–list-langs"><a href="#显示当前训练语言列表-tesseract-–list-langs" class="headerlink" title="显示当前训练语言列表:  tesseract –list-langs"></a>显示当前训练语言列表:  tesseract –list-langs</h4><h4 id="安装库-pip-install-pytesseract"><a href="#安装库-pip-install-pytesseract" class="headerlink" title="安装库 pip install pytesseract"></a>安装库 pip install pytesseract</h4><h4 id="Python中使用OCR"><a href="#Python中使用OCR" class="headerlink" title="Python中使用OCR"></a>Python中使用OCR</h4><pre><code># -*-coding:utf-8-*-
+import pytesseract
+from PIL import Image
+import cv2 as cv
 
+# 图片位置
+path = r&quot;./picture/test_2_en.png&quot;
+
+# 直接打开
+# image = Image.open(path)
+
+# 以灰度图形式打开图片
+imgage = cv.imread(path, 0)
+
+# 设置图片的大小,放到两倍
+img_size = cv.resize(imgage, None, fx=2, fy=2)
+
+# 显示图片
+# cv.imshow(&quot;title&quot;, img_size)
+# cv.waitKey(0)
+
+# 添加配置的方法
+# config = (&apos;-l eng -l chi_sim --oem 1 --psm 3&apos;)
+# code = pytesseract.image_to_string(img_size, config=config)
+
+# lang 使用的语言
+code = pytesseract.image_to_string(img_size, lang=&quot;chi_sim&quot;)
+print(code)</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
@@ -1129,7 +1156,7 @@ echo. &amp; pause</code></pre><p>​<br><a href="https://blog.csdn.net/firehood_
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
     <p><span class="copy-title">发布时间:</span>2021-04-24, 15:23:18</p>
-    <p><span class="copy-title">最后更新:</span>2021-04-26, 11:35:17</p>
+    <p><span class="copy-title">最后更新:</span>2021-04-26, 11:43:13</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/04/24/share_09_OCR/" title="OCR使用">http://yoursite.com/2021/04/24/share_09_OCR/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
