@@ -1010,7 +1010,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2021-04-26 11:43:13'>2021-04-24 15:23</time>
+        创建时间:<time class="date" title='更新时间: 2021-04-26 13:42:17'>2021-04-24 15:23</time>
         
     </div>
     <div class="article-meta">
@@ -1050,20 +1050,31 @@
       
         <h4 id><a href="#" class="headerlink" title></a></h4><p>粗略总结(文字版,下面有图片文件教程版)</p>
 <pre><code>1.生成训练的图片(从网上找,或者自己画图),将图片另存为.tiff格式,方便后面搜索,也可以直接保存为.png格式
-2.(这步可以跳过)先查看识别的结果,来到图片位置，输入命令:tesseract.exe number.png result -l eng 
-  参数解释: number.png:要识别的图片   result:识别结果会存放在result.txt里面,所以写的时候不需要加.txt   -l eng:使用的语言  
-3.合并样本图像,运行jTessBoxEditor工具，在点击菜单栏中Tools---&gt;Merge TIFF,将图片另存为:num.font.exp0.tif
+
+2.(这步可以跳过)先查看识别的结果,来到图片位置，
+   输入命令:tesseract.exe number.png result -l eng 
+   参数解释: number.png:要识别的图片   result:识别结果会存放在result.txt里面,所以写的时候不需要加.txt   -l eng:使用的语言  
+
+3.合并样本图像,运行jTessBoxEditor工具，在点击菜单栏中Tools---&gt;Merge TIFF,
+  将图片另存为:num.font.exp0.tif
   参数解释:  语言.字体.序号.tif
+
 4.生成的box文件
     tesseract.exe num.font.exp0.tif num.font.exp0 batch.nochop makebox
+
 5.文字校正，运行jTessBoxEditor工具，打开num.font.exp0.tif文件，进行文字校正，并保存结果
+
 6.定义字体特征文件，文件名为:font_properties
   内容为: font 0 0 0 0 0
+
 7.生成语言文件
      根据需要,参考下面两个内容,将文件保存为.bat格式   
+
 8.将生成的语言文件(num.traineddata)放到 Tesseract-OCR\tessdata文件夹下面
+
 9.再次执行,此时将语言改为 num
    tesseract.exe number.png result -l num
+
 10.如果要合并之前训练的结果,需要将 .box .tif(num.font.exp0.tif) 放过来</code></pre><h4 id="生成单个训练集"><a href="#生成单个训练集" class="headerlink" title="生成单个训练集"></a>生成单个训练集</h4><pre><code>rem 执行改批处理前先要目录下创建font_properties文件 
 echo 生成tr文件 
 tesseract.exe num.font.exp0.tif num.font.exp0 nobatch box.train 
@@ -1156,7 +1167,7 @@ print(code)</code></pre>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Jerry">Jerry</a></p>
     <p><span class="copy-title">发布时间:</span>2021-04-24, 15:23:18</p>
-    <p><span class="copy-title">最后更新:</span>2021-04-26, 11:43:13</p>
+    <p><span class="copy-title">最后更新:</span>2021-04-26, 13:42:17</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/04/24/share_09_OCR/" title="OCR使用">http://yoursite.com/2021/04/24/share_09_OCR/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
