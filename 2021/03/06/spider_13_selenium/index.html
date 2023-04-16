@@ -1516,7 +1516,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2023-04-09 18:58:28'>2021-03-06 19:01</time>
+        创建时间:<time class="date" title='更新时间: 2023-04-16 16:12:54'>2021-03-06 19:01</time>
         
     </div>
     <div class="article-meta">
@@ -1554,7 +1554,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="#1">1.简单Demo</a><br><a href="#2">2.find系列函数定位元素</a><br><a href="#3">3.参数设置&amp;设置代理</a><br><a href="#4">4.窗口切换 和 ifrme切换</a><br><a href="#5">5.鼠标操作</a><br><a href="#6">6.键盘操作</a><br><a href="#7">7.其它方法</a></p>
+        <p><a href="#1">1.简单Demo</a><br><a href="#2">2.find系列函数定位元素</a><br><a href="#3">3.参数设置&amp;设置代理</a><br><a href="#4">4.窗口切换 和 ifrme切换</a><br><a href="#5">5.鼠标操作</a><br><a href="#6">6.键盘操作</a><br><a href="#7">7.其它方法</a><br><a href="#8">8.上传附件</a></p>
 <div id='1' style="font-size:20px">1.简单Demo</div>
 
 <pre><code>from selenium import webdriver
@@ -1614,6 +1614,33 @@ from selenium.webdriver import ActionChains
 element = self.driver.find_elements_by_xpath(&#39;//div[@id=&quot;captcha&quot;]/div/div/span&#39;)
 if element:
     ActionChains(self.driver).drag_and_drop_by_offset(element[0], 1120, 180).perform()
+
+
+# 在同一个浏览器上，打开新标签
+js = &quot;window.open(&#39;&#123;&#125;&#39;,&#39;_blank&#39;);&quot;
+driver = webdriver.Chrome()
+driver.get(&quot;https://www.baidu.com/&quot;)
+driver.maximize_window()
+for _ in range(1):
+    driver.execute_script(js.format(
+        &quot;https://www.baidu.com/&quot;))
+time.sleep(8)
+
+# 添加cookie
+1.需要先访问目标网站
+2.再设置cookie，然后再访问目标网站才会生效
+
+driver.get(&quot;https://www.baidu.com/&quot;)
+# driver.add_cookie(&#123;&quot;name&quot;: key值, &quot;value&quot;:value值, &quot;domain&quot;: &quot;.woa.com&quot;&#125;)
+driver.add_cookie( &#123;&#39;name&#39;: &#39;foo&#39;, &#39;value&#39;: &#39;bar&#39;&#125;)
+driver.get(&quot;https://www.baidu.com/&quot;)
+
+添加多个cookie
+cookies = [
+        &#123;&#39;name&#39;: &#39;foo&#39;, &#39;value&#39;: &#39;bar&#39;&#125;,
+        &#123;&#39;name&#39;: &#39;baz&#39;, &#39;value&#39;: &#39;qux&#39;&#125;
+        ]
+driver.add_cookies(cookies)
 </code></pre>
 <br>
 <div id='2' style="font-size:20px">2.find系列函数定位元素</div>
@@ -1765,6 +1792,53 @@ driver.find_element_by_id(&#39;passwordA&#39;).send_keys(Keys.CONTROL,&#39;v&#39
     # 执行最顶层
     driver.execute_script(js2)
 </code></pre>
+<br>
+<div id="8" style="font-size:20px">8.上传附件</div>
+
+<pre><code>import time
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.action_chains import ActionChains
+from pykeyboard import PyKeyboard
+
+class Test:
+    @staticmethod
+    def test():
+        chrome_options = Options()
+        # 设置Chrome忽略网站证书错误
+        chrome_options.add_argument(&#39;--ignore-certificate-errors&#39;)
+        driver = webdriver.Chrome(options=chrome_options)
+
+        driver.get(要访问的网站)
+        driver.set_window_size(width=2576, height=1416)
+        time.sleep(10)
+        print(&quot;开始&quot;)
+
+        # 定位上传附件的按钮
+        driver.find_element_by_xpath(xxxxx).click()
+        time.sleep(5)
+
+        # 要上传的附件地址
+        file_path = r&quot;E:\ceshi.png&quot;
+
+        # 方法一: 通过ActionChains去输入附件的地址
+        ActionChains(driver).send_keys(file_path).perform()
+
+        # 方法二：通过键盘操作去输入附件的地址
+        board = PyKeyboard()
+        # 输入附件的地址
+        board.type_string(file_path)
+        time.sleep(3)
+
+        # 按键操作(可能需要进行调整，这里点击了两次确定键)
+        for _ in range(2):
+            board.tap_key(board.enter_key)
+
+        # 另外一种方式去发生确定键
+        board.tap_key(&quot;Enter&quot;)
+        time.sleep(5)
+        driver.close()
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
@@ -1782,7 +1856,7 @@ driver.find_element_by_id(&#39;passwordA&#39;).send_keys(Keys.CONTROL,&#39;v&#39
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
     <p><span class="copy-title">发布时间:</span>2021-03-06, 19:01:21</p>
-    <p><span class="copy-title">最后更新:</span>2023-04-09, 18:58:28</p>
+    <p><span class="copy-title">最后更新:</span>2023-04-16, 16:12:54</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/03/06/spider_13_selenium/" title="selenium命令">http://yoursite.com/2021/03/06/spider_13_selenium/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
