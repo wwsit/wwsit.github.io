@@ -1534,7 +1534,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2022-10-22 17:20:18'>2022-07-20 20:38</time>
+        创建时间:<time class="date" title='更新时间: 2023-06-10 12:24:34'>2022-07-20 20:38</time>
         
     </div>
     <div class="article-meta">
@@ -1584,7 +1584,11 @@ pip3 install pymongo==3.5.1 -i https://pypi.douban.com/simple
 </code></pre>
 <div id="2">2.pip包</div>  
     
-<pre><code># 数据库相关的包
+<pre><code># 导出、导入 pip包
+pip freeze&gt;&gt;文件名
+pip install -r 文件名
+
+# 数据库相关的包
 # 1.MongoDB
 # 安装MongoDB,不要使用4.xx版本，否则再进行密码验证的时候会报错
 pip3 install pymongo==3.5.1         
@@ -1601,6 +1605,15 @@ pip3 install openpyxl 读写追加
 pip3 install xlwt     写入数据
 pip3 isntall xlrd     读取数据
 pip3 install xlutils  追加数据
+
+Flask-Cors==3.0.10
+gunicorn==20.1.0
+openpyxl==3.1.2
+PyJWT==2.4.0
+pymongo==3.5.1
+PyMySQL==1.0.2
+redis==4.3.6
+requests==2.27.1
 </code></pre>
 
       
@@ -1619,7 +1632,7 @@ pip3 install xlutils  追加数据
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
     <p><span class="copy-title">发布时间:</span>2022-07-20, 20:38:00</p>
-    <p><span class="copy-title">最后更新:</span>2022-10-22, 17:20:18</p>
+    <p><span class="copy-title">最后更新:</span>2023-06-10, 12:24:34</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2022/07/20/share_11_pip/" title="pip安装包">http://yoursite.com/2022/07/20/share_11_pip/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。

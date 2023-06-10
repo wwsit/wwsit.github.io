@@ -1540,7 +1540,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2022-10-16 14:47:41'>2020-05-22 18:39</time>
+        创建时间:<time class="date" title='更新时间: 2023-06-10 12:19:05'>2020-05-22 18:39</time>
         
     </div>
     <div class="article-meta">
@@ -1599,10 +1599,12 @@ cat /etc/redhat-release
 docker image  ls 
 
 # 运行镜像，并进行端口映射
-docker run -d -p 7022:22 --name centos --privileged=true docker.io/centos   /usr/sbin/init
+eg: docker run -d -p 7022:22 --name centos --privileged=true docker.io/centos   /usr/sbin/init
+eg: docker run -d  --network=host --name centos --privileged=true docker.io/centos   /usr/sbin/init
 参数解释： 
 -it 交互式运行容器   -d 后台运行   --name 名称   给容器器名称  
---privileged=true  给容器拥有真正的root权限   docker.io/centos 要使用的镜像名称
+--privileged=true  给容器拥有真正的root权限   docker.io/centos 要使用的镜像名称/id
+ --network=host  容器的端口跟宿主机的端口共用
 # 容器相关命令
 查看所有容器   docker container ls --all    
 停止容器运行   docker container stop  容器ID
@@ -1686,7 +1688,7 @@ centos1:latest   centos1镜像的名称，  latest：TAG的名称
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
     <p><span class="copy-title">发布时间:</span>2020-05-22, 18:39:06</p>
-    <p><span class="copy-title">最后更新:</span>2022-10-16, 14:47:41</p>
+    <p><span class="copy-title">最后更新:</span>2023-06-10, 12:19:05</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/05/22/share_04_docker/" title="在docker中安装CentOs,并设置远程连接">http://yoursite.com/2020/05/22/share_04_docker/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
