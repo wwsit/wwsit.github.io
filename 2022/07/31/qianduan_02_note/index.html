@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>requests模块的使用(上) | Jerry书店</title>
-  <meta name="keywords" content=" 爬虫、requests ">
-  <meta name="description" content="requests模块的使用(上) | Jerry书店">
+  <title>前端杂记 | Jerry书店</title>
+  <meta name="keywords" content=" 前端、杂记、笔记 ">
+  <meta name="description" content="前端杂记 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta property="og:type" content="website">
@@ -1524,9 +1524,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-spider_02_request_use" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-qianduan_02_note" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">requests模块的使用(上)</h1>
+        <h1 class="article-title">前端杂记</h1>
     
     <div class="article-meta">
         
@@ -1534,21 +1534,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="爬虫">爬虫</a>
+                <a href="javascript:" data-rel="前端">前端</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color2">爬虫、requests</a>
+            <a href="javascript:" class="color4">前端、杂记、笔记</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-24 20:40:21'>2019-08-24 20:10</time>
+        创建时间:<time class="date" title='更新时间: 2023-07-08 15:47:02'>2022-07-31 15:26</time>
         
     </div>
     <div class="article-meta">
@@ -1570,7 +1570,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-requests-%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D"><span class="toc-text">1. requests 模块介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-requests-%E6%A8%A1%E5%9D%97%E5%AE%89%E8%A3%85"><span class="toc-text">2. requests 模块安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-requests-%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8"><span class="toc-text">3.requests 模块使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%B7%E6%B1%82%E5%A4%B4"><span class="toc-text">二、自定义请求头</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%8F%91%E9%80%81-GET-%E8%AF%B7%E6%B1%82"><span class="toc-text">三、发送 GET 请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%8F%91%E9%80%81-POST-%E8%AF%B7%E6%B1%82"><span class="toc-text">四、发送 POST 请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%BF%9D%E5%AD%98%E5%9B%BE%E7%89%87"><span class="toc-text">五、保存图片</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%A4%84%E7%90%86html%E6%98%BE%E7%A4%BA%E7%9A%84%E6%97%B6%E5%80%99%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81"><span class="toc-text">1.处理html显示的时候中文乱码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B8%8Eweb%E7%AB%AF%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-text">2.移动端与web端兼容性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-margin-%E4%B8%8E-padding%E5%8C%BA%E5%88%AB"><span class="toc-text">3.margin 与 padding区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7"><span class="toc-text">4.计算属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E9%92%88%E5%AF%B9%E4%B8%8D%E5%AF%B9%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E6%98%BE%E7%A4%BA%E4%B8%8D%E5%90%8C%E7%9A%84%E6%A0%B7%E5%BC%8F-media"><span class="toc-text">5.针对不对的分辨率显示不同的样式--@media</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1586,110 +1586,45 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-requests-模块介绍"><a href="#1-requests-模块介绍" class="headerlink" title="1. requests 模块介绍"></a>1. requests 模块介绍</h3><pre><code>requests 模块可以模拟浏览器发送请求获取响应。
+        <h3 id="1-处理html显示的时候中文乱码"><a href="#1-处理html显示的时候中文乱码" class="headerlink" title="1.处理html显示的时候中文乱码"></a>1.处理html显示的时候中文乱码</h3><pre><code>在&lt;head&gt; &lt;/head&gt; 中加入这段话即可以解决
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
 </code></pre>
-<h3 id="2-requests-模块安装"><a href="#2-requests-模块安装" class="headerlink" title="2. requests 模块安装"></a>2. requests 模块安装</h3><pre><code>pip install requests
+<br> 
+
+<h3 id="2-移动端与web端兼容性"><a href="#2-移动端与web端兼容性" class="headerlink" title="2.移动端与web端兼容性"></a>2.移动端与web端兼容性</h3><pre><code> 2.1 可以在&lt;head&gt; &lt;/head&gt;中加入这段话
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&quot;&gt;
+ 2.2 样式采用百分比      
+    margin-left: 10%;
+    margin-top: 50%;
+ 2.3  视口宽度和视口高度
+    vw ,vh
 </code></pre>
-<h3 id="3-requests-模块使用"><a href="#3-requests-模块使用" class="headerlink" title="3.requests 模块使用"></a>3.requests 模块使用</h3><p><strong>一、基本使用</strong></p>
-<pre><code>*使用方式
-# 导入模块
-import requests
-# 定义请求地址
-url = &#39;https://www.baidu.com/&#39;
-# 发送 GET 请求获取响应
-response = requests.get(url)
-# 获取响应的 html 内容
-html = response.text
+<br> 
+
+<h3 id="3-margin-与-padding区别"><a href="#3-margin-与-padding区别" class="headerlink" title="3.margin 与 padding区别"></a>3.margin 与 padding区别</h3><pre><code>margin是盒子的外边距，即盒子与盒子之间的距离，而padding是内边距，是盒子的边与盒子内部元素的距离。
+margin是用来隔开元素与元素的间距；padding是用来隔开元素与内容的间隔。
+margin用于布局，可以分开元素，使元素与元素互不相干；
+padding用于设置元素与内容之间的间隔，让内容（文字）与（包裹）元素之间有一段“呼吸距离”
 </code></pre>
-<p><strong>代码讲解</strong></p>
-<blockquote>
-<p>response 常用属性</p>
-</blockquote>
-<pre><code>    response.text 返回响应内容，响应内容为 str 类型
-    respones.content 返回响应内容,响应内容为 bytes 类型
-    response.status_code 返回响应状态码
-    response.request.headers 返回请求头
-    response.headers 返回响应头
-    response.cookies 返回响应的 RequestsCookieJar 对象
-  
+<p><img src="1.png"></p>
+<h3 id="4-计算属性"><a href="#4-计算属性" class="headerlink" title="4.计算属性"></a>4.计算属性</h3><pre><code>减号两边需要空格才会生效
+width: calc(100% - 200px);
 </code></pre>
-<blockquote>
-<p><code>response.content</code> 转换 <code>str</code> 类型 </p>
-</blockquote>
-<pre><code>     # 获取字节数据
-    content = response.contents
-    # 转换成字符串类型
-    html = content.decode(&#39;utf-8&#39;)
-</code></pre>
-<blockquote>
-<p>response.cookies 操作</p>
-</blockquote>
-<pre><code># 返回 RequestsCookieJar 对象
-cookies = response.cookies
-# RequestsCookieJar 转 dict
-requests.utils.dict_from_cookiejar(cookies)
-# dict 转 RequestsCookieJar
-requests.utils.cookiejar_from_dict()
-# 对cookie进行操作,把一个字典添加到cookiejar中
-requests.utils.add_dict_to_cookiejar()
-</code></pre>
-<h4 id="二、自定义请求头"><a href="#二、自定义请求头" class="headerlink" title="二、自定义请求头"></a>二、自定义请求头</h4><pre><code># 导入模块
-import requests
-# 定义请求地址
-url = &#39;https://www.baidu.com/&#39;
-# 定义自定义请求头
-headers = &#123;
-  &quot;User-Agent&quot;:&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36&quot;
-&#125;
-# 发送自定义请求头
-response = requests.get(url,headers=headers)
-# 获取响应的 html 内容
-html = response.text
-</code></pre>
-<h4 id="三、发送-GET-请求"><a href="#三、发送-GET-请求" class="headerlink" title="三、发送 GET 请求"></a>三、发送 GET 请求</h4><pre><code># 导入模块
-import requests
-# 定义请求地址
-url = &#39;https://www.baidu.com/&#39;
-# 定义自定义请求头
-headers = &#123;
-  &quot;User-Agent&quot;:&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36&quot;
-&#125;
-# 定义 GET 请求参数
-params = &#123;
-  &quot;wd&quot;:&quot;csdn&quot;
-&#125;
-# 使用 GET 请求参数发送请求
-response = requests.get(url,headers=headers,params=params)
-# 获取响应的 html 内容
-html = response.text
-</code></pre>
-<h4 id="四、发送-POST-请求"><a href="#四、发送-POST-请求" class="headerlink" title="四、发送 POST 请求"></a>四、发送 POST 请求</h4><pre><code># 导入模块
-import requests
-# 定义请求地址
-url = &#39;https://www.baidu.com/&#39;
-# 定义自定义请求头
-headers = &#123;
-  &quot;User-Agent&quot;:&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36&quot;
-&#125;
-# 定义post请求参数
-data = &#123;
-   &quot;wd&quot;:&quot;csdn&quot;
+<h3 id="5-针对不对的分辨率显示不同的样式-media"><a href="#5-针对不对的分辨率显示不同的样式-media" class="headerlink" title="5.针对不对的分辨率显示不同的样式--@media"></a>5.针对不对的分辨率显示不同的样式--@media</h3><pre><code>/* 宽度小于等于1500，使用这个样式 */
+@media(max-width:1500px&#123;
+    .index_button_all&#123;
+            padding-top: 1%;
+            margin-right: 0.5%;
+        &#125;
 &#125;
 
-# 使用 POST 请求参数发送请求
-response = requests.post(url,headers=headers,data=data)
-# 获取响应的 html 内容
-html = response.text
-</code></pre>
-<h4 id="五、保存图片"><a href="#五、保存图片" class="headerlink" title="五、保存图片"></a>五、保存图片</h4><pre><code># 导入模块
-import requests
-# 下载图片地址
-url = &quot;https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3433375665,1448816841&amp;fm=26&amp;gp=0.jpg&quot;
-# 发送请求获取响应
-response = requests.get(url)
-# 保存图片
-with open(&#39;image.png&#39;,&#39;wb&#39;) as f:
-  f.write(response.content)
+/* 宽度大于等于1920，使用这个样式 */
+@media(min-width:1920px)&#123;
+    .index_button_all&#123;
+            padding-top: 2%;
+            margin-right: 1%;
+        &#125;
+&#125;
 </code></pre>
 
       
@@ -1704,12 +1639,12 @@ with open(&#39;image.png&#39;,&#39;wb&#39;) as f:
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>requests模块的使用(上)</p>
+    <p><span class="copy-title">文章标题:</span>前端杂记</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-08-24, 20:10:45</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-24, 20:40:21</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/24/spider_02_request_use/" title="requests模块的使用(上)">http://yoursite.com/2019/08/24/spider_02_request_use/</a>
+    <p><span class="copy-title">发布时间:</span>2022-07-31, 15:26:12</p>
+    <p><span class="copy-title">最后更新:</span>2023-07-08, 15:47:02</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2022/07/31/qianduan_02_note/" title="前端杂记">http://yoursite.com/2022/07/31/qianduan_02_note/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
