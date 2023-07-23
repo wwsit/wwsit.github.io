@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Django的使用 | Jerry书店</title>
-  <meta name="keywords" content=" Django ">
-  <meta name="description" content="Django的使用 | Jerry书店">
+  <title>this.$nextTick()使用方法 | Jerry书店</title>
+  <meta name="keywords" content=" Vue ">
+  <meta name="description" content="this.$nextTick()使用方法 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta property="og:type" content="website">
@@ -1544,9 +1544,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-django_01" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-qianduan_04_vue_study_6_nextTick" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Django的使用</h1>
+        <h1 class="article-title">this.$nextTick()使用方法</h1>
     
     <div class="article-meta">
         
@@ -1554,21 +1554,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="后端">后端</a>
+                <a href="javascript:" data-rel="前端">前端</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color2">Django</a>
+            <a href="javascript:" class="color4">Vue</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-20 20:10:01'>2019-08-20 20:01</time>
+        创建时间:<time class="date" title='更新时间: 2023-07-23 18:54:20'>2023-07-23 18:52</time>
         
     </div>
     <div class="article-meta">
@@ -1590,7 +1590,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-text">1. 创建虚拟环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85Django"><span class="toc-text">2. 安装Django</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%92%8Cpip%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-text">3.虚拟环境和pip的命令</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-text">示例代码</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1606,26 +1606,36 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <span id="more"></span>
+        <h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><pre><code>this.$nextTick() 是 Vue.js 中的一个方法，它用于在下一次 DOM 更新循环结束之后执行回调函数。
+在Vue.js 中，当数据发生变化时，Vue.js 会异步地更新 DOM。这意味着，当您修改了数据并且想要在更新后立即操作 DOM 时，您不能保证 DOM 已经更新完成。
+这就是 $nextTick()方法的作用，它可以让您在 DOM 更新完成后执行回调函数，以确保您操作的是最新的 DOM。
+</code></pre>
+<h4 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h4><pre><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;p&gt;&#123;&#123; message &#125;&#125;&lt;/p &gt;
+    &lt;button @click=&quot;updateMessage&quot;&gt;更新消息&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
 
-<h3 id="1-创建虚拟环境"><a href="#1-创建虚拟环境" class="headerlink" title="1. 创建虚拟环境"></a>1. 创建虚拟环境</h3><pre><code>mkvirtualenv python_django -p python3
+&lt;script&gt;
+export default &#123;
+  data() &#123;
+    return &#123;
+      message: &#39;Hello, world!&#39;
+    &#125;
+  &#125;,
+  methods: &#123;
+    updateMessage() &#123;
+      this.message = &#39;Hello, Vue!&#39;
+      this.$nextTick(() =&gt; &#123;
+        // DOM 更新完成后执行
+        console.log(&#39;DOM 已更新&#39;)
+      &#125;)
+    &#125;
+  &#125;
+&#125;
+&lt;/script&gt;
 </code></pre>
-<h3 id="2-安装Django"><a href="#2-安装Django" class="headerlink" title="2. 安装Django"></a>2. 安装Django</h3><pre><code>pip install django==1.11.11
-</code></pre>
-<h3 id="3-虚拟环境和pip的命令"><a href="#3-虚拟环境和pip的命令" class="headerlink" title="3.虚拟环境和pip的命令"></a>3.虚拟环境和pip的命令</h3><p><strong>虚拟环境</strong></p>
-<pre><code>mkvirtualenv  # 创建虚拟环境
-rmvirtualenv  # 删除虚拟环境
-workon  # 进入虚拟环境、查看所有虚拟环境
-deactivate  # 退出虚拟环境
-</code></pre>
-<p><strong>pip命令</strong></p>
-<pre><code>pip install  # 安装依赖包
-pip uninstall  # 卸载依赖包
-pip list  # 查看已安装的依赖库
-</code></pre>
-<!-- 我这里是借用了code的样式，所以直接使用code标签。
-    自定义样式，可加入style属性设置-->
-
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
@@ -1639,12 +1649,12 @@ pip list  # 查看已安装的依赖库
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Django的使用</p>
+    <p><span class="copy-title">文章标题:</span>this.$nextTick()使用方法</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-08-20, 20:01:09</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-20, 20:10:01</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/20/django_01/" title="Django的使用">http://yoursite.com/2019/08/20/django_01/</a>
+    <p><span class="copy-title">发布时间:</span>2023-07-23, 18:52:00</p>
+    <p><span class="copy-title">最后更新:</span>2023-07-23, 18:54:20</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2023/07/23/qianduan_04_vue_study_6_nextTick/" title="this.$nextTick()使用方法">http://yoursite.com/2023/07/23/qianduan_04_vue_study_6_nextTick/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
