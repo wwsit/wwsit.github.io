@@ -1608,7 +1608,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-02-05 13:06:25'>2020-02-05 12:01</time>
+        创建时间:<time class="date" title='更新时间: 2023-10-11 21:16:38'>2020-02-05 12:01</time>
         
     </div>
     <div class="article-meta">
@@ -1678,7 +1678,6 @@ conn=connect(参数列表)
     获取查询结果集中的一条数据:cur.fetchone()返回一个元组, 如 (1,&#39;张三&#39;)
     获取查询结果集中的所有数据: cur.fetchall()返回一个元组,如((1,&#39;张三&#39;),(2,&#39;李四&#39;))
     关闭游标: cur.close(),表示和数据库操作完成
-    
 </code></pre>
 <h5 id="三、pymysql完成数据的查询操作"><a href="#三、pymysql完成数据的查询操作" class="headerlink" title="三、pymysql完成数据的查询操作"></a>三、pymysql完成数据的查询操作</h5><pre><code>import pymysql
 # 创建连接对象
@@ -1730,6 +1729,32 @@ conn.close()
 SQL语句参数化：
         SQL语言中的参数使用%s来占位，此处不是python中的字符串格式化操作
         将SQL语句中%s占位所需要的参数存在一个列表中，把参数列表传递给execute方法中第二个参数
+
+# 错误的方式：
+sql = &quot;select * from student where id=%s;&quot; % value
+cursor.execute(sql, param)
+
+# 正确的方式：
+sql = &quot;select * from student where id=%s ;&quot;
+cursor.execute(sql, value)
+
+# 函数封装操作方式：
+
+def fun(sql,param)
+    &quot;&quot;&quot;
+    操作mysql数据库
+    sql: sql语句
+    param: sql语句参数
+    &quot;&quot;&quot;
+
+    conn = pymysql.connect()
+    cursor = conn.cursor()
+    cursor.execute(sql, param)
+
+sql = &quot;select * from student where id=%s or id=%s ;&quot;
+
+# (param1,param2,....,) 以元祖的形式传入sql的参数
+fun(sql, (param1,param2,....,) )
 </code></pre>
 <h5 id="六、参数化执行sql语句"><a href="#六、参数化执行sql语句" class="headerlink" title="六、参数化执行sql语句"></a>六、参数化执行sql语句</h5><pre><code># 使用 &#39;%s&#39; 进行占位,需要注意是使用单引号 
 
@@ -1756,7 +1781,7 @@ cursor.execute(sql)
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
     <p><span class="copy-title">发布时间:</span>2020-02-05, 12:01:03</p>
-    <p><span class="copy-title">最后更新:</span>2020-02-05, 13:06:25</p>
+    <p><span class="copy-title">最后更新:</span>2023-10-11, 21:16:38</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/02/05/db_02_mysql_06/" title="Python程序操作MySQL数据库">http://yoursite.com/2020/02/05/db_02_mysql_06/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。

@@ -1602,7 +1602,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2023-10-11 20:52:15'>2022-10-30 21:58</time>
+        创建时间:<time class="date" title='更新时间: 2023-10-11 21:16:58'>2022-10-30 21:58</time>
         
     </div>
     <div class="article-meta">
@@ -1640,7 +1640,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="#1">1.保存图片</a><br><a href="#2">2.比较两个列表值</a><br><a href="#3">3.os命令</a></p>
+        <p><a href="#1">1.保存图片</a><br><a href="#2">2.比较两个列表值</a><br><a href="#3">3.os命令</a><br><a href="#4">4.*args可变数量参数和解包</a></p>
 <div id="1">1.保存图片</div>
 
 <pre><code>import requests
@@ -1679,10 +1679,21 @@ c = set(c)
 print(a == b) # True
 print(a == c) # True
 </code></pre>
-<div id="3">3. os命令</div>
+<div id="3">3.os命令</div>
 
 <pre><code>os.mkdir 创建文件夹 (中间文件不存在会报错)
 os.makedirs(cache_path) 递归创建文件  (中间文件不存在会递归创建)
+</code></pre>
+<div id="4">4.*args可变数量参数和解包</div>
+
+<pre><code># *args用于函数定义中，用于接受可变数量的参数并将它们收集到一个元组中,这个元祖的名称即args
+# 在函数体内使用*args时，它可以解包
+
+def my_function(*args):
+    print(args)     #  (1, 2, 3)
+    print(*args)    #  会解包,得到的值是 1 2 3
+
+my_function(1, 2, 3)
 </code></pre>
 
       
@@ -1701,7 +1712,7 @@ os.makedirs(cache_path) 递归创建文件  (中间文件不存在会递归创�
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
     <p><span class="copy-title">发布时间:</span>2022-10-30, 21:58:00</p>
-    <p><span class="copy-title">最后更新:</span>2023-10-11, 20:52:15</p>
+    <p><span class="copy-title">最后更新:</span>2023-10-11, 21:16:58</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2022/10/30/basic_15_notes/" title="Python基础-杂记">http://yoursite.com/2022/10/30/basic_15_notes/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
