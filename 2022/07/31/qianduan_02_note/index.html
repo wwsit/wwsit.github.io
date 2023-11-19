@@ -1612,7 +1612,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2023-07-08 15:47:02'>2022-07-31 15:26</time>
+        创建时间:<time class="date" title='更新时间: 2023-11-19 22:19:02'>2022-07-31 15:26</time>
         
     </div>
     <div class="article-meta">
@@ -1634,7 +1634,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%A4%84%E7%90%86html%E6%98%BE%E7%A4%BA%E7%9A%84%E6%97%B6%E5%80%99%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81"><span class="toc-text">1.处理html显示的时候中文乱码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B8%8Eweb%E7%AB%AF%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-text">2.移动端与web端兼容性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-margin-%E4%B8%8E-padding%E5%8C%BA%E5%88%AB"><span class="toc-text">3.margin 与 padding区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7"><span class="toc-text">4.计算属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E9%92%88%E5%AF%B9%E4%B8%8D%E5%AF%B9%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E6%98%BE%E7%A4%BA%E4%B8%8D%E5%90%8C%E7%9A%84%E6%A0%B7%E5%BC%8F-media"><span class="toc-text">5.针对不对的分辨率显示不同的样式--@media</span></a></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -1650,12 +1650,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-处理html显示的时候中文乱码"><a href="#1-处理html显示的时候中文乱码" class="headerlink" title="1.处理html显示的时候中文乱码"></a>1.处理html显示的时候中文乱码</h3><pre><code>在&lt;head&gt; &lt;/head&gt; 中加入这段话即可以解决
+        <p><a href="#1">1.处理html显示的时候中文乱码</a><br><a href="#2">2.移动端与web端兼容性</a><br><a href="#3">3.margin 与 padding区别</a><br><a href="#4">4.计算属性</a><br><a href="#5">5.针对不对的分辨率显示不同的样式--@media</a></p>
+<div id="1">1.处理html显示的时候中文乱码</div>
+
+<pre><code>在&lt;head&gt; &lt;/head&gt; 中加入这段话即可以解决
 &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
 </code></pre>
 <br> 
 
-<h3 id="2-移动端与web端兼容性"><a href="#2-移动端与web端兼容性" class="headerlink" title="2.移动端与web端兼容性"></a>2.移动端与web端兼容性</h3><pre><code> 2.1 可以在&lt;head&gt; &lt;/head&gt;中加入这段话
+<div id="2"> 2.移动端与web端兼容性</div>
+
+<pre><code> 2.1 可以在&lt;head&gt; &lt;/head&gt;中加入这段话
     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&quot;&gt;
  2.2 样式采用百分比      
     margin-left: 10%;
@@ -1665,16 +1670,22 @@
 </code></pre>
 <br> 
 
-<h3 id="3-margin-与-padding区别"><a href="#3-margin-与-padding区别" class="headerlink" title="3.margin 与 padding区别"></a>3.margin 与 padding区别</h3><pre><code>margin是盒子的外边距，即盒子与盒子之间的距离，而padding是内边距，是盒子的边与盒子内部元素的距离。
+<div id="3"> 3.margin 与 padding区别</div>
+
+<pre><code>margin是盒子的外边距，即盒子与盒子之间的距离，而padding是内边距，是盒子的边与盒子内部元素的距离。
 margin是用来隔开元素与元素的间距；padding是用来隔开元素与内容的间隔。
 margin用于布局，可以分开元素，使元素与元素互不相干；
 padding用于设置元素与内容之间的间隔，让内容（文字）与（包裹）元素之间有一段“呼吸距离”
 </code></pre>
 <p><img src="1.png"></p>
-<h3 id="4-计算属性"><a href="#4-计算属性" class="headerlink" title="4.计算属性"></a>4.计算属性</h3><pre><code>减号两边需要空格才会生效
+<div id="4"> 4.计算属性</div>
+
+<pre><code>减号两边需要空格才会生效
 width: calc(100% - 200px);
 </code></pre>
-<h3 id="5-针对不对的分辨率显示不同的样式-media"><a href="#5-针对不对的分辨率显示不同的样式-media" class="headerlink" title="5.针对不对的分辨率显示不同的样式--@media"></a>5.针对不对的分辨率显示不同的样式--@media</h3><pre><code>/* 宽度小于等于1500，使用这个样式 */
+<div id="5">5.针对不对的分辨率显示不同的样式--@media</div>
+
+<pre><code>/* 宽度小于等于1500，使用这个样式 */
 @media(max-width:1500px&#123;
     .index_button_all&#123;
             padding-top: 1%;
@@ -1690,6 +1701,9 @@ width: calc(100% - 200px);
         &#125;
 &#125;
 </code></pre>
+<div id="6">6.显示滚动条</div>
+
+<p><img src="1.png" alt="效果"><br><a target="_blank" rel="noopener" href="https://github.com/wwsit/python_files/blob/master/003_qianduan_files/003_flex%E5%AD%A6%E4%B9%A0/005_%E6%BB%9A%E5%8A%A8%E6%9D%A1.vue">代码地址</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
@@ -1707,7 +1721,7 @@ width: calc(100% - 200px);
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
     <p><span class="copy-title">发布时间:</span>2022-07-31, 15:26:12</p>
-    <p><span class="copy-title">最后更新:</span>2023-07-08, 15:47:02</p>
+    <p><span class="copy-title">最后更新:</span>2023-11-19, 22:19:02</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2022/07/31/qianduan_02_note/" title="前端杂记">http://yoursite.com/2022/07/31/qianduan_02_note/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。

@@ -1606,7 +1606,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2023-11-13 21:35:48'>2023-09-17 18:18</time>
+        创建时间:<time class="date" title='更新时间: 2023-11-19 21:57:51'>2023-09-17 18:18</time>
         
     </div>
     <div class="article-meta">
@@ -1855,6 +1855,42 @@ eg:
 <p><img src="5.jpg"><br><a target="_blank" rel="noopener" href="https://github.com/wwsit/python_files/tree/master/003_qianduan_files/003_flex%E5%AD%A6%E4%B9%A0">示例代码</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43293207/article/details/115530499">参考文档</a></p>
 <h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><pre><code># 元素两端对齐 (可以实现 左边是筛选项，右边是查询或其它操作按钮)
+# 父级设置成 flex属性并且设置元素在两端对齐即 (justify-content: space-between)
+
+&lt;template&gt;
+    &lt;div class=&quot;level0&quot;&gt;
+
+        &lt;div class=&quot;level1&quot;&gt;
+            &lt;div&gt;元素1&lt;/div&gt;
+            &lt;div&gt;元素2&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;level2&quot;&gt;
+            &lt;div&gt;元素3&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+  
+&lt;script&gt;
+
+&lt;/script&gt;
+  
+&lt;style lang=&quot;less&quot;&gt;
+
+.level0 &#123;
+    display: flex;
+
+    justify-content: space-between;  // 让元素在两端对齐
+
+    .level1 &#123; 
+        display: flex;
+    &#125;
+
+    .level2 &#123;
+        display: flex;
+    &#125;
+&#125;
+&lt;/style&gt;
 </code></pre>
 <p><img src="10.jpg"><br><a target="_blank" rel="noopener" href="https://github.com/wwsit/python_files/blob/master/003_qianduan_files/003_flex%E5%AD%A6%E4%B9%A0/004_%E4%B8%A4%E7%AB%AF%E5%AF%B9%E9%BD%90.vue">示例代码</a></p>
 
@@ -1874,7 +1910,7 @@ eg:
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
     <p><span class="copy-title">发布时间:</span>2023-09-17, 18:18:02</p>
-    <p><span class="copy-title">最后更新:</span>2023-11-13, 21:35:48</p>
+    <p><span class="copy-title">最后更新:</span>2023-11-19, 21:57:51</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2023/09/17/qianduan_07_flex/" title="Flex 布局">http://yoursite.com/2023/09/17/qianduan_07_flex/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
