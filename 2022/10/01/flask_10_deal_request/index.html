@@ -379,6 +379,10 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">机器学习、折线图</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color5">机器学习</a>
     </li>
     
@@ -504,10 +508,6 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color1">运维、命令</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">机器学习、折线图</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -1636,7 +1636,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2022-10-04 19:01:43'>2022-10-01 21:03</time>
+        创建时间:<time class="date" title='更新时间: 2024-01-14 16:58:24'>2022-10-01 21:03</time>
         
     </div>
     <div class="article-meta">
@@ -1674,7 +1674,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="#1">1.获取json格式的请求体</a><br><a href="#2">2.获取表单格式的请求体</a><br><a href="#3">3.获取请求中的查询参数</a><br><a href="#4">4.文件保存</a><br><a href="#5">5.URL路径参数（动态路由）</a><br><a href="#6">6.其它的参数属性</a></p>
+        <p><a href="#1">1.获取json格式的请求体</a><br><a href="#2">2.获取表单格式的请求体</a><br><a href="#3">3.获取请求中的查询参数</a><br><a href="#4">4.文件保存</a><br><a href="#5">5.URL路径参数（动态路由）</a><br><a href="#6">6.其它的参数属性</a><br><a href="#7">7.前置/后置处理器(请求钩子)</a></p>
 <div id="1">1.获取json格式的请求体</div>
     
 <pre><code># 即 Content-Type:application/json 
@@ -1795,6 +1795,78 @@ def detail_info(detail_id):
 <div id="6">6.其它的参数属性</div>
 
 <p><img src="5.png"></p>
+<div id="7">7.前置/后置处理器(请求钩子)</div>
+    
+<pre><code>为了让每个视图函数避免编写重复功能的代码，Flask提供了通用设施的功能，即请求钩子。
+请求钩子是通过装饰器的形式实现，Flask支持如下四种请求钩子：
+
+    1.before_first_request
+        在处理第一个请求前执行
+
+    2.before_request
+        在每次请求前执行
+        如果在某修饰的函数中返回了一个响应，视图函数将不再被调用
+
+    3.after_request
+        如果没有抛出错误，在每次请求后执行
+        接受一个参数：视图函数作出的响应
+        在此函数中可以对响应值在返回之前做最后一步修改处理
+        需要将参数中的响应在此参数中进行返回
+
+    4.teardown_request：
+        在每次请求后执行
+        接受一个参数：错误信息，如果有相关错误抛出
+
+
+# 示例：
+# -*- encoding: utf-8 -*-
+from flask import Flask, make_response, abort, jsonify, request
+
+# Flask类接收一个参数__name__
+app = Flask(__name__)
+
+
+@app.before_request
+def before_request():
+    &quot;每次请求前执行的函数&quot;
+
+    # 获取请求的url
+    print(request.url)
+
+    # 获取请求头的值
+    print(request.headers.get(&quot;User-Agent&quot;))
+
+    # 进去鉴权
+    if request.headers.get(&quot;permission&quot;) is None:
+        &quot;&quot;&quot;
+        使用abort抛出异常，程序不会继续往下执行
+        使用make_response + jsonify 返回 json格式的数据，否则将返回html格式的数据
+        &quot;&quot;&quot;
+        error_message = &#123;&quot;result&quot;: &quot;warn&quot;, &quot;info&quot;: &quot;无权限访问&quot;&#125;
+        response = make_response(jsonify(error_message), 403)
+        response.headers[&#39;Content-Type&#39;] = &#39;application/json&#39;
+        abort(response)
+
+
+# 装饰器的作用是将路由映射到视图函数index
+@app.route(&#39;/&#39;)
+def index():
+    return &#39;Hello World&#39;
+
+
+@app.after_request
+def after_request(response):
+    &quot;&quot;&quot;每次请求后执行的函数&quot;&quot;&quot;
+    print(&quot;每次请求结束后执行的函数&quot;)
+    
+    # 需要把响应return出去，不然会报错
+    return response
+
+
+# Flask应用程序实例的run方法启动WEB服务器
+if __name__ == &#39;__main__&#39;:
+    app.run(host=&quot;0.0.0.0&quot;, port=5000, debug=True)
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
@@ -1812,7 +1884,7 @@ def detail_info(detail_id):
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
     <p><span class="copy-title">发布时间:</span>2022-10-01, 21:03:00</p>
-    <p><span class="copy-title">最后更新:</span>2022-10-04, 19:01:43</p>
+    <p><span class="copy-title">最后更新:</span>2024-01-14, 16:58:24</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2022/10/01/flask_10_deal_request/" title="flask框架学习(4)-处理请求">http://yoursite.com/2022/10/01/flask_10_deal_request/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -1874,7 +1946,7 @@ def detail_info(detail_id):
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#基础','#继承','#paramiko','#json','#rm,shutil','#threading','#键盘、鼠标操作','#excel、 读取或保存数据','#测试','#测试、谷歌驱动、驱动','#adb,wifi','#UI,项目','#Jmeter,压测，参数化','#后端','#数据库','#数据库 ,pymysql','#数据库、Mysql','#MongoDB','#MongoDB、Python','#MongoDB、非关系型数据库','#Django','#Flask','#Flask、图片','#Flask、杂记、笔记','#Flask、zipfile、压缩、解压','#Flask、注册蓝图、模块拆分','#Flask、ajax','#Flask、ajax、axios','#Flask、Gunicorn、项目部署','#Flask、cookie、session','#模板语法','#机器学习','#docker','#前端','#前端、杂记、笔记','#Vue','#vue','#javascript','#文件上传','#Vue、elemt-ui 、按钮隐藏','#echarts','#ES','#安装包','#基础、时间戳、日期加减','#运维、docker','#shell脚本、Python、Mysql、Nginx','#bat命令、shell命令','#shell命令','#学习资料、串口、安装包、网盘','#OCR','#selenium、option','#Nginx','#Al绘画','#爬虫','#爬虫、requests','#爬虫requests','#爬虫、xpath','#爬虫、csv','#爬虫、知识','#爬虫、scrapy','#分享','#git','#运维、命令','#机器学习、折线图','#图形化界面、exe',],
+            'data': ['#基础','#继承','#paramiko','#json','#rm,shutil','#threading','#键盘、鼠标操作','#excel、 读取或保存数据','#测试','#测试、谷歌驱动、驱动','#adb,wifi','#UI,项目','#Jmeter,压测，参数化','#后端','#数据库','#数据库 ,pymysql','#数据库、Mysql','#MongoDB','#MongoDB、Python','#MongoDB、非关系型数据库','#Django','#Flask','#Flask、图片','#Flask、杂记、笔记','#Flask、zipfile、压缩、解压','#Flask、注册蓝图、模块拆分','#Flask、ajax','#Flask、ajax、axios','#Flask、Gunicorn、项目部署','#Flask、cookie、session','#模板语法','#机器学习、折线图','#机器学习','#docker','#前端','#前端、杂记、笔记','#Vue','#vue','#javascript','#文件上传','#Vue、elemt-ui 、按钮隐藏','#echarts','#ES','#安装包','#基础、时间戳、日期加减','#运维、docker','#shell脚本、Python、Mysql、Nginx','#bat命令、shell命令','#shell命令','#学习资料、串口、安装包、网盘','#OCR','#selenium、option','#Nginx','#Al绘画','#爬虫','#爬虫、requests','#爬虫requests','#爬虫、xpath','#爬虫、csv','#爬虫、知识','#爬虫、scrapy','#分享','#git','#运维、命令','#图形化界面、exe',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
