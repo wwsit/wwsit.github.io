@@ -556,7 +556,7 @@
            href="/2023/09/08/qianduan_04_vue_study_7_cookie/"
            data-tag="Vue"
            data-author="" >
-            <span class="post-title" title="Vue框架--cookie操作">Vue框架--cookie操作</span>
+            <span class="post-title" title="Vue框架--cookie与session操作">Vue框架--cookie与session操作</span>
             <span class="post-date" title="2023-09-08 22:44:12">2023/09/08</span>
         </a>
         
@@ -1658,7 +1658,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%97%B6%E9%97%B4%E6%AF%94%E8%BE%83-%E5%92%8C%E8%BD%AC%E6%88%90%E6%97%B6%E9%97%B4%E6%88%B3"><span class="toc-text">1. 时间比较 和转成时间戳</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%97%A5%E6%9C%9F%E5%8A%A0%E5%87%8F%E6%93%8D%E4%BD%9C"><span class="toc-text">2.日期加减操作</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%97%B6%E9%97%B4%E6%AF%94%E8%BE%83-%E5%92%8C%E8%BD%AC%E6%88%90%E6%97%B6%E9%97%B4%E6%88%B3"><span class="toc-text">1. 时间比较 和转成时间戳</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%97%A5%E6%9C%9F%E5%8A%A0%E5%87%8F%E6%93%8D%E4%BD%9C"><span class="toc-text">2.日期加减操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%97%A5%E6%9C%9F%E5%8A%A0%E5%87%8F"><span class="toc-text">3.日期加减</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1727,6 +1727,29 @@ tomorrow_time = time.strftime(&quot;%Y-%m-%d&quot;, tomorrow_timestamp)
 print(&quot;转换后-过去的时间:%s&quot; % tomorrow_time)
 </code></pre>
 <p><img src="2.png"></p>
+<h4 id="3-日期加减"><a href="#3-日期加减" class="headerlink" title="3.日期加减"></a>3.日期加减</h4><pre><code># -*- encoding: utf-8 -*-
+from datetime import datetime, timedelta
+
+# 获取当前日期和时间
+now = datetime.now()
+
+# 加上一天
+one_day_later = now + timedelta(days=1)
+
+# 减去一周
+one_week_ago = now - timedelta(weeks=1)
+
+# 加上一个小时
+one_hour_later = now + timedelta(hours=1)
+
+# 减去30分钟
+thirty_minutes_ago = now - timedelta(minutes=30)
+
+print(one_day_later)
+print(one_week_ago)
+print(one_hour_later)
+print(thirty_minutes_ago)
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
