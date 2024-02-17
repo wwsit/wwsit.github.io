@@ -1652,7 +1652,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2022-10-06 21:43:23'>2022-10-01 21:36</time>
+        创建时间:<time class="date" title='更新时间: 2024-02-17 21:39:42'>2022-10-01 21:36</time>
         
     </div>
     <div class="article-meta">
@@ -1690,7 +1690,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="#1">1.渲染模板</a><br><a href="#2">2.重定向</a><br><a href="#3">3.自定义状态码</a><br><a href="#4">4.返回JSON</a></p>
+        <p><a href="#1">1.渲染模板</a><br><a href="#2">2.重定向</a><br><a href="#3">3.自定义状态码</a><br><a href="#4">4.返回JSON</a><br><a href="#5">5.综合使用</a></p>
 <div id="1">1.渲染模板</div>
     
 <pre><code># 使用render_template方法渲染模板
@@ -1756,6 +1756,48 @@ def demo3():
     &#125;
     return jsonify(json_dict)            
 </code></pre>
+<div id="5">5.综合使用</div>
+
+<pre><code># *_*coding:utf-8
+
+from flask import Flask, make_response, jsonify, abort, redirect
+
+app = Flask(__name__)
+
+
+@app.route(&#39;/&#39;)
+def index():
+    error_message = &#123;&quot;result&quot;: &quot;warn&quot;, &quot;info&quot;: &quot;无权限获取数据&quot;&#125;
+
+    # 使用jsonify 返回json格式的到数据
+    response = make_response(jsonify(error_message), 403)
+
+    # 不设置状态码
+    # response = make_response(jsonify(error_message))
+    response.headers[&#39;Content-Type&#39;] = &#39;application/json&#39;
+
+    # 使用abort可以抛出异常，并且程序不会继续往下执行
+    abort(response)
+
+
+@app.route(&quot;/cookie&quot;, methods=[&quot;get&quot;])
+def set_cookie():
+
+    # 可以用来重定向
+    # resp = make_response(redirect(&#39;https://www.baidu.com&#39;))
+
+    resp = make_response(&quot;hahaha&quot;)
+
+    # 设置cookie值，max_age代表过期时间，单位：秒
+    resp.set_cookie(&#39;username&#39;, &quot;test&quot;, max_age=60 * 60 * 24)
+    resp.set_cookie(&#39;token&#39;, &quot;123456&quot;, max_age=60 * 60 * 24)
+    return resp
+
+
+# Flask应用程序实例的run方法启动WEB服务器
+if __name__ == &#39;__main__&#39;:
+    app.run(host=&quot;0.0.0.0&quot;, port=5000, debug=True)
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
@@ -1773,7 +1815,7 @@ def demo3():
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
     <p><span class="copy-title">发布时间:</span>2022-10-01, 21:36:00</p>
-    <p><span class="copy-title">最后更新:</span>2022-10-06, 21:43:23</p>
+    <p><span class="copy-title">最后更新:</span>2024-02-17, 21:39:42</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2022/10/01/flask_12_deal_response/" title="flask框架学习(5)-处理响应">http://yoursite.com/2022/10/01/flask_12_deal_response/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。

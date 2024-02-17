@@ -1652,7 +1652,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2023-12-21 19:43:03'>2022-09-26 20:00</time>
+        创建时间:<time class="date" title='更新时间: 2024-02-17 21:39:28'>2022-09-26 20:00</time>
         
     </div>
     <div class="article-meta">
@@ -1690,32 +1690,32 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="#1">1.运行第一个程序</a><br><a href="#2">2.启动方式</a><br><a href="#3">3.Flask对象初始化参数</a></p>
+        <p><a href="#1">1.运行第一个程序</a><br><a href="#2">2.启动方式</a><br><a href="#3">3.Flask对象初始化参数</a><br><a href="#3">4.指定请求方式</a></p>
 <div id="1">1.运行第一个程序</div>
     
 <blockquote>
 <p>模块安装 pip3 install flask</p>
 </blockquote>
-<pre><code>    from flask import Flask
-    
-    #Flask类接收一个参数__name__
-    app = Flask(__name__)
-    
-    # 装饰器的作用是将路由映射到视图函数index
-    @app.route(&#39;/&#39;)
-    def index():
-        return &#39;Hello World&#39;
-    
-    # Flask应用程序实例的run方法启动WEB服务器
-    if __name__ == &#39;__main__&#39;:
-        app.run(host=&quot;0.0.0.0&quot;, port=5000, debug=True)
-    
-    &quot;&quot;&quot;
-    可以将app.run() 替换成 app.run(host=&quot;0.0.0.0&quot;, port=5000, debug = True)
-    1.可以指定运行的主机IP地址，端口，是否开启调试模式
-    2.关于DEBUG调试模式
-        2.1 程序代码修改后可以自动重启服务器
-        2.2 在服务器出现相关错误的时候可以直接将错误信息返回到前端进行展示
+<pre><code>from flask import Flask
+
+#Flask类接收一个参数__name__
+app = Flask(__name__)
+
+# 装饰器的作用是将路由映射到视图函数index
+@app.route(&#39;/&#39;)
+def index():
+    return &#39;Hello World&#39;
+
+# Flask应用程序实例的run方法启动WEB服务器
+if __name__ == &#39;__main__&#39;:
+    app.run(host=&quot;0.0.0.0&quot;, port=5000, debug=True)
+
+&quot;&quot;&quot;
+可以将app.run() 替换成 app.run(host=&quot;0.0.0.0&quot;, port=5000, debug = True)
+1.可以指定运行的主机IP地址，端口，是否开启调试模式
+2.关于DEBUG调试模式
+    2.1 程序代码修改后可以自动重启服务器
+    2.2 在服务器出现相关错误的时候可以直接将错误信息返回到前端进行展示
     &quot;&quot;&quot;
     
 </code></pre>
@@ -1775,7 +1775,7 @@ def fun2():
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
     <p><span class="copy-title">发布时间:</span>2022-09-26, 20:00:00</p>
-    <p><span class="copy-title">最后更新:</span>2023-12-21, 19:43:03</p>
+    <p><span class="copy-title">最后更新:</span>2024-02-17, 21:39:28</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2022/09/26/flask_11_first_process/" title="flask框架学习(2)-第一个程序">http://yoursite.com/2022/09/26/flask_11_first_process/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
