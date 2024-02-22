@@ -128,7 +128,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(136)</small></div></li>
+    <li><div class="all active">全部文章<small>(138)</small></div></li>
     
         
             
@@ -188,7 +188,7 @@
     
         
             
-            <li><div data-rel="前端">前端<small>(19)</small></div>
+            <li><div data-rel="前端">前端<small>(21)</small></div>
                 
             </li>
             
@@ -220,7 +220,7 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="136">
+<input type="hidden" id="yelog_site_posts_number" value="138">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -296,6 +296,10 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color4">adb,wifi</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">UI,项目</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -515,10 +519,6 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">UI,项目</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color5">图形化界面、exe</a>
     </li>
     
@@ -527,6 +527,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="前端 "
+           href="/2024/02/22/qianduan_04_vue_study_8_introduce/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue介绍">Vue介绍</span>
+            <span class="post-date" title="2024-02-22 22:11:15">2024/02/22</span>
+        </a>
         
         <a  class="分享 "
            href="/2024/02/17/share_18_tv_source/"
@@ -550,6 +558,14 @@
            data-author="" >
             <span class="post-title" title="flask框架中excel相关操作">flask框架中excel相关操作</span>
             <span class="post-date" title="2023-12-10 22:41:01">2023/12/10</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2023/09/17/qianduan_04_vue_study_6_introduce/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue介绍">Vue介绍</span>
+            <span class="post-date" title="2023-09-17 18:18:02">2023/09/17</span>
         </a>
         
         <a  class="前端 "
@@ -897,18 +913,18 @@
         </a>
         
         <a  class="后端 "
-           href="/2022/08/22/flask_06/"
-           data-tag="Flask、ajax"
-           data-author="" >
-            <span class="post-title" title="ajax的使用(一)">ajax的使用(一)</span>
-            <span class="post-date" title="2022-08-22 19:48:00">2022/08/22</span>
-        </a>
-        
-        <a  class="后端 "
            href="/2022/08/22/flask_07/"
            data-tag="Flask、ajax、axios"
            data-author="" >
             <span class="post-title" title="ajax的使用-axios(二)">ajax的使用-axios(二)</span>
+            <span class="post-date" title="2022-08-22 19:48:00">2022/08/22</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2022/08/22/flask_06/"
+           data-tag="Flask、ajax"
+           data-author="" >
+            <span class="post-title" title="ajax的使用(一)">ajax的使用(一)</span>
             <span class="post-date" title="2022-08-22 19:48:00">2022/08/22</span>
         </a>
         
@@ -1646,7 +1662,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2023-07-08 15:44:47'>2022-10-22 17:21</time>
+        创建时间:<time class="date" title='更新时间: 2024-02-22 22:10:06'>2022-10-22 17:21</time>
         
     </div>
     <div class="article-meta">
@@ -1684,7 +1700,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="#1">1.openyxl与xlwt区别</a><br><a href="#2">2.openyxl写入数据</a><br><a href="#3">3.openyxl读取数据</a><br><a href="#4">4.openyxl追加/修改数据</a></p>
+        <p><a href="#1">1.openyxl与xlwt区别</a><br><a href="#2">2.openyxl写入数据</a><br><a href="#3">3.openyxl读取数据</a><br><a href="#4">4.openyxl追加/修改数据</a><br><a href="#5">5.添加多个工作表</a><br><a href="#6">6.设置颜色</a><br><a href="#7">7.设置对齐方式</a><br><a href="#8">8.设置自动换行</a><br><a href="#9">9.设置列宽</a></p>
 <div id="1">1.openyxl与xlwt区别</div>
      
 
@@ -1804,6 +1820,200 @@ for i in range(1, 6):
 wb.save(file)
 </code></pre>
 <p><img src="3.png"></p>
+<div id="5">5.添加多个工作表(sheet)</div>
+
+<pre><code># 使用&quot;wb.create_sheet(title=&quot;xx&quot;)&quot;添加新的sheet
+import openpyxl
+
+wb = openpyxl.Workbook()
+
+# 写第一个sheet
+sheet1 = wb.active  
+sheet1.title = &quot;一班&quot;  # sheet的名字
+sheet1.append([&quot;姓名&quot;, &quot;年龄&quot;])
+
+# 写第二个sheet
+sheet2 = wb.create_sheet(title=&quot;二班&quot;)
+sheet2.append([&quot;姓名&quot;, &quot;年龄&quot;])
+
+# 写第三个sheet
+sheet3 = wb.create_sheet(title=&quot;三班&quot;)
+sheet3.append([&quot;姓名&quot;, &quot;年龄&quot;])
+
+# 添加值
+sheet1.cell(2, 1, &quot;小明&quot;)
+sheet1.cell(2, 2, &quot;18&quot;)
+sheet1.cell(3, 1, &quot;小李&quot;)
+sheet1.cell(3, 2, &quot;19&quot;)
+
+sheet2.cell(2, 1, &quot;小明&quot;)
+sheet2.cell(2, 2, &quot;18&quot;)
+sheet2.cell(3, 1, &quot;小李&quot;)
+sheet2.cell(3, 2, &quot;19&quot;)
+
+sheet3.cell(2, 1, &quot;小明&quot;)
+sheet3.cell(2, 2, &quot;18&quot;)
+sheet3.cell(3, 1, &quot;小李&quot;)
+sheet3.cell(3, 2, &quot;19&quot;)
+
+# 保存
+wb.save(&quot;./demo.xlsx&quot;)
+</code></pre>
+<p><img src="5.jpg"></p>
+<div id="6">6.设置颜色</div>
+
+<pre><code># *_*coding:utf-8
+import openpyxl
+from openpyxl.styles import Font
+
+def set_color(row, column):
+    # 绿色，颜色需要使用16进制，&quot;#&quot;不用写
+    # 16进制参考表 https://tool.oschina.net/commons?type=3
+    font = Font(color=&#39;67C23A&#39;)
+
+    # 要给哪个单元格添加颜色
+    cell = sheet1.cell(row=row, column=column)
+
+    # 设置单元格的字体样式
+    cell.font = font
+
+wb = openpyxl.Workbook()
+
+# 第一个sheet
+sheet1 = wb.active
+sheet1.title = &quot;一班&quot;
+sheet1.append([&quot;姓名&quot;, &quot;年龄&quot;])
+
+# 添加值
+sheet1.cell(2, 1, &quot;小明&quot;)
+sheet1.cell(2, 2, &quot;18&quot;)
+sheet1.cell(3, 1, &quot;小李&quot;)
+sheet1.cell(3, 2, &quot;19&quot;)
+
+# 给多个单元格设置颜色
+set_color(2, 1)
+set_color(3, 1)
+
+# 保存
+wb.save(&quot;./demo.xlsx&quot;)
+</code></pre>
+<p><img src="6.jpg"></p>
+<div id="7">7.设置对齐方式</div>
+
+<pre><code># *_*coding:utf-8
+import openpyxl
+from openpyxl.styles import Alignment
+
+
+def set_color(row, column):
+    # 设置对齐方式，参数有：left、center、right
+    alignment = Alignment(horizontal=&#39;center&#39;)
+
+    # 要设置的单元格
+    cell = sheet1.cell(row=row, column=column)
+    cell.alignment = alignment
+
+
+wb = openpyxl.Workbook()
+
+# 第一个sheet
+sheet1 = wb.active
+sheet1.title = &quot;一班&quot;
+sheet1.append([&quot;姓名&quot;, &quot;年龄&quot;])
+
+# 添加值
+sheet1.cell(2, 1, &quot;小明&quot;)
+sheet1.cell(2, 2, &quot;18&quot;)
+sheet1.cell(3, 1, &quot;小李&quot;)
+sheet1.cell(3, 2, &quot;19&quot;)
+
+# 给多个单元格进行设置
+set_color(2, 1)
+set_color(3, 1)
+
+# 保存
+wb.save(&quot;./demo.xlsx&quot;)
+</code></pre>
+<p><img src="7.jpg"></p>
+<div id="8">8.设置自动换行</div>
+    
+<pre><code># 单元格里面有换行符才会自动换行
+
+# *_*coding:utf-8
+import openpyxl
+from openpyxl.styles import Alignment
+
+
+def set_color(row, column):
+    alignment = Alignment(wrapText=True)
+    # 要设置的单元格
+    cell = sheet1.cell(row=row, column=column)
+    cell.alignment = alignment
+
+
+wb = openpyxl.Workbook()
+
+# 第一个sheet
+sheet1 = wb.active
+sheet1.title = &quot;一班&quot;
+sheet1.append([&quot;姓名&quot;, &quot;年龄&quot;])
+
+# 添加值
+sheet1.cell(2, 1, &quot;小明&quot;)
+sheet1.cell(2, 2, &quot;18\n喜欢打篮球\n有车有房&quot;)
+sheet1.cell(3, 1, &quot;小李&quot;)
+sheet1.cell(3, 2, &quot;19\n喜欢游泳\n有房&quot;)
+sheet1.cell(4, 1, &quot;小红&quot;)
+sheet1.cell(4, 2, &quot;哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈&quot;)
+
+# 给多个单元格进行设置
+set_color(2, 2)
+set_color(3, 2)
+
+# 保存
+wb.save(&quot;./demo.xlsx&quot;)
+</code></pre>
+<p><img src="8.jpg"></p>
+<div id="9">9.设置列宽</div>
+
+<pre><code># *_*coding:utf-8
+import openpyxl
+import re
+
+wb = openpyxl.Workbook()
+
+# 第一个sheet
+sheet1 = wb.active
+sheet1.title = &quot;一班&quot;
+sheet1.append([&quot;姓名&quot;, &quot;年龄&quot;, &quot;其它&quot;])
+
+# 添加值
+sheet1.cell(2, 1, &quot;小明&quot;)
+sheet1.cell(2, 2, &quot;18\n喜欢打篮球\n有车有房&quot;)
+sheet1.cell(2, 3, &quot;哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈&quot;)
+sheet1.cell(3, 1, &quot;小李&quot;)
+sheet1.cell(3, 2, &quot;19\n喜欢游泳\n有房&quot;)
+sheet1.cell(4, 1, &quot;小红&quot;)
+sheet1.cell(4, 2, &quot;哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈&quot;)
+
+# 设置列宽
+for col in sheet1.columns:
+    # 先计算出每一列最大单元格的长度
+    max_length = max([
+        len(str(cell.value)) + 0.7 * len(re.findall(r&#39;([\u4e00-\u9fa5])&#39;, str(cell.value)))
+        for cell in col
+    ])
+
+    # 设置列宽
+    sheet1.column_dimensions[col[0].column_letter].width = (max_length + 2) * 1.2
+
+# 单独设置列宽，给哪一列设置，就写上哪一列对应的字母
+sheet1.column_dimensions[&quot;C&quot;].width = 10
+
+# 保存
+wb.save(&quot;./demo.xlsx&quot;)
+</code></pre>
+<p><img src="9.jpg"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
@@ -1821,7 +2031,7 @@ wb.save(file)
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
     <p><span class="copy-title">发布时间:</span>2022-10-22, 17:21:00</p>
-    <p><span class="copy-title">最后更新:</span>2023-07-08, 15:44:47</p>
+    <p><span class="copy-title">最后更新:</span>2024-02-22, 22:10:06</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2022/10/22/basic_14_openyxl/" title="Excel操作-openpyxl">http://yoursite.com/2022/10/22/basic_14_openyxl/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -1883,7 +2093,7 @@ wb.save(file)
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#基础','#继承','#paramiko','#json','#rm,shutil','#threading','#键盘、鼠标操作','#excel、 读取或保存数据','#测试','#测试、谷歌驱动、驱动','#adb,wifi','#Jmeter,压测，参数化','#后端','#数据库','#数据库 ,pymysql','#数据库、Mysql','#MongoDB','#MongoDB、Python','#MongoDB、非关系型数据库','#Django','#Flask','#Flask、图片','#Flask、杂记、笔记','#Flask、zipfile、压缩、解压','#Flask、注册蓝图、模块拆分','#Flask、ajax','#Flask、ajax、axios','#Flask、Gunicorn、项目部署','#Flask、cookie、session','#模板语法','#机器学习、折线图','#机器学习','#docker','#前端','#前端、杂记、笔记、axios','#前端、杂记、笔记','#Vue','#vue','#javascript','#文件上传','#Vue、elemt-ui 、按钮隐藏','#echarts','#ES','#安装包','#基础、时间戳、日期加减','#运维、docker','#shell脚本、Python、Mysql、Nginx','#bat命令、shell命令','#shell命令','#学习资料、串口、安装包、网盘','#OCR','#selenium、option','#Nginx','#Al绘画','#电视源','#爬虫','#爬虫、requests','#爬虫requests','#爬虫、xpath','#爬虫、csv','#爬虫、知识','#爬虫、scrapy','#分享','#git','#运维、命令','#UI,项目','#图形化界面、exe',],
+            'data': ['#基础','#继承','#paramiko','#json','#rm,shutil','#threading','#键盘、鼠标操作','#excel、 读取或保存数据','#测试','#测试、谷歌驱动、驱动','#adb,wifi','#UI,项目','#Jmeter,压测，参数化','#后端','#数据库','#数据库 ,pymysql','#数据库、Mysql','#MongoDB','#MongoDB、Python','#MongoDB、非关系型数据库','#Django','#Flask','#Flask、图片','#Flask、杂记、笔记','#Flask、zipfile、压缩、解压','#Flask、注册蓝图、模块拆分','#Flask、ajax','#Flask、ajax、axios','#Flask、Gunicorn、项目部署','#Flask、cookie、session','#模板语法','#机器学习、折线图','#机器学习','#docker','#前端','#前端、杂记、笔记、axios','#前端、杂记、笔记','#Vue','#vue','#javascript','#文件上传','#Vue、elemt-ui 、按钮隐藏','#echarts','#ES','#安装包','#基础、时间戳、日期加减','#运维、docker','#shell脚本、Python、Mysql、Nginx','#bat命令、shell命令','#shell命令','#学习资料、串口、安装包、网盘','#OCR','#selenium、option','#Nginx','#Al绘画','#电视源','#爬虫','#爬虫、requests','#爬虫requests','#爬虫、xpath','#爬虫、csv','#爬虫、知识','#爬虫、scrapy','#分享','#git','#运维、命令','#图形化界面、exe',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
