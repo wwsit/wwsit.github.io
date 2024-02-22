@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Selenium(上) | Jerry书店</title>
-  <meta name="keywords" content=" 测试、谷歌驱动、驱动 ">
-  <meta name="description" content="Selenium(上) | Jerry书店">
+  <title>图片相似度 | Jerry书店</title>
+  <meta name="keywords" content=" 图片相似度 ">
+  <meta name="description" content="图片相似度 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta property="og:type" content="website">
@@ -1656,9 +1656,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-ceshi_02_selenium" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-basic_18_img" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Selenium(上)</h1>
+        <h1 class="article-title">图片相似度</h1>
     
     <div class="article-meta">
         
@@ -1666,21 +1666,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="测试">测试</a>
+                <a href="javascript:" data-rel="基础">基础</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color1">测试、谷歌驱动、驱动</a>
+            <a href="javascript:" class="color1">图片相似度</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2022-07-31 15:57:25'>2019-10-25 10:20</time>
+        创建时间:<time class="date" title='更新时间: 2024-02-22 22:27:17'>2024-02-22 22:18</time>
         
     </div>
     <div class="article-meta">
@@ -1702,7 +1702,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4"><span class="toc-text">命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E8%BF%87CSS%E5%AE%9A%E4%BD%8D"><span class="toc-text">通过CSS定位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6"><span class="toc-text">文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0"><span class="toc-text">练习</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95"><span class="toc-text">1.哈希算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%9D%87%E6%96%B9%E5%B7%AE"><span class="toc-text">2.均方差</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1718,154 +1718,75 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><pre><code>Selenium是一个Web的自动化测试工具，最初是为网站自动化测试而开发的，
-Selenium 可以直接运行在浏览器上，它支持所有主流的浏览器
-（包括PhantomJS这些无界面的浏览器），可以接收指令，
-让浏览器自动加载页面，获取需要的数据，甚至页面截屏。
+        <h3 id="1-哈希算法"><a href="#1-哈希算法" class="headerlink" title="1.哈希算法"></a>1.哈希算法</h3><pre><code># 感知哈希算法（Perceptual Hashing），它将图像转换为一系列数字特征，然后比较这些特征的差异来判断相似性
+# 我们使用PIL库打开并调整图像大小为8x8像素，并将其转换为灰度图像。然后，我们使用imagehash模块计算图像的感知哈希值。
+# 感知哈希算法将图像转换为一串二进制数字，表示图像的特征。接下来，我们计算两个图像的汉明距离，即感知哈希值之间的差异。
+# 汉明距离是指两个等长字符串之间对应位置上不同字符的个数。我们通过归一化差异值来得到相似度，数值越接近1表示越相似。
+
+# *_*coding:utf-8
+from PIL import Image
+import imagehash
+
+def calculate_similarity(image1_path, image2_path):
+    # 打开并调整图像大小
+    img1 = Image.open(image1_path).resize((8, 8)).convert(&#39;L&#39;)
+    img2 = Image.open(image2_path).resize((8, 8)).convert(&#39;L&#39;)
+
+    # 计算感知哈希值
+    hash1 = imagehash.average_hash(img1)
+    hash2 = imagehash.average_hash(img2)
+
+    # 计算汉明距离（Hamming distance）
+    similarity = 1 - (hash1 - hash2) / len(hash1.hash) ** 2
+    return similarity
+
+# 比较两张图片的相似度
+image1_path = &#39;./img/1.jpg&#39;
+image2_path = &#39;./img/2.jpg&#39;
+similarity = calculate_similarity(image1_path, image2_path)
+
+# 设置相似度阈值判断是否相似
+threshold = 0.9  # 自定义阈值，根据需求调整,数值越接近1表示越相似。
+print(similarity)
+if similarity &gt; threshold:
+    print(&quot;图片相似&quot;)
+else:
+    print(&quot;图片不相似&quot;)
 </code></pre>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre><code>https://registry.npmmirror.com/binary.html?path=chromedriver/
-必须下载chrome 版本对应的驱动
-pip install selenium
-在系统变量 添加selenium驱动的位置
-</code></pre>
-<h4 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h4><pre><code>find_element_by_xxx 返回第一个符合条件 WebElement
-find_elements_by_xxx 返回符合条件所有元素的WebEelemnt列表
+<h3 id="2-均方差"><a href="#2-均方差" class="headerlink" title="2.均方差"></a>2.均方差</h3><pre><code># 我们使用PIL库打开并调整图像大小为相同尺寸（256x256像素），然后将图像转换为RGB模式。
+# 接下来，我们将图像转换为像素列表，并使用均方差公式计算图像之间的差异。最后，我们可以根据设定的阈值来判断图像是否相似。
+# 阈值可以根据具体需求进行调整，较小的均方差值表示两张图片更相似。
 
-find函数系列说明
-find_element_by_class_name 通过class 查询元素
-find_element_by_id 通过 ID 查询元素
-find_element_by_name 通过name 
-find_element_by_tag_name 通过标签名称
-find_element_by_css_selector css样式选择
-find_element_by_link_text 通过链接（ &lt;a&gt;标签 ）内容查找
-find_element_by_partial_link_text 通过链接内容包含的内容查找，模糊查询
-find_element_by_xpath 通过xpath查找数据
-获取元素属性和文本内容
+# *_*coding:utf-8
+from PIL import Image
 
-# 获取属性
-element.get_attribute(&#39;属性名&#39;)
-# 获取文本内容
-element.text
-# 获取网页源码
-browser.page_source
+def calculate_mse(image1, image2):
+    # 打开并调整图像大小为相同尺寸
+    img1 = Image.open(image1).resize((256, 256)).convert(&#39;RGB&#39;)
+    img2 = Image.open(image2).resize((256, 256)).convert(&#39;RGB&#39;)
 
+    # 转换图像为像素列表
+    pixels1 = list(img1.getdata())
+    pixels2 = list(img2.getdata())
 
-# 无界面模式
-options = webdriver.ChromeOptions()
-options.add_argument(&#39;--headless&#39;) # 开启无界面模式
-options.add_argument(&#39;--disable-gpu&#39;) # 禁用gpu，解决一些莫名的问题
-browser = webdriver.Chrome(&#39;./chromedriver&#39;,chrome_options=options)
+    # 计算均方差
+    mse = sum([(r1 - r2) ** 2 + (g1 - g2) ** 2 + (b1 - b2) ** 2 for ((r1, g1, b1), (r2, g2, b2)) in
+               zip(pixels1, pixels2)]) / len(pixels1)
+    return mse
 
-# 启动设置User-Agent和代理
-options = webdriver.ChromeOptions()
-# 切换User-Agent
-options.add_argument(&#39;--user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1&#39;)
-# 设置代理
-options.add_argument(&#39;--proxy-server=代理服务器地址&#39;) # 设置代理
-browser = webdriver.Chrome(&#39;./chromedriver&#39;,chrome_options=options)
-</code></pre>
-<h4 id="通过CSS定位"><a href="#通过CSS定位" class="headerlink" title="通过CSS定位"></a>通过CSS定位</h4><pre><code>定位方法
-driver.find_element_by_css_selector()
-常用的策略(方法)
-1. id选择器   
-2. class选择器
-3. 元素选择器
-4. 属性选择器
-5. 层级选择器
-</code></pre>
-<h4 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h4><pre><code>链接：https://pan.baidu.com/s/17e834dVFO3PpmyV1XLbCqA 
-提取码：0nv0 
-</code></pre>
-<h4 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h4><blockquote>
-<p>用面向对象的思想编程</p>
-</blockquote>
-<pre><code>import time
-from selenium import webdriver
-from selenium.webdriver.common.action_chains import ActionChains
+# 比较两张图片的相似度
+image1_path = &#39;./img/1.jpg&#39;
+image2_path = &#39;./img/2.jpg&#39;
+mse = calculate_mse(image1_path, image2_path)
 
-
-class ZhuCeA():
-    def __init__(self):
-        self.url = &#39;file:///D:/py_files/ruance/day_01/素材/注册A.html&#39;
-        self.url2 = &#39;file:///D:/py_files/ruance/day_01/%E7%B4%A0%E6%9D%90/drag.html&#39;
-        self.browser = webdriver.Chrome()
-        pass
-
-    def tag_name(self):
-        &quot;&quot;&quot;1.通过tag标签定位&quot;&quot;&quot;
-        input_content = [&#39;wws&#39;, &#39;xiaowws&#39;, 13566666666, &#39;103@qq.com&#39;]
-        inputs = self.browser.find_elements_by_tag_name(&#39;input&#39;)
-        for i in range(4):
-            inputs[i].send_keys(input_content[i])
-        pass
-
-    def css_selector(self):
-        &quot;&quot;&quot;2.通过CSS定位&quot;&quot;&quot;
-        # 通过CSS里面得ID定位
-        self.browser.find_element_by_css_selector(&#39;#userA&#39;).send_keys(&#39;wws&#39;)
-
-        # 通过CSS里面得class属性定位  class属性里面有两个值 telA haha  只需填一个
-        self.browser.find_element_by_css_selector(&#39;.telA&#39;).send_keys(13592855317)
-        pass
-
-    def operation(self):
-        &quot;&quot;&quot;3.操作命令&quot;&quot;&quot;
-        # 前进 后退  刷新
-        self.browser.find_element_by_partial_link_text(&quot;AA 百度 网站&quot;).click()
-        time.sleep(2)
-        self.browser.back()
-        time.sleep(2)
-        self.browser.refresh()
-        time.sleep(2)
-        self.browser.forward()
-
-    def click_operation(self):
-        &quot;&quot;&quot;4.常用操作方法&quot;&quot;&quot;
-        username = self.browser.find_element_by_id(&#39;userA&#39;)
-        username.send_keys(&#39;wws&#39;)
-        time.sleep(2)
-        username.clear()  # 内容清除
-        print(username.size)  # 获取文本框的大小
-        print(self.browser.title)  # 获取页面title(标题)
-        print(self.browser.current_url)  # 获取当前页面URL
-
-    def mouse_oper(self):
-        &quot;&quot;&quot;5.鼠标操作&quot;&quot;&quot;
-        # context_click()
-        # 此方法模拟鼠标右键点击效果
-        username = self.browser.find_element_by_id(&#39;userA&#39;)
-        action = ActionChains(self.browser)
-        action.context_click(username).perform()  # 在账号附近右键
-
-        # 进行拖动
-        self.browser.get(self.url2)
-        div1 = self.browser.find_element_by_id(&#39;div1&#39;)
-        div2 = self.browser.find_element_by_id(&#39;div2&#39;)
-        time.sleep(2)
-        action = ActionChains(self.browser)
-        action.drag_and_drop(div1, div2).perform()  # 将div1滑块 拖到div2中
-
-    def run(self):
-        &quot;&quot;&quot;运行程序&quot;&quot;&quot;
-        self.browser.get(self.url)
-        try:
-            # self.tag_name()
-            # self.css_selector()
-            # self.operation()
-            # self.click_operation()
-            self.mouse_oper()
-            pass
-        except Exception as e:
-            print(e)
-        finally:
-            time.sleep(8)
-            self.browser.quit()
-        pass
-
-
-if __name__ == &#39;__main__&#39;:
-    client = ZhuCeA()
-    client.run()
+# 设置阈值判断是否相似
+threshold = 100  # 自定义阈值，根据需求调整
+print(mse)
+# 均方误差 MSE的值越小表示两张图片越相似，值为0表示完全相同。
+if mse &lt; threshold:
+    print(&quot;图片相似&quot;)
+else:
+    print(&quot;图片不相似&quot;)
 </code></pre>
 
       
@@ -1880,12 +1801,12 @@ if __name__ == &#39;__main__&#39;:
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Selenium(上)</p>
+    <p><span class="copy-title">文章标题:</span>图片相似度</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-10-25, 10:20:22</p>
-    <p><span class="copy-title">最后更新:</span>2022-07-31, 15:57:25</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/25/ceshi_02_selenium/" title="Selenium(上)">http://yoursite.com/2019/10/25/ceshi_02_selenium/</a>
+    <p><span class="copy-title">发布时间:</span>2024-02-22, 22:18:23</p>
+    <p><span class="copy-title">最后更新:</span>2024-02-22, 22:27:17</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2024/02/22/basic_18_img/" title="图片相似度">http://yoursite.com/2024/02/22/basic_18_img/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
