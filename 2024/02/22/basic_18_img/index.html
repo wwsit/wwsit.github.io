@@ -1680,7 +1680,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2024-02-22 22:27:17'>2024-02-22 22:18</time>
+        创建时间:<time class="date" title='更新时间: 2024-02-22 22:28:55'>2024-02-22 22:18</time>
         
     </div>
     <div class="article-meta">
@@ -1718,75 +1718,75 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-哈希算法"><a href="#1-哈希算法" class="headerlink" title="1.哈希算法"></a>1.哈希算法</h3><pre><code># 感知哈希算法（Perceptual Hashing），它将图像转换为一系列数字特征，然后比较这些特征的差异来判断相似性
-# 我们使用PIL库打开并调整图像大小为8x8像素，并将其转换为灰度图像。然后，我们使用imagehash模块计算图像的感知哈希值。
-# 感知哈希算法将图像转换为一串二进制数字，表示图像的特征。接下来，我们计算两个图像的汉明距离，即感知哈希值之间的差异。
-# 汉明距离是指两个等长字符串之间对应位置上不同字符的个数。我们通过归一化差异值来得到相似度，数值越接近1表示越相似。
+        <h3 id="1-哈希算法"><a href="#1-哈希算法" class="headerlink" title="1.哈希算法"></a>1.哈希算法</h3><pre><code>    # 感知哈希算法（Perceptual Hashing），它将图像转换为一系列数字特征，然后比较这些特征的差异来判断相似性
+    # 我们使用PIL库打开并调整图像大小为8x8像素，并将其转换为灰度图像。然后，我们使用imagehash模块计算图像的感知哈希值。
+    # 感知哈希算法将图像转换为一串二进制数字，表示图像的特征。接下来，我们计算两个图像的汉明距离，即感知哈希值之间的差异。
+    # 汉明距离是指两个等长字符串之间对应位置上不同字符的个数。我们通过归一化差异值来得到相似度，数值越接近1表示越相似。
 
-# *_*coding:utf-8
-from PIL import Image
-import imagehash
-
-def calculate_similarity(image1_path, image2_path):
-    # 打开并调整图像大小
-    img1 = Image.open(image1_path).resize((8, 8)).convert(&#39;L&#39;)
-    img2 = Image.open(image2_path).resize((8, 8)).convert(&#39;L&#39;)
-
-    # 计算感知哈希值
-    hash1 = imagehash.average_hash(img1)
-    hash2 = imagehash.average_hash(img2)
-
-    # 计算汉明距离（Hamming distance）
-    similarity = 1 - (hash1 - hash2) / len(hash1.hash) ** 2
-    return similarity
-
-# 比较两张图片的相似度
-image1_path = &#39;./img/1.jpg&#39;
-image2_path = &#39;./img/2.jpg&#39;
-similarity = calculate_similarity(image1_path, image2_path)
-
-# 设置相似度阈值判断是否相似
-threshold = 0.9  # 自定义阈值，根据需求调整,数值越接近1表示越相似。
-print(similarity)
-if similarity &gt; threshold:
-    print(&quot;图片相似&quot;)
-else:
-    print(&quot;图片不相似&quot;)
+    # *_*coding:utf-8
+    from PIL import Image
+    import imagehash
+    
+    def calculate_similarity(image1_path, image2_path):
+        # 打开并调整图像大小
+        img1 = Image.open(image1_path).resize((8, 8)).convert(&#39;L&#39;)
+        img2 = Image.open(image2_path).resize((8, 8)).convert(&#39;L&#39;)
+    
+        # 计算感知哈希值
+        hash1 = imagehash.average_hash(img1)
+        hash2 = imagehash.average_hash(img2)
+    
+        # 计算汉明距离（Hamming distance）
+        similarity = 1 - (hash1 - hash2) / len(hash1.hash) ** 2
+        return similarity
+    
+    # 比较两张图片的相似度
+    image1_path = &#39;./img/1.jpg&#39;
+    image2_path = &#39;./img/2.jpg&#39;
+    similarity = calculate_similarity(image1_path, image2_path)
+    
+    # 设置相似度阈值判断是否相似
+    threshold = 0.9  # 自定义阈值，根据需求调整,数值越接近1表示越相似。
+    print(similarity)
+    if similarity &gt; threshold:
+        print(&quot;图片相似&quot;)
+    else:
+        print(&quot;图片不相似&quot;)
 </code></pre>
-<h3 id="2-均方差"><a href="#2-均方差" class="headerlink" title="2.均方差"></a>2.均方差</h3><pre><code># 我们使用PIL库打开并调整图像大小为相同尺寸（256x256像素），然后将图像转换为RGB模式。
-# 接下来，我们将图像转换为像素列表，并使用均方差公式计算图像之间的差异。最后，我们可以根据设定的阈值来判断图像是否相似。
-# 阈值可以根据具体需求进行调整，较小的均方差值表示两张图片更相似。
+<h3 id="2-均方差"><a href="#2-均方差" class="headerlink" title="2.均方差"></a>2.均方差</h3><pre><code>    # 我们使用PIL库打开并调整图像大小为相同尺寸（256x256像素），然后将图像转换为RGB模式。
+    # 接下来，我们将图像转换为像素列表，并使用均方差公式计算图像之间的差异。最后，我们可以根据设定的阈值来判断图像是否相似。
+    # 阈值可以根据具体需求进行调整，较小的均方差值表示两张图片更相似。
+    
+    # *_*coding:utf-8
+    from PIL import Image
 
-# *_*coding:utf-8
-from PIL import Image
-
-def calculate_mse(image1, image2):
-    # 打开并调整图像大小为相同尺寸
-    img1 = Image.open(image1).resize((256, 256)).convert(&#39;RGB&#39;)
-    img2 = Image.open(image2).resize((256, 256)).convert(&#39;RGB&#39;)
-
-    # 转换图像为像素列表
-    pixels1 = list(img1.getdata())
-    pixels2 = list(img2.getdata())
-
-    # 计算均方差
-    mse = sum([(r1 - r2) ** 2 + (g1 - g2) ** 2 + (b1 - b2) ** 2 for ((r1, g1, b1), (r2, g2, b2)) in
-               zip(pixels1, pixels2)]) / len(pixels1)
-    return mse
-
-# 比较两张图片的相似度
-image1_path = &#39;./img/1.jpg&#39;
-image2_path = &#39;./img/2.jpg&#39;
-mse = calculate_mse(image1_path, image2_path)
-
-# 设置阈值判断是否相似
-threshold = 100  # 自定义阈值，根据需求调整
-print(mse)
-# 均方误差 MSE的值越小表示两张图片越相似，值为0表示完全相同。
-if mse &lt; threshold:
-    print(&quot;图片相似&quot;)
-else:
-    print(&quot;图片不相似&quot;)
+    def calculate_mse(image1, image2):
+        # 打开并调整图像大小为相同尺寸
+        img1 = Image.open(image1).resize((256, 256)).convert(&#39;RGB&#39;)
+        img2 = Image.open(image2).resize((256, 256)).convert(&#39;RGB&#39;)
+    
+        # 转换图像为像素列表
+        pixels1 = list(img1.getdata())
+        pixels2 = list(img2.getdata())
+    
+        # 计算均方差
+        mse = sum([(r1 - r2) ** 2 + (g1 - g2) ** 2 + (b1 - b2) ** 2 for ((r1, g1, b1), (r2, g2, b2)) in
+                   zip(pixels1, pixels2)]) / len(pixels1)
+        return mse
+    
+    # 比较两张图片的相似度
+    image1_path = &#39;./img/1.jpg&#39;
+    image2_path = &#39;./img/2.jpg&#39;
+    mse = calculate_mse(image1_path, image2_path)
+    
+    # 设置阈值判断是否相似
+    threshold = 100  # 自定义阈值，根据需求调整
+    print(mse)
+    # 均方误差 MSE的值越小表示两张图片越相似，值为0表示完全相同。
+    if mse &lt; threshold:
+        print(&quot;图片相似&quot;)
+    else:
+        print(&quot;图片不相似&quot;)
 </code></pre>
 
       
@@ -1805,7 +1805,7 @@ else:
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
     <p><span class="copy-title">发布时间:</span>2024-02-22, 22:18:23</p>
-    <p><span class="copy-title">最后更新:</span>2024-02-22, 22:27:17</p>
+    <p><span class="copy-title">最后更新:</span>2024-02-22, 22:28:55</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2024/02/22/basic_18_img/" title="图片相似度">http://yoursite.com/2024/02/22/basic_18_img/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
