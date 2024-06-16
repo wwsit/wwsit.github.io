@@ -6,15 +6,15 @@
   <meta name="keywords" content=" Vue ">
   <meta name="description" content="Vue-组件传值调用方法 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="分享Python相关知识，有关Django、Flask、爬虫....">
+<meta name="description" content="页面未找到!">
 <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:title" content="404">
+<meta property="og:url" content="http://yoursite.com/404.html">
 <meta property="og:site_name" content="Jerry书店">
-<meta property="og:description" content="分享Python相关知识，有关Django、Flask、爬虫....">
+<meta property="og:description" content="页面未找到!">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2019-10-18T02:48:22.000Z">
-<meta property="article:modified_time" content="2020-11-14T07:11:10.000Z">
+<meta property="article:published_time" content="2019-09-09T11:20:24.000Z">
+<meta property="article:modified_time" content="2019-09-09T11:30:01.000Z">
 <meta property="article:author" content="伟生">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
@@ -299,6 +299,10 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">测试、谷歌驱动、驱动</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color4">adb,wifi</a>
     </li>
     
@@ -527,10 +531,6 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">测试、谷歌驱动、驱动</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color5">图形化界面、exe</a>
     </li>
     
@@ -544,7 +544,7 @@
            href="/2024/06/16/basic_20_encrypt/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="数据加密">数据加密</span>
+            <span class="post-title" title="数据加解密">数据加解密</span>
             <span class="post-date" title="2024-06-16 16:45:12">2024/06/16</span>
         </a>
         
@@ -1704,7 +1704,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2023-03-19 18:32:08'>2023-03-04 15:27</time>
+        创建时间:<time class="date" title='更新时间: 2024-06-16 19:21:37'>2023-03-04 15:27</time>
         
     </div>
     <div class="article-meta">
@@ -1726,7 +1726,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BD%BF%E7%94%A8props%E4%BC%A0%E9%80%92%E7%BB%84%E4%BB%B6%E7%9A%84%E5%80%BC"><span class="toc-text">1. 使用props传递组件的值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%B0%83%E7%94%A8%E7%BB%84%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">2.调用组件的方法</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BD%BF%E7%94%A8props%E4%BC%A0%E9%80%92%E7%BB%84%E4%BB%B6%E7%9A%84%E5%80%BC"><span class="toc-text">1. 使用props传递组件的值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%B0%83%E7%94%A8%E7%BB%84%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">2.调用组件的方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E8%B0%83%E7%94%A8-%EF%BC%88%E6%9B%B4%E6%96%B0%E7%89%88%EF%BC%89"><span class="toc-text">3. 父子组件之间的调用 （更新版）</span></a>
     
 <style>
     .left-col .switch-btn,
@@ -1849,6 +1849,76 @@
   &lt;/script&gt;
 </code></pre>
 <p><img src="2.png"></p>
+<h3 id="3-父子组件之间的调用-（更新版）"><a href="#3-父子组件之间的调用-（更新版）" class="headerlink" title="3. 父子组件之间的调用 （更新版）"></a>3. 父子组件之间的调用 （更新版）</h3><pre><code>### 使用 this.$refs.child.方法名()  去调用子组件的方法
+### 使用 this.$parent.方法名()   去调用父组件的方法
+### 代码地址：
+https://github.com/wwsit/python_files/tree/master/003_qianduan_files/005_vue%E5%AD%A6%E4%B9%A0/%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E8%B0%83%E7%94%A8
+
+### 父组件内容：
+&lt;template&gt;
+
+  &lt;!-- 1.1 需要用到ref属性，给这个组件起个标识，叫child --&gt;
+  &lt;ChildA ref=&quot;child&quot;&gt;&lt;/ChildA&gt;
+
+  &lt;button @click=&quot;useChildMethod&quot;&gt;调用子组件&lt;/button&gt;
+
+&lt;/template&gt;
+
+&lt;script&gt;
+import ChildA from &quot;./son.vue&quot;
+
+export default &#123;
+  components: &#123;
+    ChildA
+  &#125;,
+  methods: &#123;
+
+
+    useChildMethod() &#123;
+      
+      // 1.2 通过 this.$refs 去访问 child组件里面的内容
+      this.$refs.child.Soninfo()
+    &#125;,
+
+    fatherinfo()&#123;
+      console.log(&quot;我是父组件。。。&quot;)
+    &#125;
+
+  &#125;
+&#125;
+&lt;/script&gt;
+
+
+### 子组件内容
+
+&lt;template&gt;
+  &lt;button @click=&quot;userFather&quot;&gt;调用父组件&lt;/button&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default &#123;
+
+  data() &#123;
+
+    return &#123;
+      msg: &quot;我是子组件中的数据&quot;
+    &#125;
+  &#125;,
+  methods: &#123;
+    
+    Soninfo()&#123;
+      console.log(&#39;我被父组件调用了。。。&#39;)
+    &#125;,
+
+
+    userFather()&#123;
+
+      // 2.1 使用 this.$parent 就可以调用父组件的内容
+      this.$parent.fatherinfo()
+    &#125;
+  &#125;
+&#125;
+&lt;/script&gt;
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
@@ -1866,7 +1936,7 @@
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
     <p><span class="copy-title">发布时间:</span>2023-03-04, 15:27:00</p>
-    <p><span class="copy-title">最后更新:</span>2023-03-19, 18:32:08</p>
+    <p><span class="copy-title">最后更新:</span>2024-06-16, 19:21:37</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2023/03/04/qianduan_04_vue_study_3_father_to_son/" title="Vue-组件传值调用方法">http://yoursite.com/2023/03/04/qianduan_04_vue_study_3_father_to_son/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -1928,7 +1998,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#基础','#继承','#paramiko','#json','#rm,shutil','#threading','#键盘、鼠标操作','#excel、 读取或保存数据','#图片相似度','#os模块','#测试','#adb,wifi','#UI,项目','#Jmeter,压测，参数化','#后端','#数据库','#数据库 ,pymysql','#数据库、Mysql','#MongoDB','#MongoDB、Python','#MongoDB、非关系型数据库','#Django','#Flask','#Flask、图片','#Flask、杂记、笔记','#Flask、zipfile、压缩、解压','#Flask、注册蓝图、模块拆分','#Flask、ajax','#Flask、ajax、axios','#Flask、Gunicorn、项目部署','#Flask、cookie、session','#模板语法','#机器学习、折线图','#机器学习','#docker','#前端','#前端、杂记、笔记、axios','#前端、杂记、笔记','#Vue','#vue','#javascript,cookie','#文件上传','#Vue、elemt-ui 、按钮隐藏、初始化','#echarts','#块元素、行内元素、内联块元素','#ES','#安装包','#基础、时间戳、日期加减','#运维、docker','#shell脚本、Python、Mysql、Nginx','#bat命令、shell命令','#shell命令','#学习资料、串口、安装包、网盘','#OCR','#selenium、option','#Nginx','#Al绘画','#电视源','#爬虫','#爬虫、requests','#爬虫requests','#爬虫、xpath','#爬虫、csv','#爬虫、知识','#爬虫、scrapy','#分享','#git','#运维、命令','#测试、谷歌驱动、驱动','#图形化界面、exe',],
+            'data': ['#基础','#继承','#paramiko','#json','#rm,shutil','#threading','#键盘、鼠标操作','#excel、 读取或保存数据','#图片相似度','#os模块','#测试','#测试、谷歌驱动、驱动','#adb,wifi','#UI,项目','#Jmeter,压测，参数化','#后端','#数据库','#数据库 ,pymysql','#数据库、Mysql','#MongoDB','#MongoDB、Python','#MongoDB、非关系型数据库','#Django','#Flask','#Flask、图片','#Flask、杂记、笔记','#Flask、zipfile、压缩、解压','#Flask、注册蓝图、模块拆分','#Flask、ajax','#Flask、ajax、axios','#Flask、Gunicorn、项目部署','#Flask、cookie、session','#模板语法','#机器学习、折线图','#机器学习','#docker','#前端','#前端、杂记、笔记、axios','#前端、杂记、笔记','#Vue','#vue','#javascript,cookie','#文件上传','#Vue、elemt-ui 、按钮隐藏、初始化','#echarts','#块元素、行内元素、内联块元素','#ES','#安装包','#基础、时间戳、日期加减','#运维、docker','#shell脚本、Python、Mysql、Nginx','#bat命令、shell命令','#shell命令','#学习资料、串口、安装包、网盘','#OCR','#selenium、option','#Nginx','#Al绘画','#电视源','#爬虫','#爬虫、requests','#爬虫requests','#爬虫、xpath','#爬虫、csv','#爬虫、知识','#爬虫、scrapy','#分享','#git','#运维、命令','#图形化界面、exe',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
