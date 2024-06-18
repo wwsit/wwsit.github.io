@@ -1706,7 +1706,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2024-06-18 22:24:49'>2024-06-18 22:13</time>
+        创建时间:<time class="date" title='更新时间: 2024-06-18 22:34:40'>2024-06-18 22:13</time>
         
     </div>
     <div class="article-meta">
@@ -1728,7 +1728,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="toc-text">介绍：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#demo1%EF%BC%9A"><span class="toc-text">demo1：</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="toc-text">介绍：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%901%EF%BC%9A"><span class="toc-text">例子1：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%902%EF%BC%9A"><span class="toc-text">例子2：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1747,7 +1747,7 @@
         <h3 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h3><pre><code>1.使用筛选条件去查询表格的数据
 2.有可能只用了一个筛选条件，也有可能使用了多个筛选条件进行查询
 </code></pre>
-<h3 id="demo1："><a href="#demo1：" class="headerlink" title="demo1："></a>demo1：</h3><pre><code>    # 介绍：
+<h3 id="例子1："><a href="#例子1：" class="headerlink" title="例子1："></a>例子1：</h3><pre><code>    # 介绍：
     # 要去查询表格的数据，筛选条件有：数据版本、测试人员、项目名称、开发人员
 
     result_dict = json.loads(request.data)
@@ -1783,11 +1783,61 @@
     
     # 进行查询操作
     result = db_operator(basic_syntax)
-    if not result:
-        return &#123;&quot;result&quot;: &quot;error&quot;, &quot;info&quot;: &quot;没有数据&quot;&#125;
-    items = return_table_data(result[:10])
+    print(result)
 
-    return &#123;&quot;result&quot;: &quot;success&quot;, &quot;data&quot;: items, &quot;pageTotal&quot;: len(result)&#125;
+  
+</code></pre>
+<h3 id="例子2："><a href="#例子2：" class="headerlink" title="例子2："></a>例子2：</h3><pre><code>    # 介绍：部分数据是以json格式进行存储
+    # demo中的data是一个json类型
+    
+    # 在MySQL数据库中，如果你的数据字段是JSON格式，你可以使用JSON函数和操作符进行模糊查询
+    # -&gt;或-&gt;&gt;操作符：用于访问JSON对象的属性或元素。 -&gt;返回的是JSON对象或数组的值，-&gt;&gt;返回的是文本形式的值。
+    eg:
+    SELECT * FROM your_table WHERE data-&gt;&gt;&#39;$.name&#39; LIKE &#39;%keyword%&#39;;
+    # 上述示例中，假设你的表名为your_table，字段名为data，且data字段存储的是JSON数据。
+    # 你想要在name属性中模糊匹配包含关键字keyword的记录。
+
+
+    result_dict = json.loads(request.data)
+
+    cate_id = result_dict[&quot;cate_id&quot;]
+    name_value = result_dict[&quot;name_value_option&quot;]
+    type_value = result_dict[&quot;type_value_option&quot;]
+    ip_value = result_dict[&quot;ip_value_option&quot;]
+    username_value = result_dict[&quot;username_value_option&quot;]
+
+    basic_syntax = &quot;select * from  tb_list_data &quot;
+    params = []
+
+    if cate_id:
+        params.append(&quot; cate_id=%s&quot; % (cate_id,))
+    
+    # 目标字段是存放在json格式下面，要查询字段 name_value，进行模糊查询
+    if name_value:
+        word = &#39;%&#123;&#125;%&#39;.format(name_value)
+        params.append(&quot; data -&gt; &#39;$.name_value&#39; like &#39;%s&#39; &quot; % (word,))
+    
+    # 目标字段是存放在json格式下面，要查询字段 type_value，进行精确查询
+    if type_value:
+        params.append(&quot; data -&gt; &#39;$.type_value&#39; = &#39;%s&#39; &quot; % (type_value,))
+
+    # 目标字段是存放在json格式下面
+    if ip_value:
+        word = &#39;%&#123;&#125;%&#39;.format(ip_value)
+        params.append(&quot; data -&gt; &#39;$.ip_value&#39; like &#39;%s&#39; &quot; % (word,))
+
+    # 目标字段是存放在json格式下面
+    if username_value:
+        word = &#39;%&#123;&#125;%&#39;.format(username_value)
+        params.append(&quot; data -&gt; &#39;$.username_value&#39; like &#39;%s&#39; &quot; % (word,))
+
+    if params:
+        basic_syntax = basic_syntax + &quot; where &quot; + &quot; and &quot;.join(params) + &quot; order by id desc ;&quot;
+        basic_syntax = basic_syntax.replace(&quot;,)&quot;, &#39;)&#39;)
+
+    # print(basic_syntax)
+    result = db_operator(basic_syntax)
+    print(result)
 </code></pre>
 
       
@@ -1806,7 +1856,7 @@
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
     <p><span class="copy-title">发布时间:</span>2024-06-18, 22:13:00</p>
-    <p><span class="copy-title">最后更新:</span>2024-06-18, 22:24:49</p>
+    <p><span class="copy-title">最后更新:</span>2024-06-18, 22:34:40</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2024/06/18/flask_15_pymysql/" title="flask框架-多个条件同时查询">http://yoursite.com/2024/06/18/flask_15_pymysql/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
