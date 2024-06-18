@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Pytest(一、基本使用) | Jerry书店</title>
-  <meta name="keywords" content=" 测试 ">
-  <meta name="description" content="Pytest(一、基本使用) | Jerry书店">
+  <title>flask框架-多个条件同时查询 | Jerry书店</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="flask框架-多个条件同时查询 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta property="og:type" content="website">
@@ -1688,9 +1688,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-ceshi_12_Pytest(1)" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-flask_15_pymysql" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Pytest(一、基本使用)</h1>
+        <h1 class="article-title">flask框架-多个条件同时查询</h1>
     
     <div class="article-meta">
         
@@ -1698,21 +1698,15 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="测试">测试</a>
+                <a href="javascript:" data-rel="后端">后端</a>
             
         </span>
         
-        
-        <span class="tag">
-            
-            <a href="javascript:" class="color3">测试</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2021-01-23 19:14:57'>2021-01-16 15:19</time>
+        创建时间:<time class="date" title='更新时间: 2024-06-18 22:24:49'>2024-06-18 22:13</time>
         
     </div>
     <div class="article-meta">
@@ -1734,7 +1728,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="toc-text">介绍：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#demo1%EF%BC%9A"><span class="toc-text">demo1：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1750,210 +1744,50 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="#1">1.Pytest介绍</a><br><a href="#2">2.Pytest–简单使用</a><br><a href="#3">3.始末方法(每次)</a><br><a href="#4">4.始末方法(一次)</a><br><a href="#5">5.执行顺序</a><br><a href="#6">6.pytest–跳过测试函数</a><br><a href="#7">7.pytest–函数数据参数化</a></p>
-<div id='1'>1、Pytest介绍</div>
-
-<pre><code>1.pytest是python的一种单元测试框架，同自带的Unittest测试框架类似，相比于Unittest框架使用起来更简洁,效率更高.
-2.支持参数化.
-3.执行测试过程中可以将某些测试跳过，或者对某些预期失败的Case标记成失败
-4.具有很多第三方插件,并且可以自定义扩展
-
-安装命令  pip install pytest
+        <h3 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h3><pre><code>1.使用筛选条件去查询表格的数据
+2.有可能只用了一个筛选条件，也有可能使用了多个筛选条件进行查询
 </code></pre>
-<div id='2'>2.Pytest--简单使用</div>
+<h3 id="demo1："><a href="#demo1：" class="headerlink" title="demo1："></a>demo1：</h3><pre><code>    # 介绍：
+    # 要去查询表格的数据，筛选条件有：数据版本、测试人员、项目名称、开发人员
 
-<pre><code># 脚本名: test_01_断言.py
+    result_dict = json.loads(request.data)
+    version_list = result_dict[&quot;version_list&quot;]
+    tester_list = result_dict[&quot;tester_list&quot;]
+    project_value = result_dict[&quot;input_project_value&quot;]
+    developer_value = result_dict[&quot;developer_list&quot;]
 
-import pytest
-
-# 类名必须以 Test开头
-class Test_study(object):
-
-    # 方法名也必须以 test开头
-    def test_a(self):
-
-        # 1 代表断言成功,不会报错
-        print(&#39;----使用1 不会报错----&#39;)
-        assert 1
-
-    def test_b(self):
+    # 项目名称支持模糊查询，需要事先拼接
+    word = &#39;%&#123;&#125;%&#39;.format(project_value)
     
-        # 0 代表断言失败,会报错
-        print(&#39;----使用0 会报错-----&#39;)
-        assert 0
-
-
-if __name__ == &#39;__main__&#39;:
-
-    # 需要传个列表  [&quot;-s&quot;,&quot;脚本名称&quot;]  
-    # 直接就可以在pycharm中运行
-    pytest.main([&quot;-s&quot;, &quot;test_01_断言.py&quot;])
-
-   &quot;&quot;&quot;
-    如果想在在命令行(终端)中执行
-    先来到该文件的目录下输入 : pytest 脚本名
-                         eg: pytest test_01_断言.py
-   &quot;&quot;
-</code></pre>
-<div id='3'>3.始末方法(每次)</div>
-
-<pre><code># -*-coding:utf-8-*-
-import pytest
-
-&quot;&quot;&quot;
-setup    方法:运行一次函数就被调用一次，且处于每次开头位置
-teardown 方法: 运行一次函数就被调用一次，且处于每次结尾位置
-&quot;&quot;&quot;
-
-
-class Test_ABC:
-
-    def setup(self):
-        print(&quot;----每次开头被调用-----&quot;)
-
-    def teardown(self):
-        print(&quot;----每次结尾被调用----&quot;)
-        print()
-
-    def test_a(self):
-        print(&quot;----&gt; test_a&quot;)
-
-    def test_b(self):
-        print(&quot;----&gt; test_b&quot;)
-
-
-if __name__ == &quot;__main__&quot;:
-    pytest.main([&quot;-s&quot;, &quot;test_02_始末方法(每次).py&quot;])
-</code></pre>
-<div id='4'>4.始末方法(一次)</div>
-
-<pre><code># -*-coding:utf-8-*-
-import pytest
-
-
-class Test_study():
-
-    def setup_class(self):
-        print(&quot;---开头 只会执行一次----&quot;)
-
-    def teardown_class(self):
-        print(&quot;---结尾 只会执行一次----&quot;)
-
-    def test_a(self):
-        print(&quot;----&gt; test_a&quot;)
-
-    def test_b(self):
-        print(&quot;----&gt; test_b&quot;)
-
-
-if __name__ == &#39;__main__&#39;:
-    pytest.main([&quot;-s&quot;, &quot;test_03_始末方法(一次).py&quot;])
-</code></pre>
-<div id='5'>5.执行顺序</div>
-
-<pre><code># -*-coding:utf-8-*-
-import pytest
-
-&quot;&quot;&quot;
-安装插件 :pip install pytest-ordering
-@pytest.mark.run(order=x)
-根据order传入参数来决定运行顺序:
-
-order值全为正数或全为负数时, 值越小,优先级越高
-正数和负数同时存在,正数优先级高
-总结： 0 &gt; 较小整数&gt; 较大的整数 &gt; 无标记 &gt; 较小的负数 &gt; 较大的负数
-&quot;&quot;&quot;
-
-
-class Test_demo():
-
-    def setup_class(self):
-        print(&quot;前置条件&quot;)
-
-    def teardown_class(self):
-        print(&quot;结尾&quot;)
-
-    @pytest.mark.run(order=2)
-    def test_b(self):
-        print(2)
-
-    @pytest.mark.run(order=1)
-    def test_c(self):
-        print(1)
-
-    @pytest.mark.run(order=3)
-    def test_a(self):
-        print(3)
-
-
-if __name__ == &#39;__main__&#39;:
-    pytest.main([&quot;-s&quot;, &quot;test_04_执行顺序.py&quot;])
-</code></pre>
-<div id='6'>6.pytest--跳过测试函数</div>
-
-<pre><code># 根据特定条件、不执行标识的测试函数
-# @pytest.mark.skipif(condition, reason=&#39;xxx&#39;) 当condition为真时，不执行此函数
-
-
-
-# -*-coding:utf-8-*-
-import pytest
-
-@pytest.mark.skipif(condition=1 &gt; 1, reason=&quot;跳过&quot;)
-def test_demo():
-    print(&quot;\n 条件为False时,此函数还是会被执行&quot;)
-
-@pytest.mark.skipif(condition=2 &gt; 1, reason=&quot;跳过&quot;)
-def test_demo2():
-    print(&quot;\n 条件为True时,此函数不会被执行&quot;)
-
-
-if __name__ == &quot;__main__&quot;:
-    pytest.main([&quot;-s&quot;, &quot;test_01_pytest.py&quot;])
-
-
-# 运行结果:
-
-    test_01_pytest.py 
-     条件为False时,此函数还是会被执行
-    .s
-</code></pre>
-<div id='7'>7.pytest--函数数据参数化</div>
+    # 基础语句，如果没有使用筛选条件，就返回全部数据
+    basic_syntax = &quot;select * from tb_quality_score&quot;
+    params = []
     
-<pre><code># 作用: 方便测试函数对测试属性的获取
+    # 如果某个筛选条件有值，就添加 （这里设置了参数需要传元祖类型）
+    if version_list:
+        params.append(&quot; order_number in %s&quot; % (tuple(version_list),))
 
-&quot;&quot;&quot;
-使用方法:
-@pytest.mark.parametrize(argnames,argvalues)
+    if tester_list:
+        params.append(&quot; tester in %s&quot; % (tuple(tester_list),))
 
-parametrize(argnames, argvalues, indirect=False, ids=None, scope=None)
-常用参数：
-argnames：参数名
-argvalues：
-- 参数对应值，类型必须为list
-- 当参数为一个时,参数格式：[value]
-- 当参数个数大于一个时，格式为:[(param_value1,param_value2.....),(param_value1,param_value2.....)]
+    if developer_value:
+        params.append(&quot; developer in %s&quot; % (tuple(developer_value),))
 
-&quot;&quot;&quot;
+    if project_value:
+        params.append(&quot; project like &#39;%s&#39; &quot; % word)
+    
+    # 如果筛选条件有值，就进行拼接
+    if params:
+        basic_syntax = basic_syntax + &quot; where &quot; + &quot; and &quot;.join(params) + &quot; order by id desc ;&quot;
+        basic_syntax = basic_syntax.replace(&quot;,)&quot;, &#39;)&#39;)
+    
+    # 进行查询操作
+    result = db_operator(basic_syntax)
+    if not result:
+        return &#123;&quot;result&quot;: &quot;error&quot;, &quot;info&quot;: &quot;没有数据&quot;&#125;
+    items = return_table_data(result[:10])
 
-
-import pytest
-
-@pytest.mark.parametrize(&quot;num&quot;, [1, 2, 3, 4])
-def test_demo(num):
-    print(&quot;当前值是:%s&quot; % num)
-
-
-if __name__ == &quot;__main__&quot;:
-    pytest.main([&quot;-s&quot;, &quot;test_01_pytest.py&quot;])
-
-# 运行结果:
-
-    test_01_pytest.py 当前值是:1
-    .当前值是:2
-    .当前值是:3
-    .当前值是:4
-    .
+    return &#123;&quot;result&quot;: &quot;success&quot;, &quot;data&quot;: items, &quot;pageTotal&quot;: len(result)&#125;
 </code></pre>
 
       
@@ -1968,12 +1802,12 @@ if __name__ == &quot;__main__&quot;:
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Pytest(一、基本使用)</p>
+    <p><span class="copy-title">文章标题:</span>flask框架-多个条件同时查询</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
-    <p><span class="copy-title">发布时间:</span>2021-01-16, 15:19:03</p>
-    <p><span class="copy-title">最后更新:</span>2021-01-23, 19:14:57</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/01/16/ceshi_12_Pytest(1)/" title="Pytest(一、基本使用)">http://yoursite.com/2021/01/16/ceshi_12_Pytest(1)/</a>
+    <p><span class="copy-title">发布时间:</span>2024-06-18, 22:13:00</p>
+    <p><span class="copy-title">最后更新:</span>2024-06-18, 22:24:49</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2024/06/18/flask_15_pymysql/" title="flask框架-多个条件同时查询">http://yoursite.com/2024/06/18/flask_15_pymysql/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>

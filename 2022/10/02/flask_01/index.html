@@ -128,7 +128,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(141)</small></div></li>
+    <li><div class="all active">全部文章<small>(142)</small></div></li>
     
         
             
@@ -156,7 +156,7 @@
     
         
             
-            <li><div data-rel="后端">后端<small>(19)</small></div>
+            <li><div data-rel="后端">后端<small>(20)</small></div>
                 
             </li>
             
@@ -220,7 +220,7 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="141">
+<input type="hidden" id="yelog_site_posts_number" value="142">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -295,11 +295,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">测试、谷歌驱动、驱动</a>
+        <a href="javascript:" class="color3">测试</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">测试</a>
+        <a href="javascript:" class="color1">测试、谷歌驱动、驱动</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -539,6 +539,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="后端 "
+           href="/2024/06/18/flask_15_pymysql/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="flask框架-多个条件同时查询">flask框架-多个条件同时查询</span>
+            <span class="post-date" title="2024-06-18 22:13:00">2024/06/18</span>
+        </a>
         
         <a  class="基础 "
            href="/2024/06/16/basic_20_encrypt/"
@@ -1704,7 +1712,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2023-12-21 19:41:18'>2022-10-02 15:36</time>
+        创建时间:<time class="date" title='更新时间: 2024-06-18 22:06:20'>2022-10-02 15:36</time>
         
     </div>
     <div class="article-meta">
@@ -1726,7 +1734,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%AE%80%E5%8D%95%E7%9A%84demo"><span class="toc-text">1.简单的demo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%9C%A8%E7%BB%88%E7%AB%AF%E8%BE%93%E5%85%A5%E4%BB%A5%E4%B8%8B%E5%86%85%E5%AE%B9"><span class="toc-text">2.在终端输入以下内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="toc-text">3. 运行程序</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%AE%80%E5%8D%95%E7%9A%84demo"><span class="toc-text">1.简单的demo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%9C%A8%E7%BB%88%E7%AB%AF%E8%BE%93%E5%85%A5%E4%BB%A5%E4%B8%8B%E5%86%85%E5%AE%B9"><span class="toc-text">2.在终端输入以下内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="toc-text">3. 运行程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98"><span class="toc-text">4.解决跨域问题</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1773,6 +1781,12 @@ nohup flask run --host=0.0.0.0 --port=443 --cert=/home/003_content_quality/00_ce
 # http形式运行程序
 nohup flask run --host=0.0.0.0 --port=80 &gt;log.txt 2&gt;&amp;1 &amp;
 </code></pre>
+<h3 id="4-解决跨域问题"><a href="#4-解决跨域问题" class="headerlink" title="4.解决跨域问题"></a>4.解决跨域问题</h3><pre><code>from flask_cors import CORS
+from flask import Flask
+
+app = Flask(__name__)
+CORS(app, supports_credentials=True)
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
@@ -1790,7 +1804,7 @@ nohup flask run --host=0.0.0.0 --port=80 &gt;log.txt 2&gt;&amp;1 &amp;
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
     <p><span class="copy-title">发布时间:</span>2022-10-02, 15:36:00</p>
-    <p><span class="copy-title">最后更新:</span>2023-12-21, 19:41:18</p>
+    <p><span class="copy-title">最后更新:</span>2024-06-18, 22:06:20</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2022/10/02/flask_01/" title="flask框架学习(7)-在服务器中运行flask程序">http://yoursite.com/2022/10/02/flask_01/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -1852,7 +1866,7 @@ nohup flask run --host=0.0.0.0 --port=80 &gt;log.txt 2&gt;&amp;1 &amp;
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#基础','#继承','#paramiko','#json','#rm,shutil','#threading','#键盘、鼠标操作','#excel、 读取或保存数据','#图片相似度','#os模块','#测试、谷歌驱动、驱动','#测试','#adb,wifi','#UI,项目','#Jmeter,压测，参数化','#后端','#数据库','#数据库 ,pymysql','#数据库、Mysql','#MongoDB','#MongoDB、Python','#MongoDB、非关系型数据库','#Django','#Flask','#Flask、图片','#Flask、杂记、笔记','#Flask、zipfile、压缩、解压','#Flask、注册蓝图、模块拆分','#Flask、ajax','#Flask、ajax、axios','#Flask、Gunicorn、项目部署','#Flask、cookie、session','#模板语法','#机器学习、折线图','#机器学习','#docker','#前端','#前端、杂记、笔记、axios','#前端、杂记、笔记','#Vue','#vue','#javascript,cookie','#文件上传','#Vue、elemt-ui 、按钮隐藏、初始化','#echarts','#块元素、行内元素、内联块元素','#ES','#安装包','#基础、时间戳、日期加减','#运维、docker','#shell脚本、Python、Mysql、Nginx','#bat命令、shell命令','#shell命令','#学习资料、串口、安装包、网盘','#OCR','#selenium、option','#Nginx','#Al绘画','#电视源','#爬虫','#爬虫、requests','#爬虫requests','#爬虫、xpath','#爬虫、csv','#爬虫、知识','#爬虫、scrapy','#分享','#git','#运维、命令','#图形化界面、exe',],
+            'data': ['#基础','#继承','#paramiko','#json','#rm,shutil','#threading','#键盘、鼠标操作','#excel、 读取或保存数据','#图片相似度','#os模块','#测试','#测试、谷歌驱动、驱动','#adb,wifi','#UI,项目','#Jmeter,压测，参数化','#后端','#数据库','#数据库 ,pymysql','#数据库、Mysql','#MongoDB','#MongoDB、Python','#MongoDB、非关系型数据库','#Django','#Flask','#Flask、图片','#Flask、杂记、笔记','#Flask、zipfile、压缩、解压','#Flask、注册蓝图、模块拆分','#Flask、ajax','#Flask、ajax、axios','#Flask、Gunicorn、项目部署','#Flask、cookie、session','#模板语法','#机器学习、折线图','#机器学习','#docker','#前端','#前端、杂记、笔记、axios','#前端、杂记、笔记','#Vue','#vue','#javascript,cookie','#文件上传','#Vue、elemt-ui 、按钮隐藏、初始化','#echarts','#块元素、行内元素、内联块元素','#ES','#安装包','#基础、时间戳、日期加减','#运维、docker','#shell脚本、Python、Mysql、Nginx','#bat命令、shell命令','#shell命令','#学习资料、串口、安装包、网盘','#OCR','#selenium、option','#Nginx','#Al绘画','#电视源','#爬虫','#爬虫、requests','#爬虫requests','#爬虫、xpath','#爬虫、csv','#爬虫、知识','#爬虫、scrapy','#分享','#git','#运维、命令','#图形化界面、exe',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
