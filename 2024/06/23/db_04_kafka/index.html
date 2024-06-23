@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Vue模板文件 | Jerry书店</title>
-  <meta name="keywords" content=" Vue ">
-  <meta name="description" content="Vue模板文件 | Jerry书店">
+  <title>kafka学习 | Jerry书店</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="kafka学习 | Jerry书店">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到!">
 <meta property="og:type" content="website">
@@ -1696,9 +1696,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-qianduan_04_vue_1" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-db_04_kafka" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Vue模板文件</h1>
+        <h1 class="article-title">kafka学习</h1>
     
     <div class="article-meta">
         
@@ -1706,21 +1706,15 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="前端">前端</a>
+                <a href="javascript:" data-rel="数据库">数据库</a>
             
         </span>
         
-        
-        <span class="tag">
-            
-            <a href="javascript:" class="color4">Vue</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2023-05-04 10:44:50'>2022-12-31 10:30</time>
+        创建时间:<time class="date" title='更新时间: 2024-06-23 22:17:14'>2024-06-23 22:07</time>
         
     </div>
     <div class="article-meta">
@@ -1742,7 +1736,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#kafka%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99"><span class="toc-text">kafka学习资料</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#python%E4%BD%BF%E7%94%A8kafka%E4%BB%A3%E7%A0%81"><span class="toc-text">python使用kafka代码</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1758,149 +1752,69 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="#1">1.Vue3模板文件</a><br><a href="#2">2.Vue script模板</a><br><a href="#3">3.axios语法</a></p>
-<div id="1">1.Vue3模板文件</div>
-    
-<pre><code>&lt;template&gt;
-    &lt;div&gt;首页&lt;/div&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-export default &#123;
-    name: &#39;&#39;,
-&#125;
-&lt;/script&gt;
-
-&lt;style scoped&gt;
-
-&lt;/style&gt;
+        <h4 id="kafka学习资料"><a href="#kafka学习资料" class="headerlink" title="kafka学习资料"></a>kafka学习资料</h4><pre><code>    https://cloud.tencent.com/developer/article/1991788
+    https://blog.csdn.net/weixin_42837961/article/details/104796766
+    https://cloud.tencent.com/developer/article/1547380
+    https://www.w3ccoo.com/apache_kafka/
 </code></pre>
-<div id="2">2.Vue script模板</div>
-    
-<pre><code>&lt;script&gt;
-import &#123; getCurrentInstance &#125; from &quot;vue&quot;;
+<h4 id="python使用kafka代码"><a href="#python使用kafka代码" class="headerlink" title="python使用kafka代码"></a>python使用kafka代码</h4><pre><code>    # 1.代码地址：https://github.com/wwsit/python_files/tree/master/005_python/001_kafka
+    # 文档地址：https://cloud.tencent.com/document/product/597/63537
 
-export default &#123;
-name: &#39;&#39;,
 
-// 定义数据
-data()&#123;
-    return&#123;
-        username:&quot;&quot; 
-    &#125;
-&#125;,
+    # 2.生产者：
+        from kafka import KafkaProducer
+        import json
+        
+        # pip install kafka-python
+        
+        producer = KafkaProducer(
+            bootstrap_servers=[&#39;ip地址:公网地址&#39;],
+            api_version=(1, 1),
+        
+            # SASL_PLAINTEXT 公网接入
+            security_protocol=&quot;SASL_PLAINTEXT&quot;,
+            sasl_mechanism=&quot;PLAIN&quot;,
+            sasl_plain_username=&quot;用户名&quot;,
+            sasl_plain_password=&quot;密码&quot;,
+        )
+        
+        # 写入消息
+        for _ in range(10):
+            message = &quot;Hello World! Hello Ckafka!&quot;
+            msg = json.dumps(message, ensure_ascii=False).encode()
+        
+            # topic_test:topic名称
+            producer.send(&#39;topic_test&#39;, value=msg)
+            print(&quot;produce message &quot; + message + &quot; success.&quot;)
+        
+        producer.close()
 
-// 初始化
-mounted()&#123;
-    this.username=Cookies.get(&quot;fund_username&quot;) // value
-&#125;,
 
-// 执行方法
-methods: &#123;
-    login()&#123;
-        console.log(this.age) // 直接使用this.变量名 去读取setup函数的值
-        console.log(this.username) // 直接使用this.变量名 去读取data函数的值
-    &#125;,
 
-    click(info)&#123;
-        console.log(info)
-    &#125;
-
-    useClick()&#123;
-        // 调用其它的方法  this.$options.methods.函数名.bind(this)()
-        this.$options.methods.click.bind(this)(&quot;变量值&quot;)
-    &#125;
-
-&#125;,
-
-// 计算
-computed: &#123;
-    now() &#123;
-      return Date.now()
-    &#125;
-  &#125;,
-
-// ts语法
-setup()&#123;
-    
-    // 如果要修改data函数里面的值需要用到 getCurrentInstance()
-    const data_return = getCurrentInstance(); 
-    console.log(data_return.data.username) // 就可以获取到data中的值, 直接console.log(username)是获取不到
-
-    const dialogTableVisible = ref(false)
-    const name =ref(&#39;小四&#39;)
-    const age=ref(18)
-
-    function plusOne()&#123;
-        age.value++ //想改变值或获取值 必须.value
-        name.value = &quot;新值&quot;  // 修改值必须通过.value  
-    &#125;
-
-    return&#123;
-        // 必须返回
-        dialogTableVisible,age,nameplusOne
-    &#125;
-    
-    &#125;
-
-    &#125;
-
-&lt;/script&gt;
-</code></pre>
-<div id="3">axios语法</div>
-
-<pre><code># 3 .1发送json数据模板
-axios(
-    &#123;
-        url:&quot;url&quot;,
-        method:post,
-    &#125;
-).then((res)=&gt;&#123;&#125;).catch((error)=&gt;&#123;&#125;)
-
-demo:
-// 需要导入的模块
-import axios from &#39;axios&#39;  
-
-axios(&#123;
-            url: constantdict.url_prefix +&#39;/fund/api/login&#39;,
-            method: &#39;post&#39;,
-            data: &#123;
-            username: this.username,
-            password: this.password,
-            remember: this.remember
-            &#125;
-
-    &#125;).then((res) =&gt; &#123;
-            // 请求成功
-            console.log(res.data)
-            Cookies.set(&quot;fund_username&quot;, this.username)
-            this.$router.push(&quot;/&quot;);
-
-    &#125;).catch(error =&gt; &#123;
-            // 请求异常
-            console.log(error.response);
-            &#125;)
-
-# 3.2发送表单结构
-    需要加上请求头
-    qs.stringify 将对象转换成json格式
-demo:
-import qs from &#39;qs&#39;
-let data = &#123; username: this.username, &quot;password1&quot;: this.password1, &quot;password2&quot;: this.password2 &#125;
-let option = &#123;
-        method: &#39;POST&#39;,
-        headers: &#123; &#39;content-type&#39;: &#39;application/x-www-form-urlencoded&#39; &#125;,
-        data: qs.stringify(data),
-        url: constant_value.url_prefix + &#39;/fund/api/register/api/register&#39;,
-&#125;
-axios(option).then((response) =&gt; &#123;
-        if (response.data.info == &quot;success&quot;) &#123;
-        localStorage.setItem(&quot;token&quot;, &quot;12121value&quot;);
-        this.$router.push(&quot;/&quot;)
-        &#125; else &#123;
-        console.log(response)
-        console.log(&quot;创建失败&quot;)
-        &#125;
+    # 消费者：
+        from kafka import KafkaConsumer
+        
+        # topic_test: topic名称
+        # group_test：消费组的名称
+        consumer = KafkaConsumer(
+            &#39;topic_test&#39;,
+            group_id=&quot;group_test&quot;,
+            bootstrap_servers=[&#39;ip地址:公网地址&#39;],
+            api_version=(1, 1),
+        
+            # SASL_PLAINTEXT 公网接入
+            security_protocol=&quot;SASL_PLAINTEXT&quot;,
+            sasl_mechanism=&quot;PLAIN&quot;,
+            sasl_plain_username=&quot;用户名&quot;,
+            sasl_plain_password=&quot;密码&quot;,
+        )
+        
+        # 读取消息
+        for message in consumer:
+            print(message)
+            print(&quot;Topic:[%s] Partition:[%d] Offset:[%d] Value:[%s]&quot; %
+                  (message.topic, message.partition, message.offset, message.value))
+            print()
 </code></pre>
 
       
@@ -1915,12 +1829,12 @@ axios(option).then((response) =&gt; &#123;
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Vue模板文件</p>
+    <p><span class="copy-title">文章标题:</span>kafka学习</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
-    <p><span class="copy-title">发布时间:</span>2022-12-31, 10:30:00</p>
-    <p><span class="copy-title">最后更新:</span>2023-05-04, 10:44:50</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2022/12/31/qianduan_04_vue_1/" title="Vue模板文件">http://yoursite.com/2022/12/31/qianduan_04_vue_1/</a>
+    <p><span class="copy-title">发布时间:</span>2024-06-23, 22:07:15</p>
+    <p><span class="copy-title">最后更新:</span>2024-06-23, 22:17:14</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2024/06/23/db_04_kafka/" title="kafka学习">http://yoursite.com/2024/06/23/db_04_kafka/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
