@@ -1720,7 +1720,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2024-03-06 22:45:42'>2022-07-31 15:26</time>
+        创建时间:<time class="date" title='更新时间: 2024-08-21 20:38:03'>2022-07-31 15:26</time>
         
     </div>
     <div class="article-meta">
@@ -1758,7 +1758,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="#1">1.处理html显示的时候中文乱码</a><br><a href="#2">2.移动端与web端兼容性</a><br><a href="#3">3.margin 与 padding区别</a><br><a href="#4">4.计算属性</a><br><a href="#5">5.针对不对的分辨率显示不同的样式--@media</a><br><a href="#6">6.显示滚动条</a><br><a href="#7">7.扩大按钮点击范围</a><br><a href="#8">8.等待前一个函数执行完，才继续往下执行</a><br><a href="#9">9.页面布局调</a><br><a href="#10">10.样式优先级</a><br><a href="#11">11.固定元素位置</a></p>
+        <p><a href="#1">1.处理html显示的时候中文乱码</a><br><a href="#2">2.移动端与web端兼容性</a><br><a href="#3">3.margin 与 padding区别</a><br><a href="#4">4.计算属性</a><br><a href="#5">5.针对不对的分辨率显示不同的样式--@media</a><br><a href="#6">6.显示滚动条</a><br><a href="#7">7.扩大按钮点击范围</a><br><a href="#8">8.等待前一个函数执行完，才继续往下执行</a><br><a href="#10">10.样式优先级</a><br><a href="#11">11.固定元素位置</a></p>
 <div id="1">1.处理html显示的时候中文乱码</div>
 
 <pre><code>在&lt;head&gt; &lt;/head&gt; 中加入这段话即可以解决
@@ -1793,58 +1793,28 @@ width: calc(100% - 200px);
 </code></pre>
 <div id="5">5.针对不对的分辨率显示不同的样式--@media</div>
 
-<pre><code>/* 宽度小于等于1500，使用这个样式 */
-@media(max-width:1500px&#123;
-    .index_button_all&#123;
-            padding-top: 1%;
-            margin-right: 0.5%;
-        &#125;
-&#125;
+<pre><code> # 介绍
+    1.使用@media媒体查询，根据屏幕宽度设置不同的样式 
+    2.rem 设置相对单位
 
-/* 宽度大于等于1920，使用这个样式 */
-@media(min-width:1920px)&#123;
-    .index_button_all&#123;
-            padding-top: 2%;
-            margin-right: 1%;
-        &#125;
-&#125;
+    // 屏幕宽度大于等于 2560
+   @media(max-width:2560px) &#123;
 
-
-//
-/* 超小设备 (手机, 600px 以下屏幕设备) */
-@media (max-width: 600px) &#123;
-    .example &#123;
-        background: red;
-    &#125;
-&#125;
-
-/* 小设备 (平板电脑和大型手机，600 像素及以上) */
-@media(min-width: 600px) &#123;
-    .example &#123;
-        background: green;
-    &#125;
-&#125;
-
-/* 中型设备（平板电脑，768 像素及以上） */
-@media (min-width: 768px) &#123;
-    .example &#123;
-        background: blue;
-    &#125;
-&#125;
-
-/* 大型设备（笔记本电脑/台式机，992 像素及以上） */
-@media (min-width: 992px) &#123;
-    .example &#123;
-        background: orange;
-    &#125;
-&#125;
-
-/* 超大型设备（大型笔记本电脑和台式机，1200 像素及以上） */
-@media (min-width: 1200px) &#123;
-    .example &#123;
-        background: pink;
-    &#125;
+  .recently_visited_content &#123;
+    width: 50%;
+    background-color: rgb(152, 60, 160);
+  &#125;
+   &#125;
+    
+    // 屏幕宽度大于等于 1920
+   @media(max-width:1920px) &#123;
+  .recently_visited_content &#123;
+    width: 55%;
+    background-color: aqua;
+  &#125;
+   &#125;
 </code></pre>
+<p><a target="_blank" rel="noopener" href="https://github.com/wwsit/python_files/blob/master/003_qianduan_files/005_vue%E5%AD%A6%E4%B9%A0/002_%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E8%B0%83%E6%95%B4.vue">代码地址</a></p>
 <div id="6">6.显示滚动条</div>
 
 <blockquote>
@@ -1867,28 +1837,6 @@ width: calc(100% - 200px);
     存在多个函数，然后想等前面的函数执行完并获取到结果，才继续执行下面的函数
 </code></pre>
 <p><a target="_blank" rel="noopener" href="https://github.com/wwsit/python_files/blob/master/003_qianduan_files/005_vue%E5%AD%A6%E4%B9%A0/001_%E6%89%A7%E8%A1%8C%E5%AE%8C%E5%87%BD%E6%95%B0%E6%89%8D%E5%BE%80%E4%B8%8B%E6%89%A7%E8%A1%8C.vue">代码地址</a></p>
-<div id="9">9.页面布局调整</div>
-    
-<pre><code># 介绍
-1.使用@media媒体查询，根据屏幕宽度设置不同的样式 
-2.rem 设置相对单位
-
-@media (width: 414px) &#123;
-
-    /* 设置根元素的字体大小 */
-    html &#123;
-        // font-size: 10px;
-        font-size: 1px;
-    &#125;
-&#125;
-
-@media (width: 1920px) &#123;
-    html &#123;
-        font-size: 2px;
-    &#125;
-&#125;
-</code></pre>
-<p><a target="_blank" rel="noopener" href="https://github.com/wwsit/python_files/blob/master/003_qianduan_files/005_vue%E5%AD%A6%E4%B9%A0/002_%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E8%B0%83%E6%95%B4.vue">代码地址</a></p>
 <div id="10">10.样式优先级</div>
     
 <pre><code># 关键词： !important，会覆盖其他样式规则
@@ -1918,7 +1866,7 @@ width: calc(100% - 200px);
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
     <p><span class="copy-title">发布时间:</span>2022-07-31, 15:26:12</p>
-    <p><span class="copy-title">最后更新:</span>2024-03-06, 22:45:42</p>
+    <p><span class="copy-title">最后更新:</span>2024-08-21, 20:38:03</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2022/07/31/qianduan_02_note/" title="前端杂记">http://yoursite.com/2022/07/31/qianduan_02_note/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
