@@ -1825,6 +1825,9 @@ grant all on demon.* to &#39;wws&#39;@&#39;192.168.36.1&#39;;
 
 # 授权结束后刷新特权
 flush privileges;
+
+# 查询为空的数据，用&quot; is null &quot;表示
+select * from tb_quality_detail where order_number is null
 </code></pre>
 <h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><ul>
 <li>整数：int，bit</li>
