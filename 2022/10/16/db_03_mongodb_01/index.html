@@ -128,7 +128,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(146)</small></div></li>
+    <li><div class="all active">全部文章<small>(147)</small></div></li>
     
         
             
@@ -180,7 +180,7 @@
     
         
             
-            <li><div data-rel="运维">运维<small>(11)</small></div>
+            <li><div data-rel="运维">运维<small>(12)</small></div>
                 
             </li>
             
@@ -220,7 +220,7 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="146">
+<input type="hidden" id="yelog_site_posts_number" value="147">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -551,6 +551,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="运维 "
+           href="/2024/10/19/share_19_docker/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker介绍">docker介绍</span>
+            <span class="post-date" title="2024-10-19 15:34:20">2024/10/19</span>
+        </a>
         
         <a  class="前端 "
            href="/2024/09/04/qianduan_06_element-ui_table/"
@@ -1756,7 +1764,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2023-10-04 11:00:02'>2022-10-16 20:34</time>
+        创建时间:<time class="date" title='更新时间: 2024-10-19 10:34:06'>2022-10-16 20:34</time>
         
     </div>
     <div class="article-meta">
@@ -1851,14 +1859,17 @@ cd /usr/local/mongodb4/bin
 
 # use 已有的数据库名称
 use demo
+
 # 创建用户
-db.createUser(&#123;user:&quot;用户名&quot;,pwd:&quot;密码&quot;,roles:[&#123;role: &#39;readWrite&#39;, db: &#39;给与权限的一个数据库&#39;&#125;]&#125;)  # readWrite 有读写操作
+db.createUser(&#123;user:&quot;用户名&quot;,pwd:&quot;密码&quot;,roles:[&#123;role: &#39;readWrite&#39;, db: &#39;给与权限的数据库名称&#39;&#125;]&#125;)  # readWrite 有读写操作
 eg:db.createUser(&#123;user:&quot;username&quot;,pwd:&quot;password&quot;,roles:[&#123;role: &#39;readWrite&#39;, db: &#39;complianceItem&#39;&#125;]&#125;) 
-# mongodb设置账号密码:https://www.jb51.net/article/284523ehn.htm
+
+ # mongodb设置账号密码:https://www.jb51.net/article/284523ehn.htm
 
 # 需要先kill掉原有的后端服务，然后重新启动后端服务
 # --auth 开启验证
 mongod --dbpath /usr/local/mongodb4 --logpath /var/log/mongodb/mongod.log --bind_ip=0.0.0.0 --auth --fork
+mongod --dbpath /usr/local/mongodb4 --logpath /var/log/mongodb/mongod.log --bind_ip=0.0.0.0  --port=6500 --auth --fork
 
 # 启动客户端
 ./mongo
@@ -1933,7 +1944,7 @@ show  users
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
     <p><span class="copy-title">发布时间:</span>2022-10-16, 20:34:10</p>
-    <p><span class="copy-title">最后更新:</span>2023-10-04, 11:00:02</p>
+    <p><span class="copy-title">最后更新:</span>2024-10-19, 10:34:06</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2022/10/16/db_03_mongodb_01/" title="MongoDB学习(2)-MongoDB安装">http://yoursite.com/2022/10/16/db_03_mongodb_01/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
