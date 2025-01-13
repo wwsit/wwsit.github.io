@@ -1776,7 +1776,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2025-01-11 19:23:14'>2024-10-19 15:34</time>
+        创建时间:<time class="date" title='更新时间: 2025-01-13 21:29:07'>2024-10-19 15:34</time>
         
     </div>
     <div class="article-meta">
@@ -1914,8 +1914,8 @@ Docker 可以让开发者打包他们的应用然后发布到另一台机器上
 <td>docker stop  容器ID</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td>查看各个镜像占用的资源</td>
+<td>docker stats</td>
 </tr>
 </tbody></table>
 <div id='3'>3.容器运行</div>
@@ -1998,6 +1998,47 @@ RUN chmod +x /etc/kickStart.d/start.sh
 
 
 docker container update --publish-add 9090:8080 &lt;container_name_or_id&gt;
+</code></pre>
+<pre><code class="dockerfile"># demo2 运行flask程序
+
+# 拉取镜像
+FROM centos:basic
+
+# 创建目录&amp;安装python环境
+RUN mkdir /home/main -p &amp;&amp; \
+yum install python3  net-tools coreutils -y &amp;&amp; \
+    pip3 install flask -i https://pypi.tuna.tsinghua.edu.cn/simple/
+
+# 设置工作目录
+ENV MYPATH /home/main
+WORKDIR $MYPATH
+
+# 复制脚本
+COPY ./demo.py /home/main
+COPY ./start.sh /home/main
+
+# 设置权限
+RUN chmod 755 /home/main/demo.py &amp;&amp; \
+    chmod 755 /home/main/start.sh
+
+# 启动
+ENTRYPOINT [&quot;/bin/sh&quot;,&quot;/home/main/start.sh&quot;]
+
+
+CMD [&quot;sh&quot;,&quot;/home/main/start.sh&quot;]
+
+
+#####################################
+# demo.py 是flask程序
+# start.sh 是用来启动demo.py文件的脚本
+
+    #!/bin/sh
+    # 启动Flask程序
+    nohup python3 /home/main/demo.py &gt; /home/main/log.txt 2&gt;&amp;1 &amp;
+    # 不让容器挂掉
+    sleep infinity
+
+
 </code></pre>
 <div id='6'>6.发布镜像</div>
 
@@ -2097,7 +2138,7 @@ yum makecache
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
     <p><span class="copy-title">发布时间:</span>2024-10-19, 15:34:20</p>
-    <p><span class="copy-title">最后更新:</span>2025-01-11, 19:23:14</p>
+    <p><span class="copy-title">最后更新:</span>2025-01-13, 21:29:07</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2024/10/19/share_19_docker/" title="docker介绍">http://yoursite.com/2024/10/19/share_19_docker/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
