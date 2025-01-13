@@ -1776,7 +1776,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2025-01-12 22:02:07'>2025-01-12 21:34</time>
+        创建时间:<time class="date" title='更新时间: 2025-01-13 21:25:21'>2025-01-12 21:34</time>
         
     </div>
     <div class="article-meta">
@@ -1864,8 +1864,23 @@ docker container run --name gog_v1 -itd  -p 3300:3000  -p 3022:22 -v /var/gogs:/
 
 # 未登录不允许查看项目内容
 将 REQUIRE_SIGNIN_VIEW  的值改为 true
+
+[email]
+# 邮箱通知 （阿里服务器禁用25端口）
+ENABLED  = true
+HOST     = smtp.163.com:25
+FROM     = 163邮箱地址
+USER     = 163邮箱地址
+PASSWORD = 163邮箱授权码
+
+[log]
+MODE      = file
+# 日志等级：&quot;Trace&quot;, &quot;Info&quot;, &quot;Warn&quot;, &quot;Error&quot;, &quot;Fatal&quot;,
+# 使用Trace级别可以查看到全部日志
+LEVEL     = Info
+ROOT_PATH = /app/gogs/log
 </code></pre>
-<p><img src="2.jpg"> </p>
+<p><img src="2.jpg"><br><img src="3.jpg"> </p>
 <div id='4'>4.参考文档</div>
 
 <pre><code># gogs 安装文档
@@ -1894,7 +1909,7 @@ https://github.com/gogs/gogs/tree/main/docker
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
     <p><span class="copy-title">发布时间:</span>2025-01-12, 21:34:10</p>
-    <p><span class="copy-title">最后更新:</span>2025-01-12, 22:02:07</p>
+    <p><span class="copy-title">最后更新:</span>2025-01-13, 21:25:21</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2025/01/12/operation_01_gogs/" title="搭建私有的代码平台--gogs">http://yoursite.com/2025/01/12/operation_01_gogs/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
