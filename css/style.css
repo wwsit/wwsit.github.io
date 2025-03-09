@@ -1273,11 +1273,10 @@ div.ac > ul > li:before,
   }
 }
 .post {
-  background-color: #f4f5f5;
   height: 100%;
   font-size: 18px;
   line-height: 1.6;
-  background: #fff;
+  background: #f4f5f5;
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -1313,6 +1312,8 @@ div.ac > ul > li:before,
   animation: fadeOuts 0.2s;
 }
 .post .pjax article {
+  background: #fff;
+  padding: 2em;
   padding-top: 2.5em;
 /* Inline code */
 }
