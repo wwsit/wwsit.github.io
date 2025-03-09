@@ -2030,7 +2030,7 @@
 </tr>
 <tr>
 <td align="center">scp 文件名 用户名@IP:要存放的路径</td>
-<td align="center">scp /home/administrator/news.txt <a href="mailto:&#x72;&#x6f;&#111;&#116;&#64;&#120;&#x78;&#x78;&#x2e;&#x78;&#120;&#46;&#x78;&#120;&#46;&#x78;&#x78;">&#x72;&#x6f;&#111;&#116;&#64;&#120;&#x78;&#x78;&#x2e;&#x78;&#120;&#46;&#x78;&#120;&#46;&#x78;&#x78;</a>:/etc/squid</td>
+<td align="center">scp /home/administrator/news.txt <a href="mailto:&#x72;&#111;&#x6f;&#x74;&#64;&#x78;&#120;&#120;&#46;&#x78;&#120;&#x2e;&#x78;&#x78;&#46;&#120;&#120;">&#x72;&#111;&#x6f;&#x74;&#64;&#x78;&#120;&#120;&#46;&#x78;&#120;&#x2e;&#x78;&#x78;&#46;&#120;&#120;</a>:/etc/squid</td>
 <td></td>
 <td align="center"></td>
 <td align="center"></td>
@@ -2263,20 +2263,6 @@ echo export 新的内容 &gt;&gt;/etc/profile
 
         /*高亮代码块行号*/
         
-        $('pre code').each(function(){
-            var lines = $(this).text().split('\n').length - 1, widther='';
-            if (lines>99) {
-                widther = 'widther'
-            }
-            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
-            $(this).addClass('has-numbering ' + widther)
-                    .parent()
-                    .append($numbering);
-            for(var i=1;i<=lines;i++){
-                $numbering.append($('<li/>').text(i));
-            }
-        });
-        
 
         /*访问数量*/
         
@@ -2300,38 +2286,6 @@ echo export 新的内容 &gt;&gt;/etc/profile
 </script>
 
 <!--加入行号的高亮代码块样式-->
-
-<style>
-    pre{
-        position: relative;
-        margin-bottom: 24px;
-        border-radius: 10px;
-        border: 1px solid #e2dede;
-        background: #FFF;
-        overflow: hidden;
-    }
-    code.has-numbering{
-        margin-left: 30px;
-    }
-    code.has-numbering.widther{
-        margin-left: 35px;
-    }
-    .pre-numbering{
-        margin: 0px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 20px;
-        padding: 0.5em 3px 0.7em 5px;
-        border-right: 1px solid #C3CCD0;
-        text-align: right;
-        color: #AAA;
-        background-color: #fafafa;
-    }
-    .pre-numbering.widther {
-        width: 35px;
-    }
-</style>
 
 <!--自定义样式设置-->
 <style>
