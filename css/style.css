@@ -1273,6 +1273,7 @@ div.ac > ul > li:before,
   }
 }
 .post {
+  background-color: #f4f5f5;
   height: 100%;
   font-size: 18px;
   line-height: 1.6;
