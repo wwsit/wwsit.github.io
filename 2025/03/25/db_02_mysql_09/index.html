@@ -1884,7 +1884,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2025-03-25 22:02:34'>2025-03-25 22:01</time>
+        创建时间:<time class="date" title='更新时间: 2025-03-25 22:17:59'>2025-03-25 22:01</time>
         
     </div>
     <div class="article-meta">
@@ -1906,7 +1906,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%90%84%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%8D%A0%E7%94%A8%E5%A4%A7%E5%B0%8F"><span class="toc-text">查看各个数据库的占用大小</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%90%84%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%8D%A0%E7%94%A8%E5%A4%A7%E5%B0%8F"><span class="toc-text">查看各个数据库的占用大小</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%9F%90%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E5%90%84%E4%B8%AA%E8%A1%A8%E7%9A%84%E5%8D%A0%E7%94%A8%E5%A4%A7%E5%B0%8F"><span class="toc-text">查看某个数据库中各个表的占用大小</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E5%90%84%E4%B8%AA%E8%A1%A8%E7%9A%84%E5%8D%A0%E7%94%A8%E5%A4%A7%E5%B0%8F-%E5%A6%82%E6%9E%9C%E8%A1%A8%E7%9A%84%E6%95%B0%E9%87%8F%E8%BF%87%E5%A4%9A%E4%B8%8D%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8%EF%BC%8C%E4%B8%8D%E6%96%B9%E4%BE%BF%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE"><span class="toc-text">查看所有数据库中各个表的占用大小 (如果表的数量过多不推荐使用，不方便查看数据)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%A1%A8%E7%9A%84%E8%AF%A6%E7%BB%86%E5%A4%A7%E5%B0%8F%E4%BF%A1%E6%81%AF"><span class="toc-text">查看表的详细大小信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%A2%8E%E7%89%87%E5%8C%96%E4%B8%A5%E9%87%8D%E7%9A%84%E8%A1%A8"><span class="toc-text">查看碎片化严重的表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Free-Space-%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="toc-text">Free Space 介绍：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1922,7 +1922,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="查看各个数据库的占用大小"><a href="#查看各个数据库的占用大小" class="headerlink" title="查看各个数据库的占用大小"></a>查看各个数据库的占用大小</h4><pre><code># 可以列出所有数据库的大小（以 MB 为单位）
+        <h4 id="查看各个数据库的占用大小"><a href="#查看各个数据库的占用大小" class="headerlink" title="查看各个数据库的占用大小"></a>查看各个数据库的占用大小</h4><pre><code># 列出所有数据库的大小（以 MB 为单位）
 
 SELECT 
     table_schema AS `Database`, 
@@ -1930,6 +1930,68 @@ SELECT
 FROM information_schema.TABLES
 GROUP BY table_schema
 ORDER BY `Size (MB)` DESC;
+</code></pre>
+<h4 id="查看某个数据库中各个表的占用大小"><a href="#查看某个数据库中各个表的占用大小" class="headerlink" title="查看某个数据库中各个表的占用大小"></a>查看某个数据库中各个表的占用大小</h4><pre><code># 列出指定数据库中所有表的大小（以 MB 为单位）
+# 需要替换 your_database_name 为你想要查看的数据库名
+
+SELECT 
+    table_name AS `Table`, 
+    ROUND((data_length + index_length) / 1024 / 1024, 2) AS `Size (MB)`
+FROM information_schema.TABLES
+WHERE table_schema = &#39;your_database_name&#39;
+ORDER BY `Size (MB)` DESC;
+</code></pre>
+<h4 id="查看所有数据库中各个表的占用大小-如果表的数量过多不推荐使用，不方便查看数据"><a href="#查看所有数据库中各个表的占用大小-如果表的数量过多不推荐使用，不方便查看数据" class="headerlink" title="查看所有数据库中各个表的占用大小 (如果表的数量过多不推荐使用，不方便查看数据)"></a>查看所有数据库中各个表的占用大小 (如果表的数量过多不推荐使用，不方便查看数据)</h4><pre><code># 列出所有数据库中所有表的大小（以 MB 为单位）
+
+SELECT 
+    table_schema AS `Database`, 
+    table_name AS `Table`, 
+    ROUND((data_length + index_length) / 1024 / 1024, 2) AS `Size (MB)`
+FROM information_schema.TABLES
+ORDER BY `Size (MB)` DESC;
+</code></pre>
+<h4 id="查看表的详细大小信息"><a href="#查看表的详细大小信息" class="headerlink" title="查看表的详细大小信息"></a>查看表的详细大小信息</h4><pre><code># 可以列出表的详细大小信息，包括数据大小、索引大小和总大小（以 MB 为单位）.
+# 需要替换 your_database_name 为你想要查看的数据库名
+
+SELECT 
+    table_name AS `Table`, 
+    ROUND(data_length / 1024 / 1024, 2) AS `Data Size (MB)`, 
+    ROUND(index_length / 1024 / 1024, 2) AS `Index Size (MB)`, 
+    ROUND((data_length + index_length) / 1024 / 1024, 2) AS `Total Size (MB)`
+FROM information_schema.TABLES
+WHERE table_schema = &#39;your_database_name&#39;
+ORDER BY `Total Size (MB)` DESC;
+</code></pre>
+<h4 id="查看碎片化严重的表"><a href="#查看碎片化严重的表" class="headerlink" title="查看碎片化严重的表"></a>查看碎片化严重的表</h4><pre><code># 可以列出碎片化严重的表（Free Space 表示未使用的空间）
+# 需要替换 your_database_name 为你想要查看的数据库名
+
+SELECT 
+    table_schema AS `Database`, 
+    table_name AS `Table`, 
+    ROUND(data_free / 1024 / 1024, 2) AS `Free Space (MB)`
+FROM information_schema.TABLES
+WHERE data_free &gt; 0
+ORDER BY `Free Space (MB)` DESC;
+</code></pre>
+<h4 id="Free-Space-介绍："><a href="#Free-Space-介绍：" class="headerlink" title="Free Space 介绍："></a>Free Space 介绍：</h4><pre><code> 1. Free Space 的来源
+  MySQL 中，Free Space（空闲空间）是指表中未使用的存储空间。它通常是由于以下原因产生的
+    - 删除操作：当从表中删除数据时，MySQL 并不会立即释放磁盘空间，而是将这些空间标记为“空闲”，以便后续的插入操作可以重用这些空间。
+    - 更新操作：如果更新操作导致某行数据变大，MySQL 可能会将该行数据移动到新的位置，而原来的位置会被标记为“空闲”。
+    - 表的碎片化：频繁的插入、删除和更新操作可能导致表的存储空间变得不连续，从而产生碎片化的空闲空间。
+ 
+ 2.Free Space 的影响
+    - 磁盘空间浪费：如果表的空闲空间过多，会导致磁盘空间被浪费。
+    - 性能影响：虽然空闲空间可以被重用，但如果表的碎片化严重，可能会影响查询性能。
+
+3.如何减少 Free Space
+
+    - 优化表：使用 OPTIMIZE TABLE 命令可以重新组织表的存储空间，释放未使用的空间并减少碎片化。
+        sql语句: OPTIMIZE TABLE your_table_name;
+
+    - 重建表：通过 ALTER TABLE 重建表也可以释放空闲空间。
+        sql语句: ALTER TABLE your_table_name ENGINE=InnoDB;
+
+    - 定期维护：对于频繁删除和更新的表，建议定期执行优化操作。
 </code></pre>
 
       
@@ -1948,7 +2010,7 @@ ORDER BY `Size (MB)` DESC;
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
     <p><span class="copy-title">发布时间:</span>2025-03-25, 22:01:10</p>
-    <p><span class="copy-title">最后更新:</span>2025-03-25, 22:02:34</p>
+    <p><span class="copy-title">最后更新:</span>2025-03-25, 22:17:59</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2025/03/25/db_02_mysql_09/" title="Mysql查询 各个数据库和表的占用大小">http://yoursite.com/2025/03/25/db_02_mysql_09/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
