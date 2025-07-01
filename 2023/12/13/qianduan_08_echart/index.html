@@ -1,0 +1,2212 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>使用echarts绘制图表 | Jerry书店</title>
+  <meta name="keywords" content=" echarts ">
+  <meta name="description" content="使用echarts绘制图表 | Jerry书店">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="分享Python相关知识，有关Django、Flask、爬虫....">
+<meta property="og:type" content="website">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:site_name" content="Jerry书店">
+<meta property="og:description" content="分享Python相关知识，有关Django、Flask、爬虫....">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-10-18T02:48:22.000Z">
+<meta property="article:modified_time" content="2020-11-14T07:11:10.000Z">
+<meta property="article:author" content="伟生">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.staticfile.org/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="trueR">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>伟生</span>
+</div>
+
+<div class="icon">
+    
+        
+    
+        
+            <a title="github" href="https://github.com/wwsit" target="_blank">
+                
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="csdn" href="https://blog.csdn.net/qq_42926114?t=1" target="_blank">
+                
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1031839762&site=qq&menu=yes" target="_blank">
+                
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+            <a title="gitee" href="https://gitee.com/xiaobaiwwws" target="_blank">
+                
+                
+                    <svg class="iconfont-svg"  viewBox="0 0 1024 1024" p-id="1431" width="16" height="16">
+                        <path d="M410.737778 75.093333C180.906667 136.533333 22.755556 370.915556 65.991111 587.093333 117.191111 838.542222 351.573333 1012.622222 583.68 969.386667c250.311111-46.648889 428.942222-285.582222 385.706667-515.413334-35.271111-193.422222-162.702222-331.093333-349.297778-380.017777-81.92-20.48-128.568889-20.48-209.351111 1.137777z m357.262222 237.795556v45.511111l-185.457778 5.688889c-230.968889 6.826667-220.728889-1.137778-216.177778 176.355555l3.413334 125.155556h134.257778c121.742222 0 136.533333-2.275556 151.324444-22.755556 9.102222-12.515556 14.791111-32.995556 13.653333-45.511111-3.413333-20.48-13.653333-23.893333-100.124444-28.444444l-96.711111-5.688889v-91.022222h295.822222l3.413333 91.022222c3.413333 106.951111-17.066667 157.013333-78.506666 190.008889-34.133333 18.204444-62.577778 20.48-232.106667 18.204444l-193.422222-3.413333-2.275556-187.733333c-3.413333-176.355556-2.275556-190.008889 22.755556-232.106667 44.373333-78.506667 76.231111-87.608889 292.408889-84.195556l187.733333 3.413334v45.511111z"
+                              fill="#c71c22" p-id="1432"></path>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(158)</small></div></li>
+    
+        
+            
+            <li><div data-rel="基础">基础<small>(23)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="分享">分享<small>(11)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="测试">测试<small>(18)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="后端">后端<small>(20)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数据库">数据库<small>(20)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="机器学习">机器学习<small>(5)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="运维">运维<small>(16)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="前端">前端<small>(25)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="爬虫">爬虫<small>(15)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="爬虫项目">爬虫项目<small>(5)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="158">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">基础</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">继承</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">paramiko</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">图形化界面、exe</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">json</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">rm,shutil</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">threading</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">键盘、鼠标操作</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">excel、 读取或保存数据</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">图片相似度</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">os模块</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">测试、谷歌驱动、驱动</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">测试</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">adb,wifi</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">Jmeter,压测，参数化</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">UI,项目</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Jmeter,压测</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">后端</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">数据库</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">数据库 ,pymysql</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">数据库、Mysql</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">MongoDB</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">MongoDB、非关系型数据库</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">MongoDB、Python</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">Django</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">Flask</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">Flask、图片</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">Flask、杂记、笔记</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Flask、zipfile、压缩、解压</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">Flask、注册蓝图、模块拆分</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">Flask、ajax、axios</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">Flask、ajax</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Flask、Gunicorn、项目部署</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">机器学习、折线图</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">Flask、cookie、session</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">模板语法</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">机器学习</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">gogs</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">etcd</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">vm</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">kafka</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">前端、杂记、笔记、axios</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">前端</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">前端、杂记、笔记</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">Vue</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">vue</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">axios</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">javascript,cookie</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">Vue、elemt-ui 、按钮隐藏、初始化</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">文件上传</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">Vue、elemt-ui、表格组件相关demo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">echarts</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">css</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">块元素、行内元素、内联块元素</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">安装包</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">luckysheet、表格</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">基础、时间戳、日期加减</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">ES</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">bat命令、shell命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">运维、docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">shell命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">OCR</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">学习资料、串口、安装包、网盘</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">Nginx</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">shell脚本、Python、Mysql、Nginx</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Al绘画</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">电视源</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">selenium、option</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">爬虫、requests</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">爬虫requests</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">爬虫</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">爬虫、xpath</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">爬虫、csv</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">爬虫、知识</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">爬虫、scrapy</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">分享</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">git</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">运维、命令</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="基础 "
+           href="/2025/05/05/basic_22_search_ip/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ip2region -- 查询IP地址">ip2region -- 查询IP地址</span>
+            <span class="post-date" title="2025-05-05 16:35:20">2025/05/05</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2025/03/25/db_02_mysql_09/"
+           data-tag="数据库、Mysql"
+           data-author="" >
+            <span class="post-title" title="Mysql查询 各个数据库和表的占用大小">Mysql查询 各个数据库和表的占用大小</span>
+            <span class="post-date" title="2025-03-25 22:01:10">2025/03/25</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2025/03/23/qianduan_04_vue_study_9_axios/"
+           data-tag="axios"
+           data-author="" >
+            <span class="post-title" title="Vue中发送axios请求">Vue中发送axios请求</span>
+            <span class="post-date" title="2025-03-23 21:38:05">2025/03/23</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2025/03/23/db_02_mysql_08/"
+           data-tag="数据库、Mysql"
+           data-author="" >
+            <span class="post-title" title="Mysql时间字段查询">Mysql时间字段查询</span>
+            <span class="post-date" title="2025-03-23 21:05:11">2025/03/23</span>
+        </a>
+        
+        <a  class="爬虫 "
+           href="/2025/03/03/spider_14_bs4/"
+           data-tag="爬虫"
+           data-author="" >
+            <span class="post-title" title="beautifulsoup (bs4)">beautifulsoup (bs4)</span>
+            <span class="post-date" title="2025-03-03 15:47:10">2025/03/03</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2025/02/26/basic_21_note/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python杂记">Python杂记</span>
+            <span class="post-date" title="2025-02-26 21:16:15">2025/02/26</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2025/02/04/operation_06_VMware/"
+           data-tag="vm"
+           data-author="" >
+            <span class="post-title" title="虚拟机VMware安装">虚拟机VMware安装</span>
+            <span class="post-date" title="2025-02-04 15:14:11">2025/02/04</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2025/01/27/qianduan_11_luckysheet/"
+           data-tag="luckysheet、表格"
+           data-author="" >
+            <span class="post-title" title="vue使用luckysheet实现在线表格">vue使用luckysheet实现在线表格</span>
+            <span class="post-date" title="2025-01-27 18:25:51">2025/01/27</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2025/01/25/operation_03_kafka/"
+           data-tag="kafka"
+           data-author="" >
+            <span class="post-title" title="kafka">kafka</span>
+            <span class="post-date" title="2025-01-25 18:51:10">2025/01/25</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2025/01/25/operation_02_etcd/"
+           data-tag="etcd"
+           data-author="" >
+            <span class="post-title" title="etcd">etcd</span>
+            <span class="post-date" title="2025-01-25 14:25:06">2025/01/25</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2025/01/12/operation_01_gogs/"
+           data-tag="gogs"
+           data-author="" >
+            <span class="post-title" title="搭建私有的代码平台--gogs">搭建私有的代码平台--gogs</span>
+            <span class="post-date" title="2025-01-12 21:34:10">2025/01/12</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2024/10/19/share_19_docker/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker介绍">docker介绍</span>
+            <span class="post-date" title="2024-10-19 15:34:20">2024/10/19</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2024/09/04/qianduan_06_element-ui_table/"
+           data-tag="Vue、elemt-ui、表格组件相关demo"
+           data-author="" >
+            <span class="post-title" title="element-ui表格组件相关demo">element-ui表格组件相关demo</span>
+            <span class="post-date" title="2024-09-04 22:14:00">2024/09/04</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2024/08/25/qianduan_10_css/"
+           data-tag="css"
+           data-author="" >
+            <span class="post-title" title="css样式集">css样式集</span>
+            <span class="post-date" title="2024-08-25 22:01:12">2024/08/25</span>
+        </a>
+        
+        <a  class="测试 "
+           href="/2024/08/24/ceshi_18_jmeter_01_MongoDB/"
+           data-tag="Jmeter,压测"
+           data-author="" >
+            <span class="post-title" title="使用Jmeter对MongoDB进行压测">使用Jmeter对MongoDB进行压测</span>
+            <span class="post-date" title="2024-08-24 15:55:00">2024/08/24</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2024/06/23/db_04_kafka/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="kafka学习">kafka学习</span>
+            <span class="post-date" title="2024-06-23 22:07:15">2024/06/23</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2024/06/18/flask_15_pymysql/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="flask框架-多个条件同时查询（sql语句）">flask框架-多个条件同时查询（sql语句）</span>
+            <span class="post-date" title="2024-06-18 22:13:00">2024/06/18</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2024/06/16/basic_20_encrypt/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="数据加解密">数据加解密</span>
+            <span class="post-date" title="2024-06-16 16:45:12">2024/06/16</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2024/04/08/basic_19_os/"
+           data-tag="os模块"
+           data-author="" >
+            <span class="post-title" title="os模块">os模块</span>
+            <span class="post-date" title="2024-04-08 23:33:15">2024/04/08</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2024/03/17/qianduan_09_basic_01_block/"
+           data-tag="块元素、行内元素、内联块元素"
+           data-author="" >
+            <span class="post-title" title="块元素、行内元素、内联块元素">块元素、行内元素、内联块元素</span>
+            <span class="post-date" title="2024-03-17 22:20:08">2024/03/17</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2024/02/22/basic_18_img/"
+           data-tag="图片相似度"
+           data-author="" >
+            <span class="post-title" title="图片相似度">图片相似度</span>
+            <span class="post-date" title="2024-02-22 22:18:23">2024/02/22</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2024/02/22/qianduan_04_vue_study_8_introduce/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue介绍">Vue介绍</span>
+            <span class="post-date" title="2024-02-22 22:11:15">2024/02/22</span>
+        </a>
+        
+        <a  class="分享 "
+           href="/2024/02/17/share_18_tv_source/"
+           data-tag="电视源"
+           data-author="" >
+            <span class="post-title" title="配置电视源接口">配置电视源接口</span>
+            <span class="post-date" title="2024-02-17 14:57:32">2024/02/17</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2023/12/13/qianduan_08_echart/"
+           data-tag="echarts"
+           data-author="" >
+            <span class="post-title" title="使用echarts绘制图表">使用echarts绘制图表</span>
+            <span class="post-date" title="2023-12-13 22:17:35">2023/12/13</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2023/12/10/basic_17_excel/"
+           data-tag="excel、 读取或保存数据"
+           data-author="" >
+            <span class="post-title" title="flask框架中excel相关操作">flask框架中excel相关操作</span>
+            <span class="post-date" title="2023-12-10 22:41:01">2023/12/10</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2023/09/17/qianduan_07_flex/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flex 布局">Flex 布局</span>
+            <span class="post-date" title="2023-09-17 18:18:02">2023/09/17</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2023/09/09/basic_16_PyUserInput/"
+           data-tag="键盘、鼠标操作"
+           data-author="" >
+            <span class="post-title" title="PyUserInput鼠标键盘操作">PyUserInput鼠标键盘操作</span>
+            <span class="post-date" title="2023-09-09 10:15:19">2023/09/09</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2023/09/08/qianduan_04_vue_study_7_cookie/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="Vue框架--cookie与session操作">Vue框架--cookie与session操作</span>
+            <span class="post-date" title="2023-09-08 22:44:12">2023/09/08</span>
+        </a>
+        
+        <a  class="分享 "
+           href="/2023/08/08/share_14_stablediffusion/"
+           data-tag="Al绘画"
+           data-author="" >
+            <span class="post-title" title="stable diffusion教程">stable diffusion教程</span>
+            <span class="post-date" title="2023-08-08 21:28:10">2023/08/08</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2023/07/23/qianduan_04_vue_study_6_nextTick/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="this.$nextTick()使用方法">this.$nextTick()使用方法</span>
+            <span class="post-date" title="2023-07-23 18:52:00">2023/07/23</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2023/07/08/qianduan_06_element-ui/"
+           data-tag="Vue、elemt-ui 、按钮隐藏、初始化"
+           data-author="" >
+            <span class="post-title" title="element-ui组件使用(定期更新)">element-ui组件使用(定期更新)</span>
+            <span class="post-date" title="2023-07-08 16:09:00">2023/07/08</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2023/06/11/qianduan_04_vue_study_5_router/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="Vue框架学习(5)--路由">Vue框架学习(5)--路由</span>
+            <span class="post-date" title="2023-06-11 15:52:00">2023/06/11</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2023/06/10/qianduan_05_upload/"
+           data-tag="文件上传"
+           data-author="" >
+            <span class="post-title" title="前端excel文件上传、后端处理">前端excel文件上传、后端处理</span>
+            <span class="post-date" title="2023-06-10 10:01:01">2023/06/10</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2023/05/27/qianduan_04_vue_study_4_vuex/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="Vue框架学习(4)--Vuex学习">Vue框架学习(4)--Vuex学习</span>
+            <span class="post-date" title="2023-05-27 18:23:00">2023/05/27</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2023/04/01/qianduan_04_vue_study_3_project_init/"
+           data-tag="vue"
+           data-author="" >
+            <span class="post-title" title="Vue框架学习(3)--项目初始化操作">Vue框架学习(3)--项目初始化操作</span>
+            <span class="post-date" title="2023-04-01 19:23:00">2023/04/01</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2023/03/19/db_03_mongodb_05_cache/"
+           data-tag="MongoDB、非关系型数据库"
+           data-author="" >
+            <span class="post-title" title="用MongoDB进行数据的缓存">用MongoDB进行数据的缓存</span>
+            <span class="post-date" title="2023-03-19 16:53:10">2023/03/19</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2023/03/04/qianduan_04_vue_study_3_father_to_son/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="Vue-组件传值调用方法">Vue-组件传值调用方法</span>
+            <span class="post-date" title="2023-03-04 15:27:00">2023/03/04</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2023/02/11/share_011_es/"
+           data-tag="ES"
+           data-author="" >
+            <span class="post-title" title="ES安装教程">ES安装教程</span>
+            <span class="post-date" title="2023-02-11 19:14:00">2023/02/11</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2023/01/20/qianduan_04_vue_study_2_create_project/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="Vue框架学习(2)--创建Vue项目">Vue框架学习(2)--创建Vue项目</span>
+            <span class="post-date" title="2023-01-20 10:30:00">2023/01/20</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2023/01/19/qianduan_04_vue_study_1_envir/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="Vue框架学习(1)--环境搭建">Vue框架学习(1)--环境搭建</span>
+            <span class="post-date" title="2023-01-19 20:15:00">2023/01/19</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2023/01/18/qianduan_04_vue_3_use_variable/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="Vue学习-使用文件存储变量名称">Vue学习-使用文件存储变量名称</span>
+            <span class="post-date" title="2023-01-18 20:17:00">2023/01/18</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2023/01/16/db_01_redis_05/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="redis命令">redis命令</span>
+            <span class="post-date" title="2023-01-16 10:49:15">2023/01/16</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2023/01/02/qianduan_05_js/"
+           data-tag="javascript,cookie"
+           data-author="" >
+            <span class="post-title" title="JS语法杂记">JS语法杂记</span>
+            <span class="post-date" title="2023-01-02 11:50:00">2023/01/02</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2022/12/31/qianduan_04_vue_2/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="Centos环境下使用Nginx部署Vue3项目">Centos环境下使用Nginx部署Vue3项目</span>
+            <span class="post-date" title="2022-12-31 10:50:00">2022/12/31</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2022/12/31/qianduan_04_vue_1/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="Vue模板文件">Vue模板文件</span>
+            <span class="post-date" title="2022-12-31 10:30:00">2022/12/31</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2022/12/11/share_13_nginx/"
+           data-tag="Nginx"
+           data-author="" >
+            <span class="post-title" title="Centos环境下Nginx使用教程">Centos环境下Nginx使用教程</span>
+            <span class="post-date" title="2022-12-11 16:46:00">2022/12/11</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2022/10/30/basic_15_notes/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python基础-杂记">Python基础-杂记</span>
+            <span class="post-date" title="2022-10-30 21:58:00">2022/10/30</span>
+        </a>
+        
+        <a  class="分享 "
+           href="/2022/10/30/share_12_selenium/"
+           data-tag="selenium、option"
+           data-author="" >
+            <span class="post-title" title="selenium调用原来的浏览器">selenium调用原来的浏览器</span>
+            <span class="post-date" title="2022-10-30 21:42:00">2022/10/30</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2022/10/22/basic_14_openyxl/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Excel操作-openpyxl">Excel操作-openpyxl</span>
+            <span class="post-date" title="2022-10-22 17:21:00">2022/10/22</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2022/10/17/qianduan_03_DOM/"
+           data-tag="前端、杂记、笔记"
+           data-author="" >
+            <span class="post-title" title="HTML DOM(文档对象模型)学习">HTML DOM(文档对象模型)学习</span>
+            <span class="post-date" title="2022-10-17 21:00:03">2022/10/17</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2022/10/16/db_03_mongodb_03/"
+           data-tag="MongoDB、Python"
+           data-author="" >
+            <span class="post-title" title="MongoDB学习(4)-与Python的交互操作">MongoDB学习(4)-与Python的交互操作</span>
+            <span class="post-date" title="2022-10-16 22:23:01">2022/10/16</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2022/10/16/db_03_mongodb_02/"
+           data-tag="MongoDB"
+           data-author="" >
+            <span class="post-title" title="MongoDB学习(3)-MongoDB增删改查操作">MongoDB学习(3)-MongoDB增删改查操作</span>
+            <span class="post-date" title="2022-10-16 21:15:05">2022/10/16</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2022/10/16/db_03_mongodb_01/"
+           data-tag="MongoDB"
+           data-author="" >
+            <span class="post-title" title="MongoDB学习(2)-MongoDB安装">MongoDB学习(2)-MongoDB安装</span>
+            <span class="post-date" title="2022-10-16 20:34:10">2022/10/16</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2022/10/16/basic_13_threading/"
+           data-tag="threading"
+           data-author="" >
+            <span class="post-title" title="Threading线程池">Threading线程池</span>
+            <span class="post-date" title="2022-10-16 14:50:00">2022/10/16</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2022/10/15/db_03_mongodb_04/"
+           data-tag="MongoDB、非关系型数据库"
+           data-author="" >
+            <span class="post-title" title="MongoDB学习(1)-MongoDB介绍">MongoDB学习(1)-MongoDB介绍</span>
+            <span class="post-date" title="2022-10-15 20:45:05">2022/10/15</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2022/10/07/flask_14_templates/"
+           data-tag="模板语法"
+           data-author="" >
+            <span class="post-title" title="flask框架学习(9)-模板语法">flask框架学习(9)-模板语法</span>
+            <span class="post-date" title="2022-10-07 17:05:00">2022/10/07</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2022/10/07/flask_08_gunicorn/"
+           data-tag="Flask、Gunicorn、项目部署"
+           data-author="" >
+            <span class="post-title" title="flask框架学习(8)-Gunicorn的使用">flask框架学习(8)-Gunicorn的使用</span>
+            <span class="post-date" title="2022-10-07 11:10:00">2022/10/07</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2022/10/02/flask_01/"
+           data-tag="Flask"
+           data-author="" >
+            <span class="post-title" title="flask框架学习(7)-在服务器中运行flask程序">flask框架学习(7)-在服务器中运行flask程序</span>
+            <span class="post-date" title="2022-10-02 15:36:00">2022/10/02</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2022/10/01/flask_13_cookie_session/"
+           data-tag="Flask、cookie、session"
+           data-author="" >
+            <span class="post-title" title="flask框架学习(6)-Cookie与Session">flask框架学习(6)-Cookie与Session</span>
+            <span class="post-date" title="2022-10-01 22:16:00">2022/10/01</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2022/10/01/flask_12_deal_response/"
+           data-tag="Flask"
+           data-author="" >
+            <span class="post-title" title="flask框架学习(5)-处理响应">flask框架学习(5)-处理响应</span>
+            <span class="post-date" title="2022-10-01 21:36:00">2022/10/01</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2022/10/01/flask_10_deal_request/"
+           data-tag="Flask"
+           data-author="" >
+            <span class="post-title" title="flask框架学习(4)-处理请求">flask框架学习(4)-处理请求</span>
+            <span class="post-date" title="2022-10-01 21:03:00">2022/10/01</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2022/09/28/flask_05/"
+           data-tag="Flask、注册蓝图、模块拆分"
+           data-author="" >
+            <span class="post-title" title="flask框架学习(3)-注册蓝图">flask框架学习(3)-注册蓝图</span>
+            <span class="post-date" title="2022-09-28 20:35:00">2022/09/28</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2022/09/26/flask_11_first_process/"
+           data-tag="Flask"
+           data-author="" >
+            <span class="post-title" title="flask框架学习(2)-第一个程序">flask框架学习(2)-第一个程序</span>
+            <span class="post-date" title="2022-09-26 20:00:00">2022/09/26</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2022/09/25/flask_09_introduce/"
+           data-tag="Flask"
+           data-author="" >
+            <span class="post-title" title="flask框架学习(1)-flask框架介绍">flask框架学习(1)-flask框架介绍</span>
+            <span class="post-date" title="2022-09-25 15:00:00">2022/09/25</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2022/09/18/basic_12_rm_copy/"
+           data-tag="rm,shutil"
+           data-author="" >
+            <span class="post-title" title="文件及文件夹的复制、删除操作">文件及文件夹的复制、删除操作</span>
+            <span class="post-date" title="2022-09-18 16:12:00">2022/09/18</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2022/09/18/basic_11_json/"
+           data-tag="json"
+           data-author="" >
+            <span class="post-title" title="json读写文件操作">json读写文件操作</span>
+            <span class="post-date" title="2022-09-18 15:49:00">2022/09/18</span>
+        </a>
+        
+        <a  class="测试 "
+           href="/2022/09/04/ceshi_16_idle_fish/"
+           data-tag="UI,项目"
+           data-author="" >
+            <span class="post-title" title="项目-UI自动化-自动领取闲鱼币">项目-UI自动化-自动领取闲鱼币</span>
+            <span class="post-date" title="2022-09-04 22:17:00">2022/09/04</span>
+        </a>
+        
+        <a  class="分享 "
+           href="/2022/08/23/share_10_tampermonkey/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="油猴插件安装教程">油猴插件安装教程</span>
+            <span class="post-date" title="2022-08-23 21:38:00">2022/08/23</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2022/08/22/flask_07/"
+           data-tag="Flask、ajax、axios"
+           data-author="" >
+            <span class="post-title" title="ajax的使用-axios(二)">ajax的使用-axios(二)</span>
+            <span class="post-date" title="2022-08-22 19:48:00">2022/08/22</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2022/08/22/flask_06/"
+           data-tag="Flask、ajax"
+           data-author="" >
+            <span class="post-title" title="ajax的使用(一)">ajax的使用(一)</span>
+            <span class="post-date" title="2022-08-22 19:48:00">2022/08/22</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2022/08/20/flask_03/"
+           data-tag="Flask、杂记、笔记"
+           data-author="" >
+            <span class="post-title" title="flask 杂记">flask 杂记</span>
+            <span class="post-date" title="2022-08-20 10:10:00">2022/08/20</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2022/07/31/flask_04/"
+           data-tag="Flask、zipfile、压缩、解压"
+           data-author="" >
+            <span class="post-title" title="flask-压缩/解压文件(zipfile)">flask-压缩/解压文件(zipfile)</span>
+            <span class="post-date" title="2022-07-31 15:38:00">2022/07/31</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2022/07/31/qianduan_02_note/"
+           data-tag="前端、杂记、笔记、axios"
+           data-author="" >
+            <span class="post-title" title="前端杂记">前端杂记</span>
+            <span class="post-date" title="2022-07-31 15:26:12">2022/07/31</span>
+        </a>
+        
+        <a  class="测试 "
+           href="/2022/07/24/ceshi_17_pressure/"
+           data-tag="Jmeter,压测，参数化"
+           data-author="" >
+            <span class="post-title" title="Jmeter进行压测-简单demo">Jmeter进行压测-简单demo</span>
+            <span class="post-date" title="2022-07-24 20:02:00">2022/07/24</span>
+        </a>
+        
+        <a  class="分享 "
+           href="/2022/07/20/share_11_pip/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="pip安装包">pip安装包</span>
+            <span class="post-date" title="2022-07-20 20:38:00">2022/07/20</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2022/06/19/flask_02/"
+           data-tag="Flask、图片"
+           data-author="" >
+            <span class="post-title" title="flask-图片处理">flask-图片处理</span>
+            <span class="post-date" title="2022-06-19 16:22:10">2022/06/19</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2022/05/14/maintenance_01_dockerfile/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="编写dockerfile">编写dockerfile</span>
+            <span class="post-date" title="2022-05-14 15:57:08">2022/05/14</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2021/08/28/basic_10_paramiko/"
+           data-tag="paramiko"
+           data-author="" >
+            <span class="post-title" title="Paramiko--远程服务器操作">Paramiko--远程服务器操作</span>
+            <span class="post-date" title="2021-08-28 14:55:25">2021/08/28</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2021/06/06/basic_09_jicheng/"
+           data-tag="继承"
+           data-author="" >
+            <span class="post-title" title="Python 继承">Python 继承</span>
+            <span class="post-date" title="2021-06-06 22:33:25">2021/06/06</span>
+        </a>
+        
+        <a  class="分享 "
+           href="/2021/04/24/share_09_OCR/"
+           data-tag="OCR"
+           data-author="" >
+            <span class="post-title" title="OCR使用">OCR使用</span>
+            <span class="post-date" title="2021-04-24 15:23:18">2021/04/24</span>
+        </a>
+        
+        <a  class="测试 "
+           href="/2021/04/17/ceshi_15_adbconnect/"
+           data-tag="adb,wifi"
+           data-author="" >
+            <span class="post-title" title="通过wifi去连接手机设备">通过wifi去连接手机设备</span>
+            <span class="post-date" title="2021-04-17 15:23:18">2021/04/17</span>
+        </a>
+        
+        <a  class="爬虫 "
+           href="/2021/03/06/spider_13_selenium/"
+           data-tag="爬虫"
+           data-author="" >
+            <span class="post-title" title="selenium命令">selenium命令</span>
+            <span class="post-date" title="2021-03-06 19:01:21">2021/03/06</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2021/03/06/basic_08_tinker/"
+           data-tag="图形化界面、exe"
+           data-author="" >
+            <span class="post-title" title="Tkinter &amp; pyinstaller">Tkinter &amp; pyinstaller</span>
+            <span class="post-date" title="2021-03-06 17:26:10">2021/03/06</span>
+        </a>
+        
+        <a  class="分享 "
+           href="/2021/01/31/basic_07_http&https/"
+           data-tag="基础"
+           data-author="" >
+            <span class="post-title" title="http &amp; https 内容">http &amp; https 内容</span>
+            <span class="post-date" title="2021-01-31 14:47:41">2021/01/31</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2021/01/24/db_02_mysql_07/"
+           data-tag="数据库、Mysql"
+           data-author="" >
+            <span class="post-title" title="Pycharm连接Mysql">Pycharm连接Mysql</span>
+            <span class="post-date" title="2021-01-24 19:35:16">2021/01/24</span>
+        </a>
+        
+        <a  class="机器学习 "
+           href="/2021/01/23/machine_matplotlib/"
+           data-tag="机器学习、折线图"
+           data-author="" >
+            <span class="post-title" title="使用matplotlib进行绘图---折线图">使用matplotlib进行绘图---折线图</span>
+            <span class="post-date" title="2021-01-23 15:04:25">2021/01/23</span>
+        </a>
+        
+        <a  class="测试 "
+           href="/2021/01/16/ceshi_14_Pytest(3)/"
+           data-tag="测试"
+           data-author="" >
+            <span class="post-title" title="Pytest(三、Allure使用)">Pytest(三、Allure使用)</span>
+            <span class="post-date" title="2021-01-16 17:01:25">2021/01/16</span>
+        </a>
+        
+        <a  class="测试 "
+           href="/2021/01/16/ceshi_13_Pytest(2)/"
+           data-tag="测试"
+           data-author="" >
+            <span class="post-title" title="Pytest(二、fixture使用)">Pytest(二、fixture使用)</span>
+            <span class="post-date" title="2021-01-16 16:31:18">2021/01/16</span>
+        </a>
+        
+        <a  class="测试 "
+           href="/2021/01/16/ceshi_12_Pytest(1)/"
+           data-tag="测试"
+           data-author="" >
+            <span class="post-title" title="Pytest(一、基本使用)">Pytest(一、基本使用)</span>
+            <span class="post-date" title="2021-01-16 15:19:03">2021/01/16</span>
+        </a>
+        
+        <a  class="分享 "
+           href="/2021/01/10/share_08_learn/"
+           data-tag="学习资料、串口、安装包、网盘"
+           data-author="" >
+            <span class="post-title" title="学习资料">学习资料</span>
+            <span class="post-date" title="2021-01-10 20:15:51">2021/01/10</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2020/11/29/share_07_shell_3/"
+           data-tag="shell命令"
+           data-author="" >
+            <span class="post-title" title="shell命令(三)">shell命令(三)</span>
+            <span class="post-date" title="2020-11-29 16:31:15">2020/11/29</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2020/11/22/share_07_shell_2/"
+           data-tag="shell命令"
+           data-author="" >
+            <span class="post-title" title="shell命令(二)">shell命令(二)</span>
+            <span class="post-date" title="2020-11-22 11:18:10">2020/11/22</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2020/11/13/share_06_bat_and_shell/"
+           data-tag="bat命令、shell命令"
+           data-author="" >
+            <span class="post-title" title="bat和shell命令(一)">bat和shell命令(一)</span>
+            <span class="post-date" title="2020-11-13 20:58:16">2020/11/13</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2020/11/07/share_05_order/"
+           data-tag="shell脚本、Python、Mysql、Nginx"
+           data-author="" >
+            <span class="post-title" title="各种安装包的命令">各种安装包的命令</span>
+            <span class="post-date" title="2020-11-07 16:25:16">2020/11/07</span>
+        </a>
+        
+        <a  class="爬虫项目 "
+           href="/2020/10/06/spider_items_05_kugou/"
+           data-tag="爬虫"
+           data-author="" >
+            <span class="post-title" title="爬虫 酷狗音乐爬虫2.0版本">爬虫 酷狗音乐爬虫2.0版本</span>
+            <span class="post-date" title="2020-10-06 10:06:24">2020/10/06</span>
+        </a>
+        
+        <a  class="爬虫项目 "
+           href="/2020/08/09/spider_items_04_kugou/"
+           data-tag="爬虫"
+           data-author="" >
+            <span class="post-title" title="爬虫 酷狗音乐爬虫">爬虫 酷狗音乐爬虫</span>
+            <span class="post-date" title="2020-08-09 15:03:08">2020/08/09</span>
+        </a>
+        
+        <a  class="前端 "
+           href="/2020/06/14/qianduan_01_audio/"
+           data-tag="前端"
+           data-author="" >
+            <span class="post-title" title="实现播放、暂停、重放音频">实现播放、暂停、重放音频</span>
+            <span class="post-date" title="2020-06-14 22:12:52">2020/06/14</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2020/06/11/basic_06_yagmail/"
+           data-tag="基础"
+           data-author="" >
+            <span class="post-title" title="Python实现发邮件功能">Python实现发邮件功能</span>
+            <span class="post-date" title="2020-06-11 09:57:51">2020/06/11</span>
+        </a>
+        
+        <a  class="测试 "
+           href="/2020/06/10/ceshi_11_Appium/"
+           data-tag="测试"
+           data-author="" >
+            <span class="post-title" title="使用Appium进行自动化测试">使用Appium进行自动化测试</span>
+            <span class="post-date" title="2020-06-10 17:19:15">2020/06/10</span>
+        </a>
+        
+        <a  class="测试 "
+           href="/2020/06/02/ceshi_10_test%20environment/"
+           data-tag="测试"
+           data-author="" >
+            <span class="post-title" title="测试环境搭建(CentOS+Apache+PHP+Mysql)">测试环境搭建(CentOS+Apache+PHP+Mysql)</span>
+            <span class="post-date" title="2020-06-02 16:15:02">2020/06/02</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2020/05/22/share_04_docker/"
+           data-tag="运维、docker"
+           data-author="" >
+            <span class="post-title" title="在docker中安装CentOs,并设置远程连接">在docker中安装CentOs,并设置远程连接</span>
+            <span class="post-date" title="2020-05-22 18:39:06">2020/05/22</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2020/04/18/share_03_time/"
+           data-tag="基础、时间戳、日期加减"
+           data-author="" >
+            <span class="post-title" title="时间比较和怎么转成时间戳">时间比较和怎么转成时间戳</span>
+            <span class="post-date" title="2020-04-18 20:01:26">2020/04/18</span>
+        </a>
+        
+        <a  class="爬虫项目 "
+           href="/2020/04/03/spider_items_03_fanyi/"
+           data-tag="爬虫"
+           data-author="" >
+            <span class="post-title" title="爬虫 实现中英文翻译">爬虫 实现中英文翻译</span>
+            <span class="post-date" title="2020-04-03 20:03:05">2020/04/03</span>
+        </a>
+        
+        <a  class="爬虫项目 "
+           href="/2020/03/14/spider_items_02_wechat/"
+           data-tag="爬虫"
+           data-author="" >
+            <span class="post-title" title="爬取微信公众号文章">爬取微信公众号文章</span>
+            <span class="post-date" title="2020-03-14 10:15:35">2020/03/14</span>
+        </a>
+        
+        <a  class="爬虫项目 "
+           href="/2020/03/08/spider_items_01_bilili/"
+           data-tag="爬虫"
+           data-author="" >
+            <span class="post-title" title="爬取B站某UP主视频信息">爬取B站某UP主视频信息</span>
+            <span class="post-date" title="2020-03-08 16:10:20">2020/03/08</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2020/02/07/basic_05_other/"
+           data-tag="基础"
+           data-author="" >
+            <span class="post-title" title="闭包、装饰器">闭包、装饰器</span>
+            <span class="post-date" title="2020-02-07 20:29:06">2020/02/07</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2020/02/05/basic_04_APS/"
+           data-tag="基础"
+           data-author="" >
+            <span class="post-title" title="APScheduler使用">APScheduler使用</span>
+            <span class="post-date" title="2020-02-05 13:35:16">2020/02/05</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2020/02/05/db_02_mysql_06/"
+           data-tag="数据库 ,pymysql"
+           data-author="" >
+            <span class="post-title" title="Python程序操作MySQL数据库(pymysql)">Python程序操作MySQL数据库(pymysql)</span>
+            <span class="post-date" title="2020-02-05 12:01:03">2020/02/05</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2020/01/27/basic_03_regular/"
+           data-tag="基础"
+           data-author="" >
+            <span class="post-title" title="正则表达式">正则表达式</span>
+            <span class="post-date" title="2020-01-27 16:00:11">2020/01/27</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2020/01/12/tool_06_linux/"
+           data-tag="运维、命令"
+           data-author="" >
+            <span class="post-title" title="Linux命令">Linux命令</span>
+            <span class="post-date" title="2020-01-12 15:35:40">2020/01/12</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2020/01/12/tool_05_xls/"
+           data-tag="基础"
+           data-author="" >
+            <span class="post-title" title="Python 与 excel表格的操作">Python 与 excel表格的操作</span>
+            <span class="post-date" title="2020-01-12 15:04:53">2020/01/12</span>
+        </a>
+        
+        <a  class="测试 "
+           href="/2019/12/29/ceshi_09_adb_exercise/"
+           data-tag="测试"
+           data-author="" >
+            <span class="post-title" title="adb--UI自动化">adb--UI自动化</span>
+            <span class="post-date" title="2019-12-29 20:04:01">2019/12/29</span>
+        </a>
+        
+        <a  class="测试 "
+           href="/2019/12/15/ceshi_08_monkey/"
+           data-tag="测试"
+           data-author="" >
+            <span class="post-title" title="Monkey测试">Monkey测试</span>
+            <span class="post-date" title="2019-12-15 19:40:28">2019/12/15</span>
+        </a>
+        
+        <a  class="测试 "
+           href="/2019/11/21/ceshi_07_appium_order/"
+           data-tag="测试"
+           data-author="" >
+            <span class="post-title" title="appium 常用命令">appium 常用命令</span>
+            <span class="post-date" title="2019-11-21 12:49:22">2019/11/21</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2019/11/18/db_01_redis_04/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="redis 命令(下)---列表、集合、有序集合">redis 命令(下)---列表、集合、有序集合</span>
+            <span class="post-date" title="2019-11-18 22:12:09">2019/11/18</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2019/11/18/db_01_redis_03/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="redis 命令(上)---字符串、键命令、哈希">redis 命令(上)---字符串、键命令、哈希</span>
+            <span class="post-date" title="2019-11-18 21:32:24">2019/11/18</span>
+        </a>
+        
+        <a  class="机器学习 "
+           href="/2019/11/05/machine_pandas_4/"
+           data-tag="机器学习"
+           data-author="" >
+            <span class="post-title" title="Pandas命令(二)">Pandas命令(二)</span>
+            <span class="post-date" title="2019-11-05 21:00:12">2019/11/05</span>
+        </a>
+        
+        <a  class="机器学习 "
+           href="/2019/11/05/machine_pandas_2/"
+           data-tag="机器学习"
+           data-author="" >
+            <span class="post-title" title="Pandas命令(一)">Pandas命令(一)</span>
+            <span class="post-date" title="2019-11-05 19:26:18">2019/11/05</span>
+        </a>
+        
+        <a  class="分享 "
+           href="/2019/11/04/tool_04_pycharm/"
+           data-tag="分享"
+           data-author="" >
+            <span class="post-title" title="Pycharm快捷键">Pycharm快捷键</span>
+            <span class="post-date" title="2019-11-04 22:37:10">2019/11/04</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2019/11/02/tool_03_git/"
+           data-tag="git"
+           data-author="" >
+            <span class="post-title" title="git命令">git命令</span>
+            <span class="post-date" title="2019-11-02 14:02:10">2019/11/02</span>
+        </a>
+        
+        <a  class="爬虫 "
+           href="/2019/11/01/spider_12_UA/"
+           data-tag="爬虫"
+           data-author="" >
+            <span class="post-title" title="Scrapy中间件">Scrapy中间件</span>
+            <span class="post-date" title="2019-11-01 14:33:27">2019/11/01</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2019/10/31/basic_02_relation/"
+           data-tag="基础"
+           data-author="" >
+            <span class="post-title" title="进程、线程、协程代码">进程、线程、协程代码</span>
+            <span class="post-date" title="2019-10-31 20:12:35">2019/10/31</span>
+        </a>
+        
+        <a  class="基础 "
+           href="/2019/10/31/basic_01_relation/"
+           data-tag="基础"
+           data-author="" >
+            <span class="post-title" title="进程、线程、协程">进程、线程、协程</span>
+            <span class="post-date" title="2019-10-31 19:28:45">2019/10/31</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2019/10/29/db_02_mysql_05/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="Mysql事务">Mysql事务</span>
+            <span class="post-date" title="2019-10-29 19:23:10">2019/10/29</span>
+        </a>
+        
+        <a  class="测试 "
+           href="/2019/10/27/ceshi_06_adb_order/"
+           data-tag="测试"
+           data-author="" >
+            <span class="post-title" title="ADB常用命令">ADB常用命令</span>
+            <span class="post-date" title="2019-10-27 18:31:22">2019/10/27</span>
+        </a>
+        
+        <a  class="测试 "
+           href="/2019/10/27/ceshi_05_move_ceshi/"
+           data-tag="测试"
+           data-author="" >
+            <span class="post-title" title="Appiun的安装(windows环境)">Appiun的安装(windows环境)</span>
+            <span class="post-date" title="2019-10-27 15:12:20">2019/10/27</span>
+        </a>
+        
+        <a  class="测试 "
+           href="/2019/10/26/ceshi_04_Jmeter/"
+           data-tag="测试"
+           data-author="" >
+            <span class="post-title" title="Jmeter核心知识">Jmeter核心知识</span>
+            <span class="post-date" title="2019-10-26 21:06:26">2019/10/26</span>
+        </a>
+        
+        <a  class="测试 "
+           href="/2019/10/26/ceshi_03_Jmeter/"
+           data-tag="测试"
+           data-author="" >
+            <span class="post-title" title="Jmeter基本介绍">Jmeter基本介绍</span>
+            <span class="post-date" title="2019-10-26 20:25:12">2019/10/26</span>
+        </a>
+        
+        <a  class="机器学习 "
+           href="/2019/10/25/machine_pandas_3/"
+           data-tag="机器学习"
+           data-author="" >
+            <span class="post-title" title="Pandas--Mysql操作">Pandas--Mysql操作</span>
+            <span class="post-date" title="2019-10-25 20:55:46">2019/10/25</span>
+        </a>
+        
+        <a  class="机器学习 "
+           href="/2019/10/25/machine_pandas_1/"
+           data-tag="机器学习"
+           data-author="" >
+            <span class="post-title" title="Pandas介绍">Pandas介绍</span>
+            <span class="post-date" title="2019-10-25 18:21:15">2019/10/25</span>
+        </a>
+        
+        <a  class="测试 "
+           href="/2019/10/25/ceshi_02_selenium/"
+           data-tag="测试、谷歌驱动、驱动"
+           data-author="" >
+            <span class="post-title" title="Selenium(上)">Selenium(上)</span>
+            <span class="post-date" title="2019-10-25 10:20:22">2019/10/25</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2019/10/24/db_02_mysql_04/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="Mysql常用命令(下)">Mysql常用命令(下)</span>
+            <span class="post-date" title="2019-10-24 21:20:36">2019/10/24</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2019/10/24/db_02_mysql_03/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="Mysql常用命令(中)">Mysql常用命令(中)</span>
+            <span class="post-date" title="2019-10-24 20:25:16">2019/10/24</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2019/10/24/db_02_mysql_02/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="Mysql常用命令(上)">Mysql常用命令(上)</span>
+            <span class="post-date" title="2019-10-24 19:12:20">2019/10/24</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2019/10/24/db_02_mysql_01/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="Mysql数据库介绍">Mysql数据库介绍</span>
+            <span class="post-date" title="2019-10-24 18:22:31">2019/10/24</span>
+        </a>
+        
+        <a  class="测试 "
+           href="/2019/10/21/ceshi_01_introduce/"
+           data-tag="测试"
+           data-author="" >
+            <span class="post-title" title="测试介绍">测试介绍</span>
+            <span class="post-date" title="2019-10-21 15:10:22">2019/10/21</span>
+        </a>
+        
+        <a  class="爬虫 "
+           href="/2019/10/20/spider_11_opencv/"
+           data-tag="爬虫"
+           data-author="" >
+            <span class="post-title" title="用OpenCV识别出缺省图片">用OpenCV识别出缺省图片</span>
+            <span class="post-date" title="2019-10-20 15:20:01">2019/10/20</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2019/10/03/db_01_redis_02/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="redis 主从配置">redis 主从配置</span>
+            <span class="post-date" title="2019-10-03 20:20:11">2019/10/03</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2019/10/03/db_01_redis_01/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="redis的介绍">redis的介绍</span>
+            <span class="post-date" title="2019-10-03 15:12:21">2019/10/03</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2019/10/02/django_04_view/"
+           data-tag="Django"
+           data-author="" >
+            <span class="post-title" title="Django创建视图">Django创建视图</span>
+            <span class="post-date" title="2019-10-02 21:30:10">2019/10/02</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2019/10/02/django_03_startapp/"
+           data-tag="Django"
+           data-author="" >
+            <span class="post-title" title="Django创建子应用">Django创建子应用</span>
+            <span class="post-date" title="2019-10-02 21:10:19">2019/10/02</span>
+        </a>
+        
+        <a  class="运维 "
+           href="/2019/09/13/share_01_url/"
+           data-tag="安装包"
+           data-author="" >
+            <span class="post-title" title="CentOS服务器下各种安装包 安装教程">CentOS服务器下各种安装包 安装教程</span>
+            <span class="post-date" title="2019-09-13 15:20:21">2019/09/13</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2019/09/02/compare_01_backend/"
+           data-tag="后端"
+           data-author="" >
+            <span class="post-title" title="Django与Flask的比较">Django与Flask的比较</span>
+            <span class="post-date" title="2019-09-02 20:10:11">2019/09/02</span>
+        </a>
+        
+        <a  class="分享 "
+           href="/2019/09/01/tool_02_markdown/"
+           data-tag="分享"
+           data-author="" >
+            <span class="post-title" title="MarkDown常用语法">MarkDown常用语法</span>
+            <span class="post-date" title="2019-09-01 22:00:11">2019/09/01</span>
+        </a>
+        
+        <a  class="爬虫 "
+           href="/2019/09/01/spider_scrapy_02/"
+           data-tag="爬虫、scrapy"
+           data-author="" >
+            <span class="post-title" title="Scrapy 核心组件">Scrapy 核心组件</span>
+            <span class="post-date" title="2019-09-01 21:10:31">2019/09/01</span>
+        </a>
+        
+        <a  class="分享 "
+           href="/2019/09/01/tool_01_vim/"
+           data-tag="分享"
+           data-author="" >
+            <span class="post-title" title="编辑器 vim">编辑器 vim</span>
+            <span class="post-date" title="2019-09-01 19:40:21">2019/09/01</span>
+        </a>
+        
+        <a  class="爬虫 "
+           href="/2019/09/01/spider_scrapy_01/"
+           data-tag="爬虫、scrapy"
+           data-author="" >
+            <span class="post-title" title="Scrapy 框架介绍">Scrapy 框架介绍</span>
+            <span class="post-date" title="2019-09-01 19:00:11">2019/09/01</span>
+        </a>
+        
+        <a  class="爬虫 "
+           href="/2019/08/27/spider_10_anti_spider_/"
+           data-tag="爬虫、知识"
+           data-author="" >
+            <span class="post-title" title="常见的反爬手段和解决思路">常见的反爬手段和解决思路</span>
+            <span class="post-date" title="2019-08-27 19:40:01">2019/08/27</span>
+        </a>
+        
+        <a  class="爬虫 "
+           href="/2019/08/27/spider_09_csv_/"
+           data-tag="爬虫、csv"
+           data-author="" >
+            <span class="post-title" title="json 与 csv 文件转换">json 与 csv 文件转换</span>
+            <span class="post-date" title="2019-08-27 19:01:24">2019/08/27</span>
+        </a>
+        
+        <a  class="爬虫 "
+           href="/2019/08/26/spider_07_xpath_2/"
+           data-tag="爬虫、xpath"
+           data-author="" >
+            <span class="post-title" title="XPath 数据提取(下)">XPath 数据提取(下)</span>
+            <span class="post-date" title="2019-08-26 19:55:54">2019/08/26</span>
+        </a>
+        
+        <a  class="爬虫 "
+           href="/2019/08/26/spider_06_xpath_1/"
+           data-tag="爬虫、xpath"
+           data-author="" >
+            <span class="post-title" title="XPath 数据提取(上)">XPath 数据提取(上)</span>
+            <span class="post-date" title="2019-08-26 19:20:34">2019/08/26</span>
+        </a>
+        
+        <a  class="爬虫 "
+           href="/2019/08/25/spider_05_data/"
+           data-tag="爬虫"
+           data-author="" >
+            <span class="post-title" title="数据提取概念和数据的分类">数据提取概念和数据的分类</span>
+            <span class="post-date" title="2019-08-25 20:50:24">2019/08/25</span>
+        </a>
+        
+        <a  class="爬虫 "
+           href="/2019/08/25/spider_04_douban/"
+           data-tag="爬虫"
+           data-author="" >
+            <span class="post-title" title="requests--豆瓣电影爬虫">requests--豆瓣电影爬虫</span>
+            <span class="post-date" title="2019-08-25 19:22:24">2019/08/25</span>
+        </a>
+        
+        <a  class="爬虫 "
+           href="/2019/08/24/spider_03_request_use/"
+           data-tag="爬虫requests"
+           data-author="" >
+            <span class="post-title" title="requests模块的使用(下)">requests模块的使用(下)</span>
+            <span class="post-date" title="2019-08-24 21:10:46">2019/08/24</span>
+        </a>
+        
+        <a  class="爬虫 "
+           href="/2019/08/24/spider_02_request_use/"
+           data-tag="爬虫、requests"
+           data-author="" >
+            <span class="post-title" title="requests模块的使用(上)">requests模块的使用(上)</span>
+            <span class="post-date" title="2019-08-24 20:10:45">2019/08/24</span>
+        </a>
+        
+        <a  class="爬虫 "
+           href="/2019/08/24/spider_01/"
+           data-tag="爬虫"
+           data-author="" >
+            <span class="post-title" title="爬虫的介绍">爬虫的介绍</span>
+            <span class="post-date" title="2019-08-24 19:30:34">2019/08/24</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2019/08/20/django_02_start_project/"
+           data-tag="Django"
+           data-author="" >
+            <span class="post-title" title="Django创建工程">Django创建工程</span>
+            <span class="post-date" title="2019-08-20 20:20:09">2019/08/20</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2019/08/20/django_01/"
+           data-tag="Django"
+           data-author="" >
+            <span class="post-title" title="Django的使用">Django的使用</span>
+            <span class="post-date" title="2019-08-20 20:01:09">2019/08/20</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-qianduan_08_echart" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">使用echarts绘制图表</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" data-rel="前端">前端</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color3">echarts</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2023-12-14 22:35:33'>2023-12-13 22:17</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BB%8B%E7%BB%8D"><span class="toc-text">1.介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-vue%E4%BD%BF%E7%94%A8echarts%E6%AD%A5%E9%AA%A4"><span class="toc-text">2.vue使用echarts步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8A%98%E7%BA%BF%E5%9B%BE"><span class="toc-text">3.折线图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E9%A5%BC%E5%9B%BE"><span class="toc-text">4.饼图</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1.介绍"></a>1.介绍</h4><pre><code>ECharts是一款基于JavaScript的数据可视化图表库，提供直观，生动，可交互，可个性化定制的数据可视化图表。
+图表示例地址：https://echarts.apache.org/examples/zh/index.html
+配置项文档：https://echarts.apache.org/zh/option.html#title
+</code></pre>
+<h4 id="2-vue使用echarts步骤"><a href="#2-vue使用echarts步骤" class="headerlink" title="2.vue使用echarts步骤"></a>2.vue使用echarts步骤</h4><pre><code>1.安装包
+npm install echarts
+
+2.基础demo地址
+https://github.com/wwsit/python_files/blob/master/003_qianduan_files/004_echats/001_echarts.vue
+</code></pre>
+<p><img src="01.jpg"></p>
+<h4 id="3-折线图"><a href="#3-折线图" class="headerlink" title="3.折线图"></a>3.折线图</h4><pre><code>代码地址：
+https://github.com/wwsit/python_files/blob/master/003_qianduan_files/004_echats/002_%E5%A4%9A%E6%8A%98%E7%BA%BF%E5%9B%BE.vue
+功能点介绍：
+    1.显示多根折线图
+    2.坐标轴倾斜显示
+    3.鼠标悬浮会显示数值
+    4.将数据导出成图片
+    5.显示主题+图例
+</code></pre>
+<p><img src="02.jpg"></p>
+<h4 id="4-饼图"><a href="#4-饼图" class="headerlink" title="4.饼图"></a>4.饼图</h4><pre><code>代码地址：
+https://github.com/wwsit/python_files/blob/master/003_qianduan_files/004_echats/003_%E9%A5%BC%E5%9B%BE.vue
+</code></pre>
+<p><img src="03.jpg"></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>使用echarts绘制图表</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="伟生">伟生</a></p>
+    <p><span class="copy-title">发布时间:</span>2023-12-13, 22:17:35</p>
+    <p><span class="copy-title">最后更新:</span>2023-12-14, 22:35:33</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2023/12/13/qianduan_08_echart/" title="使用echarts绘制图表">http://yoursite.com/2023/12/13/qianduan_08_echart/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2016-2019 Yelog</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#基础','#继承','#paramiko','#图形化界面、exe','#json','#rm,shutil','#threading','#键盘、鼠标操作','#excel、 读取或保存数据','#图片相似度','#os模块','#测试、谷歌驱动、驱动','#测试','#adb,wifi','#Jmeter,压测，参数化','#UI,项目','#Jmeter,压测','#后端','#数据库','#数据库 ,pymysql','#数据库、Mysql','#MongoDB','#MongoDB、非关系型数据库','#MongoDB、Python','#Django','#Flask','#Flask、图片','#Flask、杂记、笔记','#Flask、zipfile、压缩、解压','#Flask、注册蓝图、模块拆分','#Flask、ajax、axios','#Flask、ajax','#Flask、Gunicorn、项目部署','#机器学习、折线图','#Flask、cookie、session','#模板语法','#机器学习','#gogs','#docker','#etcd','#vm','#kafka','#前端、杂记、笔记、axios','#前端','#前端、杂记、笔记','#Vue','#vue','#axios','#javascript,cookie','#Vue、elemt-ui 、按钮隐藏、初始化','#文件上传','#Vue、elemt-ui、表格组件相关demo','#echarts','#css','#块元素、行内元素、内联块元素','#安装包','#luckysheet、表格','#基础、时间戳、日期加减','#ES','#bat命令、shell命令','#运维、docker','#shell命令','#OCR','#学习资料、串口、安装包、网盘','#Nginx','#shell脚本、Python、Mysql、Nginx','#Al绘画','#电视源','#selenium、option','#爬虫、requests','#爬虫requests','#爬虫','#爬虫、xpath','#爬虫、csv','#爬虫、知识','#爬虫、scrapy','#分享','#git','#运维、命令',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 532px;
+    }
+    .nav.fullscreen {
+        margin-left: -532px;
+    }
+    .nav-left {
+        width: 110px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 412px;
+        }
+        .nav.fullscreen {
+            margin-left: -412px;
+        }
+        .nav-left {
+            width: 20px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 412px;
+            margin-left: -412px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 412px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
