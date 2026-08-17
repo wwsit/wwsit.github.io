@@ -1453,6 +1453,14 @@ div.ac > ul > li:before,
   line-height: 31px;
   margin-bottom: 10px;
 }
+.post .pjax article .article-entry h1,
+.post .pjax article .article-entry h2,
+.post .pjax article .article-entry h3,
+.post .pjax article .article-entry h4,
+.post .pjax article .article-entry h5,
+.post .pjax article .article-entry h6 {
+  border-bottom: none;
+}
 .post .pjax article .toc-ref {
   display: none;
 }
@@ -1696,7 +1704,7 @@ h4,
 h5,
 h6 {
   font-family: inherit;
-  font-weight: normal;
+  font-weight: bold;
   margin-top: 30px;
   color: #283444;
   text-rendering: optimizelegibility;
