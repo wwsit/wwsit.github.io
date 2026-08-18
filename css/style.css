@@ -1453,6 +1453,9 @@ div.ac > ul > li:before,
   line-height: 31px;
   margin-bottom: 10px;
 }
+.post .pjax article .article-entry {
+  color: #000;
+}
 .post .pjax article .article-entry h1,
 .post .pjax article .article-entry h2,
 .post .pjax article .article-entry h3,
@@ -1460,6 +1463,21 @@ div.ac > ul > li:before,
 .post .pjax article .article-entry h5,
 .post .pjax article .article-entry h6 {
   border-bottom: none;
+}
+.post .pjax article .article-entry h2 {
+  font-size: 18px;
+}
+.post .pjax article .article-entry h3 {
+  font-size: 16px;
+}
+.post .pjax article .article-entry h4 {
+  font-size: 14px;
+}
+.post .pjax article .article-entry h4 {
+  font-size: 12px;
+}
+.post .pjax article .article-entry h4 {
+  font-size: 10px;
 }
 .post .pjax article .toc-ref {
   display: none;
@@ -1508,7 +1526,7 @@ div.ac > ul > li:before,
   margin-bottom: 0px;
 }
 .post .pjax article p {
-  margin: 0 0 16px;
+  margin: 0 0 8px;
 }
 .post .pjax article .inner-toc {
   border: #e2dede solid 1px;
