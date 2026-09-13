@@ -99,6 +99,16 @@
   .full-toc #rocket.launch:before {
     color: #449fdb;
   }
+  .post .pjax article .article-entry table {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+  .post .pjax article .article-entry table td,
+  .post .pjax article .article-entry table th {
+    white-space: nowrap;
+  }
 }
 @media screen and (max-width: 426px) {
   .nav {
@@ -208,6 +218,7 @@
   .post .pjax {
     padding: 0 18px;
     max-width: 100%;
+    padding: 1em;
   }
   .post .pjax article {
     padding-top: 1em;
@@ -224,6 +235,26 @@
   }
   .post .pjax article .article-title {
     font-size: 1.6em;
+  }
+  .post .pjax .article-entry table {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+  .post .pjax .article-entry table td,
+  .post .pjax .article-entry table th {
+    white-space: nowrap;
+  }
+  .post .pjax .article-entry pre {
+    overflow-x: auto;
+  }
+  .post .pjax .article-entry pre > code {
+    white-space: pre;
+    word-wrap: normal;
+  }
+  .post .pjax img {
+    max-width: 100%;
   }
   .post .article_copyright {
     font-size: 14px;
