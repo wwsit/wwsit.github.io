@@ -218,10 +218,10 @@
   .post .pjax {
     padding: 0 18px;
     max-width: 100%;
-    padding: 1em;
   }
   .post .pjax article {
     padding-top: 1em;
+    padding: 1em;
   }
   .post .pjax article .article-meta {
     font-size: 0.9em;
@@ -236,24 +236,24 @@
   .post .pjax article .article-title {
     font-size: 1.6em;
   }
-  .post .pjax .article-entry table {
+  .post .pjax article .article-entry table {
     display: block;
     overflow-x: auto;
     width: 100%;
     -webkit-overflow-scrolling: touch;
   }
-  .post .pjax .article-entry table td,
-  .post .pjax .article-entry table th {
+  .post .pjax article .article-entry table td,
+  .post .pjax article .article-entry table th {
     white-space: nowrap;
   }
-  .post .pjax .article-entry pre {
+  .post .pjax article .article-entry pre {
     overflow-x: auto;
   }
-  .post .pjax .article-entry pre > code {
+  .post .pjax article .article-entry pre > code {
     white-space: pre;
     word-wrap: normal;
   }
-  .post .pjax img {
+  .post .pjax article img {
     max-width: 100%;
   }
   .post .article_copyright {
