@@ -247,11 +247,11 @@
     white-space: nowrap;
   }
   .post .pjax article .article-entry pre {
-    overflow-x: auto;
+    overflow-x: visible;
   }
   .post .pjax article .article-entry pre > code {
-    white-space: pre;
-    word-wrap: normal;
+    white-space: pre-wrap;
+    word-wrap: break-word;
   }
   .post .pjax article img {
     max-width: 100%;

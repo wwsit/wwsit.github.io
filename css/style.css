@@ -2089,11 +2089,11 @@ img.pswp__img {
     white-space: nowrap;
   }
   .post .pjax article .article-entry pre {
-    overflow-x: auto;
+    overflow-x: visible;
   }
   .post .pjax article .article-entry pre > code {
-    white-space: pre;
-    word-wrap: normal;
+    white-space: pre-wrap;
+    word-wrap: break-word;
   }
   .post .pjax article img {
     max-width: 100%;
@@ -2185,4 +2185,14 @@ font-size
   .shang_box .shang_payselect {
     font-size: 16px;
   }
+}
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: visible;
+}
+.hljs {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: visible;
 }
